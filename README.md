@@ -4,13 +4,40 @@ Cake for you
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+### pub get
 
-A few resources to get you started if this is your first Flutter project:
+```bash
+flutter pub get
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Install flutter native splash
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Create
+
+```bash
+dart run flutter_native_splash:create
+```
+
+Remove
+
+```bash
+dart run flutter_native_splash:remove
+```
+
+### Icon
+
+```bash
+flutter pub run flutter_launcher_icons
+```
+
+### Running Build Runner
+
+```bash
+dart run build_runner build
+```
+
+### APK Build
+
+```bash
+flutter build apk --target-platform android-arm,android-arm64,android-x64
+```

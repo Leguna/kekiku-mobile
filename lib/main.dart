@@ -1,8 +1,25 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
-import 'package:kekiku/splash/splash_screen.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:kekiku/core/colors.dart';
+import 'package:kekiku/splash/onboarding_screen.dart';
 
-void main() {
-  runApp(const MyApp());
+import 'app_setup.dart';
+import 'core/strings.dart';
+
+Future<void> main() async {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  await setupServices();
+  // Force the app to wait for 2 seconds before running the app
+  await Future.delayed(const Duration(seconds: 1));
+
+  if (dotenv.env['PREVIEW'] == 'true') {
+    runApp(DevicePreview(builder: (_) => const MyApp()));
+  } else {
+    runApp(const MyApp());
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -10,13 +27,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    FlutterNativeSplash.remove();
     return MaterialApp(
-      title: 'Kekiku',
+      title: Strings.appName,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
         useMaterial3: true,
       ),
-      home: const SplashScreen(),
+      home: const OnBoardingScreen(),
     );
   }
 }

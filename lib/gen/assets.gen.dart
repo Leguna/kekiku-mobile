@@ -16,9 +16,13 @@ class Assets {
   static const AssetGenImage brandName = AssetGenImage('assets/brand-name.png');
   static const AssetGenImage favicon = AssetGenImage('assets/favicon.png');
   static const AssetGenImage logo = AssetGenImage('assets/logo.png');
+  static const AssetGenImage logoOnly = AssetGenImage('assets/logo_only.png');
+  static const AssetGenImage noimage = AssetGenImage('assets/noimage.png');
+  static const String welcome = 'assets/welcome.svg';
 
   /// List of all assets
-  static List<dynamic> get values => [aEnv, brandName, favicon, logo];
+  static List<dynamic> get values =>
+      [aEnv, brandName, favicon, logo, logoOnly, noimage, welcome];
 }
 
 class AssetGenImage {

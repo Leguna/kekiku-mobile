@@ -12,7 +12,6 @@ Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await setupServices();
-  // Force the app to wait for 2 seconds before running the app
   await Future.delayed(const Duration(seconds: 1));
 
   if (dotenv.env['PREVIEW'] == 'true') {

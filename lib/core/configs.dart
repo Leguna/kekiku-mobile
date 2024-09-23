@@ -3,27 +3,6 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 final class Config {
   static const int parentRoleId = 1;
   static const String taskNameChat = 'chats-task-';
-  static const List<String> listPageName = [
-    pageNameHome,
-    pageNameFeeds,
-    pageNamePelanggaran,
-    pageNameKesehatan,
-    pageNameChat,
-    pageNameSetting
-  ];
-  static var listPageNameWithoutPelanggaran = [
-    pageNameHome,
-    pageNameFeeds,
-    pageNameChat,
-    pageNameSetting
-  ];
-
-  static const pageNameHome = '';
-  static const pageNameFeeds = 'FEEDS';
-  static const pageNamePelanggaran = 'PELANGGARAN SISWA';
-  static const pageNameKesehatan = 'KESEHATAN SISWA';
-  static const pageNameChat = 'CHAT';
-  static const pageNameSetting = 'SETTING';
 
   static const reminderDelayInDays = 7;
 
@@ -32,8 +11,8 @@ final class Config {
     switch (flavor) {
       case FlavorType.dev:
         return dotenv.env['DEV_BASE_URL'] ?? '';
-      case FlavorType.staging:
-      case FlavorType.production:
+      case FlavorType.stage:
+      case FlavorType.prod:
         return dotenv.env['BASE_URL'] ??
             dotenv.env['DEV_BASE_URL'] ??
             dotenv.env['MOCK_URL'] ??
@@ -46,8 +25,8 @@ final class Config {
 
 final class Flavors {
   static const String dev = 'dev';
-  static const String staging = 'staging';
-  static const String production = 'production';
+  static const String stage = 'stage';
+  static const String prod = 'prod';
 
   Flavors(FlavorType flavor) {
     currentFlavor = flavor;
@@ -55,14 +34,14 @@ final class Flavors {
 
   static const Map<String, FlavorType> appFlavor = {
     dev: FlavorType.dev,
-    staging: FlavorType.staging,
-    production: FlavorType.production,
+    stage: FlavorType.stage,
+    prod: FlavorType.prod,
   };
 
   static const List<String> appFlavorList = [
     dev,
-    staging,
-    production,
+    stage,
+    prod,
   ];
 
   static FlavorType currentFlavor = FlavorType.dev;
@@ -74,13 +53,13 @@ final class Flavors {
 
   static const Map<String, String> appFlavorColor = {
     dev: '0xFFff0000',
-    staging: '0xFFff00ff',
-    production: '0xFF00ff00',
+    stage: '0xFFff00ff',
+    prod: '0xFF00ff00',
   };
 }
 
 enum FlavorType {
   dev,
-  staging,
-  production,
+  stage,
+  prod,
 }

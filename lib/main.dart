@@ -6,6 +6,7 @@ import 'package:kekiku/splash/onboarding_screen.dart';
 
 import 'app_setup.dart';
 import 'core/index.dart';
+import 'core/widgets/bottom_nav_bar/bloc/bottom_nav_bar_cubit.dart';
 
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -30,29 +31,34 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     FlutterNativeSplash.remove();
-    return MaterialApp(
-      title: Strings.appName,
-      routes: Routes.getRoutes(),
-      theme: ThemeData(
-        buttonTheme: const ButtonThemeData(
-          buttonColor: AppColors.primaryColor,
-          textTheme: ButtonTextTheme.primary,
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(),
-        ),
-        textTheme: const TextTheme(
-          bodyMedium: TextStyle(
-            fontSize: 16.0,
-            fontWeight: FontWeight.w400,
-            color: Colors.white,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => BottomNavBarCubit()),
+      ],
+      child: MaterialApp(
+        title: Strings.appName,
+        routes: Routes.getRoutes(),
+        theme: ThemeData(
+          buttonTheme: const ButtonThemeData(
+            buttonColor: AppColors.primaryColor,
+            textTheme: ButtonTextTheme.primary,
           ),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(),
+          ),
+          textTheme: const TextTheme(
+            bodyMedium: TextStyle(
+              fontSize: 16.0,
+              fontWeight: FontWeight.w400,
+              color: Colors.white,
+            ),
+          ),
+          colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
+          useMaterial3: true,
         ),
-        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
-        useMaterial3: true,
+        home: const OnBoardingScreen(),
+        initialRoute: isFirstTime ? Routes.onBoarding : Routes.home,
       ),
-      home: const OnBoardingScreen(),
-      initialRoute: isFirstTime ? Routes.onBoarding : Routes.home,
     );
   }
 }

@@ -7,6 +7,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MyScaffold(
+      bottomNavigationBar: const MyBottomNavBar(),
         body: SafeArea(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

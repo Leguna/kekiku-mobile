@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../configs.dart';
-
 class MyBottomNavBarItem extends StatelessWidget {
   const MyBottomNavBarItem({
     super.key,
@@ -18,25 +16,31 @@ class MyBottomNavBarItem extends StatelessWidget {
       fit: StackFit.loose,
       alignment: Alignment.center,
       children: [
-        const SizedBox(height: 48),
         icon,
       ],
     );
   }
 
-  static List<Widget> icons = [];
+  static List<Map<String, Widget>> bottomNavBarItemsWithIcons = [
+    {'Track': const Icon(Icons.track_changes)},
+    {'Cart': const Icon(Icons.shopping_cart)},
+    {'Home': const Icon(Icons.home)},
+    {'Favorites': const Icon(Icons.favorite)},
+    {'Profile': const Icon(Icons.person)},
+  ];
 
   static List<BottomNavigationBarItem> createItems(
     int selectedIndex,
   ) {
     return List.generate(
-      4,
+      bottomNavBarItemsWithIcons.length,
       (index) => create(
-          MyBottomNavBarItem(
-            icon: icons[index],
-            isSelected: index == selectedIndex,
-          ),
-          Config.listPageName[index]),
+        MyBottomNavBarItem(
+          icon: bottomNavBarItemsWithIcons[index].values.first,
+          isSelected: index == selectedIndex,
+        ),
+        bottomNavBarItemsWithIcons[index].keys.first,
+      ),
     );
   }
 

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const Color primaryColor = Color(0xFF285da1);
-  static const Color primaryColorDark = Color(0xFF140202);
-  static const Color primaryColorLight = Color(0xFF6A111C);
-  static const Color red = Color(0xFFD57373);
-  static const Color green = Color(0xFF52C157);
-  static const Color grey = Color(0xFF797C7B);
-  static const Color white = Color(0xFFCDD1D0);
-  static const Color blueish = Color(0xFFDBE8E6);
-  static const Color chatBg = Color(0xFFF3F6F6);
+  static const Color primaryColor = Color(0xFF1A80E5);
+  static const Color primaryColorDark = Color(0xFF121A21);
+  static const Color primaryColorBackground = Color(0xFF243647);
+  static const Color primaryColorLight = Color(0xFF8dc4f7);
+
+  static const Color paleSteelBlue = Color(0xFF94ADC7);
+  static const Color charcoalBlue = Color(0xFF243647);
+  static const Color darkBlueGray = Color(0xFF1A2633);
+  static const Color midnightBlue = Color(0xFF121A21);
 
   // Bread Color
   static const Color breadColorMain = Color(0xFFeec07b);

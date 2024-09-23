@@ -52,7 +52,6 @@ class _MyTextFieldState extends State<MyTextField> {
         Text(
           widget.label,
           textAlign: TextAlign.start,
-          style: AppTextStyles.label,
         ),
         TextFormField(
           inputFormatters: [...widget.formatter],
@@ -113,7 +112,6 @@ class _MyTextFieldState extends State<MyTextField> {
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(10.0),
                         ),
-                        textStyle: AppTextStyles.tooltip,
                         textAlign: TextAlign.end,
                         showDuration: const Duration(seconds: 3),
                         triggerMode: TooltipTriggerMode.tap,

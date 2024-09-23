@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../gen/assets.gen.dart';
-import '../colors.dart';
 import 'my_shimmer.dart';
 
 class MultipleImageWidget extends StatelessWidget {
@@ -21,7 +20,7 @@ class MultipleImageWidget extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(color: Colors.black, width: lineSize),
         borderRadius: BorderRadius.circular(100.0),
-        color: AppColors.grey.withOpacity(0.5),
+        color: Colors.grey.withOpacity(0.5),
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(100.0),

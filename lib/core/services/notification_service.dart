@@ -1,11 +1,7 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-import '../../app_setup.dart';
-import '../index.dart';
-
 late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 late AndroidNotificationChannel mainChannel;
-late AndroidNotificationChannel chatChannel;
 bool isFlutterLocalNotificationsInitialized = false;
 
 const channel = 'app_channel_id';
@@ -29,44 +25,16 @@ Future<void> setupFlutterNotifications() async {
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<
           AndroidFlutterLocalNotificationsPlugin>()
-      ?.createNotificationChannel(chatChannel);
-  await flutterLocalNotificationsPlugin
-      .resolvePlatformSpecificImplementation<
-          AndroidFlutterLocalNotificationsPlugin>()
       ?.createNotificationChannel(mainChannel);
   await flutterLocalNotificationsPlugin.initialize(
     const InitializationSettings(
-      android: AndroidInitializationSettings('@mipmap/ic_stat_favicon'),
+      android: AndroidInitializationSettings('@drawable/ic_stat_favicon'),
     ),
   );
 
   isFlutterLocalNotificationsInitialized = true;
 }
 
-Future<void> showChatNotification({
-  id = 0,
-  title,
-  body,
-}) async {
-  await setupServices();
-  final isChatNotifEnabled =
-      await getIt<LocalDatabase>().getBool(chatNotifKey) ?? true;
-  if (!isChatNotifEnabled) return;
-  flutterLocalNotificationsPlugin.show(
-    id,
-    title,
-    body,
-    NotificationDetails(
-      android: AndroidNotificationDetails(
-        chatChannel.id,
-        chatChannel.name,
-        channelDescription: chatChannel.description,
-        largeIcon: const DrawableResourceAndroidBitmap('@mipmap/ic_launcher'),
-        icon: '@drawable/ic_notification',
-      ),
-    ),
-  );
-}
 
 void showWeeklyNotification({
   required String title,

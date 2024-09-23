@@ -1,13 +1,27 @@
 final class Strings {
-  static var weeklyReminder = 'We miss you!';
+  static const weeklyReminder = 'We miss you!';
 
-  static var reminder = 'Reminder';
+  static const reminder = 'Reminder';
 
-  static var checkYourConnection = 'Check your connection';
+  static const checkYourConnection = 'Check your connection';
 
-  static var unauthorized = 'Unauthorized';
+  static const unauthorized = 'Unauthorized';
 
-  static var dataNotFound = 'Data not found';
+  static const dataNotFound = 'Data not found';
 
-  static var appName = 'Kekiku';
+  static const appName = 'Kekiku';
+
+  static const orderNow = 'Order now';
+
+  static const onboardingDescription = 'We specialize in custom cakes, cupcakes, and desserts for all occasions. We are proud to be a local business serving the community we love. Thank you for choosing us!';
+
+  static const onboardingTitle = 'Welcome to Kekiku!';
+
+  static const save = 'Save';
+  static const cancel = 'Cancel';
+
+  static String homeTitle = 'Popular Cakes';
+  static String categoryTitle = 'Categories';
+
+  static String all = 'All';
 }

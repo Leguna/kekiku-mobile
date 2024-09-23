@@ -6,7 +6,7 @@ showMySnackBar(context, String message, {bool error = true}) {
   ScaffoldMessenger.of(context).removeCurrentSnackBar();
   SnackBar snackBar = SnackBar(
     content: Text(removeExceptionPrefix(message)),
-    backgroundColor: error ? AppColors.red : AppColors.green,
+    backgroundColor: error ? Colors.greenAccent : Colors.redAccent,
     dismissDirection: DismissDirection.horizontal,
     behavior: SnackBarBehavior.floating,
   );
@@ -62,26 +62,18 @@ showMyModalOptionBottomSheet(
           Text(
             title,
             textAlign: TextAlign.center,
-            style: AppTextStyles.normalBlack.copyWith(
-              fontSize: 25.0,
-              fontWeight: FontWeight.w700,
-            ),
           ),
           const SizedBox(height: 16.0),
           Text(
             description,
             textAlign: TextAlign.center,
-            style: AppTextStyles.normalBlack.copyWith(
-              fontSize: 15.0,
-              fontWeight: FontWeight.w400,
-            ),
           ),
           const SizedBox(height: 16.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               MyButton(
-                title: 'SIMPAN',
+                title: Strings.save,
                 borderSide: const BorderSide(color: Colors.black),
                 color: AppColors.greenButton,
                 onPressed: () {
@@ -91,7 +83,7 @@ showMyModalOptionBottomSheet(
               ),
               const SizedBox(width: 16.0),
               MyButton(
-                title: 'BATAL',
+                title: Strings.cancel,
                 borderSide: const BorderSide(color: Colors.black),
                 color: AppColors.redButton,
                 onPressed: () {

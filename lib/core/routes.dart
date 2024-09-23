@@ -3,8 +3,9 @@ import 'package:kekiku/home/home_screen.dart';
 import 'package:kekiku/splash/onboarding_screen.dart';
 
 class Routes {
-  static const String onBoarding = '/';
-  static const String homeRoute = '/home';
+  static const String onBoarding = '/onboarding';
+  static const String home = '/home';
+
 
   static WidgetBuilder getRoute(String route) {
     return getRoutes()[route] ?? (context) => const SizedBox();
@@ -21,7 +22,7 @@ class Routes {
   static Map<String, WidgetBuilder> getRoutes() {
     return {
       onBoarding: (context) => const OnBoardingScreen(),
-      homeRoute: (context) => const HomeScreen(),
+      home: (context) => const HomeScreen(),
     };
   }
 }

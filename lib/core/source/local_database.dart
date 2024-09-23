@@ -12,6 +12,8 @@ const String lastLoginKey = 'lastLogin';
 const String chatNotifKey = 'chatNotifSetting';
 const String otherNotifKey = 'otherNotifSetting';
 
+const String firstTimeKey = 'firstTime';
+
 const tokenKey = 'token';
 
 class LocalDatabase {

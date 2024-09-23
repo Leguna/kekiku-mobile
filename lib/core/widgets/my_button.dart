@@ -31,7 +31,6 @@ class MyButton extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         minimumSize: Size(0, height ?? 40.0),
-        textStyle: AppTextStyles.button,
         alignment: alignment,
         backgroundColor: color ?? AppColors.primaryColor,
         disabledBackgroundColor: Colors.grey[300],
@@ -55,7 +54,6 @@ class MyButton extends StatelessWidget {
               ? const SizedBox()
               : Text(
                   title ?? '',
-                  style: AppTextStyles.button,
                 )),
     );
   }

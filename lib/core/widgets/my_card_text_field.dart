@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../index.dart';
-
 class MyCardTextField extends StatefulWidget {
   const MyCardTextField({
     super.key,
@@ -34,11 +32,9 @@ class _MyCardTextFieldState extends State<MyCardTextField> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         if (widget.label.isNotEmpty)
-          Text(widget.label,
-              style: AppTextStyles.normalBlack.copyWith(
-                fontWeight: FontWeight.w700,
-                fontSize: 16.0,
-              )),
+          Text(
+            widget.label,
+          ),
         const SizedBox(height: 8.0),
         TextField(
           onChanged: widget.onChange,
@@ -48,10 +44,6 @@ class _MyCardTextFieldState extends State<MyCardTextField> {
             counterText: '',
             filled: true,
             isDense: true,
-            hintStyle: AppTextStyles.normalBlack.copyWith(
-              fontSize: 16.0,
-              color: AppColors.grey,
-            ),
             hintText: widget.hintText,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16.0),
@@ -71,14 +63,7 @@ class _MyCardTextFieldState extends State<MyCardTextField> {
         ),
         if (widget.description.isNotEmpty) ...[
           const SizedBox(height: 4.0),
-          Text(
-            widget.description,
-            style: AppTextStyles.normalBlack.copyWith(
-              fontSize: 14.0,
-              color: Colors.black54,
-              fontStyle: FontStyle.italic,
-            ),
-          ),
+          Text(widget.description),
         ],
       ],
     );

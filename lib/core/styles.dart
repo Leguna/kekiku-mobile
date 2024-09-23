@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'colors.dart';
-
 InputDecorationTheme defaultInputTheme = const InputDecorationTheme(
   border: OutlineInputBorder(
     borderRadius: BorderRadius.all(Radius.circular(4.0)),
@@ -20,55 +18,19 @@ InputDecorationTheme defaultInputTheme = const InputDecorationTheme(
 );
 
 class AppTextStyles {
-  static TextStyle titleSplash = GoogleFonts.montserrat(
+
+  static TextStyle title = GoogleFonts.poppins(
     fontSize: 32.0,
-    fontWeight: FontWeight.w700,
+    fontWeight: FontWeight.bold,
     color: Colors.white,
   );
 
-  static TextStyle normalBlack = GoogleFonts.montserrat(
-    fontSize: 18.0,
-    fontWeight: FontWeight.w400,
-    color: Colors.black,
-  );
-
-  static TextStyle normalWhite = GoogleFonts.montserrat(
-    fontSize: 18.0,
-    fontWeight: FontWeight.w400,
-    color: Colors.white,
-  );
-
-  static TextStyle italicWhite = GoogleFonts.montserrat(
-    fontSize: 18.0,
-    fontWeight: FontWeight.w400,
-    color: Colors.white,
-    fontStyle: FontStyle.italic,
-  );
-
-  static TextStyle montserrat = GoogleFonts.montserrat(
+  static TextStyle poppins = GoogleFonts.poppins(
     fontSize: 20.0,
     fontWeight: FontWeight.w400,
     color: Colors.white,
   );
 
-  static TextStyle titleLogin = titleSplash.copyWith(
-    fontSize: 34,
-  );
-
-  static TextStyle otpText = titleSplash.copyWith(
-    fontSize: 18,
-    color: Colors.black,
-  );
-  static TextStyle button = GoogleFonts.montserrat(
-    fontSize: 18.0,
-    fontWeight: FontWeight.w700,
-    color: Colors.black,
-  );
-  static TextStyle label = GoogleFonts.montserrat(
-    fontSize: 26.0,
-    fontWeight: FontWeight.w700,
-    color: Colors.white,
-  );
   static TextStyle textField = GoogleFonts.montserrat(
     fontSize: 16.0,
     fontWeight: FontWeight.w400,
@@ -79,60 +41,26 @@ class AppTextStyles {
     color: Colors.white.withOpacity(0.5),
   );
 
-  static var tooltip = textField.copyWith(
-    fontSize: 12,
-    fontWeight: FontWeight.w400,
-    color: Colors.black,
-  );
-
-  static TextStyle chooseStudentNumberTitle = GoogleFonts.montserrat(
-    fontSize: 42,
-    letterSpacing: 1.5,
-    height: 2,
-    fontWeight: FontWeight.w700,
-  );
-
-  static TextStyle appBarTitle = GoogleFonts.montserrat(
-    fontSize: 22,
-    color: AppColors.primaryColor,
-    fontWeight: FontWeight.w700,
-  );
-
-  static TextStyle titleHome = montserrat.copyWith(
+  static TextStyle titleHome = poppins.copyWith(
     fontSize: 26.0,
     letterSpacing: 1.0,
-    fontWeight: FontWeight.w700,
-    color: AppColors.primaryColor,
-  );
-
-  static TextStyle subtitleHome = montserrat.copyWith(
-    fontSize: 22.0,
-    letterSpacing: 1.0,
-    fontWeight: FontWeight.w700,
-    color: AppColors.primaryColor,
-  );
-  static TextStyle contentHome = montserrat.copyWith(
-    fontSize: 22,
-    letterSpacing: 1,
-    color: AppColors.primaryColor,
-    fontWeight: FontWeight.w400,
-  );
-
-  static TextStyle dataFieldTitle = GoogleFonts.montserrat(
-    fontSize: 18,
-    color: AppColors.grey,
-    fontWeight: FontWeight.w400,
-  );
-
-  static TextStyle dataFieldContent = GoogleFonts.montserrat(
-    fontSize: 18,
+    fontWeight: FontWeight.bold,
     color: Colors.white,
-    fontWeight: FontWeight.w500,
   );
 
-  static TextStyle titleFeed = GoogleFonts.montserrat(
-    fontSize: 14,
-    color: Colors.black,
-    fontWeight: FontWeight.w700,
+  static var small = poppins.copyWith(
+    fontSize: 14.0,
+    color: Colors.white,
   );
+
+  static var medium = poppins.copyWith(
+    fontSize: 16.0,
+    color: Colors.white,
+  );
+
+  static var appBarTitle = poppins.copyWith(
+    fontSize: 20.0,
+    color: Colors.white,
+  );
+
 }

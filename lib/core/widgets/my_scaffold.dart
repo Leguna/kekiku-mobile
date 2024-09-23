@@ -23,7 +23,7 @@ class MyScaffold extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          color: AppColors.breadColorSecondary,
+          color: AppColors.primaryColorDark,
           width: double.infinity,
           height: double.infinity,
         ),
@@ -31,9 +31,11 @@ class MyScaffold extends StatelessWidget {
           appBar: appBar,
           backgroundColor: Colors.transparent,
           bottomSheet: bottomSheet,
-          body: Stack(children: [
-            body,
-          ]),
+          body: SafeArea(
+            child: Stack(children: [
+              body,
+            ]),
+          ),
           bottomNavigationBar: bottomNavigationBar,
         ),
       ],

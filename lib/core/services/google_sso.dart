@@ -3,23 +3,25 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class GoogleSSOService {
-  late final GoogleSignIn _googleSignIn;
+  late final GoogleSignIn googleSignIn;
 
-  GoogleSSOService(this._googleSignIn){
+  GoogleSSOService(){
     final List<String> scopes = <String>[
       'email',
-      'https://www.googleapis.com/auth/contacts.readonly',
+      'profile',
     ];
 
-    _googleSignIn = GoogleSignIn(
-      clientId: dotenv.env['GOOGLE_CLIENT_ID'],
+    googleSignIn = GoogleSignIn(
+      serverClientId: dotenv.env['GOOGLE_SERVER_CLIENT_ID'],
       scopes: scopes,
     );
   }
 
+
+
   Future<void> handleSignIn() async {
     try {
-      await _googleSignIn.signIn();
+      await googleSignIn.signIn();
     } catch (error) {
       if (kDebugMode) {
         print(error);

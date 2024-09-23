@@ -1,16 +1,14 @@
 import 'package:dio/dio.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:workmanager/workmanager.dart';
 
 import 'core/index.dart';
 import 'core/services/firebase/firebase_service.dart';
-import 'core/services/firebase/firestore_service.dart';
-import 'core/services/firebase/push_messaging_service.dart';
 import 'core/services/google_sso.dart';
 import 'core/services/notification_service.dart';
 
@@ -31,30 +29,35 @@ Future<void> setupServices({bool isBackground = false}) async {
     if (!kIsWeb) await setupFlutterNotifications();
 
     final localDatabase = LocalDatabase();
+
     Workmanager workManager = Workmanager();
     getIt.registerLazySingleton(() => workManager);
     getIt.registerLazySingleton(() => localDatabase);
 
     // Firebase
-    FirebaseService firebaseService = await FirebaseService().init();
-    getIt.registerSingleton<FirebaseService>(firebaseService);
-    if (!isBackground) {
-      PushMessagingService firebasePushMessaging = PushMessagingService();
-      getIt.registerSingleton<PushMessagingService>(
-        await firebasePushMessaging.init(),
-      );
+    FirebaseApp? firebaseApp = await FirebaseService().init();
+    if (firebaseApp == null) {
+      throw Exception('Firebase initialization failed');
     }
-    FirestoreService firestoreService = FirestoreService();
-    getIt.registerSingleton<FirestoreService>(firestoreService);
+
+    if (!isBackground) {
+      // PushMessagingService firebasePushMessaging = PushMessagingService();
+      // getIt.registerSingleton<PushMessagingService>(
+      //   await firebasePushMessaging.init(),
+      // );
+    }
+
+    // FirestoreService firestoreService = FirestoreService();
+    // getIt.registerSingleton<FirestoreService>(firestoreService);
+
+    GoogleSSOService googleSSOService = GoogleSSOService();
+    getIt.registerSingleton<GoogleSSOService>(googleSSOService);
 
     final Dio dio = Dio(BaseOptions(
       baseUrl: dotenv.env['BASE_URL'] ?? dotenv.env['DEV_BASE_URL'] ?? '',
     ));
     getIt.registerSingleton<BaseApiClient>(BaseApiClient(dio));
     getIt.registerSingleton<AuthApiClient>(AuthApiClient(dio));
-
-    GoogleSSOService googleSSOService = GoogleSSOService(GoogleSignIn());
-    getIt.registerSingleton<GoogleSSOService>(googleSSOService);
   } catch (e) {
     // ignore: avoid_print
     print('Error initializing services: $e');

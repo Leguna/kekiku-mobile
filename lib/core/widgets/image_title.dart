@@ -50,18 +50,11 @@ class ImageTitle extends StatelessWidget {
               Text(
                 title,
                 overflow: TextOverflow.ellipsis,
-                style: AppTextStyles.normalBlack.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
               ),
               if (subtitle.isNotEmpty)
                 Text(
                   subtitle,
                   overflow: TextOverflow.ellipsis,
-                  style: AppTextStyles.normalBlack.copyWith(
-                    color: Colors.black54,
-                    fontSize: 16.0,
-                  ),
                 ),
             ],
           ),

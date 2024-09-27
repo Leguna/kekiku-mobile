@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kekiku/core/index.dart';
+import 'package:kekiku/home/home_page.dart';
+
+import '../core/widgets/bottom_nav_bar/bloc/bottom_nav_bar_cubit.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -8,53 +11,22 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MyScaffold(
       bottomNavigationBar: const MyBottomNavBar(),
-        body: SafeArea(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              Strings.homeTitle,
-              style: AppTextStyles.titleHome,
-            ),
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Text(
-                    Strings.categoryTitle,
-                  ),
-                ),
-              ),
-              // See all
+      body: BlocBuilder<BottomNavBarCubit, BottomNavBarState>(
+        builder: (context, state) {
+          return PageView(
+            controller: context
+                .read<BottomNavBarCubit>()
+                .pageController,
+            children: const [
+              Center(child: Text('Track Page')),
+              Center(child: Text('Cart Page')),
+              HomePage(),
+              Center(child: Text('Favorite Page')),
+              Center(child: Text('Profile Page')),
             ],
-          ),
-          // List of categories
-          Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.charcoalBlue,
-                    borderRadius: BorderRadius.circular(64),
-                  ),
-                  padding: const EdgeInsets.all(8),
-                  child: Text(
-                    Strings.all,
-                  ),
-                ),
-              ),
-              // Search
-            ],
-          ),
-          const SizedBox(height: 16),
-        ],
+          );
+        },
       ),
-    ));
+    );
   }
 }

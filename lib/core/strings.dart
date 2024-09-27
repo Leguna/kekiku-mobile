@@ -24,4 +24,6 @@ final class Strings {
   static String categoryTitle = 'Categories';
 
   static String all = 'All';
+
+  static var home = 'Home';
 }

@@ -1,4 +1,4 @@
-import 'package:kekiku/core/source/auth/auth_api_client.dart';
+import 'auth_api_client.dart';
 
 class AuthRepository {
   final AuthApiClient _authApiClient;

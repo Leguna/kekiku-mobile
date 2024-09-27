@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kekiku/home/home_screen.dart';
-import 'package:kekiku/splash/onboarding_screen.dart';
+
+import '../home/home_screen.dart';
+import '../splash/onboarding_screen.dart';
 
 class Routes {
   static const String onBoarding = '/onboarding';

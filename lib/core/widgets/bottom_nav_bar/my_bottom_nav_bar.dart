@@ -19,15 +19,15 @@ class MyBottomNavBar extends StatelessWidget {
             topRight: Radius.circular(20.0),
           ),
           child: BottomNavigationBar(
-            currentIndex: 2,
+            currentIndex: state.page,
             onTap: (index) {
-              // Jump to page
+              context.read<BottomNavBarCubit>().jumpToPage(index);
             },
             type: BottomNavigationBarType.fixed,
             showSelectedLabels: false,
             selectedFontSize: 0.0,
             unselectedFontSize: 0.0,
-            items: MyBottomNavBarItem.createItems(2),
+            items: MyBottomNavBarItem.createItems(state.page),
           ),
         );
       },

@@ -1,17 +1,8 @@
 part of 'bottom_nav_bar_cubit.dart';
 
-sealed class BottomNavBarState {
-  final int index = 0;
-}
+@freezed
+class BottomNavBarState with _$BottomNavBarState {
+  const factory BottomNavBarState.initial({page}) = _Initial;
 
-final class BottomNavBarInitial extends BottomNavBarState {
-}
-
-final class BottomNavBarChanged extends BottomNavBarState {
-}
-
-final class BottomNavBarError extends BottomNavBarState {
-  final String message;
-
-  BottomNavBarError(this.message);
+  const factory BottomNavBarState.success({page}) = _Success;
 }

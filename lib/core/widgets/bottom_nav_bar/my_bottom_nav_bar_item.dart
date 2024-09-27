@@ -5,10 +5,12 @@ class MyBottomNavBarItem extends StatelessWidget {
     super.key,
     required this.icon,
     this.isSelected = false,
+    this.badgeCount = 0,
   });
 
   final Widget icon;
   final bool isSelected;
+  final int badgeCount;
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +19,30 @@ class MyBottomNavBarItem extends StatelessWidget {
       alignment: Alignment.center,
       children: [
         icon,
+        if (badgeCount > 0)
+          Positioned(
+            right: 0,
+            top: 0,
+            child: Container(
+              padding: const EdgeInsets.all(0),
+              decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              constraints: const BoxConstraints(
+                minWidth: 16,
+                minHeight: 16,
+              ),
+              child: Text(
+                badgeCount.toString(),
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 10,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
       ],
     );
   }
@@ -36,7 +62,9 @@ class MyBottomNavBarItem extends StatelessWidget {
       bottomNavBarItemsWithIcons.length,
       (index) => create(
         MyBottomNavBarItem(
-          icon: bottomNavBarItemsWithIcons[index].values.first,
+          icon: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: bottomNavBarItemsWithIcons[index].values.first),
           isSelected: index == selectedIndex,
         ),
         bottomNavBarItemsWithIcons[index].keys.first,

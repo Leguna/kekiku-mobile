@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'my_app_bar.dart';
 import 'my_scaffold.dart';
 
-class NoFoundPage extends StatelessWidget {
-  const NoFoundPage({super.key});
+class NotFoundPage extends StatelessWidget {
+  const NotFoundPage({super.key});
 
   @override
   Widget build(BuildContext context) {

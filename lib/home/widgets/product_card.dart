@@ -1,8 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-
-import '../../core/colors.dart';
-import '../../core/models/product_mdl.dart';
+import 'package:kekiku/core/index.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({super.key, required this.product});
@@ -39,18 +37,12 @@ class ProductCard extends StatelessWidget {
                     Text(
                       product.name ?? '',
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: Theme.of(context).textTheme.bodyLarge,
                     ),
                     Text(
                       '\$ ${product.price?.toStringAsFixed(2)}',
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        color: AppColors.paleSteelBlue,
-                      ),
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                   ],
                 ),

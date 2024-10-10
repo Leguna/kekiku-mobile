@@ -9,7 +9,6 @@ class FirebaseService {
         appId: dotenv.env['FIREBASE_APP_ID'] ?? '',
         messagingSenderId: dotenv.env['FIREBASE_MESSAGING_SENDER_ID'] ?? '',
         projectId: dotenv.env['FIREBASE_PROJECT_ID'] ?? '',
-        storageBucket: dotenv.env['FIREBASE_STORAGE_BUCKET'] ?? '',
       );
       final app = await Firebase.initializeApp(
         name: 'kekiku',

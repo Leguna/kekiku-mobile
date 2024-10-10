@@ -2,19 +2,20 @@ import 'package:flutter/material.dart';
 
 import '../home/home_screen.dart';
 import '../splash/onboarding_screen.dart';
+import 'widgets/not_found_page.dart';
 
 class Routes {
   static const String onBoarding = '/onboarding';
   static const String home = '/home';
 
-
   static WidgetBuilder getRoute(String route) {
-    return getRoutes()[route] ?? (context) => const SizedBox();
+    return getRoutes()[route] ?? (context) => const NotFoundPage();
   }
 
   Map<String, dynamic>? getRouteArgs(BuildContext context) {
     try {
-      return ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+      return ModalRoute.of(context)?.settings.arguments
+          as Map<String, dynamic>?;
     } catch (e) {
       return null;
     }

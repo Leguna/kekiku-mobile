@@ -41,6 +41,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
             overflow: TextOverflow.visible,
           ),
         ),
+        automaticallyImplyLeading: true,
         leading: Row(
           children: [
             if (isShowLeading) ...[

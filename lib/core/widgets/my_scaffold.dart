@@ -29,7 +29,6 @@ class MyScaffold extends StatelessWidget {
         ),
         Scaffold(
           appBar: appBar,
-          backgroundColor: Colors.transparent,
           bottomSheet: bottomSheet,
           body: SafeArea(
             child: Stack(children: [

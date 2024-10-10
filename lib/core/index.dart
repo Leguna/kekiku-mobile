@@ -6,7 +6,7 @@ export 'colors.dart';
 export 'routes.dart';
 export 'sources/index.dart';
 export 'strings.dart';
-export 'styles.dart';
+export 'typography.dart';
 export 'utilities/index.dart';
 export 'widgets/index.dart';
 export 'models/index.dart';

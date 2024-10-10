@@ -20,6 +20,11 @@ Future<void> setupServices({bool isBackground = false}) async {
     initialized = true;
     await dotenv.load(fileName: '.env');
 
+    FirebaseApp? firebaseApp = await FirebaseService().init();
+    if (firebaseApp == null) {
+      throw Exception('Firebase initialization failed');
+    }
+
     await Hive.initFlutter();
     await FlutterDownloader.initialize(
       debug: true,
@@ -33,12 +38,6 @@ Future<void> setupServices({bool isBackground = false}) async {
     Workmanager workManager = Workmanager();
     getIt.registerLazySingleton(() => workManager);
     getIt.registerLazySingleton(() => localDatabase);
-
-    // Firebase
-    FirebaseApp? firebaseApp = await FirebaseService().init();
-    if (firebaseApp == null) {
-      throw Exception('Firebase initialization failed');
-    }
 
     if (!isBackground) {
       // PushMessagingService firebasePushMessaging = PushMessagingService();

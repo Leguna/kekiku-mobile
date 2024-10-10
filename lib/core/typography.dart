@@ -18,6 +18,16 @@ InputDecorationTheme defaultInputTheme = const InputDecorationTheme(
 );
 
 class AppTextStyles {
+  static const bodyLarge = TextStyle(
+    fontSize: 18.0,
+  );
+  static const bodyMedium = TextStyle(
+    fontSize: 16.0,
+  );
+
+  static const bodySmall = TextStyle(
+    fontSize: 14.0,
+  );
 
   static TextStyle title = GoogleFonts.poppins(
     fontSize: 32.0,
@@ -62,5 +72,4 @@ class AppTextStyles {
     fontSize: 20.0,
     color: Colors.white,
   );
-
 }

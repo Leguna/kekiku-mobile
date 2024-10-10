@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../styles.dart';
+import '../typography.dart';
 
 class MyTextField extends StatefulWidget {
   const MyTextField({

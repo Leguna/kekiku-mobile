@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const Color primaryColor = Color(0xFF1A80E5);
-  static const Color primaryColorDark = Color(0xFF121A21);
-  static const Color primaryColorBackground = Color(0xFF243647);
+  AppColors._();
+
+  static const  Color primaryColor = Color(0xFF1A80E5);
+  static const Color primaryColorDark = Color(0xFF243647);
+  static const Color primaryColorBackground = Color(0xFF121A21);
   static const Color primaryColorLight = Color(0xFF8dc4f7);
 
   static const Color paleSteelBlue = Color(0xFF94ADC7);
@@ -18,7 +20,6 @@ class AppColors {
   static const Color breadColorVeryDark = Color(0xFF422308);
   static const Color breadColorDark = Color(0xFF6d3200);
 
-  static var redButton = Colors.red.withOpacity(0.65);
-  static var greenButton = const Color(0xFF71D769).withOpacity(0.65);
-  static var red65 = const Color(0xFFFF0000).withOpacity(0.65);
+  static const redButton = Color(0xFFE57373);
+  static const greenButton = Color(0xFF71D769);
 }

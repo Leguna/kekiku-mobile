@@ -13,7 +13,8 @@ final class Strings {
 
   static const orderNow = 'Order now';
 
-  static const onboardingDescription = 'We specialize in custom cakes, cupcakes, and desserts for all occasions. We are proud to be a local business serving the community we love. Thank you for choosing us!';
+  static const onboardingDescription =
+      'We specialize in custom cakes, cupcakes, and desserts for all occasions. We are proud to be a local business serving the community we love. Thank you for choosing us!';
 
   static const onboardingTitle = 'Welcome to Kekiku!';
 
@@ -26,4 +27,10 @@ final class Strings {
   static String all = 'All';
 
   static var home = 'Home';
+
+  static var searchHint = [
+    'cake',
+    'desert',
+    'roti bakar',
+  ];
 }

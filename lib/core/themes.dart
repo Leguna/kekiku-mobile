@@ -26,7 +26,10 @@ final mainTheme = ThemeData(
   colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
   iconButtonTheme: IconButtonThemeData(
     style: ButtonStyle(
+      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
       iconColor: WidgetStateProperty.all(Colors.white),
+      iconSize: WidgetStateProperty.all(20.0),
+      padding: WidgetStateProperty.all(const EdgeInsets.all(0.0)),
     ),
   ),
   useMaterial3: true,

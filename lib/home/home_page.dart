@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kekiku/core/widgets/icon_button_badged.dart';
 
 import '../core/index.dart';
 import 'widgets/fake_search_bar.dart';
@@ -6,7 +7,6 @@ import 'widgets/horizontal_list_product_card.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
-
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +19,34 @@ class HomePage extends StatelessWidget {
       'Pie',
     ];
     return MyScaffold(
+      appBar: AppBar(
+        title: const FakeSearchBar(),
+        toolbarHeight: 80,
+        leading: const SizedBox(width: 16),
+        leadingWidth: 16,
+        titleSpacing: 0,
+        actions: [
+          IconButtonBadged(
+            onPressed: () {},
+            icon: const Icon(Icons.notifications_none),
+          ),
+          IconButtonBadged(
+            onPressed: () {},
+            icon: const Icon(Icons.shopping_cart_outlined),
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, Routes.menu);
+            },
+            icon: const Icon(
+              Icons.menu,
+            ),
+          ),
+        ],
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const FakeSearchBar(),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Text(

@@ -40,10 +40,11 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: Strings.appName,
-        routes: Routes.getRoutes(),
         debugShowCheckedModeBanner: dotenv.env['DEBUG'] == 'true',
         theme: mainTheme,
         home: const OnBoardingScreen(),
+        routes: Routes.getRoutes(),
+        onGenerateRoute: Routes.generateRoute,
         initialRoute: isFirstTime ? Routes.onBoarding : Routes.home,
       ),
     );

@@ -24,6 +24,7 @@ final mainTheme = ThemeData(
     bodyLarge: AppTextStyles.bodyLarge.copyWith(color: Colors.white),
   ),
   colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
+  dividerColor: AppColors.primaryColorDark,
   iconButtonTheme: IconButtonThemeData(
     style: ButtonStyle(
       tapTargetSize: MaterialTapTargetSize.shrinkWrap,

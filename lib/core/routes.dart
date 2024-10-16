@@ -16,8 +16,11 @@ class Routes {
 
   Map<String, dynamic>? getRouteArgs(BuildContext context) {
     try {
-      return ModalRoute.of(context)?.settings.arguments
-          as Map<String, dynamic>?;
+      return ModalRoute
+          .of(context)
+          ?.settings
+          .arguments
+      as Map<String, dynamic>?;
     } catch (e) {
       return null;
     }
@@ -27,21 +30,52 @@ class Routes {
     return {
       onBoarding: (context) => const OnBoardingScreen(),
       home: (context) => const HomeScreen(),
-      menu: (context) => const MenuScreen(),
     };
   }
 
-  // Animation
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case onBoarding:
-        return MaterialPageRoute(builder: (_) => const OnBoardingScreen());
-      case home:
-        return MaterialPageRoute(builder: (_) => const HomeScreen());
       case menu:
-        return MaterialPageRoute(builder: (_) => const MenuScreen());
+        return slideToTop(const MenuScreen());
       default:
         return MaterialPageRoute(builder: (_) => const NotFoundPage());
     }
   }
+
+  static Route<dynamic> slideToRight(Widget page) {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => page,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(1.0, 0.0);
+        const end = Offset.zero;
+        const curve = Curves.ease;
+        var tween = Tween(begin: begin, end: end).chain(
+            CurveTween(curve: curve));
+        var offsetAnimation = animation.drive(tween);
+        return SlideTransition(
+          position: offsetAnimation,
+          child: child,
+        );
+      },
+    );
+  }
+
+  static Route<dynamic> slideToTop(Widget page) {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => page,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(0.0, 1.0);
+        const end = Offset.zero;
+        const curve = Curves.ease;
+        var tween = Tween(begin: begin, end: end).chain(
+            CurveTween(curve: curve));
+        var offsetAnimation = animation.drive(tween);
+        return SlideTransition(
+          position: offsetAnimation,
+          child: child,
+        );
+      },
+    );
+  }
+
 }

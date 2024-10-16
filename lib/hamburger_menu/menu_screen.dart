@@ -7,14 +7,35 @@ class MenuScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Menu'),
-      ),
-      body: Center(
-        child: ElevatedButton(
+        leading: IconButton(
+          icon: const Icon(Icons.close),
           onPressed: () {
             Navigator.pop(context);
           },
-          child: const Text('Go back!'),
+        ),
+        title: const Text('Main Menu'),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: const [
+            ListTile(
+              title: Text('Home'),
+              leading: Icon(Icons.home),
+            ),
+            ListTile(
+              title: Text('Profile'),
+              leading: Icon(Icons.person),
+            ),
+            ListTile(
+              title: Text('Settings'),
+              leading: Icon(Icons.settings),
+            ),
+            Divider(thickness: 10),
+            ListTile(
+              title: Text('Logout'),
+              leading: Icon(Icons.logout),
+            ),
+          ],
         ),
       ),
     );

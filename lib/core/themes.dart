@@ -14,17 +14,49 @@ final mainTheme = ThemeData(
     buttonColor: AppColors.primaryColor,
     textTheme: ButtonTextTheme.primary,
   ),
+  outlinedButtonTheme: OutlinedButtonThemeData(
+    style: OutlinedButton.styleFrom(
+      textStyle: AppTextStyles.bodySmall.copyWith(color: Colors.white),
+      side: const BorderSide(
+        color: Colors.white,
+        width: 2.0,
+      ),
+    ),
+  ),
   elevatedButtonTheme: ElevatedButtonThemeData(
-    style: ElevatedButton.styleFrom(),
+    style: ElevatedButton.styleFrom(
+    ),
   ),
   scaffoldBackgroundColor: AppColors.primaryColorBackground,
   textTheme: TextTheme(
     bodySmall: AppTextStyles.bodySmall.copyWith(color: AppColors.paleSteelBlue),
-    bodyMedium:AppTextStyles.bodyMedium.copyWith(color: AppColors.paleSteelBlue),
+    bodyMedium:
+        AppTextStyles.bodyMedium.copyWith(color: AppColors.paleSteelBlue),
     bodyLarge: AppTextStyles.bodyLarge.copyWith(color: Colors.white),
   ),
   colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
-  dividerColor: AppColors.primaryColorDark,
+  dividerTheme: const DividerThemeData(
+    color: Colors.white12,
+    thickness: 6.0,
+  ),
+  listTileTheme: const ListTileThemeData(
+    textColor: Colors.white,
+    tileColor: AppColors.primaryColorBackground,
+    iconColor: Colors.white,
+    contentPadding: EdgeInsets.symmetric(horizontal: 16.0),
+    minVerticalPadding: 0.0,
+    minLeadingWidth: 0.0,
+    horizontalTitleGap: 16.0,
+    dense: true,
+  ),
+  iconTheme: const IconThemeData(
+    color: Colors.white,
+    size: 24.0,
+  ),
+  primaryIconTheme: const IconThemeData(
+    color: Colors.white,
+    size: 24.0,
+  ),
   iconButtonTheme: IconButtonThemeData(
     style: ButtonStyle(
       tapTargetSize: MaterialTapTargetSize.shrinkWrap,

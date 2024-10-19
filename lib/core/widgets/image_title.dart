@@ -25,7 +25,7 @@ class ImageTitle extends StatelessWidget {
           borderRadius: BorderRadius.circular(30.0),
           child: image.isEmpty
               // Get image placeholder if image is empty from url or local https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png
-              ? Assets.noimage.image(
+              ? Assets.noImage.image(
                   width: size,
                   height: size,
                   fit: BoxFit.cover,
@@ -35,7 +35,7 @@ class ImageTitle extends StatelessWidget {
                   height: size,
                   width: size,
                   fit: BoxFit.cover,
-                  errorWidget: (context, url, error) => Assets.noimage.image(
+                  errorWidget: (context, url, error) => Assets.noImage.image(
                     width: size,
                     height: size,
                     fit: BoxFit.cover,

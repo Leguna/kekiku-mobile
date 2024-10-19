@@ -25,7 +25,7 @@ Future<void> callbackDispatcher() async {
 
 Future<bool> sendWeekNotification() async {
   try {
-    await setupServices(isBackground: true);
+    await setupServices();
     final lastLogin = await LocalDatabase().getString(lastLoginKey);
     final isShow = await LocalDatabase().getBool(otherNotifKey) ?? true;
     if (!isShow) return Future.value(true);

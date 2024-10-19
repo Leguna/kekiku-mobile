@@ -14,16 +14,11 @@ import 'core/services/notification_service.dart';
 
 var initialized = false;
 
-Future<void> setupServices({bool isBackground = false}) async {
+Future<void> setupServices() async {
   try {
     if (initialized) return;
     initialized = true;
     await dotenv.load(fileName: '.env');
-
-    FirebaseApp? firebaseApp = await FirebaseService().init();
-    if (firebaseApp == null) {
-      throw Exception('Firebase initialization failed');
-    }
 
     await Hive.initFlutter();
     await FlutterDownloader.initialize(
@@ -39,24 +34,17 @@ Future<void> setupServices({bool isBackground = false}) async {
     getIt.registerLazySingleton(() => workManager);
     getIt.registerLazySingleton(() => localDatabase);
 
-    if (!isBackground) {
-      // PushMessagingService firebasePushMessaging = PushMessagingService();
-      // getIt.registerSingleton<PushMessagingService>(
-      //   await firebasePushMessaging.init(),
-      // );
-    }
-
-    // FirestoreService firestoreService = FirestoreService();
-    // getIt.registerSingleton<FirestoreService>(firestoreService);
-
-    GoogleSSOService googleSSOService = GoogleSSOService();
-    getIt.registerSingleton<GoogleSSOService>(googleSSOService);
-
     final Dio dio = Dio(BaseOptions(
       baseUrl: dotenv.env['BASE_URL'] ?? dotenv.env['DEV_BASE_URL'] ?? '',
     ));
     getIt.registerSingleton<BaseApiClient>(BaseApiClient(dio));
-    getIt.registerSingleton<AuthApiClient>(AuthApiClient(dio));
+    getIt.registerSingleton<AuthRepository>(AuthRepository(AuthApiClient(dio)));
+    FirebaseApp? firebaseApp = await FirebaseService().init();
+    if (firebaseApp != null) {
+      getIt.registerSingleton<FirebaseApp>(firebaseApp);
+    }
+    GoogleSSOService googleSSOService = GoogleSSOService();
+    getIt.registerSingleton<GoogleSSOService>(googleSSOService);
   } catch (e) {
     // ignore: avoid_print
     print('Error initializing services: $e');

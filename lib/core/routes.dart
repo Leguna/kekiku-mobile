@@ -9,6 +9,11 @@ class Routes {
   static const String onBoarding = '/onboarding';
   static const String home = '/home';
   static const String menu = '/menu';
+  static const String login = '/login';
+  static const String register = '/register';
+  static const String profile = '/profile';
+  static const String settings = '/settings';
+  static const String scan = '/scan';
 
   static WidgetBuilder getRoute(String route) {
     return getRoutes()[route] ?? (context) => const NotFoundPage();
@@ -16,11 +21,8 @@ class Routes {
 
   Map<String, dynamic>? getRouteArgs(BuildContext context) {
     try {
-      return ModalRoute
-          .of(context)
-          ?.settings
-          .arguments
-      as Map<String, dynamic>?;
+      return ModalRoute.of(context)?.settings.arguments
+          as Map<String, dynamic>?;
     } catch (e) {
       return null;
     }
@@ -49,8 +51,8 @@ class Routes {
         const begin = Offset(1.0, 0.0);
         const end = Offset.zero;
         const curve = Curves.ease;
-        var tween = Tween(begin: begin, end: end).chain(
-            CurveTween(curve: curve));
+        var tween =
+            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
         var offsetAnimation = animation.drive(tween);
         return SlideTransition(
           position: offsetAnimation,
@@ -67,8 +69,8 @@ class Routes {
         const begin = Offset(0.0, 1.0);
         const end = Offset.zero;
         const curve = Curves.ease;
-        var tween = Tween(begin: begin, end: end).chain(
-            CurveTween(curve: curve));
+        var tween =
+            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
         var offsetAnimation = animation.drive(tween);
         return SlideTransition(
           position: offsetAnimation,
@@ -77,5 +79,4 @@ class Routes {
       },
     );
   }
-
 }

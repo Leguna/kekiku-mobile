@@ -19,6 +19,42 @@ class $AssetsFontsGen {
   $AssetsFontsPoppinsGen get poppins => const $AssetsFontsPoppinsGen();
 }
 
+class $AssetsIllustrationsGen {
+  const $AssetsIllustrationsGen();
+
+  /// File path: assets/illustrations/fingerprint.svg
+  String get fingerprint => 'assets/illustrations/fingerprint.svg';
+
+  /// File path: assets/illustrations/forgot.svg
+  String get forgot => 'assets/illustrations/forgot.svg';
+
+  /// File path: assets/illustrations/login.svg
+  String get login => 'assets/illustrations/login.svg';
+
+  /// File path: assets/illustrations/not_found.svg
+  String get notFound => 'assets/illustrations/not_found.svg';
+
+  /// File path: assets/illustrations/signup.svg
+  String get signup => 'assets/illustrations/signup.svg';
+
+  /// File path: assets/illustrations/tfa.svg
+  String get tfa => 'assets/illustrations/tfa.svg';
+
+  /// List of all assets
+  List<String> get values =>
+      [fingerprint, forgot, login, notFound, signup, tfa];
+}
+
+class $AssetsJsonsGen {
+  const $AssetsJsonsGen();
+
+  /// File path: assets/jsons/cake.json
+  String get cake => 'assets/jsons/cake.json';
+
+  /// List of all assets
+  List<String> get values => [cake];
+}
+
 class $AssetsFontsMontserratGen {
   const $AssetsFontsMontserratGen();
 
@@ -211,12 +247,15 @@ class Assets {
   static const AssetGenImage favicon = AssetGenImage('assets/favicon.png');
   static const $AssetsFontsGen fonts = $AssetsFontsGen();
   static const String googleLogo = 'assets/google_logo.svg';
+  static const $AssetsIllustrationsGen illustrations =
+      $AssetsIllustrationsGen();
+  static const $AssetsJsonsGen jsons = $AssetsJsonsGen();
   static const AssetGenImage logo = AssetGenImage('assets/logo.png');
   static const AssetGenImage logoGoogle =
       AssetGenImage('assets/logo_google.png');
   static const String logoGoogleSvg = 'assets/logo_google_svg.svg';
   static const AssetGenImage logoOnly = AssetGenImage('assets/logo_only.png');
-  static const AssetGenImage noimage = AssetGenImage('assets/noimage.png');
+  static const AssetGenImage noImage = AssetGenImage('assets/no_image.png');
   static const String welcome = 'assets/welcome.svg';
 
   /// List of all assets
@@ -229,7 +268,7 @@ class Assets {
         logoGoogle,
         logoGoogleSvg,
         logoOnly,
-        noimage,
+        noImage,
         welcome
       ];
 }
@@ -264,7 +303,7 @@ class AssetGenImage {
     ImageRepeat repeat = ImageRepeat.noRepeat,
     Rect? centerSlice,
     bool matchTextDirection = false,
-    bool gaplessPlayback = false,
+    bool gaplessPlayback = true,
     bool isAntiAlias = false,
     String? package,
     FilterQuality filterQuality = FilterQuality.low,

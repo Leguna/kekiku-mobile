@@ -5,7 +5,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 class GoogleSSOService {
   late final GoogleSignIn googleSignIn;
 
-  GoogleSSOService(){
+  GoogleSSOService() {
     final List<String> scopes = <String>[
       'email',
       'profile',
@@ -17,11 +17,28 @@ class GoogleSSOService {
     );
   }
 
+  void addListener(Function(GoogleSignInAccount?) listener) {
+    googleSignIn.onCurrentUserChanged.listen(listener);
+  }
 
-
-  Future<void> handleSignIn() async {
+  Future<GoogleSignInAuthentication?> signIn() async {
     try {
-      await googleSignIn.signIn();
+      final googleUser = await googleSignIn.signIn();
+      if (googleUser == null) {
+        return null;
+      }
+      return await googleUser.authentication;
+    } catch (error) {
+      if (kDebugMode) {
+        print(error);
+      }
+    }
+    return null;
+  }
+
+  Future<void> signOut() async {
+    try {
+      await googleSignIn.signOut();
     } catch (error) {
       if (kDebugMode) {
         print(error);

@@ -83,6 +83,8 @@ flutter:
     - assets/
     - assets/fonts/montserrat/
     - assets/fonts/poppins/
+    - assets/illustrations/
+    - assets/jsons/
 
 flutter_native_splash:
   color: "#ff00ff"

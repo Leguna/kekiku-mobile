@@ -110,7 +110,7 @@ class MultipleImageWidget extends StatelessWidget {
 
   Widget buildImage(String? url) {
     if (url == null || url.isEmpty) {
-      return Assets.noimage.image(
+      return Assets.noImage.image(
         fit: BoxFit.cover,
         height: double.infinity,
         width: double.infinity,
@@ -121,7 +121,7 @@ class MultipleImageWidget extends StatelessWidget {
       width: double.infinity,
       imageUrl: url,
       fit: BoxFit.cover,
-      errorWidget: (context, url, error) => Assets.noimage.image(
+      errorWidget: (context, url, error) => Assets.noImage.image(
         height: double.infinity,
         width: double.infinity,
         fit: BoxFit.cover,

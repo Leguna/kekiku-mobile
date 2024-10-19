@@ -14,7 +14,7 @@ class BaseApiClient {
 
   BaseApiClient(this._dio, {Interceptor? interceptor}) {
     _dio.options = BaseOptions(
-      baseUrl: Config.baseUrl,
+      baseUrl: dotenv.env['BASE_URL']?? '',
       connectTimeout: const Duration(seconds: 5),
       receiveTimeout: const Duration(seconds: 5),
       headers: {
@@ -144,8 +144,11 @@ class BaseApiClient {
     }
   }
 
-  Future<dynamic> post(String endpoint,
-      {dynamic data, Map<String, dynamic>? queryParams}) async {
+  Future<dynamic> post(
+    String endpoint, {
+    dynamic data,
+    Map<String, dynamic>? queryParams,
+  }) async {
     try {
       final response =
           await _dio.post(endpoint, data: data, queryParameters: queryParams);

@@ -1,5 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 
+import '../../data_sources/index.dart';
 import '../../index.dart';
 
 class PushMessagingService {

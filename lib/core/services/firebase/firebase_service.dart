@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -9,11 +10,14 @@ class FirebaseService {
         appId: dotenv.env['FIREBASE_APP_ID'] ?? '',
         messagingSenderId: dotenv.env['FIREBASE_MESSAGING_SENDER_ID'] ?? '',
         projectId: dotenv.env['FIREBASE_PROJECT_ID'] ?? '',
+        authDomain: dotenv.env['FIREBASE_AUTH_DOMAIN'] ?? '',
       );
+      await Firebase.initializeApp();
       final app = await Firebase.initializeApp(
         name: 'kekiku',
         options: options,
       );
+      print(FirebaseAuth.instance);
       return app;
     } catch (e) {
       // ignore: avoid_print

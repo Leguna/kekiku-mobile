@@ -12,32 +12,34 @@ class NotFoundPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text(Strings.notFound),
       ),
-      body: Center(
-        child: Column(
-          children: [
-            const SizedBox(height: 64),
-            Text(Strings.pageNotFound),
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(vertical: 128),
-              child: SvgPicture.asset(
-                Assets.illustrations.notFound,
-                width: 200,
-                height: 200,
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            children: [
+              const SizedBox(height: 32),
+              Text(Strings.pageNotFound),
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(vertical: 64),
+                child: SvgPicture.asset(
+                  Assets.illustrations.notFound,
+                  width: 200,
+                  height: 200,
+                ),
               ),
-            ),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamedAndRemoveUntil(
-                  context,
-                  Routes.home,
-                  (route) => false,
-                );
-              },
-              child: Text(Strings.backToHome),
-            ),
-          ],
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    Routes.home,
+                    (route) => false,
+                  );
+                },
+                child: Text(Strings.backToHome),
+              ),
+            ],
+          ),
         ),
       ),
     );

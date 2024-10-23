@@ -20,8 +20,10 @@ mixin _$AuthState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loggedOut,
-    required TResult Function(User user) updated,
+    required TResult Function(User? user) updated,
     required TResult Function() loading,
+    required TResult Function(dynamic email, dynamic password, dynamic valid)
+        form,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -29,8 +31,9 @@ mixin _$AuthState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loggedOut,
-    TResult? Function(User user)? updated,
+    TResult? Function(User? user)? updated,
     TResult? Function()? loading,
+    TResult? Function(dynamic email, dynamic password, dynamic valid)? form,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -38,8 +41,9 @@ mixin _$AuthState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loggedOut,
-    TResult Function(User user)? updated,
+    TResult Function(User? user)? updated,
     TResult Function()? loading,
+    TResult Function(dynamic email, dynamic password, dynamic valid)? form,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -50,6 +54,7 @@ mixin _$AuthState {
     required TResult Function(_LoggedOut value) loggedOut,
     required TResult Function(_Updated value) updated,
     required TResult Function(_Loading value) loading,
+    required TResult Function(_Form value) form,
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -59,6 +64,7 @@ mixin _$AuthState {
     TResult? Function(_LoggedOut value)? loggedOut,
     TResult? Function(_Updated value)? updated,
     TResult? Function(_Loading value)? loading,
+    TResult? Function(_Form value)? form,
     TResult? Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -68,6 +74,7 @@ mixin _$AuthState {
     TResult Function(_LoggedOut value)? loggedOut,
     TResult Function(_Updated value)? updated,
     TResult Function(_Loading value)? loading,
+    TResult Function(_Form value)? form,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
@@ -137,8 +144,10 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loggedOut,
-    required TResult Function(User user) updated,
+    required TResult Function(User? user) updated,
     required TResult Function() loading,
+    required TResult Function(dynamic email, dynamic password, dynamic valid)
+        form,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -149,8 +158,9 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loggedOut,
-    TResult? Function(User user)? updated,
+    TResult? Function(User? user)? updated,
     TResult? Function()? loading,
+    TResult? Function(dynamic email, dynamic password, dynamic valid)? form,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -161,8 +171,9 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loggedOut,
-    TResult Function(User user)? updated,
+    TResult Function(User? user)? updated,
     TResult Function()? loading,
+    TResult Function(dynamic email, dynamic password, dynamic valid)? form,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -179,6 +190,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_LoggedOut value) loggedOut,
     required TResult Function(_Updated value) updated,
     required TResult Function(_Loading value) loading,
+    required TResult Function(_Form value) form,
     required TResult Function(_Error value) error,
   }) {
     return initial(this);
@@ -191,6 +203,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_LoggedOut value)? loggedOut,
     TResult? Function(_Updated value)? updated,
     TResult? Function(_Loading value)? loading,
+    TResult? Function(_Form value)? form,
     TResult? Function(_Error value)? error,
   }) {
     return initial?.call(this);
@@ -203,6 +216,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(_LoggedOut value)? loggedOut,
     TResult Function(_Updated value)? updated,
     TResult Function(_Loading value)? loading,
+    TResult Function(_Form value)? form,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -260,8 +274,10 @@ class _$LoggedOutImpl implements _LoggedOut {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loggedOut,
-    required TResult Function(User user) updated,
+    required TResult Function(User? user) updated,
     required TResult Function() loading,
+    required TResult Function(dynamic email, dynamic password, dynamic valid)
+        form,
     required TResult Function(String message) error,
   }) {
     return loggedOut();
@@ -272,8 +288,9 @@ class _$LoggedOutImpl implements _LoggedOut {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loggedOut,
-    TResult? Function(User user)? updated,
+    TResult? Function(User? user)? updated,
     TResult? Function()? loading,
+    TResult? Function(dynamic email, dynamic password, dynamic valid)? form,
     TResult? Function(String message)? error,
   }) {
     return loggedOut?.call();
@@ -284,8 +301,9 @@ class _$LoggedOutImpl implements _LoggedOut {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loggedOut,
-    TResult Function(User user)? updated,
+    TResult Function(User? user)? updated,
     TResult Function()? loading,
+    TResult Function(dynamic email, dynamic password, dynamic valid)? form,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -302,6 +320,7 @@ class _$LoggedOutImpl implements _LoggedOut {
     required TResult Function(_LoggedOut value) loggedOut,
     required TResult Function(_Updated value) updated,
     required TResult Function(_Loading value) loading,
+    required TResult Function(_Form value) form,
     required TResult Function(_Error value) error,
   }) {
     return loggedOut(this);
@@ -314,6 +333,7 @@ class _$LoggedOutImpl implements _LoggedOut {
     TResult? Function(_LoggedOut value)? loggedOut,
     TResult? Function(_Updated value)? updated,
     TResult? Function(_Loading value)? loading,
+    TResult? Function(_Form value)? form,
     TResult? Function(_Error value)? error,
   }) {
     return loggedOut?.call(this);
@@ -326,6 +346,7 @@ class _$LoggedOutImpl implements _LoggedOut {
     TResult Function(_LoggedOut value)? loggedOut,
     TResult Function(_Updated value)? updated,
     TResult Function(_Loading value)? loading,
+    TResult Function(_Form value)? form,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -346,9 +367,9 @@ abstract class _$$UpdatedImplCopyWith<$Res> {
           _$UpdatedImpl value, $Res Function(_$UpdatedImpl) then) =
       __$$UpdatedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({User user});
+  $Res call({User? user});
 
-  $UserCopyWith<$Res> get user;
+  $UserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -364,13 +385,13 @@ class __$$UpdatedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = null,
+    Object? user = freezed,
   }) {
     return _then(_$UpdatedImpl(
-      null == user
+      freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as User,
+              as User?,
     ));
   }
 
@@ -378,8 +399,12 @@ class __$$UpdatedImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserCopyWith<$Res> get user {
-    return $UserCopyWith<$Res>(_value.user, (value) {
+  $UserCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $UserCopyWith<$Res>(_value.user!, (value) {
       return _then(_value.copyWith(user: value));
     });
   }
@@ -391,7 +416,7 @@ class _$UpdatedImpl implements _Updated {
   const _$UpdatedImpl(this.user);
 
   @override
-  final User user;
+  final User? user;
 
   @override
   String toString() {
@@ -422,8 +447,10 @@ class _$UpdatedImpl implements _Updated {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loggedOut,
-    required TResult Function(User user) updated,
+    required TResult Function(User? user) updated,
     required TResult Function() loading,
+    required TResult Function(dynamic email, dynamic password, dynamic valid)
+        form,
     required TResult Function(String message) error,
   }) {
     return updated(user);
@@ -434,8 +461,9 @@ class _$UpdatedImpl implements _Updated {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loggedOut,
-    TResult? Function(User user)? updated,
+    TResult? Function(User? user)? updated,
     TResult? Function()? loading,
+    TResult? Function(dynamic email, dynamic password, dynamic valid)? form,
     TResult? Function(String message)? error,
   }) {
     return updated?.call(user);
@@ -446,8 +474,9 @@ class _$UpdatedImpl implements _Updated {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loggedOut,
-    TResult Function(User user)? updated,
+    TResult Function(User? user)? updated,
     TResult Function()? loading,
+    TResult Function(dynamic email, dynamic password, dynamic valid)? form,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -464,6 +493,7 @@ class _$UpdatedImpl implements _Updated {
     required TResult Function(_LoggedOut value) loggedOut,
     required TResult Function(_Updated value) updated,
     required TResult Function(_Loading value) loading,
+    required TResult Function(_Form value) form,
     required TResult Function(_Error value) error,
   }) {
     return updated(this);
@@ -476,6 +506,7 @@ class _$UpdatedImpl implements _Updated {
     TResult? Function(_LoggedOut value)? loggedOut,
     TResult? Function(_Updated value)? updated,
     TResult? Function(_Loading value)? loading,
+    TResult? Function(_Form value)? form,
     TResult? Function(_Error value)? error,
   }) {
     return updated?.call(this);
@@ -488,6 +519,7 @@ class _$UpdatedImpl implements _Updated {
     TResult Function(_LoggedOut value)? loggedOut,
     TResult Function(_Updated value)? updated,
     TResult Function(_Loading value)? loading,
+    TResult Function(_Form value)? form,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -499,9 +531,9 @@ class _$UpdatedImpl implements _Updated {
 }
 
 abstract class _Updated implements AuthState {
-  const factory _Updated(final User user) = _$UpdatedImpl;
+  const factory _Updated(final User? user) = _$UpdatedImpl;
 
-  User get user;
+  User? get user;
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
@@ -553,8 +585,10 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loggedOut,
-    required TResult Function(User user) updated,
+    required TResult Function(User? user) updated,
     required TResult Function() loading,
+    required TResult Function(dynamic email, dynamic password, dynamic valid)
+        form,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -565,8 +599,9 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loggedOut,
-    TResult? Function(User user)? updated,
+    TResult? Function(User? user)? updated,
     TResult? Function()? loading,
+    TResult? Function(dynamic email, dynamic password, dynamic valid)? form,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -577,8 +612,9 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loggedOut,
-    TResult Function(User user)? updated,
+    TResult Function(User? user)? updated,
     TResult Function()? loading,
+    TResult Function(dynamic email, dynamic password, dynamic valid)? form,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -595,6 +631,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_LoggedOut value) loggedOut,
     required TResult Function(_Updated value) updated,
     required TResult Function(_Loading value) loading,
+    required TResult Function(_Form value) form,
     required TResult Function(_Error value) error,
   }) {
     return loading(this);
@@ -607,6 +644,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_LoggedOut value)? loggedOut,
     TResult? Function(_Updated value)? updated,
     TResult? Function(_Loading value)? loading,
+    TResult? Function(_Form value)? form,
     TResult? Function(_Error value)? error,
   }) {
     return loading?.call(this);
@@ -619,6 +657,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_LoggedOut value)? loggedOut,
     TResult Function(_Updated value)? updated,
     TResult Function(_Loading value)? loading,
+    TResult Function(_Form value)? form,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -631,6 +670,185 @@ class _$LoadingImpl implements _Loading {
 
 abstract class _Loading implements AuthState {
   const factory _Loading() = _$LoadingImpl;
+}
+
+/// @nodoc
+abstract class _$$FormImplCopyWith<$Res> {
+  factory _$$FormImplCopyWith(
+          _$FormImpl value, $Res Function(_$FormImpl) then) =
+      __$$FormImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({dynamic email, dynamic password, dynamic valid});
+}
+
+/// @nodoc
+class __$$FormImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$FormImpl>
+    implements _$$FormImplCopyWith<$Res> {
+  __$$FormImplCopyWithImpl(_$FormImpl _value, $Res Function(_$FormImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? email = freezed,
+    Object? password = freezed,
+    Object? valid = freezed,
+  }) {
+    return _then(_$FormImpl(
+      freezed == email ? _value.email! : email,
+      freezed == password ? _value.password! : password,
+      freezed == valid ? _value.valid! : valid,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FormImpl implements _Form {
+  const _$FormImpl(this.email, this.password, this.valid);
+
+  @override
+  final dynamic email;
+  @override
+  final dynamic password;
+  @override
+  final dynamic valid;
+
+  @override
+  String toString() {
+    return 'AuthState.form(email: $email, password: $password, valid: $valid)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FormImpl &&
+            const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality().equals(other.password, password) &&
+            const DeepCollectionEquality().equals(other.valid, valid));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(password),
+      const DeepCollectionEquality().hash(valid));
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FormImplCopyWith<_$FormImpl> get copyWith =>
+      __$$FormImplCopyWithImpl<_$FormImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loggedOut,
+    required TResult Function(User? user) updated,
+    required TResult Function() loading,
+    required TResult Function(dynamic email, dynamic password, dynamic valid)
+        form,
+    required TResult Function(String message) error,
+  }) {
+    return form(email, password, valid);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loggedOut,
+    TResult? Function(User? user)? updated,
+    TResult? Function()? loading,
+    TResult? Function(dynamic email, dynamic password, dynamic valid)? form,
+    TResult? Function(String message)? error,
+  }) {
+    return form?.call(email, password, valid);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loggedOut,
+    TResult Function(User? user)? updated,
+    TResult Function()? loading,
+    TResult Function(dynamic email, dynamic password, dynamic valid)? form,
+    TResult Function(String message)? error,
+    required TResult orElse(),
+  }) {
+    if (form != null) {
+      return form(email, password, valid);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_LoggedOut value) loggedOut,
+    required TResult Function(_Updated value) updated,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Form value) form,
+    required TResult Function(_Error value) error,
+  }) {
+    return form(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_LoggedOut value)? loggedOut,
+    TResult? Function(_Updated value)? updated,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Form value)? form,
+    TResult? Function(_Error value)? error,
+  }) {
+    return form?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoggedOut value)? loggedOut,
+    TResult Function(_Updated value)? updated,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Form value)? form,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (form != null) {
+      return form(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Form implements AuthState {
+  const factory _Form(
+          final dynamic email, final dynamic password, final dynamic valid) =
+      _$FormImpl;
+
+  dynamic get email;
+  dynamic get password;
+  dynamic get valid;
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$FormImplCopyWith<_$FormImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -703,8 +921,10 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loggedOut,
-    required TResult Function(User user) updated,
+    required TResult Function(User? user) updated,
     required TResult Function() loading,
+    required TResult Function(dynamic email, dynamic password, dynamic valid)
+        form,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -715,8 +935,9 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loggedOut,
-    TResult? Function(User user)? updated,
+    TResult? Function(User? user)? updated,
     TResult? Function()? loading,
+    TResult? Function(dynamic email, dynamic password, dynamic valid)? form,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -727,8 +948,9 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loggedOut,
-    TResult Function(User user)? updated,
+    TResult Function(User? user)? updated,
     TResult Function()? loading,
+    TResult Function(dynamic email, dynamic password, dynamic valid)? form,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -745,6 +967,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function(_LoggedOut value) loggedOut,
     required TResult Function(_Updated value) updated,
     required TResult Function(_Loading value) loading,
+    required TResult Function(_Form value) form,
     required TResult Function(_Error value) error,
   }) {
     return error(this);
@@ -757,6 +980,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function(_LoggedOut value)? loggedOut,
     TResult? Function(_Updated value)? updated,
     TResult? Function(_Loading value)? loading,
+    TResult? Function(_Form value)? form,
     TResult? Function(_Error value)? error,
   }) {
     return error?.call(this);
@@ -769,6 +993,7 @@ class _$ErrorImpl implements _Error {
     TResult Function(_LoggedOut value)? loggedOut,
     TResult Function(_Updated value)? updated,
     TResult Function(_Loading value)? loading,
+    TResult Function(_Form value)? form,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {

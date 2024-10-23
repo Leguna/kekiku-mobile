@@ -37,6 +37,7 @@ Future<void> setupServices() async {
     final Dio dio = Dio(BaseOptions(
       baseUrl: dotenv.env['BASE_URL'] ?? dotenv.env['DEV_BASE_URL'] ?? '',
     ));
+    getIt.registerSingleton<Dio>(dio);
     getIt.registerSingleton<BaseApiClient>(BaseApiClient(dio));
     getIt.registerSingleton<AuthRepository>(AuthRepository(AuthApiClient(dio)));
     FirebaseApp? firebaseApp = await FirebaseService().init();

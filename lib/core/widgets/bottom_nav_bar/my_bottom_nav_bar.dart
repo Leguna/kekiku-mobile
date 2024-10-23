@@ -24,7 +24,10 @@ class MyBottomNavBar extends StatelessWidget {
               context.read<BottomNavBarCubit>().jumpToPage(index);
             },
             type: BottomNavigationBarType.fixed,
-            showSelectedLabels: false,
+            showSelectedLabels: true,
+            showUnselectedLabels: true,
+            selectedLabelStyle: AppTextStyles.micro,
+            unselectedLabelStyle: AppTextStyles.micro,
             selectedFontSize: 0.0,
             unselectedFontSize: 0.0,
             items: MyBottomNavBarItem.createItems(state.page),

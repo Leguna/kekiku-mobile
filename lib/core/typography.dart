@@ -58,6 +58,11 @@ class AppTextStyles {
     color: Colors.white,
   );
 
+  static var micro = poppins.copyWith(
+    fontSize: 12.0,
+    color: Colors.white,
+  );
+
   static var small = poppins.copyWith(
     fontSize: 14.0,
     color: Colors.white,
@@ -65,6 +70,10 @@ class AppTextStyles {
 
   static var medium = poppins.copyWith(
     fontSize: 16.0,
+    color: Colors.white,
+  );
+  static var large = poppins.copyWith(
+    fontSize: 18.0,
     color: Colors.white,
   );
 

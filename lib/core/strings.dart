@@ -45,29 +45,52 @@ final class Strings {
 
   static const String signInWithGoogle = 'Sign in with Google';
 
-  static String pageNotFound = 'Page not found';
+  static const String pageNotFound = 'Page not found';
 
-  static String back = 'Back';
+  static const String back = 'Back';
 
-  static String backToHome = 'Back to home';
+  static const String backToHome = 'Back to home';
 
-  static String logout = 'Logout';
+  static const String logout = 'Logout';
 
-  static String settings = 'Settings';
+  static const String settings = 'Settings';
 
-  static String profile = 'Profile';
+  static const String profile = 'Profile';
 
-  static String reviews = 'Reviews';
+  static const String reviews = 'Reviews';
 
-  static String orders = 'Orders';
+  static const String orders = 'Orders';
 
-  static String cart = 'Cart';
+  static const String cart = 'Cart';
 
-  static String wishlist = 'Wishlist';
+  static const String wishlist = 'Wishlist';
 
-  static String privacyPolicy = 'Privacy Policy';
+  static const String privacyPolicy = 'Privacy Policy';
 
-  static String helpAndFeedback = 'Help & Feedback';
+  static const String helpAndFeedback = 'Help & Feedback';
 
-  static String scanQrCode = 'Scan QR Code';
+  static const String scanQrCode = 'Scan QR Code';
+
+  static const String signInWith =
+      'Log in and enjoy the ease of shopping with us!';
+
+  static const String email = 'Email';
+
+  static const String emailOrPhone = 'Email or Phone';
+
+  static const String examplePhone = 'Example: 081234567890';
+
+  static const String needHelp = 'Need help?';
+
+  static const String next = 'Next';
+
+  static const String orSignInWith = 'or sign in with';
+
+  static const String fingerPrint = 'Fingerprint';
+
+  static const String requiredField = 'This field is required';
+
+  static const String invalidEmailOrPhone = 'Invalid email or phone';
+
+  static const String logoutConfirmation = 'Are you sure you want to logout?';
 }

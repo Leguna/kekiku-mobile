@@ -62,9 +62,7 @@ class MyBottomNavBarItem extends StatelessWidget {
       bottomNavBarItemsWithIcons.length,
       (index) => create(
         MyBottomNavBarItem(
-          icon: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: bottomNavBarItemsWithIcons[index].values.first),
+          icon: bottomNavBarItemsWithIcons[index].values.first,
           isSelected: index == selectedIndex,
         ),
         bottomNavBarItemsWithIcons[index].keys.first,

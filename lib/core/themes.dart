@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kekiku/core/dimens.dart';
 
 import 'colors.dart';
 import 'typography.dart';
@@ -16,6 +17,9 @@ final mainTheme = ThemeData(
   ),
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8.0),
+      ),
       textStyle: AppTextStyles.bodySmall.copyWith(color: Colors.white),
       side: const BorderSide(
         color: Colors.white,
@@ -23,16 +27,64 @@ final mainTheme = ThemeData(
       ),
     ),
   ),
+  inputDecorationTheme: InputDecorationTheme(
+    isDense: true,
+    hintStyle: const TextStyle(fontSize: 0),
+    contentPadding: const EdgeInsets.symmetric(
+      horizontal: Dimens.small,
+      vertical: Dimens.small,
+    ),
+    helperStyle: AppTextStyles.micro.copyWith(
+      color: AppColors.paleSteelBlue,
+    ),
+    floatingLabelBehavior: FloatingLabelBehavior.always,
+    floatingLabelStyle: TextStyle(
+      color: AppColors.paleSteelBlue,
+      fontStyle: AppTextStyles.bodySmall.fontStyle,
+    ),
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(8.0),
+      borderSide: const BorderSide(color: Colors.grey),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(8.0),
+      borderSide: const BorderSide(color: AppColors.paleSteelBlue, width: 2.0),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(8.0),
+      borderSide: const BorderSide(color: Colors.grey),
+    ),
+    labelStyle: const TextStyle(
+      color: AppColors.paleSteelBlue,
+      fontSize: 12.0,
+    ),
+  ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
+      disabledBackgroundColor: Colors.grey,
+    ).copyWith(
+      shape: WidgetStateProperty.all(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+      ),
+    ),
+  ),
+  dialogTheme: const DialogTheme(
+    backgroundColor: AppColors.primaryColorBackground,
+    titleTextStyle: AppTextStyles.bodyMedium,
+    contentTextStyle: AppTextStyles.bodySmall,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(Dimens.tiny)),
     ),
   ),
   scaffoldBackgroundColor: AppColors.primaryColorBackground,
   textTheme: TextTheme(
-    bodySmall: AppTextStyles.bodySmall.copyWith(color: AppColors.paleSteelBlue),
-    bodyMedium:
-        AppTextStyles.bodyMedium.copyWith(color: AppColors.paleSteelBlue),
-    bodyLarge: AppTextStyles.bodyLarge.copyWith(color: Colors.white),
+    bodySmall: AppTextStyles.bodySmall.copyWith(color: Colors.white),
+    bodyMedium: AppTextStyles.bodyMedium.copyWith(color: Colors.white),
+    bodyLarge: AppTextStyles.medium.copyWith(color: Colors.white),
+    labelSmall: AppTextStyles.small.copyWith(color: AppColors.paleSteelBlue),
+    displaySmall: AppTextStyles.small.copyWith(color: AppColors.paleSteelBlue),
   ),
   colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
   dividerTheme: const DividerThemeData(
@@ -43,7 +95,7 @@ final mainTheme = ThemeData(
     textColor: Colors.white,
     tileColor: AppColors.primaryColorBackground,
     iconColor: Colors.white,
-    contentPadding: EdgeInsets.symmetric(horizontal: 16.0),
+    contentPadding: EdgeInsets.symmetric(horizontal: Dimens.small),
     minVerticalPadding: 0.0,
     minLeadingWidth: 0.0,
     horizontalTitleGap: 16.0,

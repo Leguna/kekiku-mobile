@@ -5,3 +5,4 @@ export 'my_text_field.dart';
 export 'my_app_bar.dart';
 export 'multiple_image_widget.dart';
 export 'bottom_nav_bar/my_bottom_nav_bar.dart';
+export 'my_divider.dart';

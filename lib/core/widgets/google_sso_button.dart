@@ -5,12 +5,14 @@ import 'package:kekiku/core/index.dart';
 class GoogleSsoButton extends StatelessWidget {
   const GoogleSsoButton({
     super.key,
+    this.isOutlined = false,
     this.showLogout = false,
     this.onSignIn,
     this.onSignOut,
     this.isSignedIn = false,
   });
 
+  final bool isOutlined;
   final bool showLogout;
   final bool isSignedIn;
   final Function? onSignIn;
@@ -21,31 +23,47 @@ class GoogleSsoButton extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        isSignedIn ? const SizedBox() : _buildSignInButton(),
+        isSignedIn ? const SizedBox() : _buildSignInButton(context),
         _buildSignOutButton(),
       ],
     );
   }
 
-  _buildSignInButton() {
-    return ElevatedButton(
-      onPressed: () {
-        onSignIn?.call();
-      },
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          SvgPicture.asset(
-            Assets.logoGoogleSvg,
-            width: 24,
-            height: 24,
+  _buildSignInButton(context) {
+    return isOutlined
+        ? OutlinedButton(
+            onPressed: () {
+              onSignIn?.call();
+            },
+            child: _buttonChild(context),
+          )
+        : ElevatedButton(
+            onPressed: () {
+              onSignIn?.call();
+            },
+            child: _buttonChild(context),
+          );
+  }
+
+  _buttonChild(context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        SvgPicture.asset(
+          Assets.logoGoogleSvg,
+          width: 24,
+          height: 24,
+        ),
+        const SizedBox(width: 8),
+        Text(
+          Strings.signInWithGoogle,
+          style: TextStyle(
+            color: isOutlined ? Theme.of(context).colorScheme.onPrimary : null,
           ),
-          const SizedBox(width: 8),
-          const Text(Strings.signInWithGoogle),
-        ],
-      ),
+        ),
+      ],
     );
   }
 

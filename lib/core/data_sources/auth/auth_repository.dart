@@ -1,4 +1,7 @@
-import 'auth_api_client.dart';
+import 'package:dio/dio.dart';
+import 'package:kekiku/core/index.dart';
+
+import '../../../auth/models/user.dart';
 
 class AuthRepository {
   final AuthApiClient _authApiClient;
@@ -29,9 +32,13 @@ class AuthRepository {
     }
   }
 
-  Future<dynamic> loginWithGoogle(String? idToken) async {
+  Future<User> loginWithGoogle(String? idToken) async {
     try {
-      return await _authApiClient.loginWithGoogle(idToken);
+      final response = await _authApiClient.loginWithGoogle(idToken);
+      final token = response['data']['token'];
+      getIt<Dio>().options.headers['Authorization'] = 'Bearer $token';
+      final user = User.fromJson(response['data']);
+      return user;
     } catch (error) {
       rethrow;
     }

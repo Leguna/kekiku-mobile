@@ -11,5 +11,6 @@ export 'utilities/index.dart';
 export 'widgets/index.dart';
 export 'models/index.dart';
 export 'data_sources/index.dart';
+export 'validators.dart';
 
 final getIt = GetIt.instance;

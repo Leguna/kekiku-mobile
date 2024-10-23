@@ -41,7 +41,7 @@ class FakeSearchBar extends StatelessWidget {
                 for (int i = 0; i < searchHint.length; i++)
                   TyperAnimatedText(
                     searchHint[i],
-                    textStyle: Theme.of(context).textTheme.bodySmall,
+                    textStyle: Theme.of(context).textTheme.labelSmall,
                     speed: const Duration(milliseconds: 100),
                   ),
               ],

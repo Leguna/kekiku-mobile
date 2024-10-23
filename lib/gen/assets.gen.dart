@@ -22,6 +22,9 @@ class $AssetsFontsGen {
 class $AssetsIllustrationsGen {
   const $AssetsIllustrationsGen();
 
+  /// File path: assets/illustrations/bg.jpg
+  AssetGenImage get bg => const AssetGenImage('assets/illustrations/bg.jpg');
+
   /// File path: assets/illustrations/fingerprint.svg
   String get fingerprint => 'assets/illustrations/fingerprint.svg';
 
@@ -40,9 +43,20 @@ class $AssetsIllustrationsGen {
   /// File path: assets/illustrations/tfa.svg
   String get tfa => 'assets/illustrations/tfa.svg';
 
+  /// File path: assets/illustrations/under_construction.svg
+  String get underConstruction => 'assets/illustrations/under_construction.svg';
+
   /// List of all assets
-  List<String> get values =>
-      [fingerprint, forgot, login, notFound, signup, tfa];
+  List<dynamic> get values => [
+        bg,
+        fingerprint,
+        forgot,
+        login,
+        notFound,
+        signup,
+        tfa,
+        underConstruction
+      ];
 }
 
 class $AssetsJsonsGen {

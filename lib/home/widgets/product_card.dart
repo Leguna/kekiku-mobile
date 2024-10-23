@@ -42,7 +42,7 @@ class ProductCard extends StatelessWidget {
                     Text(
                       '\$ ${product.price?.toStringAsFixed(2)}',
                       overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.bodyMedium,
+                      style: Theme.of(context).textTheme.labelSmall,
                     ),
                   ],
                 ),

@@ -1,5 +1,4 @@
-
-import '../base_api_client.dart';
+import '../../index.dart';
 
 class AuthApiClient extends BaseApiClient {
   AuthApiClient(super.dio);
@@ -11,7 +10,7 @@ class AuthApiClient extends BaseApiClient {
     });
   }
 
- register(String email, String password) {
+  register(String email, String password) {
     return post('/auth/register', data: {
       'email': email,
       'password': password,
@@ -32,8 +31,8 @@ class AuthApiClient extends BaseApiClient {
     return get('/auth/logout');
   }
 
-  loginWithGoogle(idToken) {
-    return post('/auth/google/mobile', data: {
+  loginWithGoogle(idToken) async {
+    return await post('/auth/google/mobile', data: {
       'idToken': idToken,
     });
   }

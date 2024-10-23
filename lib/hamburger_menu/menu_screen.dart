@@ -24,28 +24,28 @@ class MenuScreen extends StatelessWidget {
             const LoginButtons(),
             const Divider(),
             ListTile(
-              title: Text(Strings.orders),
+              title: const Text(Strings.orders),
               leading: const Icon(Icons.shopping_bag),
               onTap: () {
                 Navigator.pushNamed(context, '/orders');
               },
             ),
             ListTile(
-              title: Text(Strings.reviews),
+              title: const Text(Strings.reviews),
               leading: const Icon(Icons.star),
               onTap: () {
                 Navigator.pushNamed(context, '/reviews');
               },
             ),
             ListTile(
-              title: Text(Strings.cart),
+              title: const Text(Strings.cart),
               leading: const Icon(Icons.shopping_cart),
               onTap: () {
                 Navigator.pushNamed(context, '/cart');
               },
             ),
             ListTile(
-              title: Text(Strings.wishlist),
+              title: const Text(Strings.wishlist),
               leading: const Icon(Icons.favorite),
               onTap: () {
                 Navigator.pushNamed(context, '/wishlist');
@@ -56,21 +56,21 @@ class MenuScreen extends StatelessWidget {
               onTap: () {
                 Navigator.pushNamed(context, '/privacy');
               },
-              title: Text(Strings.privacyPolicy),
+              title: const Text(Strings.privacyPolicy),
               leading: const Icon(Icons.privacy_tip),
             ),
             ListTile(
               onTap: () {
                 Navigator.pushNamed(context, '/help');
               },
-              title: Text(Strings.helpAndFeedback),
+              title: const Text(Strings.helpAndFeedback),
               leading: const Icon(Icons.help),
             ),
             ListTile(
               onTap: () {
                 Navigator.pushNamed(context, '/about');
               },
-              title: Text(Strings.scanQrCode),
+              title: const Text(Strings.scanQrCode),
               leading: const Icon(Icons.qr_code),
             ),
           ],

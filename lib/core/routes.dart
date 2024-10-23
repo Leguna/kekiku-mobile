@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../auth/login_screen.dart';
 import '../hamburger_menu/menu_screen.dart';
 import '../home/home_screen.dart';
 import '../splash/onboarding_screen.dart';
@@ -14,6 +15,7 @@ class Routes {
   static const String profile = '/profile';
   static const String settings = '/settings';
   static const String scan = '/scan';
+  static const String help = '/help';
 
   static WidgetBuilder getRoute(String route) {
     return getRoutes()[route] ?? (context) => const NotFoundPage();
@@ -32,6 +34,7 @@ class Routes {
     return {
       onBoarding: (context) => const OnBoardingScreen(),
       home: (context) => const HomeScreen(),
+      login: (context) => const LoginScreen(),
     };
   }
 

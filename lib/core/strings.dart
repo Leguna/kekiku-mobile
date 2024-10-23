@@ -93,4 +93,6 @@ final class Strings {
   static const String invalidEmailOrPhone = 'Invalid email or phone';
 
   static const String logoutConfirmation = 'Are you sure you want to logout?';
+
+  static const String exitFromKekiku = 'Exit from Kekiku';
 }

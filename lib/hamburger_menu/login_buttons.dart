@@ -27,69 +27,89 @@ class LoginButtons extends StatelessWidget {
               children: [
                 (isLoggedIn)
                     ? ListTile(
-                  onTap: () {
-                    // Show a dialog to confirm logout
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          title: const Text(Strings.logout),
-                          content: const Text(Strings.logoutConfirmation),
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              child: const Text(Strings.cancel),
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                                context.read<AuthCubit>().logout();
-                              },
-                              child: const Text(Strings.logout),
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  },
-                  title: const Text(Strings.logout),
-                  leading: const Icon(Icons.logout),
-                )
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: const Center(
+                                    child: Text(Strings.exitFromKekiku)),
+                                content: const Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(Strings.logoutConfirmation),
+                                  ],
+                                ),
+                                actionsAlignment: MainAxisAlignment.center,
+                                actions: [
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Theme.of(context)
+                                          .colorScheme
+                                          .secondary,
+                                    ),
+                                    child: Text(
+                                      Strings.cancel,
+                                      style: TextStyle(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onSecondary,
+                                      ),
+                                    ),
+                                  ),
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                      context.read<AuthCubit>().logout();
+                                    },
+                                    child: const Text(Strings.logout),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        },
+                        title: const Text(Strings.logout),
+                        leading: const Icon(Icons.logout),
+                      )
                     : Padding(
-                  padding: Dimens.smallPadding,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      ...[
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, Routes.login);
-                          },
-                          child: const Text(Strings.login),
+                        padding: Dimens.smallPadding,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            ...[
+                              ElevatedButton(
+                                onPressed: () {
+                                  Navigator.pushNamed(context, Routes.login);
+                                },
+                                child: const Text(Strings.login),
+                              ),
+                              OutlinedButton(
+                                onPressed: () {
+                                  Navigator.pushNamed(context, Routes.register);
+                                },
+                                child: Text(
+                                  Strings.register,
+                                  style: TextStyle(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onPrimary),
+                                ),
+                              ),
+                              GoogleSsoButton(
+                                onSignIn: () =>
+                                    context.read<AuthCubit>().loginWithGoogle(),
+                                onSignOut: () =>
+                                    context.read<AuthCubit>().logout(),
+                                isSignedIn: isLoggedIn,
+                              ),
+                            ]
+                          ],
                         ),
-                        OutlinedButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, Routes.register);
-                          },
-                          child: Text(
-                            Strings.register,
-                            style: TextStyle(
-                                color:
-                                Theme.of(context).colorScheme.onPrimary),
-                          ),
-                        ),
-                        GoogleSsoButton(
-                          onSignIn: () =>
-                              context.read<AuthCubit>().loginWithGoogle(),
-                          onSignOut: () => context.read<AuthCubit>().logout(),
-                          isSignedIn: isLoggedIn,
-                        ),
-                      ]
-                    ],
-                  ),
-                ),
+                      ),
               ],
             );
           },

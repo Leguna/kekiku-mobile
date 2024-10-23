@@ -70,13 +70,14 @@ final mainTheme = ThemeData(
       ),
     ),
   ),
-  dialogTheme: const DialogTheme(
+  dialogTheme:  DialogTheme(
     backgroundColor: AppColors.primaryColorBackground,
-    titleTextStyle: AppTextStyles.bodyMedium,
-    contentTextStyle: AppTextStyles.bodySmall,
-    shape: RoundedRectangleBorder(
+    titleTextStyle: AppTextStyles.bodyLarge,
+    contentTextStyle: AppTextStyles.small.copyWith(color: AppColors.paleSteelBlue),
+    shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.all(Radius.circular(Dimens.tiny)),
     ),
+    alignment: Alignment.center,
   ),
   scaffoldBackgroundColor: AppColors.primaryColorBackground,
   textTheme: TextTheme(

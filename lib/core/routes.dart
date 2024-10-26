@@ -16,6 +16,7 @@ class Routes {
   static const String settings = '/settings';
   static const String scan = '/scan';
   static const String help = '/help';
+  static const String verifyCode = '/verify-code';
 
   static WidgetBuilder getRoute(String route) {
     return getRoutes()[route] ?? (context) => const NotFoundPage();

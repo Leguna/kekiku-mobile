@@ -13,7 +13,7 @@ class LoginButtons extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         final isLoggedIn =
-            context.select((AuthCubit cubit) => cubit.isLoggedIn);
+            context.select((AuthCubit cubit) => cubit.user != null);
         return state.maybeWhen(
           loading: () {
             return const Padding(
@@ -28,48 +28,12 @@ class LoginButtons extends StatelessWidget {
                 (isLoggedIn)
                     ? ListTile(
                         onTap: () {
-                          showDialog(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
-                                title: const Center(
-                                    child: Text(Strings.exitFromKekiku)),
-                                content: const Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text(Strings.logoutConfirmation),
-                                  ],
-                                ),
-                                actionsAlignment: MainAxisAlignment.center,
-                                actions: [
-                                  ElevatedButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Theme.of(context)
-                                          .colorScheme
-                                          .secondary,
-                                    ),
-                                    child: Text(
-                                      Strings.cancel,
-                                      style: TextStyle(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .onSecondary,
-                                      ),
-                                    ),
-                                  ),
-                                  ElevatedButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                      context.read<AuthCubit>().logout();
-                                    },
-                                    child: const Text(Strings.logout),
-                                  ),
-                                ],
-                              );
-                            },
+                          showMyDialogOption(
+                            context,
+                            title: Strings.exitFromKekiku,
+                            description: Strings.logoutConfirmation,
+                            confirmText: Strings.logout,
+                            onConfirm: () => context.read<AuthCubit>().logout(),
                           );
                         },
                         title: const Text(Strings.logout),
@@ -83,6 +47,7 @@ class LoginButtons extends StatelessWidget {
                             ...[
                               ElevatedButton(
                                 onPressed: () {
+                                  context.read<AuthCubit>().reset();
                                   Navigator.pushNamed(context, Routes.login);
                                 },
                                 child: const Text(Strings.login),

@@ -36,4 +36,16 @@ class AuthApiClient extends BaseApiClient {
       'idToken': idToken,
     });
   }
+
+  checkEmail(String email) {
+    return get('/auth/check/email', queryParams: {
+      'email': email,
+    });
+  }
+
+  checkPhone(String phone) {
+    return get('/auth/check/phone', queryParams: {
+      'phone': phone,
+    });
+  }
 }

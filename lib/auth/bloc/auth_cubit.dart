@@ -18,18 +18,18 @@ class AuthCubit extends Cubit<AuthState> {
     init();
   }
 
-  final formKey = GlobalKey<FormState>();
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  bool isFormValid = false;
-
   final db = getIt<LocalDatabase>();
   final ds = getIt<AuthRepository>();
   User? user;
 
-  get isLoggedIn => user != null;
+  final formKey = GlobalKey<FormState>();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  bool isFormValid = false;
+  bool codeVerify = false;
+  bool isEmailLogin = false;
 
-  validateForm() {
+  Future<void> validateForm() async {
     isFormValid = formKey.currentState!.validate();
     emit(AuthState.form(
       emailController.text,
@@ -57,7 +57,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> logout() async {
     emit(const AuthState.loading());
-    await db.clearKey(userKey);
+    await db.clearKey(userKey, boxKey: authBox);
     final googleSignIn = getIt<GoogleSSOService>();
     await googleSignIn.googleSignIn.signOut();
     user = null;
@@ -81,5 +81,37 @@ class AuthCubit extends Cubit<AuthState> {
       boxKey: authBox,
     );
     emit(AuthState.updated(user!));
+  }
+
+  Future<void> checkEmailForm() async {
+    emit(const AuthState.loading());
+    try {
+      final text = emailController.text;
+      final isEmail = Validators.isEmail(text);
+      await Future.delayed(const Duration(seconds: 1));
+      if (!isEmail) {
+      } else {}
+      isEmailLogin = isEmail;
+      emit(AuthState.checked(isEmail));
+    } catch (e) {
+      emit(AuthState.error(e.toString()));
+    }
+  }
+
+  bool showPassword = false;
+
+  void togglePassword() {
+    emit(const AuthState.loading());
+    showPassword = !showPassword;
+    emit(const AuthState.initial());
+  }
+
+  void reset() {
+    isFormValid = false;
+    codeVerify = false;
+    isEmailLogin = false;
+    emailController.clear();
+    passwordController.clear();
+    emit(const AuthState.initial());
   }
 }

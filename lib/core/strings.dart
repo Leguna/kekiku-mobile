@@ -95,4 +95,11 @@ final class Strings {
   static const String logoutConfirmation = 'Are you sure you want to logout?';
 
   static const String exitFromKekiku = 'Exit from Kekiku';
+
+  static const String invalidPassword =
+      'Password must be at least 6 characters';
+
+  static const String password = 'Password';
+
+  static const String invalidEmail = 'Invalid email';
 }

@@ -97,3 +97,54 @@ showMyModalOptionBottomSheet(
     },
   );
 }
+
+showMyDialogOption(
+  BuildContext context, {
+  String title = '',
+  String description = '',
+  VoidCallback? onConfirm,
+  confirmText = Strings.save,
+  cancelText = Strings.cancel,
+}) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: Center(child: Text(title)),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              description,
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+        actionsAlignment: MainAxisAlignment.center,
+        actions: [
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Theme.of(context).colorScheme.secondary,
+            ),
+            child: Text(
+              cancelText,
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onSecondary,
+              ),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              onConfirm?.call();
+              Navigator.pop(context);
+            },
+            child: Text(confirmText),
+          ),
+        ],
+      );
+    },
+  );
+}

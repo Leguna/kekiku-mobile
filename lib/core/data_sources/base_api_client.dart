@@ -14,7 +14,7 @@ class BaseApiClient {
 
   BaseApiClient(this._dio, {Interceptor? interceptor}) {
     _dio.options = BaseOptions(
-      baseUrl: dotenv.env['BASE_URL']?? '',
+      baseUrl: dotenv.env['BASE_URL'] ?? '',
       connectTimeout: const Duration(seconds: 5),
       receiveTimeout: const Duration(seconds: 5),
       headers: {
@@ -140,6 +140,35 @@ class BaseApiClient {
       final response = await _dio.get(endpoint, queryParameters: queryParams);
       return _handleResponse(response);
     } on DioException catch (e) {
+      switch (e.response?.statusCode) {
+        case 401:
+          throw DioException(
+            message: Strings.unauthorized,
+            response: Response(
+              requestOptions: e.requestOptions,
+              statusCode: e.response?.statusCode ?? 401,
+            ),
+            requestOptions: RequestOptions(path: ''),
+          );
+        case 404:
+          throw DioException(
+            message: Strings.notFound,
+            response: Response(
+              requestOptions: e.requestOptions,
+              statusCode: e.response?.statusCode ?? 404,
+            ),
+            requestOptions: RequestOptions(path: ''),
+          );
+        case 408:
+          throw DioException(
+            message: Strings.checkYourConnection,
+            response: Response(
+              requestOptions: e.requestOptions,
+              statusCode: e.response?.statusCode ?? 408,
+            ),
+            requestOptions: RequestOptions(path: ''),
+          );
+      }
       throw ApiErrorHandler.getErrorMessage(e);
     }
   }

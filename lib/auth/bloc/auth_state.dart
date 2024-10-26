@@ -12,5 +12,7 @@ class AuthState with _$AuthState {
 
   const factory AuthState.form(email,password,valid) = _Form;
 
+  const factory AuthState.checked(isEmail) = _Checked;
+
   const factory AuthState.error(String message) = _Error;
 }

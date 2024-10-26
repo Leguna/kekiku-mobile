@@ -29,6 +29,7 @@ final mainTheme = ThemeData(
   ),
   inputDecorationTheme: InputDecorationTheme(
     isDense: true,
+    suffixIconColor: Colors.white,
     hintStyle: const TextStyle(fontSize: 0),
     contentPadding: const EdgeInsets.symmetric(
       horizontal: Dimens.small,

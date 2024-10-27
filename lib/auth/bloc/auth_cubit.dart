@@ -9,6 +9,7 @@ import '../../core/index.dart';
 import '../models/user.dart';
 
 part 'auth_cubit.freezed.dart';
+
 part 'auth_state.dart';
 
 const authBox = 'auth';
@@ -66,22 +67,32 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> loginWithGoogle() async {
-    emit(const AuthState.loading());
-    final googleSSOService = getIt<GoogleSSOService>();
-    final googleUser = await googleSSOService.signIn();
+    try {
+      emit(const AuthState.loading());
+      final googleSSOService = getIt<GoogleSSOService>();
+      final googleUser = await googleSSOService.signIn();
 
-    if (googleUser == null) {
-      emit(const AuthState.error('Google Sign In Failed'));
-      return;
+      if (googleUser == null) throw Exception(Strings.failedToLogin);
+
+      // user = await ds.loginWithGoogle(googleUser.idToken);
+      user = User(
+        id: googleUser.id,
+        email: googleUser.email,
+        displayName: googleUser.displayName ?? '',
+        photoUrl: googleUser.photoUrl ?? '',
+      );
+      // Set selected user
+      await db.setString(userKey, user?.id, boxKey: authBox);
+      // Save user data
+      await db.setString(
+        user!.id,
+        jsonEncode(user!.toJson()),
+        boxKey: authBox,
+      );
+      emit(AuthState.updated(user!));
+    } catch (e) {
+      emit(const AuthState.error(Strings.failedToLogin));
     }
-    user = await ds.loginWithGoogle(googleUser.idToken);
-    await db.setString(userKey, user!.id, boxKey: authBox);
-    await db.setString(
-      user!.id,
-      jsonEncode(user!.toJson()),
-      boxKey: authBox,
-    );
-    emit(AuthState.updated(user!));
   }
 
   Future<void> checkEmailForm() async {
@@ -168,6 +179,7 @@ class AuthCubit extends Cubit<AuthState> {
         ),
       );
       if (authenticated) {
+        ds.loginWithFingerprint();
         emit(const AuthState.success('Success login with fingerprint'));
         return;
       }

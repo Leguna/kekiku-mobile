@@ -23,10 +23,11 @@ mixin _$User {
   String get displayName => throw _privateConstructorUsedError;
   String get authMethod => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
-  dynamic get phone => throw _privateConstructorUsedError;
+  String get phone => throw _privateConstructorUsedError;
   String get role => throw _privateConstructorUsedError;
-  dynamic get address => throw _privateConstructorUsedError;
+  String get address => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
+  String get photoUrl => throw _privateConstructorUsedError;
 
   /// Serializes this User to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -46,10 +47,11 @@ abstract class $UserCopyWith<$Res> {
       {String displayName,
       String authMethod,
       String email,
-      dynamic phone,
+      String phone,
       String role,
-      dynamic address,
-      String id});
+      String address,
+      String id,
+      String photoUrl});
 }
 
 /// @nodoc
@@ -70,10 +72,11 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? displayName = null,
     Object? authMethod = null,
     Object? email = null,
-    Object? phone = freezed,
+    Object? phone = null,
     Object? role = null,
-    Object? address = freezed,
+    Object? address = null,
     Object? id = null,
+    Object? photoUrl = null,
   }) {
     return _then(_value.copyWith(
       displayName: null == displayName
@@ -88,21 +91,25 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      phone: freezed == phone
+      phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String,
       role: null == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as String,
-      address: freezed == address
+      address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      photoUrl: null == photoUrl
+          ? _value.photoUrl
+          : photoUrl // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -119,10 +126,11 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       {String displayName,
       String authMethod,
       String email,
-      dynamic phone,
+      String phone,
       String role,
-      dynamic address,
-      String id});
+      String address,
+      String id,
+      String photoUrl});
 }
 
 /// @nodoc
@@ -140,10 +148,11 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? displayName = null,
     Object? authMethod = null,
     Object? email = null,
-    Object? phone = freezed,
+    Object? phone = null,
     Object? role = null,
-    Object? address = freezed,
+    Object? address = null,
     Object? id = null,
+    Object? photoUrl = null,
   }) {
     return _then(_$UserImpl(
       displayName: null == displayName
@@ -158,21 +167,25 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      phone: freezed == phone
+      phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String,
       role: null == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as String,
-      address: freezed == address
+      address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      photoUrl: null == photoUrl
+          ? _value.photoUrl
+          : photoUrl // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -183,12 +196,13 @@ class __$$UserImplCopyWithImpl<$Res>
 class _$UserImpl implements _User {
   const _$UserImpl(
       {required this.displayName,
-      required this.authMethod,
+      this.authMethod = 'local',
       required this.email,
-      required this.phone,
-      required this.role,
-      required this.address,
-      required this.id});
+      this.phone = '',
+      this.role = 'user',
+      this.address = '',
+      this.id = '',
+      this.photoUrl = ''});
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserImplFromJson(json);
@@ -196,21 +210,29 @@ class _$UserImpl implements _User {
   @override
   final String displayName;
   @override
+  @JsonKey()
   final String authMethod;
   @override
   final String email;
   @override
-  final dynamic phone;
+  @JsonKey()
+  final String phone;
   @override
+  @JsonKey()
   final String role;
   @override
-  final dynamic address;
+  @JsonKey()
+  final String address;
   @override
+  @JsonKey()
   final String id;
+  @override
+  @JsonKey()
+  final String photoUrl;
 
   @override
   String toString() {
-    return 'User(displayName: $displayName, authMethod: $authMethod, email: $email, phone: $phone, role: $role, address: $address, id: $id)';
+    return 'User(displayName: $displayName, authMethod: $authMethod, email: $email, phone: $phone, role: $role, address: $address, id: $id, photoUrl: $photoUrl)';
   }
 
   @override
@@ -223,23 +245,18 @@ class _$UserImpl implements _User {
             (identical(other.authMethod, authMethod) ||
                 other.authMethod == authMethod) &&
             (identical(other.email, email) || other.email == email) &&
-            const DeepCollectionEquality().equals(other.phone, phone) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.role, role) || other.role == role) &&
-            const DeepCollectionEquality().equals(other.address, address) &&
-            (identical(other.id, id) || other.id == id));
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.photoUrl, photoUrl) ||
+                other.photoUrl == photoUrl));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      displayName,
-      authMethod,
-      email,
-      const DeepCollectionEquality().hash(phone),
-      role,
-      const DeepCollectionEquality().hash(address),
-      id);
+  int get hashCode => Object.hash(runtimeType, displayName, authMethod, email,
+      phone, role, address, id, photoUrl);
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.
@@ -260,12 +277,13 @@ class _$UserImpl implements _User {
 abstract class _User implements User {
   const factory _User(
       {required final String displayName,
-      required final String authMethod,
+      final String authMethod,
       required final String email,
-      required final dynamic phone,
-      required final String role,
-      required final dynamic address,
-      required final String id}) = _$UserImpl;
+      final String phone,
+      final String role,
+      final String address,
+      final String id,
+      final String photoUrl}) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
@@ -276,13 +294,15 @@ abstract class _User implements User {
   @override
   String get email;
   @override
-  dynamic get phone;
+  String get phone;
   @override
   String get role;
   @override
-  dynamic get address;
+  String get address;
   @override
   String get id;
+  @override
+  String get photoUrl;
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.

@@ -20,7 +20,7 @@ class LoginScreen extends StatelessWidget {
             }
           },
           updated: (user) {
-            if (user != null) Navigator.pushNamed(context, Routes.home);
+            if (user != null) Navigator.pushNamedAndRemoveUntil(context, Routes.home, (route) => false);
           },
           success: (message) {
             ScaffoldMessenger.of(context).removeCurrentSnackBar();
@@ -57,6 +57,8 @@ class LoginScreen extends StatelessWidget {
         final isEmailLogin = cubit.isEmailLogin;
         final isFormValid =
             context.select((AuthCubit cubit) => cubit.isFormValid);
+        final formKey = GlobalKey<FormState>();
+        cubit.formKey = formKey;
         return MyScaffold(
           appBar: AppBar(
             actions: [
@@ -83,8 +85,8 @@ class LoginScreen extends StatelessWidget {
               : SingleChildScrollView(
                   padding: Dimens.mediumPadding,
                   child: Form(
+                    key: formKey,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    key: cubit.formKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [

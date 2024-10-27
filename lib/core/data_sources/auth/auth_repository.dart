@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:kekiku/core/index.dart';
 
@@ -10,7 +12,7 @@ class AuthRepository {
 
   setToken(String token) async {
     getIt<Dio>().options.headers['Authorization'] = 'Bearer $token';
-    await getIt<TokenManager>().setToken(token);
+    await getIt<SecureStorageManager>().setToken(token);
   }
 
   Future<dynamic> register(String username, String password) async {
@@ -28,7 +30,6 @@ class AuthRepository {
     final user = User.fromJson(response['data']);
     return user;
   }
-
 
   checkEmail(String email) {
     final response = _authApiClient.checkEmail(email);
@@ -54,5 +55,23 @@ class AuthRepository {
     final token = response['data']['token'];
     setToken(token);
     return response;
+  }
+
+  registerFingerprint(User user) {
+    final secureStorageManager = getIt<SecureStorageManager>();
+    secureStorageManager.writeData(
+        SecureStorageManager.fingerPrintKey, jsonEncode(user));
+    // TODO: Send token to backend or send data
+  }
+
+  loginWithFingerprint() async {
+    final secureStorageManager = getIt<SecureStorageManager>();
+    final userJson = await secureStorageManager
+        .readData(SecureStorageManager.fingerPrintKey);
+    if (userJson == null) {
+      return null;
+    }
+    final user = User.fromJson(jsonDecode(userJson));
+    return user;
   }
 }

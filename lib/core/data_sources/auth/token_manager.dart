@@ -1,26 +1,22 @@
+import 'dart:convert';
+import 'dart:math';
+
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-class TokenManager {
+class SecureStorageManager {
   final _storage = const FlutterSecureStorage();
 
-  static const _accessTokenKey = 'accessToken';
-  static const _refreshTokenKey = 'refreshToken';
   static const _tokenKey = 'token';
+  static const refreshTokenKey = 'refresh_token';
+  static const accessTokenKey = 'access_token';
+  static const fingerPrintKey = 'fingerprint';
 
-  Future<String?> getAccessToken() async {
-    return await _storage.read(key: _accessTokenKey);
+  Future<void> writeData(String key, String value) async {
+    await _storage.write(key: key, value: value);
   }
 
-  Future<void> setAccessToken(String token) async {
-    await _storage.write(key: _accessTokenKey, value: token);
-  }
-
-  Future<String?> getRefreshToken() async {
-    return await _storage.read(key: _refreshTokenKey);
-  }
-
-  Future<void> setRefreshToken(String token) async {
-    await _storage.write(key: _refreshTokenKey, value: token);
+  Future<String?> readData(String key) async {
+    return await _storage.read(key: key);
   }
 
   Future<String?> getToken() async {
@@ -31,9 +27,18 @@ class TokenManager {
     await _storage.write(key: _tokenKey, value: token);
   }
 
-  Future<void> clearTokens() async {
-    await _storage.delete(key: _accessTokenKey);
-    await _storage.delete(key: _refreshTokenKey);
-    await _storage.delete(key: _tokenKey);
+  Future<void> deleteData(String key) async {
+    await _storage.delete(key: key);
+  }
+
+  Future<void> deleteAll() async {
+    await _storage.deleteAll();
+  }
+
+  String generateKey({int length = 32}) {
+    final random = Random.secure();
+    final values = List<int>.generate(length, (i) => random.nextInt(256));
+    writeData(fingerPrintKey, base64UrlEncode(values));
+    return base64Url.encode(values);
   }
 }

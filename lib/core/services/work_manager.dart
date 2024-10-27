@@ -27,7 +27,7 @@ Future<bool> sendWeekNotification() async {
   try {
     await setupServices();
     final lastLogin = await LocalDatabase().getString(lastLoginKey);
-    final isShow = await LocalDatabase().getBool(otherNotifKey) ?? true;
+    final isShow = await LocalDatabase().getBool(otherNotificationKey) ?? true;
     if (!isShow) return Future.value(true);
     if (lastLogin == null || lastLogin.isEmpty) return Future.value(true);
     final date = DateTime.parse(lastLogin);
@@ -65,7 +65,7 @@ class WeekNotification {
   WeekNotification(this.workManager);
 
   init() async {
-    final isShow = await getIt<LocalDatabase>().getBool(otherNotifKey);
+    final isShow = await getIt<LocalDatabase>().getBool(otherNotificationKey);
     await setWeeklyNotification(workManager, isEnable: isShow ?? true);
   }
 }

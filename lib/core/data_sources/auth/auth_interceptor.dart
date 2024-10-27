@@ -3,11 +3,11 @@ import 'package:dio/dio.dart';
 import '../../index.dart';
 
 class AuthInterceptor extends Interceptor {
-  late final TokenManager _tokenManager;
+  late final SecureStorageManager _tokenManager;
   final Dio _dio;
 
   AuthInterceptor(this._dio) {
-    _tokenManager = getIt<TokenManager>();
+    _tokenManager = getIt<SecureStorageManager>();
   }
 
   @override
@@ -23,11 +23,11 @@ class AuthInterceptor extends Interceptor {
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) async {
     if (err.response?.statusCode == 401) {
-      final refreshToken = await _tokenManager.getRefreshToken();
+      final refreshToken = await _tokenManager.readData(SecureStorageManager.refreshTokenKey);
       if (refreshToken != null) {
         try {
           final newAccessToken = await _refreshToken(refreshToken);
-          await _tokenManager.setAccessToken(newAccessToken);
+          await _tokenManager.setToken(newAccessToken);
           final requestOptions = err.requestOptions;
           requestOptions.headers['Authorization'] = 'Bearer $newAccessToken';
           final response = await _dio.request(
@@ -41,7 +41,7 @@ class AuthInterceptor extends Interceptor {
           );
           handler.resolve(response);
         } catch (e) {
-          _tokenManager.clearTokens();
+          _tokenManager.deleteData(SecureStorageManager.refreshTokenKey);
           handler.reject(err);
         }
       } else {

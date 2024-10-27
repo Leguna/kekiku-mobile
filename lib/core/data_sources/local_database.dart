@@ -9,8 +9,8 @@ const String userDataBox = 'userDataBox';
 const String userDataKey = 'userData';
 const String usernameKey = 'username';
 const String lastLoginKey = 'lastLogin';
-const String chatNotifKey = 'chatNotifSetting';
-const String otherNotifKey = 'otherNotifSetting';
+const String chatNotificationKey = 'chatNotificationSetting';
+const String otherNotificationKey = 'otherNotificationSetting';
 
 const String firstTimeKey = 'firstTime';
 

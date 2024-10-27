@@ -31,7 +31,7 @@ Future<void> setupServices() async {
     getIt.registerLazySingleton(() => Workmanager());
     getIt.registerLazySingleton(() => LocalDatabase());
 
-    getIt.registerSingleton<TokenManager>(TokenManager());
+    getIt.registerSingleton<SecureStorageManager>(SecureStorageManager());
 
     final Dio dio = Dio(BaseOptions(
       baseUrl: dotenv.env['BASE_URL'] ?? dotenv.env['DEV_BASE_URL'] ?? '',

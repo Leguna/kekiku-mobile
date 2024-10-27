@@ -21,13 +21,13 @@ class GoogleSSOService {
     googleSignIn.onCurrentUserChanged.listen(listener);
   }
 
-  Future<GoogleSignInAuthentication?> signIn() async {
+  Future<GoogleSignInAccount?> signIn() async {
     try {
       final googleUser = await googleSignIn.signIn();
       if (googleUser == null) {
         return null;
       }
-      return await googleUser.authentication;
+      return googleUser;
     } catch (error) {
       if (kDebugMode) {
         print(error);

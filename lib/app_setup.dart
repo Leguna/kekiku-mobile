@@ -28,11 +28,10 @@ Future<void> setupServices() async {
     GoogleFonts.config.allowRuntimeFetching = false;
     if (!kIsWeb) await setupFlutterNotifications();
 
-    final localDatabase = LocalDatabase();
+    getIt.registerLazySingleton(() => Workmanager());
+    getIt.registerLazySingleton(() => LocalDatabase());
 
-    Workmanager workManager = Workmanager();
-    getIt.registerLazySingleton(() => workManager);
-    getIt.registerLazySingleton(() => localDatabase);
+    getIt.registerSingleton<TokenManager>(TokenManager());
 
     final Dio dio = Dio(BaseOptions(
       baseUrl: dotenv.env['BASE_URL'] ?? dotenv.env['DEV_BASE_URL'] ?? '',

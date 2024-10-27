@@ -102,4 +102,10 @@ final class Strings {
   static const String password = 'Password';
 
   static const String invalidEmail = 'Invalid email';
+
+  static const String signIn = 'Sign in';
+
+  static const String failedToLogin = 'Failed to login, please try again';
+
+  static const String featureNotImplemented = 'Feature not implemented yet';
 }

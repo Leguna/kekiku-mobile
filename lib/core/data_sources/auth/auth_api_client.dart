@@ -48,4 +48,18 @@ class AuthApiClient extends BaseApiClient {
       'phone': phone,
     });
   }
+
+  loginWithPhone(String phone, String password) {
+    return post('/auth/login/phone', data: {
+      'phone': phone,
+      'password': password,
+    });
+  }
+
+  loginWithEmail(String email, String password) {
+    return post('/auth/login/email', data: {
+      'email': email,
+      'password': password,
+    });
+  }
 }

@@ -9,6 +9,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<AuthCubit>().reset();
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         state.maybeWhen(
@@ -17,10 +18,27 @@ class LoginScreen extends StatelessWidget {
             if (!isEmail) {
               Navigator.pushNamed(context, Routes.verifyCode);
             }
-            print('isEmail: $isEmail');
           },
           updated: (user) {
             if (user != null) Navigator.pushNamed(context, Routes.home);
+          },
+          success: (message) {
+            ScaffoldMessenger.of(context).removeCurrentSnackBar();
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                backgroundColor: AppColors.greenButton,
+                content: Text(message),
+              ),
+            );
+          },
+          error: (message) {
+            ScaffoldMessenger.of(context).removeCurrentSnackBar();
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                backgroundColor: Theme.of(context).colorScheme.error,
+                content: Text(message),
+              ),
+            );
           },
         );
       },
@@ -119,9 +137,11 @@ class LoginScreen extends StatelessWidget {
                                   onChanged: (value) {
                                     context.read<AuthCubit>().validateForm();
                                   },
-                                  inputFormatters: [],
-                                  validator: Validators.email,
-                                  obscureText: true,
+                                  validator: Validators.password,
+                                  inputFormatters: [
+                                    InputFormatter.password(),
+                                  ],
+                                  obscureText: !cubit.showPassword,
                                   decoration: InputDecoration(
                                     label: const Text(Strings.password),
                                     suffixIcon: InkWell(
@@ -131,7 +151,11 @@ class LoginScreen extends StatelessWidget {
                                             .read<AuthCubit>()
                                             .togglePassword();
                                       },
-                                      child: const Icon(Icons.visibility),
+                                      child: Icon(
+                                        cubit.showPassword
+                                            ? Icons.visibility
+                                            : Icons.visibility_off,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -148,13 +172,21 @@ class LoginScreen extends StatelessWidget {
                                   return ElevatedButton(
                                     onPressed: isFormValid
                                         ? () {
-                                            FocusScope.of(context).unfocus();
-                                            context
-                                                .read<AuthCubit>()
-                                                .checkEmailForm();
+                                            if (!isEmailLogin) {
+                                              FocusScope.of(context).unfocus();
+                                              context
+                                                  .read<AuthCubit>()
+                                                  .checkEmailForm();
+                                            } else {
+                                              context.read<AuthCubit>().login();
+                                            }
                                           }
                                         : null,
-                                    child: const Text(Strings.next),
+                                    child: Text(
+                                      cubit.isEmailLogin
+                                          ? Strings.signIn
+                                          : Strings.next,
+                                    ),
                                   );
                                 },
                               ),
@@ -163,7 +195,9 @@ class LoginScreen extends StatelessWidget {
                         ),
                         const MyDivider(Strings.orSignInWith),
                         OutlinedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            context.read<AuthCubit>().loginFingerprint();
+                          },
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,

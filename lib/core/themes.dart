@@ -27,6 +27,13 @@ final mainTheme = ThemeData(
       ),
     ),
   ),
+  snackBarTheme: const SnackBarThemeData(
+    backgroundColor: AppColors.primaryColor,
+    contentTextStyle: TextStyle(
+      color: Colors.white,
+      fontSize: 14.0,
+    ),
+  ),
   inputDecorationTheme: InputDecorationTheme(
     isDense: true,
     suffixIconColor: Colors.white,

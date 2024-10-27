@@ -20,17 +20,6 @@ class BaseResponse<T> with _$BaseResponse<T> {
 }
 
 @freezed
-class User with _$User {
-  const factory User({
-    required String id,
-    required String name,
-    required String email,
-  }) = _User;
-
-  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
-}
-
-@freezed
 class Error with _$Error {
   const factory Error({
     required String message,

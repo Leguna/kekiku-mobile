@@ -1,21 +1,21 @@
 import 'package:dio/dio.dart';
 
-import 'token_manager.dart';
+import '../../index.dart';
 
 class AuthInterceptor extends Interceptor {
   late final TokenManager _tokenManager;
   final Dio _dio;
 
   AuthInterceptor(this._dio) {
-    _tokenManager = TokenManager();
+    _tokenManager = getIt<TokenManager>();
   }
 
   @override
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
-    final accessToken = await _tokenManager.getAccessToken();
-    if (accessToken != null) {
-      options.headers['Authorization'] = 'Bearer $accessToken';
+    final token = await _tokenManager.getToken();
+    if (token != null) {
+      options.headers['Authorization'] = 'Bearer $token';
     }
     super.onRequest(options, handler);
   }
@@ -57,7 +57,6 @@ class AuthInterceptor extends Interceptor {
       'auth/refresh-token',
       data: {'refresh_token': refreshToken},
     );
-    return response
-        .data['access_token'];
+    return response.data['access_token'];
   }
 }

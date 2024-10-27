@@ -64,13 +64,6 @@ class LoginButtons extends StatelessWidget {
                                           .onPrimary),
                                 ),
                               ),
-                              GoogleSsoButton(
-                                onSignIn: () =>
-                                    context.read<AuthCubit>().loginWithGoogle(),
-                                onSignOut: () =>
-                                    context.read<AuthCubit>().logout(),
-                                isSignedIn: isLoggedIn,
-                              ),
                             ]
                           ],
                         ),

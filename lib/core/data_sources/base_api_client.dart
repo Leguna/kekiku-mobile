@@ -11,6 +11,7 @@ import '../index.dart';
 
 class BaseApiClient {
   late final Dio _dio;
+  final localDatabase = getIt<LocalDatabase>();
 
   BaseApiClient(this._dio, {Interceptor? interceptor}) {
     _dio.options = BaseOptions(

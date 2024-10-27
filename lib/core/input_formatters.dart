@@ -6,4 +6,10 @@ class InputFormatter {
       RegExp(r'[0-9a-zA-Z@.]'),
     );
   }
+
+  static FilteringTextInputFormatter password() {
+    return FilteringTextInputFormatter.allow(
+      RegExp(r'[0-9a-zA-Z!@#$%^&*()]'),
+    );
+  }
 }

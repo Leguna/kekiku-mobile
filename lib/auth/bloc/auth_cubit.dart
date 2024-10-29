@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -9,7 +10,6 @@ import '../../core/index.dart';
 import '../models/user.dart';
 
 part 'auth_cubit.freezed.dart';
-
 part 'auth_state.dart';
 
 const authBox = 'auth';
@@ -25,14 +25,20 @@ class AuthCubit extends Cubit<AuthState> {
   User? user;
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> createProfileKey = GlobalKey<FormState>();
+
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final userNameController = TextEditingController();
+  final verificationCodeController = TextEditingController();
+
   bool isFormValid = false;
   bool codeVerify = false;
-  bool isEmailLogin = false;
+  bool isUsingEmail = false;
 
-  Future<void> validateForm() async {
-    isFormValid = formKey.currentState!.validate();
+  Future<void> validateForm({createProfileKey}) async {
+    final form = createProfileKey ?? formKey;
+    isFormValid = form.currentState!.validate();
     emit(AuthState.form(
       emailController.text,
       passwordController.text,
@@ -42,13 +48,13 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> init() async {
     emit(const AuthState.loading());
+    passwordController.text = '';
     final selectedId = await db.getString(userKey, boxKey: authBox);
     if (selectedId == null) {
       emit(const AuthState.loggedOut());
       return;
     }
     final userJson = await db.getString(selectedId, boxKey: authBox);
-
     if (userJson != null) {
       user = User.fromJson(jsonDecode(userJson));
       emit(AuthState.updated(user!));
@@ -95,7 +101,7 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  Future<void> checkEmailForm() async {
+  Future<void> tryVerification({bool isRegister = false}) async {
     emit(const AuthState.loading());
     try {
       final text = emailController.text;
@@ -103,14 +109,20 @@ class AuthCubit extends Cubit<AuthState> {
       await Future.delayed(const Duration(seconds: 1));
       if (!isEmail) {
       } else {}
-      isEmailLogin = isEmail;
+      isUsingEmail = isEmail;
       isFormValid = false;
+
       emit(AuthState.form(
         emailController.text,
         passwordController.text,
         false,
       ));
       emit(AuthState.checked(isEmail));
+      if (isRegister) {
+        passwordController.clear();
+        resend();
+        return;
+      }
     } catch (e) {
       emit(AuthState.error(e.toString()));
     }
@@ -129,7 +141,7 @@ class AuthCubit extends Cubit<AuthState> {
     isFormValid = false;
     showPassword = false;
     codeVerify = false;
-    isEmailLogin = false;
+    isUsingEmail = false;
     emailController.clear();
     passwordController.clear();
     emit(const AuthState.initial());
@@ -141,7 +153,7 @@ class AuthCubit extends Cubit<AuthState> {
       await Future.delayed(const Duration(seconds: 1));
       final email = emailController.text;
       final password = passwordController.text;
-      if (isEmailLogin) {
+      if (isUsingEmail) {
         user = await ds.loginWithEmail(email, password);
       } else {
         user = await ds.loginWithPhone(email, password);
@@ -187,5 +199,50 @@ class AuthCubit extends Cubit<AuthState> {
     } catch (e) {
       emit(const AuthState.error(Strings.failedToLogin));
     }
+  }
+
+  bool canResend = false;
+
+  Future<void> validateFormVerifyCode(String value) async {
+    if (verificationCodeController.text.length == 6) {
+      emit(const AuthState.loading());
+      await Future.delayed(const Duration(seconds: 1));
+      emit(const AuthState.success(Strings.codeVerified));
+    }
+  }
+
+  void onTimerVerifyEnd() {
+    emit(const AuthState.loading());
+    canResend = true;
+    emit(const AuthState.initial());
+  }
+
+  void resend() async {
+    verificationCodeController.clear();
+    if (!canResend) return;
+    emit(const AuthState.loading());
+    await Future.delayed(const Duration(seconds: 1));
+    canResend = false;
+    emit(const AuthState.success(Strings.verificationCodeSent));
+  }
+
+  Future<void> createProfile() async {
+    emit(const AuthState.loading());
+    await Future.delayed(const Duration(seconds: 1));
+    user = User(
+      id: randomString(),
+      email: (isUsingEmail) ? emailController.text : '',
+      displayName: userNameController.text,
+      phone: (isUsingEmail) ? '' : emailController.text,
+      photoUrl: '',
+    );
+    emit(const AuthState.success(Strings.profileCreated));
+    await db.setString(userKey, user?.id, boxKey: authBox);
+    await db.setString(
+      user?.id ?? '',
+      jsonEncode(user?.toJson()),
+      boxKey: authBox,
+    );
+    emit(AuthState.updated(user));
   }
 }

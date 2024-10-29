@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
@@ -170,6 +171,16 @@ String getFormattedTime(DateTime dateTime) {
   return '$hour:$minute $amPm';
 }
 
+String getFormattedDuration(int duration) {
+  final int minutes = duration ~/ 60;
+  final int seconds = duration % 60;
+  if (seconds == 0) {
+    return '$minutes minutes';
+  }
+  return '$minutes minutes $seconds seconds';
+}
+
+
 String getFormattedDateTime(DateTime dateTime) {
   final DateTime now =
       DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
@@ -208,4 +219,11 @@ String getDay(int weekday) {
     default:
       return '';
   }
+}
+
+String randomString({int length = 10}) {
+  const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+  final random = Random.secure();
+  final result = List.generate(length, (index) => chars[random.nextInt(chars.length)]).join();
+  return result;
 }

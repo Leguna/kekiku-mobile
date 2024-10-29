@@ -14,6 +14,10 @@ class User with _$User {
     @Default('') String address,
     @Default('') String id,
     @Default('') String photoUrl,
+    @Default('lk') String gender,
+    @Default('') String birthday,
+    @Default('') String bio,
+    @Default('') username,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);

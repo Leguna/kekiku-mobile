@@ -28,6 +28,10 @@ mixin _$User {
   String get address => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   String get photoUrl => throw _privateConstructorUsedError;
+  String get gender => throw _privateConstructorUsedError;
+  String get birthday => throw _privateConstructorUsedError;
+  String get bio => throw _privateConstructorUsedError;
+  dynamic get username => throw _privateConstructorUsedError;
 
   /// Serializes this User to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -51,7 +55,11 @@ abstract class $UserCopyWith<$Res> {
       String role,
       String address,
       String id,
-      String photoUrl});
+      String photoUrl,
+      String gender,
+      String birthday,
+      String bio,
+      dynamic username});
 }
 
 /// @nodoc
@@ -77,6 +85,10 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? address = null,
     Object? id = null,
     Object? photoUrl = null,
+    Object? gender = null,
+    Object? birthday = null,
+    Object? bio = null,
+    Object? username = freezed,
   }) {
     return _then(_value.copyWith(
       displayName: null == displayName
@@ -111,6 +123,22 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.photoUrl
           : photoUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      gender: null == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as String,
+      birthday: null == birthday
+          ? _value.birthday
+          : birthday // ignore: cast_nullable_to_non_nullable
+              as String,
+      bio: null == bio
+          ? _value.bio
+          : bio // ignore: cast_nullable_to_non_nullable
+              as String,
+      username: freezed == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ) as $Val);
   }
 }
@@ -130,7 +158,11 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       String role,
       String address,
       String id,
-      String photoUrl});
+      String photoUrl,
+      String gender,
+      String birthday,
+      String bio,
+      dynamic username});
 }
 
 /// @nodoc
@@ -153,6 +185,10 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? address = null,
     Object? id = null,
     Object? photoUrl = null,
+    Object? gender = null,
+    Object? birthday = null,
+    Object? bio = null,
+    Object? username = freezed,
   }) {
     return _then(_$UserImpl(
       displayName: null == displayName
@@ -187,6 +223,19 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.photoUrl
           : photoUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      gender: null == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as String,
+      birthday: null == birthday
+          ? _value.birthday
+          : birthday // ignore: cast_nullable_to_non_nullable
+              as String,
+      bio: null == bio
+          ? _value.bio
+          : bio // ignore: cast_nullable_to_non_nullable
+              as String,
+      username: freezed == username ? _value.username! : username,
     ));
   }
 }
@@ -202,7 +251,11 @@ class _$UserImpl implements _User {
       this.role = 'user',
       this.address = '',
       this.id = '',
-      this.photoUrl = ''});
+      this.photoUrl = '',
+      this.gender = 'lk',
+      this.birthday = '',
+      this.bio = '',
+      this.username = ''});
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserImplFromJson(json);
@@ -229,10 +282,22 @@ class _$UserImpl implements _User {
   @override
   @JsonKey()
   final String photoUrl;
+  @override
+  @JsonKey()
+  final String gender;
+  @override
+  @JsonKey()
+  final String birthday;
+  @override
+  @JsonKey()
+  final String bio;
+  @override
+  @JsonKey()
+  final dynamic username;
 
   @override
   String toString() {
-    return 'User(displayName: $displayName, authMethod: $authMethod, email: $email, phone: $phone, role: $role, address: $address, id: $id, photoUrl: $photoUrl)';
+    return 'User(displayName: $displayName, authMethod: $authMethod, email: $email, phone: $phone, role: $role, address: $address, id: $id, photoUrl: $photoUrl, gender: $gender, birthday: $birthday, bio: $bio, username: $username)';
   }
 
   @override
@@ -250,13 +315,30 @@ class _$UserImpl implements _User {
             (identical(other.address, address) || other.address == address) &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.photoUrl, photoUrl) ||
-                other.photoUrl == photoUrl));
+                other.photoUrl == photoUrl) &&
+            (identical(other.gender, gender) || other.gender == gender) &&
+            (identical(other.birthday, birthday) ||
+                other.birthday == birthday) &&
+            (identical(other.bio, bio) || other.bio == bio) &&
+            const DeepCollectionEquality().equals(other.username, username));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, displayName, authMethod, email,
-      phone, role, address, id, photoUrl);
+  int get hashCode => Object.hash(
+      runtimeType,
+      displayName,
+      authMethod,
+      email,
+      phone,
+      role,
+      address,
+      id,
+      photoUrl,
+      gender,
+      birthday,
+      bio,
+      const DeepCollectionEquality().hash(username));
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.
@@ -283,7 +365,11 @@ abstract class _User implements User {
       final String role,
       final String address,
       final String id,
-      final String photoUrl}) = _$UserImpl;
+      final String photoUrl,
+      final String gender,
+      final String birthday,
+      final String bio,
+      final dynamic username}) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
@@ -303,6 +389,14 @@ abstract class _User implements User {
   String get id;
   @override
   String get photoUrl;
+  @override
+  String get gender;
+  @override
+  String get birthday;
+  @override
+  String get bio;
+  @override
+  dynamic get username;
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.

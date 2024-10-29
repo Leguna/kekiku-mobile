@@ -7,9 +7,22 @@ import 'typography.dart';
 final mainTheme = ThemeData(
   fontFamily: 'Poppins',
   fontFamilyFallback: const ['Montserrat'],
-  appBarTheme: const AppBarTheme(
+  appBarTheme: AppBarTheme(
+    titleTextStyle: AppTextStyles.medium.copyWith(
+      fontWeight: FontWeight.w600,
+    ),
     backgroundColor: AppColors.midnightBlue,
     foregroundColor: Colors.white,
+  ),
+  textButtonTheme: TextButtonThemeData(
+    style: ButtonStyle(
+      foregroundColor: WidgetStateProperty.all(AppColors.primaryColorLight),
+      textStyle: WidgetStateProperty.all(
+        AppTextStyles.small.copyWith(
+          color: AppColors.primaryColorLight,
+        ),
+      ),
+    ),
   ),
   buttonTheme: const ButtonThemeData(
     buttonColor: AppColors.primaryColor,
@@ -20,7 +33,7 @@ final mainTheme = ThemeData(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8.0),
       ),
-      textStyle: AppTextStyles.bodySmall.copyWith(color: Colors.white),
+      textStyle: AppTextStyles.small.copyWith(color: Colors.white),
       side: const BorderSide(
         color: Colors.white,
         width: 2.0,
@@ -45,10 +58,10 @@ final mainTheme = ThemeData(
     helperStyle: AppTextStyles.micro.copyWith(
       color: AppColors.paleSteelBlue,
     ),
-    floatingLabelBehavior: FloatingLabelBehavior.always,
+    floatingLabelBehavior: FloatingLabelBehavior.auto,
     floatingLabelStyle: TextStyle(
       color: AppColors.paleSteelBlue,
-      fontStyle: AppTextStyles.bodySmall.fontStyle,
+      fontStyle: AppTextStyles.small.fontStyle,
     ),
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(8.0),
@@ -59,6 +72,10 @@ final mainTheme = ThemeData(
       borderSide: const BorderSide(color: AppColors.paleSteelBlue, width: 2.0),
     ),
     enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(8.0),
+      borderSide: const BorderSide(color: Colors.grey),
+    ),
+    disabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(8.0),
       borderSide: const BorderSide(color: Colors.grey),
     ),
@@ -76,12 +93,16 @@ final mainTheme = ThemeData(
           borderRadius: BorderRadius.circular(8.0),
         ),
       ),
+      textStyle: WidgetStateProperty.all(
+        AppTextStyles.small.copyWith(),
+      ),
     ),
   ),
-  dialogTheme:  DialogTheme(
+  dialogTheme: DialogTheme(
     backgroundColor: AppColors.primaryColorBackground,
-    titleTextStyle: AppTextStyles.bodyLarge,
-    contentTextStyle: AppTextStyles.small.copyWith(color: AppColors.paleSteelBlue),
+    titleTextStyle: AppTextStyles.large,
+    contentTextStyle:
+        AppTextStyles.small.copyWith(color: AppColors.paleSteelBlue),
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.all(Radius.circular(Dimens.tiny)),
     ),
@@ -89,13 +110,25 @@ final mainTheme = ThemeData(
   ),
   scaffoldBackgroundColor: AppColors.primaryColorBackground,
   textTheme: TextTheme(
-    bodySmall: AppTextStyles.bodySmall.copyWith(color: Colors.white),
-    bodyMedium: AppTextStyles.bodyMedium.copyWith(color: Colors.white),
+    bodySmall: AppTextStyles.small.copyWith(color: Colors.white),
+    bodyMedium: AppTextStyles.medium.copyWith(color: Colors.white),
     bodyLarge: AppTextStyles.medium.copyWith(color: Colors.white),
     labelSmall: AppTextStyles.small.copyWith(color: AppColors.paleSteelBlue),
-    displaySmall: AppTextStyles.small.copyWith(color: AppColors.paleSteelBlue),
+    labelMedium: AppTextStyles.medium.copyWith(color: AppColors.paleSteelBlue),
+    labelLarge: AppTextStyles.medium.copyWith(color: AppColors.paleSteelBlue),
+    displaySmall:
+        AppTextStyles.small.copyWith(color: AppColors.primaryColorLight),
+    displayMedium:
+        AppTextStyles.medium.copyWith(color: AppColors.primaryColorLight),
+    displayLarge:
+        AppTextStyles.medium.copyWith(color: AppColors.primaryColorLight),
+    headlineSmall: AppTextStyles.small.copyWith(color: Colors.white),
+    headlineMedium: AppTextStyles.medium.copyWith(color: Colors.white),
+    headlineLarge: AppTextStyles.medium.copyWith(color: Colors.white),
   ),
-  colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
+  colorScheme: ColorScheme.fromSeed(
+    seedColor: AppColors.primaryColor,
+  ),
   dividerTheme: const DividerThemeData(
     color: Colors.white12,
     thickness: 6.0,

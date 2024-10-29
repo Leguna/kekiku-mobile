@@ -123,9 +123,7 @@ class HomePage extends StatelessWidget {
             ),
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             child: Center(
-              child: Text(
-                categories[index],
-              ),
+              child: Text(categories[index]),
             ),
           ),
         ),

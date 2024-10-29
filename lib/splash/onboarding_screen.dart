@@ -61,12 +61,12 @@ class OnBoardingScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(12.0),
                   child: Column(
                     children: [
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 32),
                       Text(
                         Strings.onboardingTitle,
                         style: AppTextStyles.poppins,
                       ),
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 8),
                       Text(
                         Strings.onboardingDescription,
                         textAlign: TextAlign.center,
@@ -79,9 +79,11 @@ class OnBoardingScreen extends StatelessWidget {
                           textStyle: const TextStyle(color: Colors.white),
                         ),
                         onPressed: () {
-                          // Navigate to the next screen
                           Navigator.pushNamedAndRemoveUntil(
-                              context, Routes.home, (route) => false);
+                            context,
+                            Routes.home,
+                            (route) => false,
+                          );
                         },
                         child: const Text(
                           Strings.orderNow,

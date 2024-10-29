@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:kekiku/auth/bloc/auth_cubit.dart';
 import 'package:kekiku/core/index.dart';
 import 'package:kekiku/core/widgets/google_sso_button.dart';
@@ -20,24 +19,22 @@ class LoginScreen extends StatelessWidget {
             }
           },
           updated: (user) {
-            if (user != null) Navigator.pushNamedAndRemoveUntil(context, Routes.home, (route) => false);
+            if (user != null) {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, Routes.home, (route) => false);
+            }
           },
           success: (message) {
-            ScaffoldMessenger.of(context).removeCurrentSnackBar();
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                backgroundColor: AppColors.greenButton,
-                content: Text(message),
-              ),
+            showMySnackBar(
+              context,
+              message,
+              error: false,
             );
           },
           error: (message) {
-            ScaffoldMessenger.of(context).removeCurrentSnackBar();
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                backgroundColor: Theme.of(context).colorScheme.error,
-                content: Text(message),
-              ),
+            showMySnackBar(
+              context,
+              message,
             );
           },
         );
@@ -54,31 +51,21 @@ class LoginScreen extends StatelessWidget {
           loading: () => true,
         );
         final cubit = context.read<AuthCubit>();
-        final isEmailLogin = cubit.isEmailLogin;
+        final isEmailLogin = cubit.isUsingEmail;
         final isFormValid =
             context.select((AuthCubit cubit) => cubit.isFormValid);
         final formKey = GlobalKey<FormState>();
         cubit.formKey = formKey;
         return MyScaffold(
-          appBar: AppBar(
+          appBar: MyAppBar(
             actions: [
               TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, Routes.register);
+                  Navigator.pushReplacementNamed(context, Routes.register);
                 },
-                child: Text(
-                  Strings.register,
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                ),
+                child: const Text(Strings.register),
               ),
             ],
-            bottom: PreferredSize(
-              preferredSize: const Size.fromHeight(0.0),
-              child: Container(
-                  width: double.infinity, height: 0.5, color: Colors.grey),
-            ),
           ),
           body: isLoading
               ? const MyLoading()
@@ -115,7 +102,7 @@ class LoginScreen extends StatelessWidget {
                                   ),
                                 ),
                                 const SizedBox(height: Dimens.medium),
-                              ], // Password field
+                              ],
                               if (isEmailLogin) ...[
                                 // Email Form
                                 TextFormField(
@@ -124,9 +111,7 @@ class LoginScreen extends StatelessWidget {
                                     context.read<AuthCubit>().validateForm();
                                   },
                                   inputFormatters: [
-                                    FilteringTextInputFormatter.allow(
-                                      RegExp(r'[0-9a-zA-Z@.]'),
-                                    ),
+                                    InputFormatter.emailOrPhone(),
                                   ],
                                   validator: Validators.email,
                                   decoration: const InputDecoration(
@@ -161,8 +146,8 @@ class LoginScreen extends StatelessWidget {
                                     ),
                                   ),
                                 ),
+                                const SizedBox(height: Dimens.medium),
                               ],
-                              const SizedBox(height: Dimens.medium),
                               BlocSelector<AuthCubit, AuthState, bool>(
                                 selector: (state) {
                                   return state.maybeWhen(
@@ -178,14 +163,14 @@ class LoginScreen extends StatelessWidget {
                                               FocusScope.of(context).unfocus();
                                               context
                                                   .read<AuthCubit>()
-                                                  .checkEmailForm();
+                                                  .tryVerification();
                                             } else {
                                               context.read<AuthCubit>().login();
                                             }
                                           }
                                         : null,
                                     child: Text(
-                                      cubit.isEmailLogin
+                                      cubit.isUsingEmail
                                           ? Strings.signIn
                                           : Strings.next,
                                     ),
@@ -234,13 +219,7 @@ class LoginScreen extends StatelessWidget {
                             onPressed: () {
                               Navigator.pushNamed(context, Routes.help);
                             },
-                            child: Text(
-                              Strings.needHelp,
-                              style: TextStyle(
-                                fontSize: Dimens.microText,
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
-                            ),
+                            child: const Text(Strings.needHelp),
                           ),
                         ),
                       ],

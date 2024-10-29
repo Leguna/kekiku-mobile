@@ -57,11 +57,18 @@ class AuthRepository {
     return response;
   }
 
+  isFingerprintRegistered() async {
+    final secureStorageManager = getIt<SecureStorageManager>();
+    return await secureStorageManager
+            .readData(SecureStorageManager.fingerPrintKey) !=
+        null;
+  }
+
   registerFingerprint(User user) {
     final secureStorageManager = getIt<SecureStorageManager>();
     secureStorageManager.writeData(
         SecureStorageManager.fingerPrintKey, jsonEncode(user));
-    // TODO: Send token to backend or send data
+    return user;
   }
 
   loginWithFingerprint() async {

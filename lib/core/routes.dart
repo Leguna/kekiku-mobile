@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:kekiku/auth/register_screen.dart';
 
+import '../auth/create_profile_screen.dart';
 import '../auth/login_screen.dart';
+import '../auth/verify_code_screen.dart';
 import '../hamburger_menu/menu_screen.dart';
 import '../home/home_screen.dart';
 import '../splash/onboarding_screen.dart';
 import 'widgets/not_found_page.dart';
 
 class Routes {
+  static const String isEmail = 'isEmail';
+
   static const String onBoarding = '/onboarding';
   static const String home = '/home';
   static const String menu = '/menu';
@@ -17,12 +22,14 @@ class Routes {
   static const String scan = '/scan';
   static const String help = '/help';
   static const String verifyCode = '/verify-code';
+  static const String createProfile = '/create-profile';
+  static const String termsAndConditions = '/terms-and-conditions';
 
   static WidgetBuilder getRoute(String route) {
     return getRoutes()[route] ?? (context) => const NotFoundPage();
   }
 
-  Map<String, dynamic>? getRouteArgs(BuildContext context) {
+  static Map<String, dynamic>? getRouteArgs(BuildContext context) {
     try {
       return ModalRoute.of(context)?.settings.arguments
           as Map<String, dynamic>?;
@@ -36,6 +43,10 @@ class Routes {
       onBoarding: (context) => const OnBoardingScreen(),
       home: (context) => const HomeScreen(),
       login: (context) => const LoginScreen(),
+      register: (context) => const RegisterScreen(),
+      verifyCode: (context) =>
+          VerifyCodeScreen(isEmail: getRouteArgs(context)?['isEmail'] ?? false),
+      createProfile: (context) => const CreateProfileScreen(),
     };
   }
 

@@ -1,12 +1,19 @@
 import 'strings.dart';
 
 class Validators {
+  static String? required(String? value) {
+    if (value == null || value.isEmpty) {
+      return Strings.requiredField;
+    }
+    return null;
+  }
 
   static String? email(String? value) {
     if (value == null || value.isEmpty) {
       return Strings.requiredField;
     }
-    if (!RegExp(r'^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+').hasMatch(value)) {
+    if (!RegExp(r'^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+')
+        .hasMatch(value)) {
       return Strings.invalidEmail;
     }
     return null;
@@ -16,7 +23,7 @@ class Validators {
     if (value == null || value.isEmpty) {
       return Strings.requiredField;
     }
-    if (value.length < 6) {
+    if ((value.length) < 6) {
       return Strings.invalidPassword;
     }
     return null;

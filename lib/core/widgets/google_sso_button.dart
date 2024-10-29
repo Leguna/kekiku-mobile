@@ -58,7 +58,7 @@ class GoogleSsoButton extends StatelessWidget {
         ),
         const SizedBox(width: 8),
         Text(
-          Strings.signInWithGoogle,
+          Strings.google,
           style: TextStyle(
             color: isOutlined ? Theme.of(context).colorScheme.onPrimary : null,
           ),

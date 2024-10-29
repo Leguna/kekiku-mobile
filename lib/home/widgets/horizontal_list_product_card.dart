@@ -17,9 +17,7 @@ class ListProductCardItem extends StatelessWidget {
         children: [
           const SizedBox(width: 16),
           for (var i = 0; i < products.length; i++) ...[
-            ProductCard(
-              product: products[i],
-            ),
+            ProductCard(product: products[i]),
             const SizedBox(width: 16),
           ]
         ],

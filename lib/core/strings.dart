@@ -74,6 +74,9 @@ final class Strings {
   static const String signInWith =
       'Log in and enjoy the ease of shopping with us!';
 
+  static const String signUpWith =
+      'Sign up and enjoy the ease of shopping with us!';
+
   static const String email = 'Email';
 
   static const String emailOrPhone = 'Email or Phone';
@@ -108,4 +111,42 @@ final class Strings {
   static const String failedToLogin = 'Failed to login, please try again';
 
   static const String featureNotImplemented = 'Feature not implemented yet';
+
+  static const String registerWithEmail = 'Register with Email';
+
+  static const String orSignUpWith = 'or sign up with';
+
+  static const String google = 'Google';
+
+  static const String inputVerificationCode = 'Input verification code';
+
+  static const String verificationCodeSendByEmail =
+      'Verification code has been sent by email to ';
+  static const String verificationCodeSendByPhone =
+      'Verification code has been sent by phone to ';
+
+  static const String pleaseWait = 'Please wait for ';
+  static const String toResend = ' to resend the code';
+
+  static const String resendCode = 'Resend code';
+
+  static const String codeVerified = 'Code has been verified';
+
+  static const String verificationCodeSent = 'Verification code sent';
+
+  static const String createProfile = 'Create Profile';
+
+  static const String fullName = 'Full Name';
+
+  static const String phoneNumber = 'Phone Number';
+
+  static const String profileCreated = 'Profile created';
+
+  static const String passwordHelper = 'Password must be at least 6 characters';
+
+  static const String byContinuing = 'By continuing, you agree to our ';
+
+  static const termsAndConditions = 'Terms, Conditions';
+
+  static var and = ' and ';
 }

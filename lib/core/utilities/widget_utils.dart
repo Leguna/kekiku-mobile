@@ -6,7 +6,7 @@ showMySnackBar(context, String message, {bool error = true}) {
   ScaffoldMessenger.of(context).removeCurrentSnackBar();
   SnackBar snackBar = SnackBar(
     content: Text(removeExceptionPrefix(message)),
-    backgroundColor: error ? Colors.greenAccent : Colors.redAccent,
+    backgroundColor: error ? Colors.red : Colors.green,
     dismissDirection: DismissDirection.horizontal,
     behavior: SnackBarBehavior.floating,
   );

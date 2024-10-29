@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:kekiku/core/widgets/google_sso_button.dart';
 
 import '../auth/bloc/auth_cubit.dart';
 import '../core/index.dart';
@@ -54,6 +53,7 @@ class LoginButtons extends StatelessWidget {
                               ),
                               OutlinedButton(
                                 onPressed: () {
+                                  context.read<AuthCubit>().reset();
                                   Navigator.pushNamed(context, Routes.register);
                                 },
                                 child: Text(

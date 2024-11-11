@@ -18,95 +18,93 @@ class HomePage extends StatelessWidget {
       'Biscuit',
       'Pie',
     ];
-    return MyScaffold(
-      appBar: AppBar(
-        title: const FakeSearchBar(),
-        toolbarHeight: 80,
-        leading: const SizedBox(width: 16),
-        leadingWidth: 16,
-        titleSpacing: 0,
-        actions: [
-          IconButtonBadged(
-            onPressed: () {},
-            icon: const Icon(Icons.notifications_none),
-          ),
-          IconButtonBadged(
-            onPressed: () {},
-            icon: const Icon(Icons.shopping_cart_outlined),
-          ),
-          IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, Routes.menu);
-            },
-            icon: const Icon(
-              Icons.menu,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        AppBar(
+          title: const FakeSearchBar(),
+          toolbarHeight: 80,
+          leading: const SizedBox(width: 16),
+          leadingWidth: 16,
+          titleSpacing: 0,
+          actions: [
+            IconButtonBadged(
+              onPressed: () {},
+              icon: const Icon(Icons.notifications_none),
             ),
-          ),
-        ],
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              Strings.homeTitle,
-              style: AppTextStyles.titleHome,
+            IconButtonBadged(
+              onPressed: () {},
+              icon: const Icon(Icons.shopping_cart_outlined),
             ),
+            IconButton(
+              onPressed: () {
+                Navigator.pushNamed(context, Routes.menu);
+              },
+              icon: const Icon(
+                Icons.menu,
+              ),
+            ),
+          ],
+        ),
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Text(
+            Strings.homeTitle,
+            style: AppTextStyles.titleHome,
           ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                const SizedBox(width: 16),
-                for (var i = 0; i < categories.length; i++) ...[
-                  _buildCategory(i, categories),
-                  const SizedBox(width: 4),
-                ],
-                const SizedBox(width: 12),
+        ),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: [
+              const SizedBox(width: 16),
+              for (var i = 0; i < categories.length; i++) ...[
+                _buildCategory(i, categories),
+                const SizedBox(width: 4),
               ],
-            ),
-          ),
-          const SizedBox(height: 16),
-          const ListProductCardItem(
-            products: [
-              Product(
-                name: 'Pudding Raisin',
-                price: 10,
-                tag: 'New',
-                categories: ['Pudding'],
-                description:
-                    'Pudding is a type of food that can be either a dessert or a savory dish that is part of the main meal.',
-                image: 'https://picsum.photos/seed/pudding3/100',
-              ),
-              Product(
-                name: 'Bread',
-                categories: ['Bread'],
-                price: 5,
-                description:
-                    'Bread is a staple food prepared from a dough of flour and water, usually by baking.',
-                image: 'https://picsum.photos/seed/bread2/100',
-              ),
-              Product(
-                name: 'Doughnut',
-                categories: ['Doughnut'],
-                price: 3,
-                description:
-                    'A doughnut or donut is a type of fried dough confection or dessert food.',
-                image: 'https://picsum.photos/seed/doughnut1/100',
-              ),
-              Product(
-                name: 'Biscuit',
-                categories: ['Biscuit'],
-                price: 2,
-                description:
-                    'Biscuit is a term used for a variety of primarily flour-based baked food products.',
-                image: 'https://picsum.photos/seed/biscuit2/100',
-              ),
+              const SizedBox(width: 12),
             ],
           ),
-        ],
-      ),
+        ),
+        const SizedBox(height: 16),
+        const ListProductCardItem(
+          products: [
+            Product(
+              name: 'Pudding Raisin',
+              price: 10,
+              tag: 'New',
+              categories: ['Pudding'],
+              description:
+              'Pudding is a type of food that can be either a dessert or a savory dish that is part of the main meal.',
+              image: 'https://picsum.photos/seed/pudding3/100',
+            ),
+            Product(
+              name: 'Bread',
+              categories: ['Bread'],
+              price: 5,
+              description:
+              'Bread is a staple food prepared from a dough of flour and water, usually by baking.',
+              image: 'https://picsum.photos/seed/bread2/100',
+            ),
+            Product(
+              name: 'Doughnut',
+              categories: ['Doughnut'],
+              price: 3,
+              description:
+              'A doughnut or donut is a type of fried dough confection or dessert food.',
+              image: 'https://picsum.photos/seed/doughnut1/100',
+            ),
+            Product(
+              name: 'Biscuit',
+              categories: ['Biscuit'],
+              price: 2,
+              description:
+              'Biscuit is a term used for a variety of primarily flour-based baked food products.',
+              image: 'https://picsum.photos/seed/biscuit2/100',
+            ),
+          ],
+        ),
+      ],
     );
   }
 

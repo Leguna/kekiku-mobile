@@ -148,5 +148,7 @@ final class Strings {
 
   static const termsAndConditions = 'Terms, Conditions';
 
-  static var and = ' and ';
+  static const String and = ' and ';
+
+  static const String signInInfo = 'Sign in feature is not available yet';
 }

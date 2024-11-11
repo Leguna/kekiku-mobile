@@ -39,7 +39,7 @@ class LoginButtons extends StatelessWidget {
                         leading: const Icon(Icons.logout),
                       )
                     : Padding(
-                        padding: Dimens.smallPadding,
+                        padding:  const EdgeInsets.all( Dimens.small),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [

@@ -57,6 +57,7 @@ class LoginScreen extends StatelessWidget {
         final formKey = GlobalKey<FormState>();
         cubit.formKey = formKey;
         return MyScaffold(
+          infoText: Strings.signInInfo,
           appBar: MyAppBar(
             actions: [
               TextButton(
@@ -70,7 +71,7 @@ class LoginScreen extends StatelessWidget {
           body: isLoading
               ? const MyLoading()
               : SingleChildScrollView(
-                  padding: Dimens.mediumPadding,
+                  padding: const EdgeInsets.all(Dimens.small),
                   child: Form(
                     key: formKey,
                     autovalidateMode: AutovalidateMode.onUserInteraction,

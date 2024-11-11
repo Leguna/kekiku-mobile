@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 
 class Dimens {
-  static const EdgeInsets smallPadding = EdgeInsets.all(8.0);
-  static const EdgeInsets mediumPadding = EdgeInsets.all(16.0);
-  static const EdgeInsets largePadding = EdgeInsets.all(24.0);
-
   static const double micro = 4.0;
   static const double tiny = 8.0;
   static const double small = 12.0;

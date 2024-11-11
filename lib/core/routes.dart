@@ -3,6 +3,7 @@ import 'package:kekiku/auth/register_screen.dart';
 
 import '../auth/create_profile_screen.dart';
 import '../auth/login_screen.dart';
+import '../auth/profile_detail_screen.dart';
 import '../auth/verify_code_screen.dart';
 import '../hamburger_menu/menu_screen.dart';
 import '../home/home_screen.dart';
@@ -17,13 +18,15 @@ class Routes {
   static const String menu = '/menu';
   static const String login = '/login';
   static const String register = '/register';
-  static const String profile = '/profile';
   static const String settings = '/settings';
   static const String scan = '/scan';
   static const String help = '/help';
   static const String verifyCode = '/verify-code';
   static const String createProfile = '/create-profile';
   static const String termsAndConditions = '/terms-and-conditions';
+  static const String editProfile = '/edit-profile';
+  static const String profileDetail = '/profile-detail';
+  static const String profile = '/profile';
 
   static WidgetBuilder getRoute(String route) {
     return getRoutes()[route] ?? (context) => const NotFoundPage();
@@ -47,6 +50,7 @@ class Routes {
       verifyCode: (context) =>
           VerifyCodeScreen(isEmail: getRouteArgs(context)?['isEmail'] ?? false),
       createProfile: (context) => const CreateProfileScreen(),
+      profile: (context) => const ProfileDetailScreen(),
     };
   }
 

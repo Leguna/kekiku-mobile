@@ -20,6 +20,7 @@ class VerifyCodeScreen extends StatelessWidget {
           state.maybeWhen(
             orElse: () {},
             success: (message) {
+              context.read<AuthCubit>().passwordController.clear();
               Navigator.pushReplacementNamed(context, Routes.createProfile);
             },
           );
@@ -102,7 +103,7 @@ class VerifyCodeScreen extends StatelessWidget {
                           ),
                           MyCountdown(
                             bloc: countdownCubit,
-                            duration: const Duration(seconds: 5),
+                            duration: const Duration(seconds: 10),
                             onFinished: cubit.onTimerVerifyEnd,
                             style: Theme.of(context).textTheme.labelSmall,
                           ),

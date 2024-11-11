@@ -59,7 +59,7 @@ class RegisterScreen extends StatelessWidget {
           body: isLoading
               ? const MyLoading()
               : SingleChildScrollView(
-                  padding: const EdgeInsets.all(Dimens.medium),
+                  padding: const EdgeInsets.all(Dimens.small),
                   child: Form(
                     key: cubit.formKey,
                     child: Column(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../auth/views/profile_summary.dart';
 import '../core/index.dart';
-import 'login_buttons.dart';
 
 class MenuScreen extends StatelessWidget {
   const MenuScreen({super.key});
@@ -21,7 +21,7 @@ class MenuScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const LoginButtons(),
+            const ProfileSummary(),
             const Divider(),
             ListTile(
               title: const Text(Strings.orders),

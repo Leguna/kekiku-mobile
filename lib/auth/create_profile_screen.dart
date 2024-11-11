@@ -42,6 +42,7 @@ class CreateProfileScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: Dimens.medium),
                         TextFormField(
+                          controller: cubit.userNameController,
                           onChanged: (value) {
                             context.read<AuthCubit>().validateForm(
                                 createProfileKey: cubit.createProfileKey);

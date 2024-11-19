@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../auth/bloc/auth_cubit.dart';
-import '../core/index.dart';
+import '../../auth/bloc/auth_cubit.dart';
+import '../index.dart';
 
 class LoginButtons extends StatelessWidget {
   const LoginButtons({super.key});

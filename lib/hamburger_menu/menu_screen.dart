@@ -4,24 +4,35 @@ import '../auth/views/profile_summary.dart';
 import '../core/index.dart';
 
 class MenuScreen extends StatelessWidget {
-  const MenuScreen({super.key});
+  const MenuScreen({super.key, this.showLeading = true});
+
+  final bool showLeading;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.close),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: const Text('Main Menu'),
+        leading: showLeading
+            ? IconButton(
+                icon: const Icon(Icons.close),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              )
+            : null,
+        title: const Text(Strings.menu),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const ProfileSummary(),
+            ProfileSummary(
+              onTap: () {
+                if (showLeading) {
+                  Navigator.pushReplacementNamed(context, Routes.profile);
+                }
+                Navigator.pushNamed(context, Routes.profile);
+              },
+            ),
             const Divider(),
             ListTile(
               title: const Text(Strings.orders),

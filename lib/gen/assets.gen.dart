@@ -69,6 +69,22 @@ class $AssetsJsonsGen {
   List<String> get values => [cake];
 }
 
+class $AssetsLottiesGen {
+  const $AssetsLottiesGen();
+
+  /// File path: assets/lotties/cake.json
+  String get cake => 'assets/lotties/cake.json';
+
+  /// File path: assets/lotties/customer-review.json
+  String get customerReview => 'assets/lotties/customer-review.json';
+
+  /// File path: assets/lotties/notfound.json
+  String get notfound => 'assets/lotties/notfound.json';
+
+  /// List of all assets
+  List<String> get values => [cake, customerReview, notfound];
+}
+
 class $AssetsFontsMontserratGen {
   const $AssetsFontsMontserratGen();
 
@@ -269,6 +285,7 @@ class Assets {
       AssetGenImage('assets/logo_google.png');
   static const String logoGoogleSvg = 'assets/logo_google_svg.svg';
   static const AssetGenImage logoOnly = AssetGenImage('assets/logo_only.png');
+  static const $AssetsLottiesGen lotties = $AssetsLottiesGen();
   static const AssetGenImage noImage = AssetGenImage('assets/no_image.png');
   static const String welcome = 'assets/welcome.svg';
 

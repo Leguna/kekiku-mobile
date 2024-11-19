@@ -52,7 +52,7 @@ class MyBottomNavBarItem extends StatelessWidget {
     {'Cart': const Icon(Icons.shopping_cart)},
     {'Home': const Icon(Icons.home)},
     {'Favorites': const Icon(Icons.favorite)},
-    {'Profile': const Icon(Icons.person)},
+    {'Lainnya': const Icon(Icons.menu)},
   ];
 
   static List<BottomNavigationBarItem> createItems(

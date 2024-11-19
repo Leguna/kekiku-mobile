@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:workmanager/workmanager.dart';
@@ -21,16 +20,10 @@ Future<void> setupServices() async {
     await dotenv.load(fileName: '.env');
 
     await Hive.initFlutter();
-    await FlutterDownloader.initialize(
-      debug: true,
-      ignoreSsl: true,
-    );
     GoogleFonts.config.allowRuntimeFetching = false;
-    if (!kIsWeb) await setupFlutterNotifications();
 
-    getIt.registerLazySingleton(() => Workmanager());
-    getIt.registerLazySingleton(() => LocalDatabase());
-
+    getIt.registerSingleton<LocalDatabase>(LocalDatabase());
+    getIt.registerSingleton<Workmanager>(Workmanager());
     getIt.registerSingleton<SecureStorageManager>(SecureStorageManager());
 
     final Dio dio = Dio(BaseOptions(

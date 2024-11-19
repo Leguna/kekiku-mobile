@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:lottie/lottie.dart';
 
 import '../index.dart';
 
@@ -17,16 +17,12 @@ class NotFoundPage extends StatelessWidget {
           child: Column(
             children: [
               const SizedBox(height: 32),
-              Text(Strings.pageNotFound),
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.symmetric(vertical: 64),
-                child: SvgPicture.asset(
-                  Assets.illustrations.notFound,
-                  width: 200,
-                  height: 200,
-                ),
+              Lottie.asset(
+                reverse: true,
+                Assets.lotties.notfound,
+                height: 400,
               ),
+              Text(Strings.oops, style: Theme.of(context).textTheme.titleLarge),
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
@@ -36,7 +32,7 @@ class NotFoundPage extends StatelessWidget {
                     (route) => false,
                   );
                 },
-                child: Text(Strings.backToHome),
+                child: const Text(Strings.backToHome),
               ),
             ],
           ),

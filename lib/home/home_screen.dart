@@ -3,6 +3,7 @@ import 'package:kekiku/core/index.dart';
 import 'package:kekiku/home/home_page.dart';
 
 import '../core/widgets/bottom_nav_bar/bloc/bottom_nav_bar_cubit.dart';
+import '../hamburger_menu/menu_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -21,7 +22,7 @@ class HomeScreen extends StatelessWidget {
               Center(child: Text('Cart Page')),
               HomePage(),
               Center(child: Text('Favorite Page')),
-              Center(child: Text('Profile Page')),
+              MenuScreen(showLeading: false),
             ],
           );
         },

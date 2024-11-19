@@ -1,12 +1,19 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:kekiku/auth/bloc/auth_cubit.dart';
-import 'package:kekiku/hamburger_menu/login_buttons.dart';
+import 'package:kekiku/core/widgets/login_buttons.dart';
 
 import '../../core/index.dart';
 
 class ProfileSummary extends StatelessWidget {
-  const ProfileSummary({super.key});
+  const ProfileSummary({
+    super.key,
+    this.showEditButton = false,
+    this.onTap,
+  });
+
+  final VoidCallback? onTap;
+  final bool showEditButton;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +34,7 @@ class ProfileSummary extends StatelessWidget {
                 ListTile(
                   title: Row(
                     children: [
-                      const Icon(Icons.person_outline, size: Dimens.large),
+                      const Icon(Icons.person, size: Dimens.large),
                       const SizedBox(width: Dimens.small),
                       Expanded(
                         child: Text(
@@ -36,9 +43,10 @@ class ProfileSummary extends StatelessWidget {
                         ),
                       ),
                       IconButton(
-                        icon: const Icon(Icons.settings, size: Dimens.large),
+                        icon: Icon(showEditButton ? Icons.edit : Icons.settings,
+                            size: Dimens.large),
                         onPressed: () {
-                          Navigator.pushNamed(context, Routes.profile);
+                          onTap?.call();
                         },
                       ),
                     ],
@@ -82,7 +90,7 @@ class ProfileSummary extends StatelessWidget {
                           ),
                         ),
                   onTap: () {
-                    Navigator.pushNamed(context, Routes.profile);
+                    onTap?.call();
                   },
                 ),
               ],

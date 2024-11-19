@@ -16,8 +16,10 @@ class Routes {
   static const String onBoarding = '/onboarding';
   static const String home = '/home';
   static const String menu = '/menu';
+
   static const String login = '/login';
   static const String register = '/register';
+
   static const String settings = '/settings';
   static const String scan = '/scan';
   static const String help = '/help';
@@ -27,6 +29,8 @@ class Routes {
   static const String editProfile = '/edit-profile';
   static const String profileDetail = '/profile-detail';
   static const String profile = '/profile';
+
+  static const String aboutKekiku = '/about-kekiku';
 
   static WidgetBuilder getRoute(String route) {
     return getRoutes()[route] ?? (context) => const NotFoundPage();

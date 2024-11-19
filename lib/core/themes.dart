@@ -5,6 +5,12 @@ import 'colors.dart';
 import 'typography.dart';
 
 final mainTheme = ThemeData(
+  cardTheme: const CardTheme(
+    color: AppColors.primaryColorDark,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(Dimens.small)),
+    ),
+  ),
   fontFamily: 'Poppins',
   fontFamilyFallback: const ['Montserrat'],
   appBarTheme: AppBarTheme(
@@ -21,6 +27,15 @@ final mainTheme = ThemeData(
         AppTextStyles.small.copyWith(
           color: AppColors.primaryColorLight,
         ),
+      ),
+    ),
+  ),
+  bottomSheetTheme: const BottomSheetThemeData(
+    backgroundColor: AppColors.primaryColorBackground,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(Dimens.small),
+        topRight: Radius.circular(Dimens.small),
       ),
     ),
   ),
@@ -113,7 +128,10 @@ final mainTheme = ThemeData(
     bodySmall: AppTextStyles.small.copyWith(color: Colors.white),
     bodyMedium: AppTextStyles.medium.copyWith(color: Colors.white),
     bodyLarge: AppTextStyles.medium.copyWith(color: Colors.white),
-    labelSmall: AppTextStyles.small.copyWith(color: AppColors.paleSteelBlue),
+    titleSmall: AppTextStyles.small.copyWith(color: Colors.white),
+    titleMedium: AppTextStyles.medium.copyWith(color: Colors.white),
+    titleLarge: AppTextStyles.medium.copyWith(color: Colors.white),
+    labelSmall: AppTextStyles.micro.copyWith(color: AppColors.paleSteelBlue),
     labelMedium: AppTextStyles.medium.copyWith(color: AppColors.paleSteelBlue),
     labelLarge: AppTextStyles.medium.copyWith(color: AppColors.paleSteelBlue),
     displaySmall:

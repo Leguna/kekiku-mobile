@@ -151,4 +151,37 @@ final class Strings {
   static const String and = ' and ';
 
   static const String signInInfo = 'Sign in feature is not available yet';
+
+  static const String myProfile = 'My Profile';
+
+  static const String menu = 'Menu';
+
+  static const String aboutKekiku = 'About Kekiku';
+
+  static const String reviewApp = 'Review this app';
+
+  static const String aboutApp = 'About App';
+
+  static const String knowMore = 'Know more';
+
+  static const String close = 'Close';
+
+  static const String rateAppDescription = 'How do you like this app?';
+
+  static const String rateApp = 'Time to rate this app';
+
+  static const String send = 'Send';
+
+  static const rate = [
+    'Very Bad',
+    'Bad',
+    'Good',
+    'Very Good',
+    'Excellent',
+  ];
+
+  static const String appLink = 'https://play.google.com/store/apps/dev?id=4639686428990968250';
+
+  static const String oops = 'Oops! Looks like you are lost.';
+
 }

@@ -4,12 +4,48 @@ import '../../core/models/product_mdl.dart';
 import 'product_card.dart';
 
 class ListProductCardItem extends StatelessWidget {
-  const ListProductCardItem({super.key, required this.products});
+  const ListProductCardItem({super.key, this.products = const []});
 
   final List<Product> products;
 
   @override
   Widget build(BuildContext context) {
+    List<Product> products = [
+      Product(
+        name: 'Pudding Raisin',
+        price: 10,
+        tag: 'New',
+        categories: ['Pudding'],
+        description:
+            'Pudding is a type of food that can be either a dessert or a savory dish that is part of the main meal.',
+        image: 'https://picsum.photos/seed/pudding3/100',
+      ),
+      Product(
+        name: 'Bread',
+        categories: ['Bread'],
+        price: 5,
+        description:
+            'Bread is a staple food prepared from a dough of flour and water, usually by baking.',
+        image: 'https://picsum.photos/seed/bread2/100',
+      ),
+      Product(
+        name: 'Doughnut',
+        categories: ['Doughnut'],
+        price: 3,
+        description:
+            'A doughnut or donut is a type of fried dough confection or dessert food.',
+        image: 'https://picsum.photos/seed/doughnut1/100',
+      ),
+      Product(
+        name: 'Biscuit',
+        categories: ['Biscuit'],
+        price: 2,
+        description:
+            'Biscuit is a term used for a variety of primarily flour-based baked food products.',
+        image: 'https://picsum.photos/seed/biscuit2/100',
+      ),
+    ];
+    if (this.products.isNotEmpty) products = this.products;
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(

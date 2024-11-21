@@ -81,8 +81,11 @@ class $AssetsLottiesGen {
   /// File path: assets/lotties/notfound.json
   String get notfound => 'assets/lotties/notfound.json';
 
+  /// File path: assets/lotties/qr-code.json
+  String get qrCode => 'assets/lotties/qr-code.json';
+
   /// List of all assets
-  List<String> get values => [cake, customerReview, notfound];
+  List<String> get values => [cake, customerReview, notfound, qrCode];
 }
 
 class $AssetsFontsMontserratGen {

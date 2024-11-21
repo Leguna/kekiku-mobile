@@ -184,14 +184,16 @@ final class Strings {
 
   static const String oops = 'Oops! Looks like you are lost.';
 
-  static const String codeScanner = 'Code Scanner';
+  static const String codeScanner = 'QR & Barcode Scanner';
 
-  static const String qrData = 'QR Data Showed Here';
+  static const String scanDataShowedHere = 'Scanned Data Showed Here';
 
-  static const String qrHint = 'Scan the QR code to get the data';
+  static const String scanHint = 'Scan QR code or Barcode to get the data';
 
   static const String torchOn = 'Torch On';
 
   static const String readAgain = 'Read again';
+
+  static const String noImageSelected = 'No image selected';
 
 }

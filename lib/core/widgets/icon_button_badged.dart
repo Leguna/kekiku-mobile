@@ -8,6 +8,7 @@ class IconButtonBadged extends IconButton {
     this.textColor,
     required super.onPressed,
     required super.icon,
+    super.disabledColor = Colors.grey,
   });
 
   final String text;

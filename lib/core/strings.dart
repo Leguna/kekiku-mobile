@@ -184,4 +184,14 @@ final class Strings {
 
   static const String oops = 'Oops! Looks like you are lost.';
 
+  static const String codeScanner = 'Code Scanner';
+
+  static const String qrData = 'QR Data Showed Here';
+
+  static const String qrHint = 'Scan the QR code to get the data';
+
+  static const String torchOn = 'Torch On';
+
+  static const String readAgain = 'Read again';
+
 }

@@ -7,11 +7,15 @@ import 'my_bottom_nav_bar_item.dart';
 class MyBottomNavBar extends StatelessWidget {
   const MyBottomNavBar({
     super.key,
+    required this.bloc,
   });
+
+  final BottomNavBarCubit bloc;
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BottomNavBarCubit, BottomNavBarState>(
+      bloc: bloc,
       builder: (context, state) {
         return ClipRRect(
           borderRadius: const BorderRadius.only(
@@ -21,7 +25,7 @@ class MyBottomNavBar extends StatelessWidget {
           child: BottomNavigationBar(
             currentIndex: state.page,
             onTap: (index) {
-              context.read<BottomNavBarCubit>().jumpToPage(index);
+              bloc.jumpToPage(index);
             },
             type: BottomNavigationBarType.fixed,
             showSelectedLabels: true,

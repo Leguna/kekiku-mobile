@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kekiku/auth/register_screen.dart';
+import 'package:kekiku/scanner/scanner_screen.dart';
 
 import '../auth/create_profile_screen.dart';
 import '../auth/login_screen.dart';
@@ -21,7 +22,7 @@ class Routes {
   static const String register = '/register';
 
   static const String settings = '/settings';
-  static const String scan = '/scan';
+  static const String codeScanner = '/code-scanner';
   static const String help = '/help';
   static const String verifyCode = '/verify-code';
   static const String createProfile = '/create-profile';
@@ -55,6 +56,7 @@ class Routes {
           VerifyCodeScreen(isEmail: getRouteArgs(context)?['isEmail'] ?? false),
       createProfile: (context) => const CreateProfileScreen(),
       profile: (context) => const ProfileDetailScreen(),
+      codeScanner: (context) => const ScannerScreen(),
     };
   }
 

@@ -161,6 +161,7 @@ final mainTheme = ThemeData(
     horizontalTitleGap: 16.0,
     dense: true,
   ),
+  disabledColor: Colors.grey,
   iconTheme: const IconThemeData(
     color: Colors.white,
     size: 24.0,

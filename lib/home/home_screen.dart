@@ -10,13 +10,15 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var bottomNavBarCubit = BottomNavBarCubit();
     return MyScaffold(
-      bottomNavigationBar: const MyBottomNavBar(),
+      bottomNavigationBar: MyBottomNavBar(bloc: bottomNavBarCubit),
       body: BlocBuilder<BottomNavBarCubit, BottomNavBarState>(
+        bloc: bottomNavBarCubit,
         builder: (context, state) {
           return PageView(
             physics: const NeverScrollableScrollPhysics(),
-            controller: context.read<BottomNavBarCubit>().pageController,
+            controller: bottomNavBarCubit.pageController,
             children: const [
               Center(child: Text('Track Page')),
               Center(child: Text('Cart Page')),

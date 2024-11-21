@@ -18,4 +18,5 @@ class Dimens {
 
   static var microText = 12.0;
   static var smallText = 14.0;
+
 }

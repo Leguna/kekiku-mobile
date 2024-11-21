@@ -35,6 +35,7 @@ class MenuScreen extends StatelessWidget {
             ),
             const Divider(),
             ListTile(
+              enabled: false,
               title: const Text(Strings.orders),
               leading: const Icon(Icons.shopping_bag),
               onTap: () {
@@ -42,6 +43,7 @@ class MenuScreen extends StatelessWidget {
               },
             ),
             ListTile(
+              enabled: false,
               title: const Text(Strings.reviews),
               leading: const Icon(Icons.star),
               onTap: () {
@@ -49,6 +51,7 @@ class MenuScreen extends StatelessWidget {
               },
             ),
             ListTile(
+              enabled: false,
               title: const Text(Strings.cart),
               leading: const Icon(Icons.shopping_cart),
               onTap: () {
@@ -56,6 +59,7 @@ class MenuScreen extends StatelessWidget {
               },
             ),
             ListTile(
+              enabled: false,
               title: const Text(Strings.wishlist),
               leading: const Icon(Icons.favorite),
               onTap: () {
@@ -64,6 +68,7 @@ class MenuScreen extends StatelessWidget {
             ),
             const Divider(),
             ListTile(
+              enabled: false,
               onTap: () {
                 Navigator.pushNamed(context, '/privacy');
               },
@@ -71,6 +76,7 @@ class MenuScreen extends StatelessWidget {
               leading: const Icon(Icons.privacy_tip),
             ),
             ListTile(
+              enabled: false,
               onTap: () {
                 Navigator.pushNamed(context, '/help');
               },
@@ -79,9 +85,9 @@ class MenuScreen extends StatelessWidget {
             ),
             ListTile(
               onTap: () {
-                Navigator.pushNamed(context, '/about');
+                Navigator.pushNamed(context, Routes.codeScanner);
               },
-              title: const Text(Strings.scanQrCode),
+              title: const Text(Strings.codeScanner),
               leading: const Icon(Icons.qr_code),
             ),
           ],

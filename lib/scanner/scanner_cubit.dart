@@ -21,6 +21,7 @@ class ScannerCubit extends Cubit<ScannerState> {
     torchEnabled: false,
   );
 
+  bool get isCaptured => lastCapture != null;
   BarcodeCapture? lastCapture;
   bool isTorched = false;
   bool isFrontCamera = false;

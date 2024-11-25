@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -17,7 +16,6 @@ class FirebaseService {
         name: 'kekiku',
         options: options,
       );
-      print(FirebaseAuth.instance);
       return app;
     } catch (e) {
       // ignore: avoid_print

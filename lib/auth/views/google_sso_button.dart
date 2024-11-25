@@ -1,45 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kekiku/auth/bloc/auth_cubit.dart';
 import 'package:kekiku/core/index.dart';
 
 class GoogleSsoButton extends StatelessWidget {
   const GoogleSsoButton({
     super.key,
     this.isOutlined = false,
-    this.showLogout = false,
     this.onSignIn,
-    this.onSignOut,
-    this.isSignedIn = false,
   });
 
   final bool isOutlined;
-  final bool showLogout;
-  final bool isSignedIn;
   final Function? onSignIn;
-  final Function? onSignOut;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        isSignedIn ? const SizedBox() : _buildSignInButton(context),
-        _buildSignOutButton(),
-      ],
+    return BlocBuilder<AuthCubit, AuthState>(
+      builder: (context, state) {
+        var bloc = context.read<AuthCubit>();
+        var isSignedIn = bloc.user != null;
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            isSignedIn ? const SizedBox() : _buildSignInButton(bloc, context),
+            _buildLogoutButton(bloc),
+          ],
+        );
+      },
     );
   }
 
-  _buildSignInButton(context) {
+  _buildSignInButton(AuthCubit bloc, context) {
     return isOutlined
         ? OutlinedButton(
             onPressed: () {
-              onSignIn?.call();
+              bloc.loginWithGoogle();
             },
             child: _buttonChild(context),
           )
         : ElevatedButton(
             onPressed: () {
-              onSignIn?.call();
+              bloc.loginWithGoogle();
             },
             child: _buttonChild(context),
           );
@@ -67,12 +69,14 @@ class GoogleSsoButton extends StatelessWidget {
     );
   }
 
-  _buildSignOutButton() {
-    if (!showLogout) {
+  _buildLogoutButton(AuthCubit bloc) {
+    if (bloc.user == null) {
       return const SizedBox();
     }
     return ElevatedButton(
-      onPressed: onSignOut as void Function()?,
+      onPressed: () {
+        bloc.logout();
+      },
       child: const Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,

@@ -180,7 +180,8 @@ final class Strings {
     'Excellent',
   ];
 
-  static const String appLink = 'https://play.google.com/store/apps/dev?id=4639686428990968250';
+  static const String appLink =
+      'https://play.google.com/store/apps/dev?id=4639686428990968250';
 
   static const String oops = 'Oops! Looks like you are lost.';
 
@@ -196,4 +197,37 @@ final class Strings {
 
   static const String noImageSelected = 'No image selected';
 
+  static const String successLogin = 'Success login';
+
+  static const String descAboutApp = 'Description about the app';
+
+  static const String appSettings = 'Application Settings';
+
+  static const String apperance = 'Apperance';
+
+  static const String apperanceHint = 'Change the apperance of the app';
+
+  static const String accountSettings = 'Account Settings';
+
+  static const String notification = 'Notification';
+
+  static const String notificationSubtitle = 'Set your notification preference';
+
+  static const String accountSecurity = 'Account Security';
+
+  static const String accountSecuritySubtitle = 'Set your account security';
+
+  static const String changeProfile = 'Change Profile';
+
+  static const String changePhoto = 'Change Photo Profile';
+
+  static const String closeAccount = 'Delete Account';
+
+  static const String privateProfile = 'Private Profile';
+
+  static const String publicProfile = 'Public Profile';
+
+  static const String name = 'Name';
+
+  static const String removeAccountDescription = 'Are you sure you want to delete your account?';
 }

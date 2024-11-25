@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -9,7 +8,6 @@ import 'package:workmanager/workmanager.dart';
 import 'core/index.dart';
 import 'core/services/firebase/firebase_service.dart';
 import 'core/services/google_sso.dart';
-import 'core/services/notification_service.dart';
 
 var initialized = false;
 

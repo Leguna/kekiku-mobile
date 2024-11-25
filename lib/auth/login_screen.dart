@@ -1,29 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:kekiku/auth/bloc/auth_cubit.dart';
 import 'package:kekiku/core/index.dart';
-import 'package:kekiku/core/widgets/google_sso_button.dart';
+import 'package:kekiku/auth/views/google_sso_button.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    context.read<AuthCubit>().reset();
+    final formKey = GlobalKey<FormState>();
+    final cubit = context.read<AuthCubit>();
+    cubit.formKey = formKey;
     return BlocConsumer<AuthCubit, AuthState>(
+      buildWhen: (previous, current) {
+        return current.maybeWhen(
+          orElse: () => false,
+          loading: () => true,
+          success: (user) => true,
+          error: (message) => true,
+          initial: () => true,
+          checked: (isEmail) => true,
+        );
+      },
       listener: (context, state) {
         state.maybeWhen(
           orElse: () {},
-          checked: (isEmail) {
-            if (!isEmail) {
-              Navigator.pushNamed(context, Routes.verifyCode);
-            }
-          },
-          updated: (user) {
-            if (user != null) {
-              Navigator.pushNamedAndRemoveUntil(
-                  context, Routes.home, (route) => false);
-            }
-          },
           success: (message) {
             showMySnackBar(
               context,
@@ -31,31 +32,27 @@ class LoginScreen extends StatelessWidget {
               error: false,
             );
           },
-          error: (message) {
-            showMySnackBar(
+       updated: (user) {
+            Navigator.pushNamedAndRemoveUntil(
               context,
-              message,
+              Routes.home,
+              (route) => false,
             );
           },
-        );
-      },
-      buildWhen: (previous, current) {
-        return current.maybeWhen(
-          orElse: () => true,
-          form: (email, password, valid) => false,
+          error: (message) {
+            showMySnackBar(context, message);
+          },
+          checked: (isEmail) {
+            cubit.isUsingEmail = isEmail;
+          },
         );
       },
       builder: (context, state) {
         final isLoading = state.maybeWhen(
-          orElse: () => false,
           loading: () => true,
+          orElse: () => false,
         );
-        final cubit = context.read<AuthCubit>();
         final isEmailLogin = cubit.isUsingEmail;
-        final isFormValid =
-            context.select((AuthCubit cubit) => cubit.isFormValid);
-        final formKey = GlobalKey<FormState>();
-        cubit.formKey = formKey;
         return MyScaffold(
           infoText: Strings.signInInfo,
           appBar: MyAppBar(
@@ -73,6 +70,9 @@ class LoginScreen extends StatelessWidget {
               : SingleChildScrollView(
                   padding: const EdgeInsets.all(Dimens.small),
                   child: Form(
+                    onChanged: () {
+                      context.read<AuthCubit>().validateForm();
+                    },
                     key: formKey,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     child: Column(
@@ -101,6 +101,9 @@ class LoginScreen extends StatelessWidget {
                                     labelText: Strings.emailOrPhone,
                                     helperText: Strings.examplePhone,
                                   ),
+                                  onFieldSubmitted: (value) {
+                                    context.read<AuthCubit>().tryVerification();
+                                  },
                                 ),
                                 const SizedBox(height: Dimens.medium),
                               ],
@@ -118,6 +121,9 @@ class LoginScreen extends StatelessWidget {
                                   decoration: const InputDecoration(
                                     label: Text(Strings.email),
                                   ),
+                                  onFieldSubmitted: (value) {
+                                    context.read<AuthCubit>().tryVerification();
+                                  },
                                 ),
                                 const SizedBox(height: Dimens.medium),
                                 TextFormField(
@@ -157,6 +163,8 @@ class LoginScreen extends StatelessWidget {
                                   );
                                 },
                                 builder: (context, state) {
+                                  final cubit = context.read<AuthCubit>();
+                                  final isFormValid = cubit.isFormValid;
                                   return ElevatedButton(
                                     onPressed: isFormValid
                                         ? () {
@@ -205,11 +213,8 @@ class LoginScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                        GoogleSsoButton(
+                        const GoogleSsoButton(
                           isOutlined: true,
-                          onSignIn: () {
-                            context.read<AuthCubit>().loginWithGoogle();
-                          },
                         ),
                         Align(
                           alignment: Alignment.centerRight,

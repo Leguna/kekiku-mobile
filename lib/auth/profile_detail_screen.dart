@@ -38,21 +38,58 @@ class ProfileDetailScreen extends StatelessWidget {
                   },
                 ),
                 const Divider(),
+                const MyAccordion(
+                  showAccordion: true,
+                  titleChild: Text(Strings.accountSettings),
+                  contentChild: Column(
+                    children: [
+                      ListTile(
+                        enabled: false,
+                        title: Text(Strings.accountSecurity),
+                        subtitle: Text(Strings.accountSecuritySubtitle),
+                        leading: Icon(Icons.security),
+                      ),
+                      ListTile(
+                        enabled: false,
+                        title: Text(Strings.notification),
+                        subtitle: Text(Strings.notificationSubtitle),
+                        leading: Icon(Icons.notifications),
+                      ),
+                    ],
+                  ),
+                ),
+                const Divider(),
+                const MyAccordion(
+                  titleChild: Text(Strings.appSettings),
+                  contentChild: Column(
+                    children: [
+                      ListTile(
+                        enabled: false,
+                        title: Text(Strings.apperance),
+                        subtitle: Text(Strings.apperanceHint),
+                        leading: Icon(Icons.color_lens),
+                      ),
+                    ],
+                  ),
+                ),
+                const Divider(),
                 MyAccordion(
                   titleChild: const Text(Strings.aboutKekiku),
                   contentChild: Column(
                     children: [
                       ListTile(
                         onTap: () {
-                          // TODO: Open web view for about kekiku
                           Navigator.pushNamed(context, Routes.aboutKekiku);
                         },
+                        subtitle: const Text(Strings.descAboutApp),
+                        enabled: false,
                         title: const Text(Strings.knowMore),
                         leading: const Icon(Icons.info),
                       ),
                       ListTile(
                         leading: const Icon(Icons.star),
                         title: const Text(Strings.reviewApp),
+                        subtitle: const Text(Strings.rateAppDescription),
                         onTap: () {
                           showReviewAppBottomSheet(context);
                         },
@@ -68,7 +105,7 @@ class ProfileDetailScreen extends StatelessWidget {
         ));
   }
 
-  Widget createLogoutTile(context) {
+  Widget createLogoutTile(BuildContext context) {
     return ListTile(
       onTap: () {
         showMyDialogOption(
@@ -76,7 +113,9 @@ class ProfileDetailScreen extends StatelessWidget {
           title: Strings.exitFromKekiku,
           description: Strings.logoutConfirmation,
           confirmText: Strings.logout,
-          onConfirm: () => context.read<AuthCubit>().logout(),
+          onConfirm: () {
+            BlocProvider.of<AuthCubit>(context).logout();
+          },
         );
       },
       title: const Text(Strings.logout),

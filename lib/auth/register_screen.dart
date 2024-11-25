@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kekiku/auth/bloc/auth_cubit.dart';
+import 'package:kekiku/auth/views/google_sso_button.dart';
 import 'package:kekiku/core/index.dart';
-import 'package:kekiku/core/widgets/google_sso_button.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
@@ -108,12 +108,7 @@ class RegisterScreen extends StatelessWidget {
                           },
                         ),
                         const MyDivider(Strings.orSignUpWith),
-                        GoogleSsoButton(
-                          isOutlined: true,
-                          onSignIn: () {
-                            context.read<AuthCubit>().loginWithGoogle();
-                          },
-                        ),
+                        const GoogleSsoButton(isOutlined: true),
                         Align(
                           alignment: Alignment.centerRight,
                           child: TextButton(

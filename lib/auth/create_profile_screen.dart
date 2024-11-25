@@ -138,7 +138,7 @@ class CreateProfileScreen extends StatelessWidget {
                                       );
                                     },
                                 ),
-                                TextSpan(text: Strings.and),
+                                const TextSpan(text: Strings.and),
                                 TextSpan(
                                   text: Strings.privacyPolicy,
                                   style: const TextStyle(

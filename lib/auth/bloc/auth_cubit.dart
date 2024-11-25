@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:kekiku/core/services/google_sso.dart';
 import 'package:local_auth/local_auth.dart';
 
@@ -19,6 +20,11 @@ class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(const AuthState.initial()) {
     init();
   }
+
+  bool get isLoggedIn => state.maybeWhen(
+        updated: (_) => true,
+        orElse: () => false,
+      );
 
   final db = getIt<LocalDatabase>();
   final ds = getIt<AuthRepository>();
@@ -80,21 +86,20 @@ class AuthCubit extends Cubit<AuthState> {
 
       if (googleUser == null) throw Exception(Strings.failedToLogin);
 
-      // user = await ds.loginWithGoogle(googleUser.idToken);
+      user = await ds.loginWithGoogle(googleUser.id);
       user = User(
         id: googleUser.id,
         email: googleUser.email,
         displayName: googleUser.displayName ?? '',
         photoUrl: googleUser.photoUrl ?? '',
       );
-      // Set selected user
       await db.setString(userKey, user?.id, boxKey: authBox);
-      // Save user data
       await db.setString(
         user!.id,
         jsonEncode(user!.toJson()),
         boxKey: authBox,
       );
+      emit(const AuthState.success(Strings.successLogin));
       emit(AuthState.updated(user!));
     } catch (e) {
       emit(const AuthState.error(Strings.failedToLogin));
@@ -244,5 +249,17 @@ class AuthCubit extends Cubit<AuthState> {
       boxKey: authBox,
     );
     emit(AuthState.updated(user));
+  }
+
+  Future<void> changePhotoProfile() async {
+    emit(const AuthState.loading());
+    XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      user = user!.copyWith(photoUrl: image.path);
+      await db.setString(userKey, jsonEncode(user!.toJson()), boxKey: authBox);
+      emit(AuthState.updated(user!));
+    } else {
+      emit(const AuthState.error('Failed to pick image'));
+    }
   }
 }

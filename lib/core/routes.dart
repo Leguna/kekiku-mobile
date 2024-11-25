@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:kekiku/auth/register_screen.dart';
-import 'package:kekiku/scanner/scanner_screen.dart';
 
 import '../auth/create_profile_screen.dart';
 import '../auth/login_screen.dart';
+import '../auth/profile/edit_profile_screen.dart';
 import '../auth/profile_detail_screen.dart';
+import '../auth/register_screen.dart';
 import '../auth/verify_code_screen.dart';
 import '../hamburger_menu/menu_screen.dart';
 import '../home/home_screen.dart';
+import '../scanner/scanner_screen.dart';
 import '../splash/onboarding_screen.dart';
 import 'widgets/not_found_page.dart';
 
@@ -57,6 +58,7 @@ class Routes {
       createProfile: (context) => const CreateProfileScreen(),
       profile: (context) => const ProfileDetailScreen(),
       codeScanner: (context) => const ScannerScreen(),
+      editProfile: (context) => const EditProfileScreen(),
     };
   }
 

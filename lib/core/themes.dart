@@ -152,7 +152,14 @@ final mainTheme = ThemeData(
     thickness: 6.0,
   ),
   listTileTheme: const ListTileThemeData(
-    textColor: Colors.white,
+    titleTextStyle: TextStyle(
+      color: Colors.white,
+      fontSize: 14.0,
+    ),
+    subtitleTextStyle: TextStyle(
+      color: Colors.white60,
+      fontSize: 10.0,
+    ),
     tileColor: AppColors.primaryColorBackground,
     iconColor: Colors.white,
     contentPadding: EdgeInsets.symmetric(horizontal: Dimens.small),

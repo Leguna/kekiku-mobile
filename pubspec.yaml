@@ -51,6 +51,7 @@ dependencies:
   qr_flutter: ^4.1.0
   mobile_scanner: ^6.0.2
   image_picker: ^1.1.2
+  image_cropper: ^8.0.2
 
   # Network
   dio: ^5.4.1

@@ -31,50 +31,52 @@ class AuthRepository {
     return user;
   }
 
-  checkEmail(String email) {
-    final response = _authApiClient.checkEmail(email);
+  Future<bool> checkEmail(String email) async {
+    final response = await _authApiClient.checkEmail(email);
     bool isExist = response['data']['isExist'];
     return isExist;
   }
 
-  checkPhone(String phone) {
-    final response = _authApiClient.checkPhone(phone);
+  Future<bool> checkPhone(String phone) async {
+    final response = await _authApiClient.checkPhone(phone);
     bool isExist = response['data']['isExist'];
     return isExist;
   }
 
-  loginWithPhone(String phone, String password) {
-    final response = _authApiClient.loginWithPhone(phone, password);
+  Future<bool> loginWithPhone(String phone, String password) async {
+    final response = await _authApiClient.loginWithPhone(phone, password);
     final token = response['data']['token'];
     setToken(token);
     return response;
   }
 
-  loginWithEmail(String email, String password) {
-    final response = _authApiClient.loginWithEmail(email, password);
+  Future<bool> loginWithEmail(String email, String password) async {
+    final response = await _authApiClient.loginWithEmail(email, password);
     final token = response['data']['token'];
     setToken(token);
     return response;
   }
 
-  isFingerprintRegistered() async {
+  Future<bool> isFingerprintRegistered() async {
     final secureStorageManager = getIt<SecureStorageManager>();
     return await secureStorageManager
             .readData(SecureStorageManager.fingerPrintKey) !=
         null;
   }
 
-  registerFingerprint(User user) {
+  void registerFingerprint(User user) {
     final secureStorageManager = getIt<SecureStorageManager>();
     secureStorageManager.writeData(
-        SecureStorageManager.fingerPrintKey, jsonEncode(user));
-    return user;
+      SecureStorageManager.fingerPrintKey,
+      jsonEncode(user),
+    );
   }
 
-  loginWithFingerprint() async {
+  Future<User?> loginWithFingerprint() async {
     final secureStorageManager = getIt<SecureStorageManager>();
-    final userJson = await secureStorageManager
-        .readData(SecureStorageManager.fingerPrintKey);
+    final userJson = await secureStorageManager.readData(
+      SecureStorageManager.fingerPrintKey,
+    );
     if (userJson == null) {
       return null;
     }

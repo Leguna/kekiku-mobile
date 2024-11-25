@@ -11,7 +11,7 @@ class ListProductCardItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Product> products = [
-      Product(
+      const Product(
         name: 'Pudding Raisin',
         price: 10,
         tag: 'New',
@@ -20,7 +20,7 @@ class ListProductCardItem extends StatelessWidget {
             'Pudding is a type of food that can be either a dessert or a savory dish that is part of the main meal.',
         image: 'https://picsum.photos/seed/pudding3/100',
       ),
-      Product(
+      const Product(
         name: 'Bread',
         categories: ['Bread'],
         price: 5,
@@ -28,7 +28,7 @@ class ListProductCardItem extends StatelessWidget {
             'Bread is a staple food prepared from a dough of flour and water, usually by baking.',
         image: 'https://picsum.photos/seed/bread2/100',
       ),
-      Product(
+      const Product(
         name: 'Doughnut',
         categories: ['Doughnut'],
         price: 3,
@@ -36,7 +36,7 @@ class ListProductCardItem extends StatelessWidget {
             'A doughnut or donut is a type of fried dough confection or dessert food.',
         image: 'https://picsum.photos/seed/doughnut1/100',
       ),
-      Product(
+      const Product(
         name: 'Biscuit',
         categories: ['Biscuit'],
         price: 2,

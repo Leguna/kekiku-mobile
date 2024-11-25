@@ -8,14 +8,17 @@ part 'onboarding_state.dart';
 class OnboardingCubit extends Cubit<OnboardingState> {
   OnboardingCubit() : super(const OnboardingState.initial());
 
+  final db = getIt<LocalDatabase>();
+
   init() async {
-    final db = getIt<LocalDatabase>();
-    final isFirstTime = await db.getBool(firstTimeKey);
-    if (isFirstTime == null) {
-      await db.setBool(firstTimeKey, false);
-      emit(const OnboardingState.initial());
-    } else {
+    final isFirstTime = await db.getBool(firstTimeKey) ?? true;
+    if (!isFirstTime) {
       emit(const OnboardingState.success());
     }
+  }
+
+  Future<void> done() async {
+    await db.setBool(firstTimeKey, false);
+    emit(const OnboardingState.success());
   }
 }

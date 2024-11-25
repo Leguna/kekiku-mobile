@@ -3,61 +3,74 @@ import '../../index.dart';
 class AuthApiClient extends BaseApiClient {
   AuthApiClient(super.dio);
 
-  login(String username, String password) {
-    return post('/auth/login', data: {
+  Future<String> login(String username, String password) async {
+    return await post('/auth/login', data: {
       'username': username,
       'password': password,
     });
   }
 
-  register(String email, String password) {
-    return post('/auth/register', data: {
+  Future<dynamic> register(String email, String password) async {
+    return await post('/auth/register', data: {
       'email': email,
       'password': password,
     });
   }
 
-  getUserProfile() {
-    return get('/auth/profile');
+  Future<dynamic> getUserProfile() async {
+    return await get('/auth/profile');
   }
 
-  sso(String token) {
-    return post('/auth/sso', data: {
+  Future<dynamic> sso(String token) async {
+    return await post('/auth/sso', data: {
       'token': token,
     });
   }
 
-  logout() {
-    return get('/auth/logout');
+  Future<dynamic> logout() async {
+    return await get('/auth/logout');
   }
 
-  loginWithGoogle(idToken) async {
-    return await post('/auth/google/mobile', data: {
+  Future<dynamic> loginWithGoogle(idToken) async {
+    await Future.delayed(const Duration(seconds: 1));
+    return {
+      'data': {
+        'accessToken': 'accessToken',
+        'refreshToken': 'refresh token',
+        'user': {
+          'id': 1,
+          'email': ' email',
+          'name': 'name',
+          'phone': 'phone',
+        }
+      }
+    };
+    return post('/auth/google/mobile', data: {
       'idToken': idToken,
     });
   }
 
-  checkEmail(String email) {
-    return get('/auth/check/email', queryParams: {
+  Future<dynamic> checkEmail(String email) async {
+    return await get('/auth/check/email', queryParams: {
       'email': email,
     });
   }
 
-  checkPhone(String phone) {
-    return get('/auth/check/phone', queryParams: {
+  Future<dynamic> checkPhone(String phone) async {
+    return await get('/auth/check/phone', queryParams: {
       'phone': phone,
     });
   }
 
-  loginWithPhone(String phone, String password) {
-    return post('/auth/login/phone', data: {
+  Future<dynamic> loginWithPhone(String phone, String password) async {
+    return await post('/auth/login/phone', data: {
       'phone': phone,
       'password': password,
     });
   }
 
-  loginWithEmail(String email, String password) {
-    return post('/auth/login/email', data: {
+  Future<dynamic> loginWithEmail(String email, String password) async {
+    return await post('/auth/login/email', data: {
       'email': email,
       'password': password,
     });

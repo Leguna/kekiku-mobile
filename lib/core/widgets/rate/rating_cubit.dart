@@ -1,8 +1,7 @@
-import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../strings.dart';
+import '../../index.dart';
 
 part 'rating_cubit.freezed.dart';
 part 'rating_state.dart';

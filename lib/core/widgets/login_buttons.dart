@@ -38,36 +38,33 @@ class LoginButtons extends StatelessWidget {
                         title: const Text(Strings.logout),
                         leading: const Icon(Icons.logout),
                       )
-                    : Padding(
-                        padding:  const EdgeInsets.all( Dimens.small),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            ...[
-                              ElevatedButton(
-                                onPressed: () {
-                                  context.read<AuthCubit>().reset();
-                                  Navigator.pushNamed(context, Routes.login);
-                                },
-                                child: const Text(Strings.login),
-                              ),
-                              OutlinedButton(
-                                onPressed: () {
-                                  context.read<AuthCubit>().reset();
-                                  Navigator.pushNamed(context, Routes.register);
-                                },
-                                child: Text(
-                                  Strings.register,
-                                  style: TextStyle(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .onPrimary),
-                                ),
-                              ),
-                            ]
-                          ],
-                        ),
-                      ),
+                    : Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        ...[
+                          ElevatedButton(
+                            onPressed: () {
+                              context.read<AuthCubit>().reset();
+                              Navigator.pushNamed(context, Routes.login);
+                            },
+                            child: const Text(Strings.login),
+                          ),
+                          OutlinedButton(
+                            onPressed: () {
+                              context.read<AuthCubit>().reset();
+                              Navigator.pushNamed(context, Routes.register);
+                            },
+                            child: Text(
+                              Strings.register,
+                              style: TextStyle(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onPrimary),
+                            ),
+                          ),
+                        ]
+                      ],
+                    ),
               ],
             );
           },

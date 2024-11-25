@@ -1,6 +1,5 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 
-import '../../data_sources/index.dart';
 import '../../index.dart';
 
 class PushMessagingService {
@@ -25,7 +24,8 @@ class PushMessagingService {
     getIt<LocalDatabase>().setString(fcmTokenKey, token);
 
     final notificationSettings = await messaging.requestPermission();
-    if (notificationSettings.authorizationStatus != AuthorizationStatus.authorized) {
+    if (notificationSettings.authorizationStatus !=
+        AuthorizationStatus.authorized) {
       return;
     }
     await FirebaseMessaging.instance
@@ -35,6 +35,4 @@ class PushMessagingService {
       sound: true,
     );
   }
-
 }
-

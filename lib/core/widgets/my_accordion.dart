@@ -6,6 +6,7 @@ class MyAccordion extends GFAccordion {
     super.key,
     super.titleChild = const Text(''),
     super.contentChild,
+    super.showAccordion = false,
     super.margin = const EdgeInsets.all(0),
     super.contentPadding = const EdgeInsets.all(0),
     super.contentBackgroundColor = Colors.transparent,

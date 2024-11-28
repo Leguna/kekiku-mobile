@@ -34,42 +34,49 @@ class ProfileSummary extends StatelessWidget {
           return Column(
             children: [
               ListTile(
-                title: Row(
-                  children: [
-                    const Icon(Icons.person, size: Dimens.large),
-                    const SizedBox(width: Dimens.small),
-                    Expanded(
-                      child: Text(
-                        user?.displayName ?? '',
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                    IconButton(
-                      icon: Icon(showEditButton ? Icons.edit : Icons.settings,
-                          size: Dimens.large),
-                      onPressed: () {
-                        onTap?.call();
-                      },
-                    ),
-                  ],
-                ),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: Dimens.small,
+                        left: Dimens.small,
+                      ),
+                      child: Text(
+                        user?.displayName ?? '',
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: Dimens.mediumText,
+                          color: Theme.of(context).colorScheme.onPrimary,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: Dimens.nano),
+                    if (user?.username != null && user?.username != '')
+                      Row(
+                        children: [
+                          const SizedBox(width: Dimens.small),
+                          Text(
+                            "@${user?.username}",
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
                     if (user?.email != null)
                       Row(
                         children: [
-                          const Icon(Icons.email, size: Dimens.large),
                           const SizedBox(width: Dimens.small),
-                          Text(user?.email ?? ''),
+                          Text("${user?.email}"),
                         ],
-                      ),
-                    if (user?.phone != null && user?.phone != '')
+                      )
+                    else
                       Row(
                         children: [
-                          const Icon(Icons.phone, size: Dimens.large),
                           const SizedBox(width: Dimens.small),
-                          Text(user?.phone ?? ''),
+                          const Icon(Icons.phone,
+                              size: Dimens.small, color: Colors.grey),
+                          const SizedBox(width: Dimens.micro),
+                          Text("${user?.phone}"),
                         ],
                       ),
                     const SizedBox(height: Dimens.small),
@@ -81,6 +88,13 @@ class ProfileSummary extends StatelessWidget {
                 onTap: () {
                   onTap?.call();
                 },
+                trailing: IconButton(
+                  icon: Icon(showEditButton ? Icons.edit : Icons.settings,
+                      size: Dimens.large),
+                  onPressed: () {
+                    onTap?.call();
+                  },
+                ),
               ),
             ],
           );

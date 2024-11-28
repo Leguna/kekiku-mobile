@@ -227,3 +227,7 @@ String randomString({int length = 10}) {
   final result = List.generate(length, (index) => chars[random.nextInt(chars.length)]).join();
   return result;
 }
+
+String nameToUsername(String name) {
+  return name.toLowerCase().replaceAll(' ', '');
+}

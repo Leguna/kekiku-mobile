@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'profile_edit_cubit.dart';
+part of 'edit_profile_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,13 +15,15 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$ProfileEditState {
+mixin _$EditProfileState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) error,
     required TResult Function(User user) success,
+    required TResult Function() deleted,
+    required TResult Function(ProfileField type) changed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +32,8 @@ mixin _$ProfileEditState {
     TResult? Function()? loading,
     TResult? Function(String message)? error,
     TResult? Function(User user)? success,
+    TResult? Function()? deleted,
+    TResult? Function(ProfileField type)? changed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +42,8 @@ mixin _$ProfileEditState {
     TResult Function()? loading,
     TResult Function(String message)? error,
     TResult Function(User user)? success,
+    TResult Function()? deleted,
+    TResult Function(ProfileField type)? changed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +53,8 @@ mixin _$ProfileEditState {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(_Deleted value) deleted,
+    required TResult Function(_Changed value) changed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +63,8 @@ mixin _$ProfileEditState {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(_Changed value)? changed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,29 +73,31 @@ mixin _$ProfileEditState {
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(_Deleted value)? deleted,
+    TResult Function(_Changed value)? changed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProfileEditStateCopyWith<$Res> {
-  factory $ProfileEditStateCopyWith(
-          ProfileEditState value, $Res Function(ProfileEditState) then) =
-      _$ProfileEditStateCopyWithImpl<$Res, ProfileEditState>;
+abstract class $EditProfileStateCopyWith<$Res> {
+  factory $EditProfileStateCopyWith(
+          EditProfileState value, $Res Function(EditProfileState) then) =
+      _$EditProfileStateCopyWithImpl<$Res, EditProfileState>;
 }
 
 /// @nodoc
-class _$ProfileEditStateCopyWithImpl<$Res, $Val extends ProfileEditState>
-    implements $ProfileEditStateCopyWith<$Res> {
-  _$ProfileEditStateCopyWithImpl(this._value, this._then);
+class _$EditProfileStateCopyWithImpl<$Res, $Val extends EditProfileState>
+    implements $EditProfileStateCopyWith<$Res> {
+  _$EditProfileStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ProfileEditState
+  /// Create a copy of EditProfileState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -98,13 +110,13 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$ProfileEditStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$EditProfileStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProfileEditState
+  /// Create a copy of EditProfileState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -115,7 +127,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'ProfileEditState.initial()';
+    return 'EditProfileState.initial()';
   }
 
   @override
@@ -134,6 +146,8 @@ class _$InitialImpl implements _Initial {
     required TResult Function() loading,
     required TResult Function(String message) error,
     required TResult Function(User user) success,
+    required TResult Function() deleted,
+    required TResult Function(ProfileField type) changed,
   }) {
     return initial();
   }
@@ -145,6 +159,8 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? loading,
     TResult? Function(String message)? error,
     TResult? Function(User user)? success,
+    TResult? Function()? deleted,
+    TResult? Function(ProfileField type)? changed,
   }) {
     return initial?.call();
   }
@@ -156,6 +172,8 @@ class _$InitialImpl implements _Initial {
     TResult Function()? loading,
     TResult Function(String message)? error,
     TResult Function(User user)? success,
+    TResult Function()? deleted,
+    TResult Function(ProfileField type)? changed,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -171,6 +189,8 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(_Deleted value) deleted,
+    required TResult Function(_Changed value) changed,
   }) {
     return initial(this);
   }
@@ -182,6 +202,8 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(_Changed value)? changed,
   }) {
     return initial?.call(this);
   }
@@ -193,6 +215,8 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(_Deleted value)? deleted,
+    TResult Function(_Changed value)? changed,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -202,7 +226,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements ProfileEditState {
+abstract class _Initial implements EditProfileState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -215,13 +239,13 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$ProfileEditStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$EditProfileStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProfileEditState
+  /// Create a copy of EditProfileState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -232,7 +256,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'ProfileEditState.loading()';
+    return 'EditProfileState.loading()';
   }
 
   @override
@@ -251,6 +275,8 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() loading,
     required TResult Function(String message) error,
     required TResult Function(User user) success,
+    required TResult Function() deleted,
+    required TResult Function(ProfileField type) changed,
   }) {
     return loading();
   }
@@ -262,6 +288,8 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? loading,
     TResult? Function(String message)? error,
     TResult? Function(User user)? success,
+    TResult? Function()? deleted,
+    TResult? Function(ProfileField type)? changed,
   }) {
     return loading?.call();
   }
@@ -273,6 +301,8 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? loading,
     TResult Function(String message)? error,
     TResult Function(User user)? success,
+    TResult Function()? deleted,
+    TResult Function(ProfileField type)? changed,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -288,6 +318,8 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(_Deleted value) deleted,
+    required TResult Function(_Changed value) changed,
   }) {
     return loading(this);
   }
@@ -299,6 +331,8 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(_Changed value)? changed,
   }) {
     return loading?.call(this);
   }
@@ -310,6 +344,8 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(_Deleted value)? deleted,
+    TResult Function(_Changed value)? changed,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -319,7 +355,7 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements ProfileEditState {
+abstract class _Loading implements EditProfileState {
   const factory _Loading() = _$LoadingImpl;
 }
 
@@ -334,13 +370,13 @@ abstract class _$$ErrorImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$ProfileEditStateCopyWithImpl<$Res, _$ErrorImpl>
+    extends _$EditProfileStateCopyWithImpl<$Res, _$ErrorImpl>
     implements _$$ErrorImplCopyWith<$Res> {
   __$$ErrorImplCopyWithImpl(
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProfileEditState
+  /// Create a copy of EditProfileState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -366,7 +402,7 @@ class _$ErrorImpl implements _Error {
 
   @override
   String toString() {
-    return 'ProfileEditState.error(message: $message)';
+    return 'EditProfileState.error(message: $message)';
   }
 
   @override
@@ -380,7 +416,7 @@ class _$ErrorImpl implements _Error {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  /// Create a copy of ProfileEditState
+  /// Create a copy of EditProfileState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -395,6 +431,8 @@ class _$ErrorImpl implements _Error {
     required TResult Function() loading,
     required TResult Function(String message) error,
     required TResult Function(User user) success,
+    required TResult Function() deleted,
+    required TResult Function(ProfileField type) changed,
   }) {
     return error(message);
   }
@@ -406,6 +444,8 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? loading,
     TResult? Function(String message)? error,
     TResult? Function(User user)? success,
+    TResult? Function()? deleted,
+    TResult? Function(ProfileField type)? changed,
   }) {
     return error?.call(message);
   }
@@ -417,6 +457,8 @@ class _$ErrorImpl implements _Error {
     TResult Function()? loading,
     TResult Function(String message)? error,
     TResult Function(User user)? success,
+    TResult Function()? deleted,
+    TResult Function(ProfileField type)? changed,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -432,6 +474,8 @@ class _$ErrorImpl implements _Error {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(_Deleted value) deleted,
+    required TResult Function(_Changed value) changed,
   }) {
     return error(this);
   }
@@ -443,6 +487,8 @@ class _$ErrorImpl implements _Error {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(_Changed value)? changed,
   }) {
     return error?.call(this);
   }
@@ -454,6 +500,8 @@ class _$ErrorImpl implements _Error {
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(_Deleted value)? deleted,
+    TResult Function(_Changed value)? changed,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -463,12 +511,12 @@ class _$ErrorImpl implements _Error {
   }
 }
 
-abstract class _Error implements ProfileEditState {
+abstract class _Error implements EditProfileState {
   const factory _Error(final String message) = _$ErrorImpl;
 
   String get message;
 
-  /// Create a copy of ProfileEditState
+  /// Create a copy of EditProfileState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
@@ -488,13 +536,13 @@ abstract class _$$SuccessImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$ProfileEditStateCopyWithImpl<$Res, _$SuccessImpl>
+    extends _$EditProfileStateCopyWithImpl<$Res, _$SuccessImpl>
     implements _$$SuccessImplCopyWith<$Res> {
   __$$SuccessImplCopyWithImpl(
       _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProfileEditState
+  /// Create a copy of EditProfileState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -509,7 +557,7 @@ class __$$SuccessImplCopyWithImpl<$Res>
     ));
   }
 
-  /// Create a copy of ProfileEditState
+  /// Create a copy of EditProfileState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -530,7 +578,7 @@ class _$SuccessImpl implements _Success {
 
   @override
   String toString() {
-    return 'ProfileEditState.success(user: $user)';
+    return 'EditProfileState.success(user: $user)';
   }
 
   @override
@@ -544,7 +592,7 @@ class _$SuccessImpl implements _Success {
   @override
   int get hashCode => Object.hash(runtimeType, user);
 
-  /// Create a copy of ProfileEditState
+  /// Create a copy of EditProfileState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -559,6 +607,8 @@ class _$SuccessImpl implements _Success {
     required TResult Function() loading,
     required TResult Function(String message) error,
     required TResult Function(User user) success,
+    required TResult Function() deleted,
+    required TResult Function(ProfileField type) changed,
   }) {
     return success(user);
   }
@@ -570,6 +620,8 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? loading,
     TResult? Function(String message)? error,
     TResult? Function(User user)? success,
+    TResult? Function()? deleted,
+    TResult? Function(ProfileField type)? changed,
   }) {
     return success?.call(user);
   }
@@ -581,6 +633,8 @@ class _$SuccessImpl implements _Success {
     TResult Function()? loading,
     TResult Function(String message)? error,
     TResult Function(User user)? success,
+    TResult Function()? deleted,
+    TResult Function(ProfileField type)? changed,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -596,6 +650,8 @@ class _$SuccessImpl implements _Success {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(_Deleted value) deleted,
+    required TResult Function(_Changed value) changed,
   }) {
     return success(this);
   }
@@ -607,6 +663,8 @@ class _$SuccessImpl implements _Success {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(_Changed value)? changed,
   }) {
     return success?.call(this);
   }
@@ -618,6 +676,8 @@ class _$SuccessImpl implements _Success {
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(_Deleted value)? deleted,
+    TResult Function(_Changed value)? changed,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -627,14 +687,307 @@ class _$SuccessImpl implements _Success {
   }
 }
 
-abstract class _Success implements ProfileEditState {
+abstract class _Success implements EditProfileState {
   const factory _Success(final User user) = _$SuccessImpl;
 
   User get user;
 
-  /// Create a copy of ProfileEditState
+  /// Create a copy of EditProfileState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DeletedImplCopyWith<$Res> {
+  factory _$$DeletedImplCopyWith(
+          _$DeletedImpl value, $Res Function(_$DeletedImpl) then) =
+      __$$DeletedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$DeletedImplCopyWithImpl<$Res>
+    extends _$EditProfileStateCopyWithImpl<$Res, _$DeletedImpl>
+    implements _$$DeletedImplCopyWith<$Res> {
+  __$$DeletedImplCopyWithImpl(
+      _$DeletedImpl _value, $Res Function(_$DeletedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of EditProfileState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$DeletedImpl implements _Deleted {
+  const _$DeletedImpl();
+
+  @override
+  String toString() {
+    return 'EditProfileState.deleted()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$DeletedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(String message) error,
+    required TResult Function(User user) success,
+    required TResult Function() deleted,
+    required TResult Function(ProfileField type) changed,
+  }) {
+    return deleted();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(String message)? error,
+    TResult? Function(User user)? success,
+    TResult? Function()? deleted,
+    TResult? Function(ProfileField type)? changed,
+  }) {
+    return deleted?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(String message)? error,
+    TResult Function(User user)? success,
+    TResult Function()? deleted,
+    TResult Function(ProfileField type)? changed,
+    required TResult orElse(),
+  }) {
+    if (deleted != null) {
+      return deleted();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Error value) error,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Deleted value) deleted,
+    required TResult Function(_Changed value) changed,
+  }) {
+    return deleted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(_Changed value)? changed,
+  }) {
+    return deleted?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Error value)? error,
+    TResult Function(_Success value)? success,
+    TResult Function(_Deleted value)? deleted,
+    TResult Function(_Changed value)? changed,
+    required TResult orElse(),
+  }) {
+    if (deleted != null) {
+      return deleted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Deleted implements EditProfileState {
+  const factory _Deleted() = _$DeletedImpl;
+}
+
+/// @nodoc
+abstract class _$$ChangedImplCopyWith<$Res> {
+  factory _$$ChangedImplCopyWith(
+          _$ChangedImpl value, $Res Function(_$ChangedImpl) then) =
+      __$$ChangedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ProfileField type});
+}
+
+/// @nodoc
+class __$$ChangedImplCopyWithImpl<$Res>
+    extends _$EditProfileStateCopyWithImpl<$Res, _$ChangedImpl>
+    implements _$$ChangedImplCopyWith<$Res> {
+  __$$ChangedImplCopyWithImpl(
+      _$ChangedImpl _value, $Res Function(_$ChangedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of EditProfileState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? type = null,
+  }) {
+    return _then(_$ChangedImpl(
+      null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as ProfileField,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChangedImpl implements _Changed {
+  const _$ChangedImpl(this.type);
+
+  @override
+  final ProfileField type;
+
+  @override
+  String toString() {
+    return 'EditProfileState.changed(type: $type)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangedImpl &&
+            (identical(other.type, type) || other.type == type));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, type);
+
+  /// Create a copy of EditProfileState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChangedImplCopyWith<_$ChangedImpl> get copyWith =>
+      __$$ChangedImplCopyWithImpl<_$ChangedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(String message) error,
+    required TResult Function(User user) success,
+    required TResult Function() deleted,
+    required TResult Function(ProfileField type) changed,
+  }) {
+    return changed(type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(String message)? error,
+    TResult? Function(User user)? success,
+    TResult? Function()? deleted,
+    TResult? Function(ProfileField type)? changed,
+  }) {
+    return changed?.call(type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(String message)? error,
+    TResult Function(User user)? success,
+    TResult Function()? deleted,
+    TResult Function(ProfileField type)? changed,
+    required TResult orElse(),
+  }) {
+    if (changed != null) {
+      return changed(type);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Error value) error,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Deleted value) deleted,
+    required TResult Function(_Changed value) changed,
+  }) {
+    return changed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(_Changed value)? changed,
+  }) {
+    return changed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Error value)? error,
+    TResult Function(_Success value)? success,
+    TResult Function(_Deleted value)? deleted,
+    TResult Function(_Changed value)? changed,
+    required TResult orElse(),
+  }) {
+    if (changed != null) {
+      return changed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Changed implements EditProfileState {
+  const factory _Changed(final ProfileField type) = _$ChangedImpl;
+
+  ProfileField get type;
+
+  /// Create a copy of EditProfileState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ChangedImplCopyWith<_$ChangedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

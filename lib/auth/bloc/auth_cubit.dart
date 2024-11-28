@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:kekiku/core/services/google_sso.dart';
 import 'package:local_auth/local_auth.dart';
 
@@ -12,9 +12,6 @@ import '../models/user.dart';
 
 part 'auth_cubit.freezed.dart';
 part 'auth_state.dart';
-
-const authBox = 'auth';
-const userKey = 'user';
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(const AuthState.initial()) {
@@ -26,7 +23,7 @@ class AuthCubit extends Cubit<AuthState> {
         orElse: () => false,
       );
 
-  final db = getIt<LocalDatabase>();
+  final ss = getIt<SecureStorageManager>();
   final ds = getIt<AuthRepository>();
   User? user;
 
@@ -41,6 +38,7 @@ class AuthCubit extends Cubit<AuthState> {
   bool isFormValid = false;
   bool codeVerify = false;
   bool isUsingEmail = false;
+  bool showPassword = false;
 
   Future<void> validateForm({createProfileKey}) async {
     final form = createProfileKey ?? formKey;
@@ -55,12 +53,12 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> init() async {
     emit(const AuthState.loading());
     passwordController.text = '';
-    final selectedId = await db.getString(userKey, boxKey: authBox);
+    final selectedId = await ss.readData(userKey);
     if (selectedId == null) {
       emit(const AuthState.loggedOut());
       return;
     }
-    final userJson = await db.getString(selectedId, boxKey: authBox);
+    final userJson = await ss.readData(selectedId);
     if (userJson != null) {
       user = User.fromJson(jsonDecode(userJson));
       emit(AuthState.updated(user!));
@@ -71,7 +69,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> logout() async {
     emit(const AuthState.loading());
-    await db.clearKey(userKey, boxKey: authBox);
+    await ss.deleteData(userKey);
     final googleSignIn = getIt<GoogleSSOService>();
     await googleSignIn.googleSignIn.signOut();
     user = null;
@@ -86,19 +84,17 @@ class AuthCubit extends Cubit<AuthState> {
 
       if (googleUser == null) throw Exception(Strings.failedToLogin);
 
-      user = await ds.loginWithGoogle(googleUser.id);
+      // user = await ds.loginWithGoogle(googleUser.id);
       user = User(
         id: googleUser.id,
         email: googleUser.email,
         displayName: googleUser.displayName ?? '',
         photoUrl: googleUser.photoUrl ?? '',
+        username: nameToUsername(
+            googleUser.displayName ?? Random().nextInt(1000).toString()),
       );
-      await db.setString(userKey, user?.id, boxKey: authBox);
-      await db.setString(
-        user!.id,
-        jsonEncode(user!.toJson()),
-        boxKey: authBox,
-      );
+      await ss.writeData(userKey, user!.id);
+      await ss.writeData(user!.id, jsonEncode(user!.toJson()));
       emit(const AuthState.success(Strings.successLogin));
       emit(AuthState.updated(user!));
     } catch (e) {
@@ -133,8 +129,6 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  bool showPassword = false;
-
   void togglePassword() {
     emit(const AuthState.loading());
     showPassword = !showPassword;
@@ -152,23 +146,24 @@ class AuthCubit extends Cubit<AuthState> {
     emit(const AuthState.initial());
   }
 
-  login() async {
+  Future<void> login() async {
     emit(const AuthState.loading());
     try {
       await Future.delayed(const Duration(seconds: 1));
       final email = emailController.text;
       final password = passwordController.text;
+      var isSuccess = false;
       if (isUsingEmail) {
-        user = await ds.loginWithEmail(email, password);
+        isSuccess = await ds.loginWithEmail(email, password);
       } else {
-        user = await ds.loginWithPhone(email, password);
+        isSuccess = await ds.loginWithPhone(email, password);
       }
-      await db.setString(userKey, user!.id, boxKey: authBox);
-      await db.setString(
-        user!.id,
-        jsonEncode(user!.toJson()),
-        boxKey: authBox,
-      );
+      if (!isSuccess) {
+        emit(const AuthState.error(Strings.failedToLogin));
+        return;
+      }
+      await ss.writeData(userKey, user!.id);
+      await ss.writeData(user!.id, jsonEncode(user!.toJson()));
       emit(AuthState.updated(user!));
     } catch (e) {
       emit(const AuthState.error(Strings.failedToLogin));
@@ -226,6 +221,7 @@ class AuthCubit extends Cubit<AuthState> {
     verificationCodeController.clear();
     if (!canResend) return;
     emit(const AuthState.loading());
+    // TODO: Request new verification code
     await Future.delayed(const Duration(seconds: 1));
     canResend = false;
     emit(const AuthState.success(Strings.verificationCodeSent));
@@ -238,28 +234,19 @@ class AuthCubit extends Cubit<AuthState> {
       id: randomString(),
       email: (isUsingEmail) ? emailController.text : '',
       displayName: userNameController.text,
-      phone: (isUsingEmail) ? '' : emailController.text,
+      phone: (!isUsingEmail) ? emailController.text : '',
       photoUrl: '',
     );
     emit(const AuthState.success(Strings.profileCreated));
-    await db.setString(userKey, user?.id, boxKey: authBox);
-    await db.setString(
-      user?.id ?? '',
-      jsonEncode(user?.toJson()),
-      boxKey: authBox,
-    );
+    await ss.writeData(userKey, user!.id);
+    await ss.writeData(user!.id, jsonEncode(user!.toJson()));
     emit(AuthState.updated(user));
   }
 
-  Future<void> changePhotoProfile() async {
-    emit(const AuthState.loading());
-    XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (image != null) {
-      user = user!.copyWith(photoUrl: image.path);
-      await db.setString(userKey, jsonEncode(user!.toJson()), boxKey: authBox);
-      emit(AuthState.updated(user!));
-    } else {
-      emit(const AuthState.error('Failed to pick image'));
-    }
+  Future<void> setUser(User user) async {
+    this.user = user;
+    await ss.writeData(userKey, user.id);
+    await ss.writeData(user.id, jsonEncode(user.toJson()));
+    emit(AuthState.updated(user));
   }
 }

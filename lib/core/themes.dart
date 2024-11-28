@@ -113,6 +113,7 @@ final mainTheme = ThemeData(
       ),
     ),
   ),
+
   dialogTheme: DialogTheme(
     backgroundColor: AppColors.primaryColorBackground,
     titleTextStyle: AppTextStyles.large,

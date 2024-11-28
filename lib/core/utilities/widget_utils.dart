@@ -27,7 +27,12 @@ showMyModalBottomSheet(
       ),
     ),
     builder: (context) {
-      return child ?? const SizedBox();
+      return Padding(
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+        ),
+        child: child ?? const SizedBox(),
+      );
     },
   );
 }

@@ -15,7 +15,7 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
       address: json['address'] as String? ?? '',
       id: json['id'] as String? ?? '',
       photoUrl: json['photoUrl'] as String? ?? '',
-      gender: json['gender'] as String? ?? 'lk',
+      gender: json['gender'] as String? ?? 'male',
       birthday: json['birthday'] as String? ?? '',
       bio: json['bio'] as String? ?? '',
       username: json['username'] ?? '',

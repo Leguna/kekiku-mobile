@@ -1,34 +1,28 @@
 import 'dart:convert';
 
-import 'package:dio/dio.dart';
 import 'package:kekiku/core/index.dart';
 
 import '../../../auth/models/user.dart';
 
 class AuthRepository {
-  final AuthApiClient _authApiClient;
-
   AuthRepository(this._authApiClient);
 
-  setToken(String token) async {
-    getIt<Dio>().options.headers['Authorization'] = 'Bearer $token';
-    await getIt<SecureStorageManager>().setToken(token);
-  }
+  final AuthApiClient _authApiClient;
+  final SecureStorageManager _ss = getIt<SecureStorageManager>();
 
   Future<dynamic> register(String username, String password) async {
     return await _authApiClient.register(username, password);
   }
 
-  Future<dynamic> logout() async {
-    return await _authApiClient.logout();
-  }
-
-  Future<User> loginWithGoogle(String? idToken) async {
-    final response = await _authApiClient.loginWithGoogle(idToken);
-    final token = response['data']['token'];
-    setToken(token);
-    final user = User.fromJson(response['data']);
-    return user;
+  Future<bool> logout() async {
+    try {
+      _ss.deleteData(userKey);
+      final response = await _authApiClient.logout();
+      response['data']['isSuccess'];
+      return true;
+    } catch (e) {
+      return true;
+    }
   }
 
   Future<bool> checkEmail(String email) async {
@@ -45,29 +39,33 @@ class AuthRepository {
 
   Future<bool> loginWithPhone(String phone, String password) async {
     final response = await _authApiClient.loginWithPhone(phone, password);
-    final token = response['data']['token'];
-    setToken(token);
     return response;
   }
 
   Future<bool> loginWithEmail(String email, String password) async {
     final response = await _authApiClient.loginWithEmail(email, password);
-    final token = response['data']['token'];
-    setToken(token);
     return response;
   }
 
+  Future<bool> loginWithGoogleToken(String idToken) async {
+    final response = await _authApiClient.loginWithGoogle(idToken);
+    await _ss.writeData(
+      userKey,
+      jsonEncode(response['data']['user']),
+    );
+    return true;
+  }
+
   Future<bool> isFingerprintRegistered() async {
-    final secureStorageManager = getIt<SecureStorageManager>();
-    return await secureStorageManager
-            .readData(SecureStorageManager.fingerPrintKey) !=
+    return await _ss.readData(
+          SecureStorageManager.fingerprintKey,
+        ) !=
         null;
   }
 
   void registerFingerprint(User user) {
-    final secureStorageManager = getIt<SecureStorageManager>();
-    secureStorageManager.writeData(
-      SecureStorageManager.fingerPrintKey,
+    _ss.writeData(
+      SecureStorageManager.fingerprintKey,
       jsonEncode(user),
     );
   }
@@ -75,12 +73,35 @@ class AuthRepository {
   Future<User?> loginWithFingerprint() async {
     final secureStorageManager = getIt<SecureStorageManager>();
     final userJson = await secureStorageManager.readData(
-      SecureStorageManager.fingerPrintKey,
+      SecureStorageManager.fingerprintKey,
     );
     if (userJson == null) {
       return null;
     }
     final user = User.fromJson(jsonDecode(userJson));
     return user;
+  }
+
+  Future<User?> getUser() async {
+    final secureStorageManager = getIt<SecureStorageManager>();
+    final id = await secureStorageManager.readData(userKey);
+    if (id == null) throw Exception(Strings.dataNotFound);
+    final userJson = await secureStorageManager.readData(id);
+    if (userJson == null) throw Exception(Strings.dataNotFound);
+    final user = User.fromJson(jsonDecode(userJson));
+    return user;
+  }
+
+  Future<void> deleteAccount() async {
+    final userId = await _ss.readData(userKey);
+    if (userId == null) throw Exception(Strings.dataNotFound);
+    await _ss.deleteData(userId);
+  }
+
+  Future setUser(User user) async {
+    await _ss.writeData(
+      user.id,
+      jsonEncode(user),
+    );
   }
 }

@@ -24,12 +24,10 @@ Future<void> setupServices() async {
     getIt.registerSingleton<Workmanager>(Workmanager());
     getIt.registerSingleton<SecureStorageManager>(SecureStorageManager());
 
-    final Dio dio = Dio(BaseOptions(
+    getIt.registerSingleton<Dio>(Dio(BaseOptions(
       baseUrl: dotenv.env['BASE_URL'] ?? dotenv.env['DEV_BASE_URL'] ?? '',
-    ));
-    getIt.registerSingleton<Dio>(dio);
-    getIt.registerSingleton<BaseApiClient>(BaseApiClient(dio));
-    getIt.registerSingleton<AuthRepository>(AuthRepository(AuthApiClient(dio)));
+    )));
+    getIt.registerSingleton<AuthRepository>(AuthRepository(AuthApiClient()));
     FirebaseApp? firebaseApp = await FirebaseService().init();
     if (firebaseApp != null) {
       getIt.registerSingleton<FirebaseApp>(firebaseApp);

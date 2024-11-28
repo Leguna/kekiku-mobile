@@ -1,7 +1,11 @@
 import '../../index.dart';
 
 class AuthApiClient extends BaseApiClient {
-  AuthApiClient(super.dio);
+  AuthApiClient();
+
+  Future<void> setDioAccessToken(String token) async {
+    dio.options.headers['Authorization'] = 'Bearer $token';
+  }
 
   Future<String> login(String username, String password) async {
     return await post('/auth/login', data: {
@@ -10,9 +14,9 @@ class AuthApiClient extends BaseApiClient {
     });
   }
 
-  Future<dynamic> register(String email, String password) async {
+  Future<dynamic> register(String emailOrPhone, String password) async {
     return await post('/auth/register', data: {
-      'email': email,
+      'email': emailOrPhone,
       'password': password,
     });
   }
@@ -27,24 +31,7 @@ class AuthApiClient extends BaseApiClient {
     });
   }
 
-  Future<dynamic> logout() async {
-    return await get('/auth/logout');
-  }
-
-  Future<dynamic> loginWithGoogle(idToken) async {
-    await Future.delayed(const Duration(seconds: 1));
-    return {
-      'data': {
-        'accessToken': 'accessToken',
-        'refreshToken': 'refresh token',
-        'user': {
-          'id': 1,
-          'email': ' email',
-          'name': 'name',
-          'phone': 'phone',
-        }
-      }
-    };
+  Future<dynamic> loginWithGoogle(String idToken) async {
     return post('/auth/google/mobile', data: {
       'idToken': idToken,
     });
@@ -74,5 +61,13 @@ class AuthApiClient extends BaseApiClient {
       'email': email,
       'password': password,
     });
+  }
+
+  Future<dynamic> logout() async {
+    return await get('/auth/logout');
+  }
+
+  Future<dynamic> deleteAccount() async {
+    return await delete('/auth/delete');
   }
 }

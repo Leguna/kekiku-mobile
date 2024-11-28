@@ -10,11 +10,11 @@ import 'package:talker_dio_logger/talker_dio_logger_settings.dart';
 import '../index.dart';
 
 class BaseApiClient {
-  late final Dio _dio;
+  final Dio dio = getIt<Dio>();
   final localDatabase = getIt<LocalDatabase>();
 
-  BaseApiClient(this._dio, {Interceptor? interceptor}) {
-    _dio.options = BaseOptions(
+  BaseApiClient({Interceptor? interceptor}) {
+    dio.options = BaseOptions(
       baseUrl: dotenv.env['BASE_URL'] ?? '',
       connectTimeout: const Duration(seconds: 5),
       receiveTimeout: const Duration(seconds: 5),
@@ -26,10 +26,10 @@ class BaseApiClient {
         'Accept-Encoding': 'gzip, deflate, br, base64',
       },
     );
-    _dio.interceptors.add(AuthInterceptor(_dio));
-    _dio.interceptors.add(interceptorErrorWrapper);
+    dio.interceptors.add(AuthInterceptor(dio));
+    dio.interceptors.add(interceptorErrorWrapper);
 
-    (_dio.httpClientAdapter as IOHttpClientAdapter).createHttpClient = () =>
+    (dio.httpClientAdapter as IOHttpClientAdapter).createHttpClient = () =>
         HttpClient()
           ..badCertificateCallback =
               (X509Certificate cert, String host, int port) => true;
@@ -37,7 +37,7 @@ class BaseApiClient {
     final flavor = Flavors.getCurrentFlavor;
 
     if (flavor == FlavorType.dev) {
-      _dio.interceptors.add(TalkerDioLogger(
+      dio.interceptors.add(TalkerDioLogger(
         settings: const TalkerDioLoggerSettings(
           printRequestHeaders: true,
           printResponseMessage: true,
@@ -45,8 +45,8 @@ class BaseApiClient {
         ),
       ));
     }
-    if (interceptor != null) _dio.interceptors.add(interceptor);
-    _dio.interceptors.add(interceptorErrorWrapper);
+    if (interceptor != null) dio.interceptors.add(interceptor);
+    dio.interceptors.add(interceptorErrorWrapper);
   }
 
   final InterceptorsWrapper interceptorErrorWrapper = InterceptorsWrapper(
@@ -131,14 +131,14 @@ class BaseApiClient {
     },
   );
 
-  Dio get client => _dio;
+  Dio get client => dio;
 
   String get apiKey => dotenv.env['API_KEY'] ?? '';
 
   Future<dynamic> get(String endpoint,
       {Map<String, dynamic>? queryParams}) async {
     try {
-      final response = await _dio.get(endpoint, queryParameters: queryParams);
+      final response = await dio.get(endpoint, queryParameters: queryParams);
       return _handleResponse(response);
     } on DioException catch (e) {
       switch (e.response?.statusCode) {
@@ -181,7 +181,7 @@ class BaseApiClient {
   }) async {
     try {
       final response =
-          await _dio.post(endpoint, data: data, queryParameters: queryParams);
+          await dio.post(endpoint, data: data, queryParameters: queryParams);
       return _handleResponse(response);
     } on DioException catch (e) {
       throw ApiErrorHandler.getErrorMessage(e);
@@ -192,7 +192,7 @@ class BaseApiClient {
       {dynamic data, Map<String, dynamic>? queryParams}) async {
     try {
       final response =
-          await _dio.put(endpoint, data: data, queryParameters: queryParams);
+          await dio.put(endpoint, data: data, queryParameters: queryParams);
       return _handleResponse(response);
     } on DioException catch (e) {
       throw ApiErrorHandler.getErrorMessage(e);
@@ -203,7 +203,7 @@ class BaseApiClient {
       {Map<String, dynamic>? queryParams}) async {
     try {
       final response =
-          await _dio.delete(endpoint, queryParameters: queryParams);
+          await dio.delete(endpoint, queryParameters: queryParams);
       return _handleResponse(response);
     } on DioException catch (e) {
       throw ApiErrorHandler.getErrorMessage(e);

@@ -252,7 +252,7 @@ class _$UserImpl implements _User {
       this.address = '',
       this.id = '',
       this.photoUrl = '',
-      this.gender = 'lk',
+      this.gender = 'male',
       this.birthday = '',
       this.bio = '',
       this.username = ''});

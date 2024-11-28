@@ -12,6 +12,9 @@ const String lastLoginKey = 'lastLogin';
 const String chatNotificationKey = 'chatNotificationSetting';
 const String otherNotificationKey = 'otherNotificationSetting';
 
+const String authBox = 'auth';
+const String userKey = 'user';
+
 const String firstTimeKey = 'firstTime';
 
 const tokenKey = 'token';

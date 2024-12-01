@@ -229,11 +229,26 @@ final class Strings {
 
   static const String name = 'Name';
 
-  static const String removeAccountDescription = 'Are you sure you want to delete your account?';
+  static const String removeAccountDescription =
+      'Are you sure you want to delete your account?';
 
   static const String nameHint = 'Input your name';
 
   static const String idCopied = 'ID Copied';
 
   static const String edit = 'Edit';
+
+  static const String loremIpsum =
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
+      'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
+
+  static const String kueDescription =
+      'Kue Kekiku adalah kue yang sangat lezat dan enak.';
+
+  static const String kueTitle = 'Kue Kekiku';
+
+  static const String kueDescription2 =
+      'Kue Kekiku 2 adalah kue yang sangat lezat dan enak.';
+
+  static const String kueTitle2 = 'Kue Kekiku 2';
 }

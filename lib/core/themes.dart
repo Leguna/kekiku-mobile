@@ -113,7 +113,6 @@ final mainTheme = ThemeData(
       ),
     ),
   ),
-
   dialogTheme: DialogTheme(
     backgroundColor: AppColors.primaryColorBackground,
     titleTextStyle: AppTextStyles.large,
@@ -131,7 +130,7 @@ final mainTheme = ThemeData(
     bodyLarge: AppTextStyles.medium.copyWith(color: Colors.white),
     titleSmall: AppTextStyles.small.copyWith(color: Colors.white),
     titleMedium: AppTextStyles.medium.copyWith(color: Colors.white),
-    titleLarge: AppTextStyles.medium.copyWith(color: Colors.white),
+    titleLarge: AppTextStyles.xlarge.copyWith(color: Colors.white),
     labelSmall: AppTextStyles.micro.copyWith(color: AppColors.paleSteelBlue),
     labelMedium: AppTextStyles.medium.copyWith(color: AppColors.paleSteelBlue),
     labelLarge: AppTextStyles.medium.copyWith(color: AppColors.paleSteelBlue),

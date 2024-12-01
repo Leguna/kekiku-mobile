@@ -92,6 +92,7 @@ flutter:
     - assets/illustrations/
     - assets/jsons/
     - assets/lotties/
+    - assets/images/
 
 flutter_native_splash:
   color: "#ff00ff"

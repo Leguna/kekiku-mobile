@@ -66,6 +66,11 @@ class AppTextStyles {
     color: Colors.white,
   );
 
+  static var xlarge = poppins.copyWith(
+    fontSize: 24.0,
+    color: Colors.white,
+  );
+
   static var appBarTitle = poppins.copyWith(
     fontSize: 20.0,
     color: Colors.white,

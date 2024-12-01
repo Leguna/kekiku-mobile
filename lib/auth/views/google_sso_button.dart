@@ -15,7 +15,17 @@ class GoogleSsoButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AuthCubit, AuthState>(
+    return BlocConsumer<AuthCubit, AuthState>(
+      listener: (context, state) {
+        state.maybeWhen(
+          updated: (user) {
+            if (user != null) {
+              onSignIn?.call();
+            }
+          },
+          orElse: () {},
+        );
+      },
       builder: (context, state) {
         var bloc = context.read<AuthCubit>();
         var isSignedIn = bloc.user != null;

@@ -25,6 +25,12 @@ class $AssetsIllustrationsGen {
   /// File path: assets/illustrations/bg.jpg
   AssetGenImage get bg => const AssetGenImage('assets/illustrations/bg.jpg');
 
+  /// File path: assets/illustrations/birthday.svg
+  String get birthday => 'assets/illustrations/birthday.svg';
+
+  /// File path: assets/illustrations/cookie.svg
+  String get cookie => 'assets/illustrations/cookie.svg';
+
   /// File path: assets/illustrations/fingerprint.svg
   String get fingerprint => 'assets/illustrations/fingerprint.svg';
 
@@ -49,6 +55,8 @@ class $AssetsIllustrationsGen {
   /// List of all assets
   List<dynamic> get values => [
         bg,
+        birthday,
+        cookie,
         fingerprint,
         forgot,
         login,
@@ -57,6 +65,19 @@ class $AssetsIllustrationsGen {
         tfa,
         underConstruction
       ];
+}
+
+class $AssetsImagesGen {
+  const $AssetsImagesGen();
+
+  /// File path: assets/images/kue.jpg
+  AssetGenImage get kue => const AssetGenImage('assets/images/kue.jpg');
+
+  /// File path: assets/images/kue2.jpg
+  AssetGenImage get kue2 => const AssetGenImage('assets/images/kue2.jpg');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [kue, kue2];
 }
 
 class $AssetsJsonsGen {
@@ -282,6 +303,7 @@ class Assets {
   static const String googleLogo = 'assets/google_logo.svg';
   static const $AssetsIllustrationsGen illustrations =
       $AssetsIllustrationsGen();
+  static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsJsonsGen jsons = $AssetsJsonsGen();
   static const AssetGenImage logo = AssetGenImage('assets/logo.png');
   static const AssetGenImage logoGoogle =

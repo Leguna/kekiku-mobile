@@ -81,6 +81,8 @@ class EditProfileCubit extends Cubit<EditProfileState> {
   var yearController = FixedExtentScrollController();
 
   void setBirthdayController() {
+    if (user == null) return;
+    if (user?.birthday == null || user?.birthday == '') return;
     final birthday = user?.birthday ?? '';
     final date = birthday.split(' ');
     final dayIndex = day.indexOf(date[0]);

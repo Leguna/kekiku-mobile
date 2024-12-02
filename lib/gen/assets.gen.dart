@@ -70,14 +70,20 @@ class $AssetsIllustrationsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  /// File path: assets/images/kue.jpg
-  AssetGenImage get kue => const AssetGenImage('assets/images/kue.jpg');
+  /// File path: assets/images/chocolate_cake.jpg
+  AssetGenImage get chocolateCake =>
+      const AssetGenImage('assets/images/chocolate_cake.jpg');
 
-  /// File path: assets/images/kue2.jpg
-  AssetGenImage get kue2 => const AssetGenImage('assets/images/kue2.jpg');
+  /// File path: assets/images/cupcake_front.jpg
+  AssetGenImage get cupcakeFront =>
+      const AssetGenImage('assets/images/cupcake_front.jpg');
+
+  /// File path: assets/images/cupcake_top.jpg
+  AssetGenImage get cupcakeTop =>
+      const AssetGenImage('assets/images/cupcake_top.jpg');
 
   /// List of all assets
-  List<AssetGenImage> get values => [kue, kue2];
+  List<AssetGenImage> get values => [chocolateCake, cupcakeFront, cupcakeTop];
 }
 
 class $AssetsJsonsGen {

@@ -9,18 +9,21 @@ class HomeImageSwiper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ImageSwiper(
-      height: 180,
-      delay: 3,
       data: [
         ImageData(
-          image: Assets.images.kue.path,
+          image: Assets.images.cupcakeTop.path,
           title: Strings.kueTitle,
           subtitle: Strings.kueDescription,
         ),
         ImageData(
-          image: Assets.images.kue2.path,
+          image: Assets.images.chocolateCake.path,
           title: Strings.kueTitle2,
           subtitle: Strings.kueDescription2,
+        ),
+        ImageData(
+          image: Assets.images.cupcakeFront.path,
+          title: Strings.kueTitle,
+          subtitle: Strings.kueDescription,
         ),
       ],
     );

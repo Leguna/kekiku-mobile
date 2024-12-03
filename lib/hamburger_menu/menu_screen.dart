@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 import '../auth/views/profile_summary.dart';
 import '../core/index.dart';

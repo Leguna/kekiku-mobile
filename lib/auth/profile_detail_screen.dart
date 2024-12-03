@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:kekiku/auth/views/profile_summary.dart';
 import 'package:kekiku/core/index.dart';
 import 'package:kekiku/core/widgets/rate/rating_cubit.dart';

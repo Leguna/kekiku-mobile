@@ -1,4 +1,3 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:kekiku/core/widgets/image_swiper/dots_indicator_with_timer.dart';
 
 import '../../index.dart';

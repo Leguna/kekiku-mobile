@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
 import 'package:kekiku/auth/bloc/auth_cubit.dart';
 import 'package:kekiku/auth/profile/edit_profile_cubit.dart';
 import 'package:kekiku/auth/profile/edit_profile_tile.dart';

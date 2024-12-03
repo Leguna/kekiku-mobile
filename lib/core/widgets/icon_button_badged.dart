@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 
 class IconButtonBadged extends IconButton {
   const IconButtonBadged({
+    required super.icon,
     super.key,
-    this.text = '',
+    super.padding,
+    this.badgeText = '',
     this.backgroundColor,
     this.textColor,
-    required super.onPressed,
-    required super.icon,
+    super.onPressed,
     super.disabledColor = Colors.grey,
+    super.visualDensity,
   });
 
-  final String text;
+  final String badgeText;
   final Color? backgroundColor;
   final Color? textColor;
 
@@ -20,7 +22,7 @@ class IconButtonBadged extends IconButton {
     return Stack(
       children: [
         super.build(context),
-        if (text.isNotEmpty)
+        if (badgeText.isNotEmpty)
           Positioned(
             right: 0,
             top: 0,
@@ -35,7 +37,7 @@ class IconButtonBadged extends IconButton {
                 minHeight: 16,
               ),
               child: Text(
-                text,
+                badgeText,
                 style: TextStyle(
                   color: textColor ?? Theme.of(context).colorScheme.onPrimary,
                   fontSize: 10,

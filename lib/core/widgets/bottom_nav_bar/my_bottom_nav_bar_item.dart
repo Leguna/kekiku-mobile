@@ -33,13 +33,15 @@ class MyBottomNavBarItem extends StatelessWidget {
                 minWidth: 16,
                 minHeight: 16,
               ),
-              child: Text(
-                badgeCount.toString(),
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 10,
+              child: Center(
+                child: Text(
+                  badgeCount.toString(),
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 10,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
               ),
             ),
           ),
@@ -74,6 +76,7 @@ class MyBottomNavBarItem extends StatelessWidget {
     return BottomNavigationBarItem(
       icon: icon,
       label: label,
+      tooltip: label,
     );
   }
 }

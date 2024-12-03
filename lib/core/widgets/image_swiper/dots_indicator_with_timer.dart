@@ -40,6 +40,7 @@ class DotsIndicatorWithTimerState extends State<DotsIndicatorWithTimer> {
             },
             onTap: () {
               updateIndex(index);
+              widget.onTimerEnd?.call(index);
             },
           ),
         );

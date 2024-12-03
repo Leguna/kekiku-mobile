@@ -71,6 +71,9 @@ class _TimerFillIndicatorState extends State<TimerFillIndicator> with SingleTick
     double width = widget.isSelected ? widget.width : 8;
     return InkWell(
       onTap: () {
+        if (widget.isSelected) {
+          return;
+        }
         widget.onTap?.call();
       },
       child: AnimatedContainer(

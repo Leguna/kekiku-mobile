@@ -33,6 +33,7 @@ class Routes {
   static const String profile = '/profile';
 
   static const String aboutKekiku = '/about-kekiku';
+  static const String notFound = '/not-found';
 
   static WidgetBuilder getRoute(String route) {
     return getRoutes()[route] ?? (context) => const NotFoundPage();
@@ -59,6 +60,7 @@ class Routes {
       profile: (context) => const ProfileDetailScreen(),
       codeScanner: (context) => const ScannerScreen(),
       editProfile: (context) => const EditProfileScreen(),
+      notFound: (context) => const NotFoundPage(),
     };
   }
 

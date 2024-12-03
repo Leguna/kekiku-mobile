@@ -13,6 +13,7 @@ final mainTheme = ThemeData(
   ),
   fontFamily: 'Poppins',
   fontFamilyFallback: const ['Montserrat'],
+  primaryColorDark: AppColors.darkBlueGray,
   appBarTheme: AppBarTheme(
     titleTextStyle: AppTextStyles.medium.copyWith(
       fontWeight: FontWeight.w600,

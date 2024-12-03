@@ -64,7 +64,7 @@ class GoogleSsoButton extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         SvgPicture.asset(
-          Assets.logoGoogleSvg,
+          Assets.logoGoogleSvg.path,
           width: 24,
           height: 24,
         ),

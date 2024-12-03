@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kekiku/auth/views/google_sso_button.dart';
 import 'package:kekiku/splash/bloc/onboarding_cubit.dart';
@@ -51,7 +50,7 @@ class OnBoardingScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(32),
                 width: double.infinity,
                 child: SvgPicture.asset(
-                  Assets.welcome,
+                  Assets.welcome.path,
                   width: 200,
                   height: 200,
                 ),

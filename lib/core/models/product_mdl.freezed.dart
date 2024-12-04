@@ -27,6 +27,10 @@ mixin _$Product {
   String? get tag => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
+  int? get sold => throw _privateConstructorUsedError;
+  double? get rating => throw _privateConstructorUsedError;
+  double? get discount => throw _privateConstructorUsedError;
+  String? get address => throw _privateConstructorUsedError;
 
   /// Serializes this Product to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -49,7 +53,11 @@ abstract class $ProductCopyWith<$Res> {
       List<String>? categories,
       String? tag,
       String? description,
-      String? image});
+      String? image,
+      int? sold,
+      double? rating,
+      double? discount,
+      String? address});
 }
 
 /// @nodoc
@@ -74,6 +82,10 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
     Object? tag = freezed,
     Object? description = freezed,
     Object? image = freezed,
+    Object? sold = freezed,
+    Object? rating = freezed,
+    Object? discount = freezed,
+    Object? address = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -104,6 +116,22 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
+      sold: freezed == sold
+          ? _value.sold
+          : sold // ignore: cast_nullable_to_non_nullable
+              as int?,
+      rating: freezed == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as double?,
+      discount: freezed == discount
+          ? _value.discount
+          : discount // ignore: cast_nullable_to_non_nullable
+              as double?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -122,7 +150,11 @@ abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
       List<String>? categories,
       String? tag,
       String? description,
-      String? image});
+      String? image,
+      int? sold,
+      double? rating,
+      double? discount,
+      String? address});
 }
 
 /// @nodoc
@@ -145,6 +177,10 @@ class __$$ProductImplCopyWithImpl<$Res>
     Object? tag = freezed,
     Object? description = freezed,
     Object? image = freezed,
+    Object? sold = freezed,
+    Object? rating = freezed,
+    Object? discount = freezed,
+    Object? address = freezed,
   }) {
     return _then(_$ProductImpl(
       id: freezed == id
@@ -175,6 +211,22 @@ class __$$ProductImplCopyWithImpl<$Res>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
+      sold: freezed == sold
+          ? _value.sold
+          : sold // ignore: cast_nullable_to_non_nullable
+              as int?,
+      rating: freezed == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as double?,
+      discount: freezed == discount
+          ? _value.discount
+          : discount // ignore: cast_nullable_to_non_nullable
+              as double?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -189,7 +241,11 @@ class _$ProductImpl implements _Product {
       final List<String>? categories,
       this.tag,
       this.description,
-      this.image})
+      this.image,
+      this.sold = 0,
+      this.rating = 0,
+      this.discount,
+      this.address})
       : _categories = categories;
 
   factory _$ProductImpl.fromJson(Map<String, dynamic> json) =>
@@ -217,10 +273,20 @@ class _$ProductImpl implements _Product {
   final String? description;
   @override
   final String? image;
+  @override
+  @JsonKey()
+  final int? sold;
+  @override
+  @JsonKey()
+  final double? rating;
+  @override
+  final double? discount;
+  @override
+  final String? address;
 
   @override
   String toString() {
-    return 'Product(id: $id, name: $name, price: $price, categories: $categories, tag: $tag, description: $description, image: $image)';
+    return 'Product(id: $id, name: $name, price: $price, categories: $categories, tag: $tag, description: $description, image: $image, sold: $sold, rating: $rating, discount: $discount, address: $address)';
   }
 
   @override
@@ -236,7 +302,12 @@ class _$ProductImpl implements _Product {
             (identical(other.tag, tag) || other.tag == tag) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            (identical(other.image, image) || other.image == image));
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.sold, sold) || other.sold == sold) &&
+            (identical(other.rating, rating) || other.rating == rating) &&
+            (identical(other.discount, discount) ||
+                other.discount == discount) &&
+            (identical(other.address, address) || other.address == address));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -249,7 +320,11 @@ class _$ProductImpl implements _Product {
       const DeepCollectionEquality().hash(_categories),
       tag,
       description,
-      image);
+      image,
+      sold,
+      rating,
+      discount,
+      address);
 
   /// Create a copy of Product
   /// with the given fields replaced by the non-null parameter values.
@@ -275,7 +350,11 @@ abstract class _Product implements Product {
       final List<String>? categories,
       final String? tag,
       final String? description,
-      final String? image}) = _$ProductImpl;
+      final String? image,
+      final int? sold,
+      final double? rating,
+      final double? discount,
+      final String? address}) = _$ProductImpl;
 
   factory _Product.fromJson(Map<String, dynamic> json) = _$ProductImpl.fromJson;
 
@@ -293,6 +372,14 @@ abstract class _Product implements Product {
   String? get description;
   @override
   String? get image;
+  @override
+  int? get sold;
+  @override
+  double? get rating;
+  @override
+  double? get discount;
+  @override
+  String? get address;
 
   /// Create a copy of Product
   /// with the given fields replaced by the non-null parameter values.

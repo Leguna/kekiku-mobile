@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:kekiku/auth/bloc/auth_cubit.dart';
-import 'package:kekiku/core/index.dart';
+import '../core/index.dart';
+import 'bloc/auth_cubit.dart';
 
 class VerifyCodeScreen extends StatelessWidget {
   const VerifyCodeScreen({

@@ -40,76 +40,78 @@ class EditProfileScreen extends StatelessWidget {
             appBar: AppBar(title: const Text(Strings.changeProfile)),
             body: Stack(
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    const Divider(
-                      thickness: 1,
-                      height: 1,
-                    ),
-                    const SizedBox(height: Dimens.small),
-                    Center(
-                      child: buildImage(context.read<AuthCubit>().user!),
-                    ),
-                    Center(
-                      child: TextButton(
-                          onPressed: () {
-                            bloc.changePhotoProfile();
-                          },
-                          child: const Text(Strings.changePhoto)),
-                    ),
-                    const Divider(thickness: 1),
-                    const Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.all(Dimens.small),
-                          child: Text(Strings.publicProfile),
-                        ),
-                        EditProfileTile(type: ProfileField.displayName),
-                        EditProfileTile(type: ProfileField.username),
-                        EditProfileTile(type: ProfileField.bio),
-                      ],
-                    ),
-                    const Divider(thickness: 1),
-                    const Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.all(Dimens.small),
-                          child: Text(
-                            Strings.privateProfile,
-                            style: TextStyle(fontSize: 16),
+                SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const Divider(
+                        thickness: 1,
+                        height: 1,
+                      ),
+                      const SizedBox(height: Dimens.small),
+                      Center(
+                        child: buildImage(context.read<AuthCubit>().user!),
+                      ),
+                      Center(
+                        child: TextButton(
+                            onPressed: () {
+                              bloc.changePhotoProfile();
+                            },
+                            child: const Text(Strings.changePhoto)),
+                      ),
+                      const Divider(thickness: 1),
+                      const Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(Dimens.small),
+                            child: Text(Strings.publicProfile),
+                          ),
+                          EditProfileTile(type: ProfileField.displayName),
+                          EditProfileTile(type: ProfileField.username),
+                          EditProfileTile(type: ProfileField.bio),
+                        ],
+                      ),
+                      const Divider(thickness: 1),
+                      const Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(Dimens.small),
+                            child: Text(
+                              Strings.privateProfile,
+                              style: TextStyle(fontSize: 16),
+                            ),
+                          ),
+                          EditProfileTile(type: ProfileField.id),
+                          EditProfileTile(type: ProfileField.email),
+                          EditProfileTile(type: ProfileField.phone),
+                          EditProfileTile(type: ProfileField.gender),
+                          EditProfileTile(type: ProfileField.birthday),
+                        ],
+                      ),
+                      const Divider(thickness: 1),
+                      TextButton(
+                        style: TextButton.styleFrom(
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.zero,
                           ),
                         ),
-                        EditProfileTile(type: ProfileField.id),
-                        EditProfileTile(type: ProfileField.email),
-                        EditProfileTile(type: ProfileField.phone),
-                        EditProfileTile(type: ProfileField.gender),
-                        EditProfileTile(type: ProfileField.birthday),
-                      ],
-                    ),
-                    const Divider(thickness: 1),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.zero,
-                        ),
+                        child: const Text(Strings.closeAccount),
+                        onPressed: () {
+                          showMyDialogOption(
+                            context,
+                            title: Strings.closeAccount,
+                            description: Strings.removeAccountDescription,
+                            confirmText: Strings.closeAccount,
+                            onConfirm: () {
+                              bloc.deleteAccount();
+                            },
+                          );
+                        },
                       ),
-                      child: const Text(Strings.closeAccount),
-                      onPressed: () {
-                        showMyDialogOption(
-                          context,
-                          title: Strings.closeAccount,
-                          description: Strings.removeAccountDescription,
-                          confirmText: Strings.closeAccount,
-                          onConfirm: () {
-                            bloc.deleteAccount();
-                          },
-                        );
-                      },
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 state.maybeWhen(
                   loading: () => const MyLoading(),

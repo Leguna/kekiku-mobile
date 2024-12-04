@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:kekiku/core/index.dart';
 import 'package:kekiku/home/home_page.dart';
 

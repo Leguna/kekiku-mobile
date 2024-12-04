@@ -15,6 +15,10 @@ class Product with _$Product {
     String? tag,
     String? description,
     String? image,
+    @Default(0) int? sold,
+    @Default(0) double? rating,
+    double? discount,
+    String? address,
   }) = _Product;
 
   factory Product.fromJson(Map<String, dynamic> json) =>

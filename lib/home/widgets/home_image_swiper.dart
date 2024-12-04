@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 import '../../core/index.dart';
 import '../../core/widgets/image_swiper/image_swiper.dart';

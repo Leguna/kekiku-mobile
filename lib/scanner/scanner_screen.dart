@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:kekiku/core/index.dart';
 import 'package:kekiku/scanner/scanner_cubit.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';

@@ -25,7 +25,7 @@ final mainTheme = ThemeData(
     style: ButtonStyle(
       foregroundColor: WidgetStateProperty.all(AppColors.primaryColorLight),
       textStyle: WidgetStateProperty.all(
-        AppTextStyles.small.copyWith(
+        AppTextStyles.medium.copyWith(
           color: AppColors.primaryColorLight,
         ),
       ),
@@ -49,7 +49,7 @@ final mainTheme = ThemeData(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8.0),
       ),
-      textStyle: AppTextStyles.small.copyWith(color: Colors.white),
+      textStyle: AppTextStyles.medium.copyWith(color: Colors.white),
       side: const BorderSide(
         color: Colors.white,
         width: 2.0,
@@ -77,7 +77,7 @@ final mainTheme = ThemeData(
     floatingLabelBehavior: FloatingLabelBehavior.auto,
     floatingLabelStyle: TextStyle(
       color: AppColors.paleSteelBlue,
-      fontStyle: AppTextStyles.small.fontStyle,
+      fontStyle: AppTextStyles.medium.fontStyle,
     ),
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(8.0),
@@ -110,7 +110,7 @@ final mainTheme = ThemeData(
         ),
       ),
       textStyle: WidgetStateProperty.all(
-        AppTextStyles.small.copyWith(),
+        AppTextStyles.medium.copyWith(),
       ),
     ),
   ),
@@ -118,7 +118,7 @@ final mainTheme = ThemeData(
     backgroundColor: AppColors.primaryColorBackground,
     titleTextStyle: AppTextStyles.large,
     contentTextStyle:
-        AppTextStyles.small.copyWith(color: AppColors.paleSteelBlue),
+        AppTextStyles.medium.copyWith(color: AppColors.paleSteelBlue),
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.all(Radius.circular(Dimens.tiny)),
     ),

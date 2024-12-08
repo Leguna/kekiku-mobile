@@ -35,6 +35,8 @@ class Routes {
   static const String aboutKekiku = '/about-kekiku';
   static const String notFound = '/not-found';
 
+  static const String productDetail = '/product-detail';
+
   static WidgetBuilder getRoute(String route) {
     return getRoutes()[route] ?? (context) => const NotFoundPage();
   }

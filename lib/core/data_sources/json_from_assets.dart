@@ -1,8 +1,6 @@
-import 'dart:convert';
+import '../index.dart';
 
-import 'package:flutter/services.dart';
-
-getProducts() async {
-  String data = await rootBundle.loadString('assets/products.json');
-  return json.decode(data);
+Future<String> getJson(String path) async {
+  String data = await rootBundle.loadString(path);
+  return (data);
 }

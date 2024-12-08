@@ -1,11 +1,7 @@
-import '../../index.dart';
+import '../../core/index.dart';
 
 class AuthApiClient extends BaseApiClient {
   AuthApiClient();
-
-  Future<void> setDioAccessToken(String token) async {
-    dio.options.headers['Authorization'] = 'Bearer $token';
-  }
 
   Future<String> login(String username, String password) async {
     return await post('/auth/login', data: {

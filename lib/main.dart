@@ -8,6 +8,7 @@ import 'app_setup.dart';
 import 'auth/bloc/auth_cubit.dart';
 import 'core/index.dart';
 import 'core/widgets/bottom_nav_bar/bloc/bottom_nav_bar_cubit.dart';
+import 'favorite/bloc/favorite_cubit.dart';
 
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => BottomNavBarCubit()),
         BlocProvider(create: (context) => AuthCubit()),
+        BlocProvider(create: (context) => FavoriteCubit()),
       ],
       child: MaterialApp(
         title: Strings.appName,

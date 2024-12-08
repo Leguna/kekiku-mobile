@@ -8,7 +8,7 @@ part of 'product_mdl.dart';
 
 _$ProductImpl _$$ProductImplFromJson(Map<String, dynamic> json) =>
     _$ProductImpl(
-      id: json['id'] as String?,
+      id: json['id'] as String? ?? '',
       name: json['name'] as String?,
       price: (json['price'] as num?)?.toInt(),
       categories: (json['categories'] as List<dynamic>?)
@@ -17,10 +17,13 @@ _$ProductImpl _$$ProductImplFromJson(Map<String, dynamic> json) =>
       tag: json['tag'] as String?,
       description: json['description'] as String?,
       image: json['image'] as String?,
-      sold: (json['sold'] as num?)?.toInt() ?? 0,
       rating: (json['rating'] as num?)?.toDouble() ?? 0,
-      discount: (json['discount'] as num?)?.toDouble(),
+      discount: (json['discount'] as num?)?.toDouble() ?? 0,
+      stock: (json['stock'] as num?)?.toInt() ?? 0,
+      sold: (json['sold'] as num?)?.toInt() ?? 0,
+      label: json['label'] as String?,
       address: json['address'] as String?,
+      isFavorite: json['isFavorite'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$ProductImplToJson(_$ProductImpl instance) =>
@@ -32,8 +35,11 @@ Map<String, dynamic> _$$ProductImplToJson(_$ProductImpl instance) =>
       'tag': instance.tag,
       'description': instance.description,
       'image': instance.image,
-      'sold': instance.sold,
       'rating': instance.rating,
       'discount': instance.discount,
+      'stock': instance.stock,
+      'sold': instance.sold,
+      'label': instance.label,
       'address': instance.address,
+      'isFavorite': instance.isFavorite,
     };

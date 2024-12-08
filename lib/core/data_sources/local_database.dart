@@ -28,6 +28,11 @@ class LocalDatabase {
     return box.get(key) as String?;
   }
 
+  Future<Box> getBox(String boxKey) async {
+    final box = await Hive.openBox(boxKey);
+    return box;
+  }
+
   Future<void> setString(String key, String? value,
       {String boxKey = mainBox}) async {
     final box = await Hive.openBox(boxKey);

@@ -6,5 +6,35 @@ part 'home_cubit.freezed.dart';
 part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
-  HomeCubit() : super(const HomeState.initial());
+  HomeCubit() : super(const HomeState.initial()) {
+    tryShowPopupImage();
+  }
+
+  LocalDatabase localDatabase = getIt<LocalDatabase>();
+
+  final String popupKey = 'popupLastShownDate';
+  bool isShowedPopupImage = false;
+
+  Future<void> tryShowPopupImage() async {
+    emit(const HomeState.initial());
+    final lastShownDate = await localDatabase.getString(popupKey);
+    final canShow = lastShownDate == null ||
+        DateTime.now().difference(DateTime.parse(lastShownDate)).inDays >= 1;
+
+    if (canShow && !isShowedPopupImage) {
+      isShowedPopupImage = true;
+      await localDatabase.setString(popupKey, DateTime.now().toIso8601String());
+      emit(HomeState.imagePopup(isShowed: isShowedPopupImage));
+    }
+  }
+
+  void closePopupImage() {
+    emit(const HomeState.initial());
+    isShowedPopupImage = false;
+    emit(HomeState.imagePopup(isShowed: isShowedPopupImage));
+  }
+
+  Future<void> refreshHome() async {
+    await Future.delayed(const Duration(seconds: 2));
+  }
 }

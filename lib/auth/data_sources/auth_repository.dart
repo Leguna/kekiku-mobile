@@ -1,8 +1,7 @@
 import 'dart:convert';
 
-import 'package:kekiku/core/index.dart';
-
-import '../../../auth/models/user.dart';
+import '../../core/index.dart';
+import '../models/user.dart';
 
 class AuthRepository {
   AuthRepository(this._authApiClient);

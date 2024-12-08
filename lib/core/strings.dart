@@ -251,4 +251,6 @@ final class Strings {
       'Kue Kekiku 2 adalah kue yang sangat lezat dan enak.';
 
   static const String kueTitle2 = 'Kue Kekiku 2';
+
+  static const String noItemsFound = 'No items found';
 }

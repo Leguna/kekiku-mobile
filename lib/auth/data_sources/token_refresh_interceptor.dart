@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 
-import '../../index.dart';
+import '../../core/index.dart';
 
-class AuthInterceptor extends Interceptor {
-  AuthInterceptor(this._dio);
+class TokenRefreshInterceptor extends Interceptor {
+  TokenRefreshInterceptor(this._dio);
 
   final SecureStorageManager _tokenManager = SecureStorageManager();
   final Dio _dio;

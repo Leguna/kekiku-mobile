@@ -4,20 +4,17 @@ import '../../core/index.dart';
 import 'item_product.dart';
 
 class ListInfiniteProduct extends StatelessWidget {
-  const ListInfiniteProduct({super.key, this.products = const []});
+  const ListInfiniteProduct(
+      {super.key, this.products = const [], required this.pagingController});
 
   final List<Product> products;
+  final PagingController<int, Product> pagingController;
 
   @override
   Widget build(BuildContext context) {
-    final pagingController = PagingController<int, Product>(
-      firstPageKey: 0,
-    );
     final size = MediaQuery.of(context).size.width / 2;
-    pagingController.appendLastPage(products);
-    return Container(
-      padding: const EdgeInsets.all(16),
-      width: double.infinity,
+    return Padding(
+      padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
       child: PagedGridView(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
@@ -34,7 +31,7 @@ class ListInfiniteProduct extends StatelessWidget {
           newPageProgressIndicatorBuilder: (_) =>
               const Center(child: CircularProgressIndicator()),
           noItemsFoundIndicatorBuilder: (_) =>
-              const Center(child: Text('No items found')),
+              const Center(child: Text(Strings.noItemsFound)),
         ),
       ),
     );

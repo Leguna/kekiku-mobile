@@ -26,7 +26,7 @@ class BaseApiClient {
         'Accept-Encoding': 'gzip, deflate, br, base64',
       },
     );
-    dio.interceptors.add(AuthInterceptor(dio));
+    dio.interceptors.add(TokenRefreshInterceptor(dio));
     dio.interceptors.add(interceptorErrorWrapper);
 
     (dio.httpClientAdapter as IOHttpClientAdapter).createHttpClient = () =>

@@ -81,18 +81,21 @@ class _StarWidgetState extends State<StarWidget>
               : () {
                   widget.onTap?.call();
                 },
-          child: AnimatedBuilder(
-            animation: _scaleAnimation,
-            builder: (context, child) {
-              return Transform.scale(
-                scale: _scaleAnimation.value,
-                child: Icon(
-                  Icons.star,
-                  color: _colorAnimation.value,
-                  size: Dimens.large,
-                ),
-              );
-            },
+          child: Padding(
+            padding: const EdgeInsets.all(4),
+            child: AnimatedBuilder(
+              animation: _scaleAnimation,
+              builder: (context, child) {
+                return Transform.scale(
+                  scale: _scaleAnimation.value,
+                  child: Icon(
+                    Icons.star,
+                    color: _colorAnimation.value,
+                    size: Dimens.xlarge,
+                  ),
+                );
+              },
+            ),
           ),
         );
       },

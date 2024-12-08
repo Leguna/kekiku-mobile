@@ -20,17 +20,24 @@ Product _$ProductFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Product {
-  String? get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   int? get price => throw _privateConstructorUsedError;
   List<String>? get categories => throw _privateConstructorUsedError;
   String? get tag => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
-  int? get sold => throw _privateConstructorUsedError;
   double? get rating => throw _privateConstructorUsedError;
   double? get discount => throw _privateConstructorUsedError;
+
+  int? get stock => throw _privateConstructorUsedError;
+
+  int? get sold => throw _privateConstructorUsedError;
+
+  String? get label => throw _privateConstructorUsedError;
   String? get address => throw _privateConstructorUsedError;
+
+  bool get isFavorite => throw _privateConstructorUsedError;
 
   /// Serializes this Product to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -46,18 +53,20 @@ abstract class $ProductCopyWith<$Res> {
   factory $ProductCopyWith(Product value, $Res Function(Product) then) =
       _$ProductCopyWithImpl<$Res, Product>;
   @useResult
-  $Res call(
-      {String? id,
+  $Res call({String id,
       String? name,
       int? price,
       List<String>? categories,
       String? tag,
       String? description,
       String? image,
-      int? sold,
       double? rating,
       double? discount,
-      String? address});
+      int? stock,
+      int? sold,
+      String? label,
+      String? address,
+      bool isFavorite});
 }
 
 /// @nodoc
@@ -75,23 +84,26 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? id = null,
     Object? name = freezed,
     Object? price = freezed,
     Object? categories = freezed,
     Object? tag = freezed,
     Object? description = freezed,
     Object? image = freezed,
-    Object? sold = freezed,
     Object? rating = freezed,
     Object? discount = freezed,
+    Object? stock = freezed,
+    Object? sold = freezed,
+    Object? label = freezed,
     Object? address = freezed,
+    Object? isFavorite = null,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -116,10 +128,6 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
-      sold: freezed == sold
-          ? _value.sold
-          : sold // ignore: cast_nullable_to_non_nullable
-              as int?,
       rating: freezed == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
@@ -128,10 +136,26 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
           ? _value.discount
           : discount // ignore: cast_nullable_to_non_nullable
               as double?,
+      stock: freezed == stock
+          ? _value.stock
+          : stock // ignore: cast_nullable_to_non_nullable
+              as int?,
+      sold: freezed == sold
+          ? _value.sold
+          : sold // ignore: cast_nullable_to_non_nullable
+              as int?,
+      label: freezed == label
+          ? _value.label
+          : label // ignore: cast_nullable_to_non_nullable
+              as String?,
       address: freezed == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String?,
+      isFavorite: null == isFavorite
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -143,18 +167,20 @@ abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
       __$$ProductImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String? id,
+  $Res call({String id,
       String? name,
       int? price,
       List<String>? categories,
       String? tag,
       String? description,
       String? image,
-      int? sold,
       double? rating,
       double? discount,
-      String? address});
+      int? stock,
+      int? sold,
+      String? label,
+      String? address,
+      bool isFavorite});
 }
 
 /// @nodoc
@@ -170,23 +196,26 @@ class __$$ProductImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? id = null,
     Object? name = freezed,
     Object? price = freezed,
     Object? categories = freezed,
     Object? tag = freezed,
     Object? description = freezed,
     Object? image = freezed,
-    Object? sold = freezed,
     Object? rating = freezed,
     Object? discount = freezed,
+    Object? stock = freezed,
+    Object? sold = freezed,
+    Object? label = freezed,
     Object? address = freezed,
+    Object? isFavorite = null,
   }) {
     return _then(_$ProductImpl(
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -211,10 +240,6 @@ class __$$ProductImplCopyWithImpl<$Res>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
-      sold: freezed == sold
-          ? _value.sold
-          : sold // ignore: cast_nullable_to_non_nullable
-              as int?,
       rating: freezed == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
@@ -223,36 +248,56 @@ class __$$ProductImplCopyWithImpl<$Res>
           ? _value.discount
           : discount // ignore: cast_nullable_to_non_nullable
               as double?,
+      stock: freezed == stock
+          ? _value.stock
+          : stock // ignore: cast_nullable_to_non_nullable
+              as int?,
+      sold: freezed == sold
+          ? _value.sold
+          : sold // ignore: cast_nullable_to_non_nullable
+              as int?,
+      label: freezed == label
+          ? _value.label
+          : label // ignore: cast_nullable_to_non_nullable
+              as String?,
       address: freezed == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String?,
+      isFavorite: null == isFavorite
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$ProductImpl implements _Product {
-  const _$ProductImpl(
-      {this.id,
+class _$ProductImpl extends _Product {
+  const _$ProductImpl({this.id = '',
       this.name,
       this.price,
       final List<String>? categories,
       this.tag,
       this.description,
       this.image,
-      this.sold = 0,
       this.rating = 0,
-      this.discount,
-      this.address})
-      : _categories = categories;
+      this.discount = 0,
+      this.stock = 0,
+      this.sold = 0,
+      this.label,
+      this.address,
+      this.isFavorite = false})
+      : _categories = categories,
+        super._();
 
   factory _$ProductImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductImplFromJson(json);
 
   @override
-  final String? id;
+  @JsonKey()
+  final String id;
   @override
   final String? name;
   @override
@@ -275,18 +320,27 @@ class _$ProductImpl implements _Product {
   final String? image;
   @override
   @JsonKey()
-  final int? sold;
-  @override
-  @JsonKey()
   final double? rating;
   @override
+  @JsonKey()
   final double? discount;
   @override
+  @JsonKey()
+  final int? stock;
+  @override
+  @JsonKey()
+  final int? sold;
+  @override
+  final String? label;
+  @override
   final String? address;
+  @override
+  @JsonKey()
+  final bool isFavorite;
 
   @override
   String toString() {
-    return 'Product(id: $id, name: $name, price: $price, categories: $categories, tag: $tag, description: $description, image: $image, sold: $sold, rating: $rating, discount: $discount, address: $address)';
+    return 'Product(id: $id, name: $name, price: $price, categories: $categories, tag: $tag, description: $description, image: $image, rating: $rating, discount: $discount, stock: $stock, sold: $sold, label: $label, address: $address, isFavorite: $isFavorite)';
   }
 
   @override
@@ -303,11 +357,15 @@ class _$ProductImpl implements _Product {
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.image, image) || other.image == image) &&
-            (identical(other.sold, sold) || other.sold == sold) &&
             (identical(other.rating, rating) || other.rating == rating) &&
             (identical(other.discount, discount) ||
                 other.discount == discount) &&
-            (identical(other.address, address) || other.address == address));
+            (identical(other.stock, stock) || other.stock == stock) &&
+            (identical(other.sold, sold) || other.sold == sold) &&
+            (identical(other.label, label) || other.label == label) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.isFavorite, isFavorite) ||
+                other.isFavorite == isFavorite));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -321,10 +379,13 @@ class _$ProductImpl implements _Product {
       tag,
       description,
       image,
-      sold,
       rating,
       discount,
-      address);
+      stock,
+      sold,
+      label,
+      address,
+      isFavorite);
 
   /// Create a copy of Product
   /// with the given fields replaced by the non-null parameter values.
@@ -342,24 +403,28 @@ class _$ProductImpl implements _Product {
   }
 }
 
-abstract class _Product implements Product {
-  const factory _Product(
-      {final String? id,
+abstract class _Product extends Product {
+  const factory _Product({final String id,
       final String? name,
       final int? price,
       final List<String>? categories,
       final String? tag,
       final String? description,
       final String? image,
-      final int? sold,
       final double? rating,
       final double? discount,
-      final String? address}) = _$ProductImpl;
+      final int? stock,
+      final int? sold,
+      final String? label,
+      final String? address,
+      final bool isFavorite}) = _$ProductImpl;
+
+  const _Product._() : super._();
 
   factory _Product.fromJson(Map<String, dynamic> json) = _$ProductImpl.fromJson;
 
   @override
-  String? get id;
+  String get id;
   @override
   String? get name;
   @override
@@ -373,13 +438,23 @@ abstract class _Product implements Product {
   @override
   String? get image;
   @override
-  int? get sold;
-  @override
   double? get rating;
   @override
   double? get discount;
   @override
+  int? get stock;
+
+  @override
+  int? get sold;
+
+  @override
+  String? get label;
+
+  @override
   String? get address;
+
+  @override
+  bool get isFavorite;
 
   /// Create a copy of Product
   /// with the given fields replaced by the non-null parameter values.

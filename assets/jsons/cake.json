@@ -20,7 +20,10 @@
       "eggs",
       "milk"
     ],
-    "availability": "In stock",
+    "discount": 20,
+    "stock": 9,
+    "sold": 2,
+    "isFavorite": true,
     "image": "https://plus.unsplash.com/premium_photo-1722686589246-f0969c3d72c4?q=80&w=1989&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
@@ -41,7 +44,8 @@
       "eggs",
       "vinegar"
     ],
-    "availability": "Made to order",
+    "stock": 2,
+    "sold": 30,
     "image": "https://images.unsplash.com/photo-1714386148315-2f0e3eebcd5a?q=80&w=1936&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
@@ -62,7 +66,8 @@
       "milk",
       "vanilla extract"
     ],
-    "availability": "In stock",
+    "stock": 40,
+    "sold": 60,
     "image": "https://plus.unsplash.com/premium_photo-1663839412123-44da7b5f481f?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
@@ -83,7 +88,8 @@
       "lemon zest",
       "lemon juice"
     ],
-    "availability": "In stock",
+    "stock": 25,
+    "sold": 45,
     "image": "https://plus.unsplash.com/premium_photo-1716918178946-5922b4e8645d?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
@@ -104,7 +110,8 @@
       "carrots",
       "walnuts"
     ],
-    "availability": "Made to order",
+    "stock": 10,
+    "sold": 20,
     "image": "https://images.unsplash.com/photo-1594741920744-0a7f4a65817a?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
@@ -125,7 +132,8 @@
       "coconut milk",
       "coconut flakes"
     ],
-    "availability": "In stock",
+    "stock": 30,
+    "sold": 40,
     "image": "https://images.unsplash.com/photo-1569775683473-c534979f35a9?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
@@ -146,7 +154,8 @@
       "coffee",
       "espresso"
     ],
-    "availability": "Made to order",
+    "stock": 15,
+    "sold": 25,
     "image": "https://plus.unsplash.com/premium_photo-1679486569841-95697c33a216?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
@@ -167,7 +176,8 @@
       "pistachios",
       "almond extract"
     ],
-    "availability": "In stock",
+    "stock": 18,
+    "sold": 22,
     "image": "https://images.unsplash.com/photo-1508737690671-77fe4101791e?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
@@ -188,7 +198,8 @@
       "strawberries",
       "vanilla extract"
     ],
-    "availability": "Made to order",
+    "stock": 12,
+    "sold": 19,
     "image": "https://plus.unsplash.com/premium_photo-1672192166851-71d218e64544?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
@@ -199,7 +210,7 @@
       "raspberry",
       "fruit",
       "buttercream",
-      "tart"
+      "seasonal"
     ],
     "ingredients": [
       "flour",
@@ -207,9 +218,10 @@
       "butter",
       "eggs",
       "raspberries",
-      "lemon juice"
+      "vanilla extract"
     ],
-    "availability": "In stock",
-    "image": "https://images.unsplash.com/photo-1565958011703-44f9829ba187?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    "stock": 14,
+    "sold": 20,
+    "image": "https://images.unsplash.com/photo-1701688749320-294017bbce63?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   }
 ]

@@ -1,0 +1,76 @@
+[
+  {
+    "name": "Chocolate Fudge Cake",
+    "price": 25.99,
+    "description": "Rich and moist chocolate cake with a smooth fudge icing.",
+    "tags": [
+      "chocolate",
+      "fudge",
+      "birthday",
+      "popular",
+      "moist",
+      "smooth",
+      "icing"
+    ],
+    "ingredients": [
+      "flour",
+      "sugar",
+      "cocoa powder",
+      "butter",
+      "eggs",
+      "milk"
+    ],
+    "discount": 20,
+    "stock": 9,
+    "sold": 2,
+    "isFavorite": true,
+    "image": "https://plus.unsplash.com/premium_photo-1722686589246-f0969c3d72c4?q=80&w=1989&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "id": "sMIZjb3YO2kmfkn0"
+  },
+  {
+    "name": "Red Velvet Cake",
+    "price": 45.99,
+    "description": "Classic red velvet cake with cream cheese frosting.",
+    "tags": [
+      "red velvet",
+      "wedding",
+      "cream cheese",
+      "luxury"
+    ],
+    "ingredients": [
+      "flour",
+      "sugar",
+      "cocoa powder",
+      "buttermilk",
+      "eggs",
+      "vinegar"
+    ],
+    "stock": 2,
+    "sold": 30,
+    "image": "https://images.unsplash.com/photo-1714386148315-2f0e3eebcd5a?q=80&w=1936&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "id": "iUyiP8JqnteCSUpx"
+  },
+  {
+    "name": "Vanilla Cupcakes",
+    "price": 12.99,
+    "description": "Light and fluffy vanilla cupcakes with buttercream frosting.",
+    "tags": [
+      "vanilla",
+      "cupcakes",
+      "buttercream",
+      "kids"
+    ],
+    "ingredients": [
+      "flour",
+      "sugar",
+      "butter",
+      "eggs",
+      "milk",
+      "vanilla extract"
+    ],
+    "stock": 40,
+    "sold": 60,
+    "image": "https://plus.unsplash.com/premium_photo-1663839412123-44da7b5f481f?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "id": "07kirf46v3mYreu7"
+  }
+]

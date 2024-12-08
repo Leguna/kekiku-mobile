@@ -3,6 +3,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:kekiku/product/data_sources/product_local_source.dart';
+import 'package:kekiku/product/data_sources/product_remote_source.dart';
+import 'package:kekiku/product/data_sources/product_repository.dart';
 import 'package:workmanager/workmanager.dart';
 
 import 'core/index.dart';
@@ -27,6 +30,7 @@ Future<void> setupServices() async {
     getIt.registerSingleton<Dio>(Dio(BaseOptions(
       baseUrl: dotenv.env['BASE_URL'] ?? dotenv.env['DEV_BASE_URL'] ?? '',
     )));
+
     getIt.registerSingleton<AuthRepository>(AuthRepository(AuthApiClient()));
     FirebaseApp? firebaseApp = await FirebaseService().init();
     if (firebaseApp != null) {
@@ -34,6 +38,13 @@ Future<void> setupServices() async {
     }
     GoogleSSOService googleSSOService = GoogleSSOService();
     getIt.registerSingleton<GoogleSSOService>(googleSSOService);
+
+    getIt.registerSingleton<ProductRepository>(
+      ProductRepository(
+        remoteDataSource: ProductRemoteSource(),
+        localDataSource: ProductLocalSource(),
+      ),
+    );
   } catch (e) {
     // ignore: avoid_print
     print('Error initializing services: $e');

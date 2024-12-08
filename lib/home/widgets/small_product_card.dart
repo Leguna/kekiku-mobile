@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:kekiku/core/index.dart';
 
 class ProductCard extends StatelessWidget {
@@ -20,24 +19,22 @@ class ProductCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
-          ClipRRect(
-            borderRadius: const BorderRadius.all(Radius.circular(8)),
-            child: CachedNetworkImage(
-              width: double.infinity,
-              height: 120,
-              imageUrl: product.image ?? '',
-              alignment: Alignment.center,
-              fit: BoxFit.cover,
-            ),
+          MyImageLoader(
+            path: product.image,
+            width: size,
+            height: size,
+            radius: 8,
+            onImageLoaded: () {},
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 4),
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
                 product.name ?? '',
                 overflow: TextOverflow.ellipsis,
-                style: Theme.of(context).textTheme.bodyLarge,
+                style: Theme.of(context).textTheme.bodyMedium,
+                maxLines: 2,
               ),
               Text(
                 '\$ ${product.price?.toStringAsFixed(2)}',

@@ -176,17 +176,14 @@ class ProfileDetailScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: List.generate(
                         5,
-                        (index) => Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: StarWidget(
-                            bloc: ratingCubit,
-                            ratingPosition: index + 1,
-                            onTap: ratingCubit.canRating
-                                ? () {
-                                    ratingCubit.setRating(index + 1);
-                                  }
-                                : null,
-                          ),
+                        (index) => StarWidget(
+                          bloc: ratingCubit,
+                          ratingPosition: index + 1,
+                          onTap: ratingCubit.canRating
+                              ? () {
+                                  ratingCubit.setRating(index + 1);
+                                }
+                              : null,
                         ),
                       )),
                   const SizedBox(height: Dimens.tiny),

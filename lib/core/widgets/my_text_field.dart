@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../typography.dart';
-
 class MyTextField extends StatefulWidget {
   const MyTextField({
     super.key,
@@ -56,7 +54,6 @@ class _MyTextFieldState extends State<MyTextField> {
         TextFormField(
           inputFormatters: [...widget.formatter],
           onChanged: widget.onChanged,
-          style: AppTextStyles.textField,
           textInputAction: TextInputAction.next,
           onFieldSubmitted: widget.onSubmit,
           keyboardType: widget.keyboardType,
@@ -69,10 +66,8 @@ class _MyTextFieldState extends State<MyTextField> {
           controller: widget.controller ?? TextEditingController(),
           decoration: InputDecoration(
             isDense: true,
-            hintStyle: AppTextStyles.textFieldHint,
             focusColor: Colors.white,
             label: Text(widget.hint),
-            labelStyle: AppTextStyles.textFieldHint,
             counter: const SizedBox(),
             enabledBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(4.0)),

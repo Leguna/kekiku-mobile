@@ -1,4 +1,7 @@
+import 'package:kekiku/product/bloc/product_cubit.dart';
+
 import '../core/index.dart';
+import 'blocs/home_cubit.dart';
 import 'widgets/fake_search_bar.dart';
 import 'widgets/home_badged_icon_list.dart';
 import 'widgets/home_chip.dart';
@@ -11,6 +14,9 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final homeCubit = context.read<HomeCubit>();
+    final productCubit = ProductCubit();
+    productCubit.getProducts();
     return MyScaffold(
       appBar: AppBar(
         title: const FakeSearchBar(),
@@ -29,8 +35,12 @@ class HomePage extends StatelessWidget {
         ],
       ),
       body: RefreshIndicator(
+        notificationPredicate: (ScrollNotification notification) {
+          return notification.depth == 1;
+        },
         onRefresh: () async {
-          await Future<void>.delayed(const Duration(seconds: 1));
+          await homeCubit.refreshHome();
+          await productCubit.getProducts();
         },
         child: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) {
@@ -52,122 +62,16 @@ class HomePage extends StatelessWidget {
               ),
             ];
           },
-          body: ListInfiniteProduct(products: products),
+          body: BlocBuilder<ProductCubit, ProductState>(
+            bloc: productCubit,
+            builder: (context, state) {
+              return ListInfiniteProduct(
+                  products: productCubit.products,
+                  pagingController: productCubit.pagingController);
+            },
+          ),
         ),
       ),
     );
   }
 }
-
-List<Product> products = [
-  const Product(
-    name: 'Pudding Raisin',
-    price: 10,
-    tag: 'New',
-    categories: ['Pudding'],
-    description:
-        'Pudding is a type of food that can be either a dessert or a savory dish that is part of the main meal.',
-    image:
-        'https://images.unsplash.com/photo-1552637086-ce3bf3275c4c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  ),
-  const Product(
-    name: 'Pudding Raisin',
-    price: 10,
-    tag: 'New',
-    categories: ['Pudding'],
-    description:
-        'Pudding is a type of food that can be either a dessert or a savory dish that is part of the main meal.',
-    image:
-        'https://images.unsplash.com/photo-1552637086-ce3bf3275c4c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  ),
-  const Product(
-    name: 'Pudding Raisin',
-    price: 10,
-    tag: 'New',
-    categories: ['Pudding'],
-    description:
-        'Pudding is a type of food that can be either a dessert or a savory dish that is part of the main meal.',
-    image:
-        'https://images.unsplash.com/photo-1552637086-ce3bf3275c4c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  ),
-  const Product(
-    name: 'Pudding Raisin',
-    price: 10,
-    tag: 'New',
-    categories: ['Pudding'],
-    description:
-        'Pudding is a type of food that can be either a dessert or a savory dish that is part of the main meal.',
-    image:
-        'https://images.unsplash.com/photo-1552637086-ce3bf3275c4c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  ),
-  const Product(
-    name: 'Pudding Raisin',
-    price: 10,
-    tag: 'New',
-    categories: ['Pudding'],
-    description:
-        'Pudding is a type of food that can be either a dessert or a savory dish that is part of the main meal.',
-    image:
-        'https://images.unsplash.com/photo-1552637086-ce3bf3275c4c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  ),
-  const Product(
-    name: 'Pudding Raisin',
-    price: 10,
-    tag: 'New',
-    categories: ['Pudding'],
-    description:
-        'Pudding is a type of food that can be either a dessert or a savory dish that is part of the main meal.',
-    image:
-        'https://images.unsplash.com/photo-1552637086-ce3bf3275c4c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  ),
-  const Product(
-    name: 'Pudding Raisin',
-    price: 10,
-    tag: 'New',
-    categories: ['Pudding'],
-    description:
-        'Pudding is a type of food that can be either a dessert or a savory dish that is part of the main meal.',
-    image:
-        'https://images.unsplash.com/photo-1552637086-ce3bf3275c4c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  ),
-  const Product(
-    name: 'Pudding Raisin',
-    price: 10,
-    tag: 'New',
-    categories: ['Pudding'],
-    description:
-        'Pudding is a type of food that can be either a dessert or a savory dish that is part of the main meal.',
-    image:
-        'https://images.unsplash.com/photo-1552637086-ce3bf3275c4c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  ),
-  const Product(
-    name: 'Pudding Raisin',
-    price: 10,
-    tag: 'New',
-    categories: ['Pudding'],
-    description:
-        'Pudding is a type of food that can be either a dessert or a savory dish that is part of the main meal.',
-    image:
-        'https://images.unsplash.com/photo-1552637086-ce3bf3275c4c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  ),
-  const Product(
-    name: 'Pudding Raisin',
-    price: 10,
-    tag: 'New',
-    categories: ['Pudding'],
-    description:
-        'Pudding is a type of food that can be either a dessert or a savory dish that is part of the main meal.',
-    image:
-        'https://images.unsplash.com/photo-1552637086-ce3bf3275c4c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  ),
-  const Product(
-    name: 'Pudding Raisin',
-    price: 10,
-    tag: 'New',
-    categories: ['Pudding'],
-    description:
-        'Pudding is a type of food that can be either a dessert or a savory dish that is part of the main meal.',
-    image:
-        'https://images.unsplash.com/photo-1552637086-ce3bf3275c4c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  ),
-];

@@ -132,7 +132,7 @@ final mainTheme = ThemeData(
     titleSmall: AppTextStyles.small.copyWith(color: Colors.white),
     titleMedium: AppTextStyles.medium.copyWith(color: Colors.white),
     titleLarge: AppTextStyles.xlarge.copyWith(color: Colors.white),
-    labelSmall: AppTextStyles.micro.copyWith(color: AppColors.paleSteelBlue),
+    labelSmall: AppTextStyles.small.copyWith(color: AppColors.paleSteelBlue),
     labelMedium: AppTextStyles.medium.copyWith(color: AppColors.paleSteelBlue),
     labelLarge: AppTextStyles.medium.copyWith(color: AppColors.paleSteelBlue),
     displaySmall:

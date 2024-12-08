@@ -62,13 +62,13 @@ class OnBoardingScreen extends StatelessWidget {
                     const SizedBox(height: 32),
                     Text(
                       Strings.onboardingTitle,
-                      style: AppTextStyles.poppins,
+                      style: AppTextStyles.title,
                     ),
                     const SizedBox(height: 8),
                     Text(
                       Strings.onboardingDescription,
                       textAlign: TextAlign.center,
-                      style: AppTextStyles.small,
+                      style: AppTextStyles.medium,
                     ),
                     const SizedBox(height: 32),
                     const SizedBox(height: 8),

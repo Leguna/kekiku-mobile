@@ -1,6 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:kekiku/favorite/favorite_button.dart';
 
 import '../../core/index.dart';
+import '../../product/bloc/product_cubit.dart';
 
 class ItemProduct extends StatelessWidget {
   const ItemProduct({
@@ -14,47 +15,129 @@ class ItemProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          CachedNetworkImage(
-            imageUrl: product.image ?? '',
-            imageBuilder: (context, imageProvider) => Container(
-              width: imageSize,
-              height: imageSize,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                image: DecorationImage(
-                  image: imageProvider,
-                  fit: BoxFit.cover,
-                ),
+    final bool isDiscounted = product.discount != null && product.discount != 0;
+    final bool isLowStock = product.stock != null && (product.stock ?? 0) < 10;
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(8),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () {
+            Navigator.pushNamed(
+              context,
+              Routes.productDetail,
+              arguments: product,
+            );
+          },
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Stack(
+                alignment: Alignment.topRight,
+                fit: StackFit.passthrough,
+                children: [
+                  MyImageLoader(
+                    path: product.image,
+                    width: imageSize,
+                    height: imageSize,
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 8),
+                          if (isLowStock) ...[
+                            _buildImageLabel('${product.stock ?? 0} left',
+                                backgroundColor: Colors.blueGrey),
+                            const SizedBox(height: 4),
+                          ],
+                          if (product.label != null) ...[
+                            _buildImageLabel(product.label!),
+                            const SizedBox(height: 4),
+                          ],
+                          if (product.discount != null &&
+                              product.discount != 0) ...[
+                            _buildImageLabel(
+                                "${product.discount?.toStringAsFixed(0) ?? 0}%"),
+                            const SizedBox(height: 4),
+                          ],
+                        ],
+                      ),
+                      const Expanded(
+                        child: SizedBox(height: 8),
+                      ),
+                      Column(
+                        children: [
+                          FavoriteButton(
+                            initialIsFavorite: product.isFavorite,
+                            onTap: (isFavorite) {
+                              context
+                                  .read<ProductCubit>()
+                                  .toggleFavorite(product);
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
               ),
-            ),
-            fit: BoxFit.cover,
-            placeholder: (context, url) => const Center(
-              child: CircularProgressIndicator(),
-            ),
-            errorWidget: (context, url, error) => const Icon(Icons.error),
+              const SizedBox(height: 8),
+              Text(
+                product.name ?? '',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              if ((product.discount ?? 0) > 0) ...[
+                Text(
+                  '\$${product.discountedPrice.toStringAsFixed(2)}',
+                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+              ],
+              Text(
+                '\$${product.price?.toStringAsFixed(2)}',
+                style: !isDiscounted
+                    ? Theme.of(context).textTheme.labelMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        )
+                    : Theme.of(context).textTheme.labelSmall?.copyWith(
+                          decoration:
+                              product.discount != null && product.discount != 0
+                                  ? TextDecoration.lineThrough
+                                  : TextDecoration.none,
+                        ),
+              ),
+              if (product.rating != null) ...[
+                _buildRating(context),
+              ],
+              if (product.address != null) ...[
+                _buildLocation(context),
+              ],
+            ],
           ),
-          const SizedBox(height: 8),
-          Text(
-            product.name ?? '',
-            style: Theme.of(context).textTheme.titleMedium,
-          ),
-          Text(
-            '\$${product.price}',
-            style: Theme.of(context).textTheme.labelMedium,
-          ),
-          if (product.rating != null) ...[
-            _buildRating(context),
-          ],
-          if (product.address != null) ...[
-            _buildLocation(context),
-          ],
-        ],
+        ),
       ),
+    );
+  }
+
+  Container _buildImageLabel(
+    String text, {
+    Color backgroundColor = Colors.redAccent,
+  }) {
+    return Container(
+      padding: const EdgeInsets.all(4),
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        borderRadius: const BorderRadius.only(
+          topRight: Radius.circular(8),
+          bottomRight: Radius.circular(8),
+        ),
+      ),
+      child: Text(text),
     );
   }
 
@@ -66,10 +149,17 @@ class ItemProduct extends StatelessWidget {
           Icons.star,
           size: 16,
         ),
+        const SizedBox(width: 2),
         Text(
-          "${product.rating?.toStringAsFixed(1)} · ${product.sold} sold",
+          "${product.rating?.toStringAsFixed(1)}",
           style: Theme.of(context).textTheme.labelMedium,
         ),
+        if (product.sold != 0) ...[
+          Text(
+            " · ${product.sold} sold",
+            style: Theme.of(context).textTheme.labelMedium,
+          ),
+        ],
       ],
     );
   }

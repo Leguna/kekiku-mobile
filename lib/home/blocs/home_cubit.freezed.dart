@@ -19,32 +19,38 @@ mixin _$HomeState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function(bool isShowed) imagePopup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function(bool isShowed)? imagePopup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function(bool isShowed)? imagePopup,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_ImagePopup value) imagePopup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_ImagePopup value)? imagePopup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_ImagePopup value)? imagePopup,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -112,6 +118,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function(bool isShowed) imagePopup,
   }) {
     return initial();
   }
@@ -120,6 +127,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function(bool isShowed)? imagePopup,
   }) {
     return initial?.call();
   }
@@ -128,6 +136,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function(bool isShowed)? imagePopup,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -140,6 +149,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_ImagePopup value) imagePopup,
   }) {
     return initial(this);
   }
@@ -148,6 +158,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_ImagePopup value)? imagePopup,
   }) {
     return initial?.call(this);
   }
@@ -156,6 +167,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_ImagePopup value)? imagePopup,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -167,4 +179,145 @@ class _$InitialImpl implements _Initial {
 
 abstract class _Initial implements HomeState {
   const factory _Initial() = _$InitialImpl;
+}
+
+/// @nodoc
+abstract class _$$ImagePopupImplCopyWith<$Res> {
+  factory _$$ImagePopupImplCopyWith(
+          _$ImagePopupImpl value, $Res Function(_$ImagePopupImpl) then) =
+      __$$ImagePopupImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool isShowed});
+}
+
+/// @nodoc
+class __$$ImagePopupImplCopyWithImpl<$Res>
+    extends _$HomeStateCopyWithImpl<$Res, _$ImagePopupImpl>
+    implements _$$ImagePopupImplCopyWith<$Res> {
+  __$$ImagePopupImplCopyWithImpl(
+      _$ImagePopupImpl _value, $Res Function(_$ImagePopupImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of HomeState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isShowed = null,
+  }) {
+    return _then(_$ImagePopupImpl(
+      isShowed: null == isShowed
+          ? _value.isShowed
+          : isShowed // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ImagePopupImpl implements _ImagePopup {
+  const _$ImagePopupImpl({required this.isShowed});
+
+  @override
+  final bool isShowed;
+
+  @override
+  String toString() {
+    return 'HomeState.imagePopup(isShowed: $isShowed)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ImagePopupImpl &&
+            (identical(other.isShowed, isShowed) ||
+                other.isShowed == isShowed));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isShowed);
+
+  /// Create a copy of HomeState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ImagePopupImplCopyWith<_$ImagePopupImpl> get copyWith =>
+      __$$ImagePopupImplCopyWithImpl<_$ImagePopupImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(bool isShowed) imagePopup,
+  }) {
+    return imagePopup(isShowed);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(bool isShowed)? imagePopup,
+  }) {
+    return imagePopup?.call(isShowed);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(bool isShowed)? imagePopup,
+    required TResult orElse(),
+  }) {
+    if (imagePopup != null) {
+      return imagePopup(isShowed);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_ImagePopup value) imagePopup,
+  }) {
+    return imagePopup(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_ImagePopup value)? imagePopup,
+  }) {
+    return imagePopup?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_ImagePopup value)? imagePopup,
+    required TResult orElse(),
+  }) {
+    if (imagePopup != null) {
+      return imagePopup(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ImagePopup implements HomeState {
+  const factory _ImagePopup({required final bool isShowed}) = _$ImagePopupImpl;
+
+  bool get isShowed;
+
+  /// Create a copy of HomeState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ImagePopupImplCopyWith<_$ImagePopupImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

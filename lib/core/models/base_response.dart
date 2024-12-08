@@ -13,10 +13,9 @@ class BaseResponse<T> with _$BaseResponse<T> {
     required List<Error> errors,
   }) = _BaseResponse<T>;
 
-  factory BaseResponse.fromJson(
-      Map<String, dynamic> json,
-      T Function(Object?) fromJsonT,
-      ) => _$BaseResponseFromJson(json, fromJsonT);
+  factory BaseResponse.fromJson(Map<String, dynamic> json,
+      T Function(Object?) fromJsonT,) =>
+      _$BaseResponseFromJson(json, fromJsonT);
 }
 
 @freezed
@@ -29,10 +28,10 @@ class Error with _$Error {
 }
 
 class ResponseUtils {
-  static BaseResponse<T> fromJson<T>(
-      Map<String, dynamic> json, {
-        required T Function(Map<String, dynamic>) fromJsonT,
-      }) {
-    return BaseResponse<T>.fromJson(json, (data) => fromJsonT(data as Map<String, dynamic>));
+  static BaseResponse<T> fromJson<T>(Map<String, dynamic> json, {
+    required T Function(Map<String, dynamic>) fromJsonT,
+  }) {
+    return BaseResponse<T>.fromJson(
+        json, (data) => fromJsonT(data as Map<String, dynamic>));
   }
 }

@@ -28,16 +28,8 @@ class AppTextStyles {
     fontSize: 20.0,
     fontWeight: FontWeight.w400,
     color: Colors.white,
-  );
-
-  static TextStyle textField = GoogleFonts.montserrat(
-    fontSize: 16.0,
-    fontWeight: FontWeight.w400,
-    color: Colors.white,
-  );
-
-  static TextStyle textFieldHint = textField.copyWith(
-    color: Colors.white.withOpacity(0.5),
+    decorationColor: Colors.grey,
+    decorationThickness: 2.0,
   );
 
   static TextStyle titleHome = poppins.copyWith(
@@ -53,7 +45,7 @@ class AppTextStyles {
   );
 
   static var small = poppins.copyWith(
-    fontSize: 10.0,
+    fontSize: 12.0,
     color: Colors.white,
   );
 

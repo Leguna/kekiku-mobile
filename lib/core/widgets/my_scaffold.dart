@@ -54,7 +54,7 @@ class MyScaffold extends StatelessWidget {
                 color: Theme.of(context).primaryColor,
                 child: Align(
                   alignment: Alignment.centerLeft,
-                  child: Text(infoText, style: AppTextStyles.micro),
+                  child: Text(infoText, style: AppTextStyles.small),
                 ),
               ),
             ),

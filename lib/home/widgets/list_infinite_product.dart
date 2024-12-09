@@ -4,17 +4,22 @@ import '../../core/index.dart';
 import 'item_product.dart';
 
 class ListInfiniteProduct extends StatelessWidget {
-  const ListInfiniteProduct(
-      {super.key, this.products = const [], required this.pagingController});
+  const ListInfiniteProduct({
+    super.key,
+    this.products = const [],
+    required this.pagingController,
+    this.showFavorite = true,
+  });
 
   final List<Product> products;
   final PagingController<int, Product> pagingController;
+  final bool showFavorite;
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size.width / 2;
     return Padding(
-      padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+      padding: const EdgeInsets.only(left: 16, right: 16),
       child: PagedGridView(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
@@ -25,6 +30,7 @@ class ListInfiniteProduct extends StatelessWidget {
         pagingController: pagingController,
         builderDelegate: PagedChildBuilderDelegate<Product>(
           itemBuilder: (context, product, index) => ItemProduct(
+            showFavorite: showFavorite,
             product: product,
             imageSize: size,
           ),

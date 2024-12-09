@@ -10,6 +10,12 @@ class ProductLocalSource {
 
   Future<String> getProductFromJson() async {
     final jsonProduct = jsonDecode(await getJson(Assets.jsons.cake));
+
+    final favorite = await getFavorites();
+    for (final item in jsonProduct) {
+      item['isFavorite'] = favorite.contains(item['id']);
+    }
+
     final products = {
       'success': true,
       'statusCode': 200,
@@ -34,7 +40,7 @@ class ProductLocalSource {
     );
   }
 
-  Future<List<String>> getFavorite() async {
+  Future<List<String>> getFavorites() async {
     final box = await localDatabase.getBox(_favoriteKey);
     return box.values.map((e) => e as String).toList();
   }

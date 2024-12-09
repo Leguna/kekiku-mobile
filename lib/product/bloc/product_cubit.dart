@@ -18,7 +18,9 @@ class ProductCubit extends Cubit<ProductState> {
 
   Future<void> refresh() async {
     products = [];
-    getProducts();
+    pagingController.itemList = [];
+    pagingController.refresh();
+    await getProducts();
   }
 
   Future<void> getProducts() async {
@@ -38,6 +40,4 @@ class ProductCubit extends Cubit<ProductState> {
       emit(ProductState.error(e.toString()));
     }
   }
-
-  void toggleFavorite(Product product) {}
 }

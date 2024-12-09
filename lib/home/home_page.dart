@@ -40,7 +40,7 @@ class HomePage extends StatelessWidget {
         },
         onRefresh: () async {
           await homeCubit.refreshHome();
-          await productCubit.getProducts();
+          await productCubit.refresh();
         },
         child: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) {
@@ -66,8 +66,9 @@ class HomePage extends StatelessWidget {
             bloc: productCubit,
             builder: (context, state) {
               return ListInfiniteProduct(
-                  products: productCubit.products,
-                  pagingController: productCubit.pagingController);
+                products: productCubit.products,
+                pagingController: productCubit.pagingController,
+              );
             },
           ),
         ),

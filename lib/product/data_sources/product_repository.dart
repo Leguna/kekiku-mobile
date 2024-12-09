@@ -38,8 +38,8 @@ class ProductRepository {
     await localDataSource.addFavorite(product.id, jsonEncode(product.toJson()));
   }
 
-  Future<List<Product>> getFavorite() async {
-    final favoriteIds = await localDataSource.getFavorite();
+  Future<List<Product>> getFavorites() async {
+    final favoriteIds = await localDataSource.getFavorites();
     final favoriteProducts = <Product>[];
     for (final id in favoriteIds) {
       final product = Product.fromJsonString(id);
@@ -48,8 +48,8 @@ class ProductRepository {
     return favoriteProducts;
   }
 
-  Future<bool> isFavorite(Product product) async {
-    return await localDataSource.isFavorite(product.id);
+  Future<bool> isFavorite(String productId) async {
+    return await localDataSource.isFavorite(productId);
   }
 
   Future<void> removeFavorite(Product product) async {

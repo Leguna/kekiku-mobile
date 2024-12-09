@@ -3,6 +3,7 @@ import 'package:kekiku/home/blocs/home_cubit.dart';
 import 'package:kekiku/home/home_page.dart';
 
 import '../core/widgets/bottom_nav_bar/bloc/bottom_nav_bar_cubit.dart';
+import '../favorite/favorite_page.dart';
 import '../hamburger_menu/menu_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -32,7 +33,7 @@ class HomeScreen extends StatelessWidget {
                           Center(child: Text('Track Page')),
                           Center(child: Text('Cart Page')),
                           HomePage(),
-                          Center(child: Text('Favorite Page')),
+                          FavoritePage(),
                           MenuScreen(showLeading: false),
                         ],
                       ),

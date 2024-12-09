@@ -22,13 +22,9 @@ PagingResponse<T> _$PagingResponseFromJson<T>(
 /// @nodoc
 mixin _$PagingResponse<T> {
   int get currentPage => throw _privateConstructorUsedError;
-
   int get totalPages => throw _privateConstructorUsedError;
-
   int get pageSize => throw _privateConstructorUsedError;
-
   int get totalItems => throw _privateConstructorUsedError;
-
   List<T> get items => throw _privateConstructorUsedError;
 
   /// Serializes this PagingResponse to a JSON map.
@@ -47,7 +43,6 @@ abstract class $PagingResponseCopyWith<T, $Res> {
   factory $PagingResponseCopyWith(
           PagingResponse<T> value, $Res Function(PagingResponse<T>) then) =
       _$PagingResponseCopyWithImpl<T, $Res, PagingResponse<T>>;
-
   @useResult
   $Res call(
       {int currentPage,
@@ -64,7 +59,6 @@ class _$PagingResponseCopyWithImpl<T, $Res, $Val extends PagingResponse<T>>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -110,7 +104,6 @@ abstract class _$$PagingResponseImplCopyWith<T, $Res>
   factory _$$PagingResponseImplCopyWith(_$PagingResponseImpl<T> value,
           $Res Function(_$PagingResponseImpl<T>) then) =
       __$$PagingResponseImplCopyWithImpl<T, $Res>;
-
   @override
   @useResult
   $Res call(
@@ -190,7 +183,6 @@ class _$PagingResponseImpl<T> extends _PagingResponse<T> {
   @override
   final int totalItems;
   final List<T> _items;
-
   @override
   List<T> get items {
     if (_items is EqualUnmodifiableListView) return _items;
@@ -246,7 +238,6 @@ abstract class _PagingResponse<T> extends PagingResponse<T> {
       required final int pageSize,
       required final int totalItems,
       required final List<T> items}) = _$PagingResponseImpl<T>;
-
   const _PagingResponse._() : super._();
 
   factory _PagingResponse.fromJson(
@@ -255,16 +246,12 @@ abstract class _PagingResponse<T> extends PagingResponse<T> {
 
   @override
   int get currentPage;
-
   @override
   int get totalPages;
-
   @override
   int get pageSize;
-
   @override
   int get totalItems;
-
   @override
   List<T> get items;
 

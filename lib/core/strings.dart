@@ -253,4 +253,6 @@ final class Strings {
   static const String kueTitle2 = 'Kue Kekiku 2';
 
   static const String noItemsFound = 'No items found';
+
+  static const String favorite = 'Favorite Products';
 }

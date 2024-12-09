@@ -25,7 +25,6 @@ mixin _$ProductState {
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
@@ -45,7 +44,6 @@ mixin _$ProductState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
@@ -55,7 +53,6 @@ mixin _$ProductState {
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
@@ -392,7 +389,7 @@ class _$SuccessImpl implements _Success {
   @override
   List<Product> get products {
     if (_products is EqualUnmodifiableListView) return _products;
-// ignore: implicit_dynamic_type
+    // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_products);
   }
 

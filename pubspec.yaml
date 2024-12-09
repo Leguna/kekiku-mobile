@@ -96,6 +96,7 @@ flutter:
     - assets/lotties/
     - assets/images/
     - assets/svgs/
+    - assets/gifs/
 
 flutter_gen:
   integrations:

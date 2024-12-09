@@ -1,17 +1,18 @@
 import 'package:kekiku/favorite/favorite_button.dart';
 
 import '../../core/index.dart';
-import '../../product/bloc/product_cubit.dart';
 
 class ItemProduct extends StatelessWidget {
   const ItemProduct({
     super.key,
     required this.product,
     this.imageSize = 120,
+    this.showFavorite = true,
   });
 
   final Product product;
   final double imageSize;
+  final bool showFavorite;
 
   @override
   Widget build(BuildContext context) {
@@ -69,18 +70,13 @@ class ItemProduct extends StatelessWidget {
                       const Expanded(
                         child: SizedBox(height: 8),
                       ),
-                      Column(
-                        children: [
-                          FavoriteButton(
-                            initialIsFavorite: product.isFavorite,
-                            onTap: (isFavorite) {
-                              context
-                                  .read<ProductCubit>()
-                                  .toggleFavorite(product);
-                            },
-                          ),
-                        ],
-                      ),
+                      if (showFavorite) ...[
+                        Column(
+                          children: [
+                            FavoriteButton(product: product),
+                          ],
+                        ),
+                      ],
                     ],
                   ),
                 ],

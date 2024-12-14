@@ -12,38 +12,47 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 120,
-      alignment: Alignment.center,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          MyImageLoader(
-            path: product.image,
-            width: size,
-            height: size,
-            radius: 8,
-            onImageLoaded: () {},
-          ),
-          const SizedBox(height: 4),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Text(
-                product.name ?? '',
-                overflow: TextOverflow.ellipsis,
-                style: Theme.of(context).textTheme.bodyMedium,
-                maxLines: 2,
-              ),
-              Text(
-                '\$ ${product.price?.toStringAsFixed(2)}',
-                overflow: TextOverflow.ellipsis,
-                style: Theme.of(context).textTheme.labelMedium,
-              ),
-            ],
-          ),
-        ],
+    return InkWell(
+      onTap: () {
+        Navigator.pushNamed(
+          context,
+          Routes.productDetail,
+          arguments: product.toJson(),
+        );
+      },
+      child: Container(
+        width: 120,
+        alignment: Alignment.center,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            MyImageLoader(
+              path: product.image,
+              width: size,
+              height: size,
+              radius: 8,
+              onImageLoaded: () {},
+            ),
+            const SizedBox(height: 4),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  product.name ?? '',
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                  maxLines: 2,
+                ),
+                Text(
+                  '\$ ${product.price?.toStringAsFixed(2)}',
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.labelMedium,
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

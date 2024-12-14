@@ -1,4 +1,5 @@
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../core/index.dart';
 import 'item_product.dart';
@@ -36,8 +37,24 @@ class ListInfiniteProduct extends StatelessWidget {
           ),
           newPageProgressIndicatorBuilder: (_) =>
               const Center(child: CircularProgressIndicator()),
-          noItemsFoundIndicatorBuilder: (_) =>
-              const Center(child: Text(Strings.noItemsFound)),
+          noItemsFoundIndicatorBuilder: (_) => Center(
+              child: SizedBox(
+            height: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Lottie.asset(
+                  Assets.lotties.notfound,
+                  reverse: true,
+                ),
+                Text(
+                  Strings.noItemsFound,
+                  style: Theme.of(context).textTheme.labelMedium,
+                ),
+              ],
+            ),
+          )),
         ),
       ),
     );

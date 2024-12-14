@@ -6,6 +6,11 @@ final class Config {
 
   static const reminderDelayInDays = 7;
 
+  static const String appUrl =
+      'https://play.google.com/store/apps/details?id=com.arksana.site.kekiku';
+
+  static var appName = dotenv.env['APP_NAME'] ?? 'Kekiku';
+
   static String get baseUrl {
     final flavor = Flavors.getCurrentFlavor;
     switch (flavor) {

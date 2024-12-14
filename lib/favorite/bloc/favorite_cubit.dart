@@ -28,6 +28,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     } else {
       await _productRepository.addFavorite(product);
     }
+    emit(FavoriteState.favoriteChanged(product.id, !isFavorite));
   }
 
   Future<bool> isFavorite(String id) async {

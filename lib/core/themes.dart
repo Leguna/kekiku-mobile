@@ -19,7 +19,8 @@ final mainTheme = ThemeData(
       fontWeight: FontWeight.w600,
     ),
     backgroundColor: AppColors.midnightBlue,
-    foregroundColor: Colors.white,
+    shadowColor: Colors.transparent,
+    surfaceTintColor: AppColors.midnightBlue,
   ),
   textButtonTheme: TextButtonThemeData(
     style: ButtonStyle(
@@ -29,6 +30,18 @@ final mainTheme = ThemeData(
           color: AppColors.primaryColorLight,
         ),
       ),
+    ),
+  ),
+  tabBarTheme: const TabBarTheme(
+    labelColor: AppColors.primaryColorLight,
+    unselectedLabelColor: Colors.grey,
+    labelStyle: TextStyle(
+      fontSize: 16.0,
+      fontWeight: FontWeight.w600,
+    ),
+    unselectedLabelStyle: TextStyle(
+      fontSize: 16.0,
+      fontWeight: FontWeight.w600,
     ),
   ),
   bottomSheetTheme: const BottomSheetThemeData(

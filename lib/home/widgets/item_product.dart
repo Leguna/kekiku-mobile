@@ -27,93 +27,95 @@ class ItemProduct extends StatelessWidget {
             Navigator.pushNamed(
               context,
               Routes.productDetail,
-              arguments: product,
+              arguments: product.toJson(),
             );
           },
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Stack(
-                alignment: Alignment.topRight,
-                fit: StackFit.passthrough,
-                children: [
-                  MyImageLoader(
-                    path: product.image,
-                    width: imageSize,
-                    height: imageSize,
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(height: 8),
-                          if (isLowStock) ...[
-                            _buildImageLabel('${product.stock ?? 0} left',
-                                backgroundColor: Colors.blueGrey),
-                            const SizedBox(height: 4),
-                          ],
-                          if (product.label != null) ...[
-                            _buildImageLabel(product.label!),
-                            const SizedBox(height: 4),
-                          ],
-                          if (product.discount != null &&
-                              product.discount != 0) ...[
-                            _buildImageLabel(
-                                "${product.discount?.toStringAsFixed(0) ?? 0}%"),
-                            const SizedBox(height: 4),
-                          ],
-                        ],
-                      ),
-                      const Expanded(
-                        child: SizedBox(height: 8),
-                      ),
-                      if (showFavorite) ...[
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Stack(
+                  alignment: Alignment.topRight,
+                  fit: StackFit.passthrough,
+                  children: [
+                    MyImageLoader(
+                      path: product.image,
+                      width: imageSize,
+                      height: imageSize,
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
                         Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            FavoriteButton(product: product),
+                            const SizedBox(height: 8),
+                            if (isLowStock) ...[
+                              _buildImageLabel('${product.stock ?? 0} left',
+                                  backgroundColor: Colors.blueGrey),
+                              const SizedBox(height: 4),
+                            ],
+                            if (product.label != null) ...[
+                              _buildImageLabel(product.label!),
+                              const SizedBox(height: 4),
+                            ],
+                            if (product.discount != null &&
+                                product.discount != 0) ...[
+                              _buildImageLabel(
+                                  "${product.discount?.toStringAsFixed(0) ?? 0}%"),
+                              const SizedBox(height: 4),
+                            ],
                           ],
                         ),
+                        const Expanded(
+                          child: SizedBox(height: 8),
+                        ),
+                        if (showFavorite) ...[
+                          Column(
+                            children: [
+                              FavoriteButton(product: product),
+                            ],
+                          ),
+                        ],
                       ],
-                    ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  product.name ?? '',
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                if ((product.discount ?? 0) > 0) ...[
+                  Text(
+                    '\$${product.discountedPrice.toStringAsFixed(2)}',
+                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
                 ],
-              ),
-              const SizedBox(height: 8),
-              Text(
-                product.name ?? '',
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-              if ((product.discount ?? 0) > 0) ...[
                 Text(
-                  '\$${product.discountedPrice.toStringAsFixed(2)}',
-                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
+                  '\$${product.price?.toStringAsFixed(2)}',
+                  style: !isDiscounted
+                      ? Theme.of(context).textTheme.labelMedium?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          )
+                      : Theme.of(context).textTheme.labelSmall?.copyWith(
+                            decoration: product.discount != null &&
+                                    product.discount != 0
+                                ? TextDecoration.lineThrough
+                                : TextDecoration.none,
+                          ),
                 ),
+                if (product.rating != null) ...[
+                  _buildRating(context),
+                ],
+                if (product.address != null) ...[
+                  _buildLocation(context),
+                ],
               ],
-              Text(
-                '\$${product.price?.toStringAsFixed(2)}',
-                style: !isDiscounted
-                    ? Theme.of(context).textTheme.labelMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        )
-                    : Theme.of(context).textTheme.labelSmall?.copyWith(
-                          decoration:
-                              product.discount != null && product.discount != 0
-                                  ? TextDecoration.lineThrough
-                                  : TextDecoration.none,
-                        ),
-              ),
-              if (product.rating != null) ...[
-                _buildRating(context),
-              ],
-              if (product.address != null) ...[
-                _buildLocation(context),
-              ],
-            ],
+            ),
           ),
         ),
       ),

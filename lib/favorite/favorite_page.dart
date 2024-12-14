@@ -20,8 +20,8 @@ class FavoritePage extends StatelessWidget {
       child: NestedScrollView(
         headerSliverBuilder: (context, innerBoxIsScrolled) {
           return [
-            SliverAppBar(
-              title: const Text(Strings.favorite),
+            const SliverAppBar(
+              title: Text(Strings.favorite),
               floating: true,
               snap: true,
               pinned: true,

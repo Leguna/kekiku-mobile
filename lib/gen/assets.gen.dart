@@ -22,6 +22,17 @@ class $AssetsFontsGen {
   $AssetsFontsPoppinsGen get poppins => const $AssetsFontsPoppinsGen();
 }
 
+class $AssetsGifsGen {
+  const $AssetsGifsGen();
+
+  /// File path: assets/gifs/icon_favorite.gif
+  AssetGenImage get iconFavorite =>
+      const AssetGenImage('assets/gifs/icon_favorite.gif');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [iconFavorite];
+}
+
 class $AssetsIllustrationsGen {
   const $AssetsIllustrationsGen();
 
@@ -118,6 +129,9 @@ class $AssetsLottiesGen {
   /// File path: assets/lotties/customer-review.json
   String get customerReview => 'assets/lotties/customer-review.json';
 
+  /// File path: assets/lotties/maintenance.json
+  String get maintenance => 'assets/lotties/maintenance.json';
+
   /// File path: assets/lotties/notfound.json
   String get notfound => 'assets/lotties/notfound.json';
 
@@ -125,7 +139,8 @@ class $AssetsLottiesGen {
   String get qrCode => 'assets/lotties/qr-code.json';
 
   /// List of all assets
-  List<String> get values => [cake, customerReview, notfound, qrCode];
+  List<String> get values =>
+      [cake, customerReview, maintenance, notfound, qrCode];
 }
 
 class $AssetsSvgsGen {
@@ -416,6 +431,7 @@ class Assets {
   static const AssetGenImage brandName = AssetGenImage('assets/brand-name.png');
   static const AssetGenImage favicon = AssetGenImage('assets/favicon.png');
   static const $AssetsFontsGen fonts = $AssetsFontsGen();
+  static const $AssetsGifsGen gifs = $AssetsGifsGen();
   static const SvgGenImage googleLogo = SvgGenImage('assets/google_logo.svg');
   static const $AssetsIllustrationsGen illustrations =
       $AssetsIllustrationsGen();

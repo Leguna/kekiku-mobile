@@ -1,4 +1,3 @@
-
 import '../auth/views/profile_summary.dart';
 import '../core/index.dart';
 
@@ -26,9 +25,6 @@ class MenuScreen extends StatelessWidget {
           children: [
             ProfileSummary(
               onTap: () {
-                if (showLeading) {
-                  Navigator.pushReplacementNamed(context, Routes.profile);
-                }
                 Navigator.pushNamed(context, Routes.profile);
               },
             ),

@@ -255,4 +255,6 @@ final class Strings {
   static const String noItemsFound = 'No items found';
 
   static const String favorite = 'Favorite Products';
+
+  static const String description = 'Description';
 }

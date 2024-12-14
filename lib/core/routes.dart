@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kekiku/product/product_detail_screen.dart';
 
 import '../auth/create_profile_screen.dart';
 import '../auth/login_screen.dart';
@@ -31,11 +32,10 @@ class Routes {
   static const String editProfile = '/edit-profile';
   static const String profileDetail = '/profile-detail';
   static const String profile = '/profile';
-
   static const String aboutKekiku = '/about-kekiku';
   static const String notFound = '/not-found';
-
   static const String productDetail = '/product-detail';
+  static const String search = '/search';
 
   static WidgetBuilder getRoute(String route) {
     return getRoutes()[route] ?? (context) => const NotFoundPage();
@@ -62,6 +62,8 @@ class Routes {
       profile: (context) => const ProfileDetailScreen(),
       codeScanner: (context) => const ScannerScreen(),
       editProfile: (context) => const EditProfileScreen(),
+      productDetail: (context) =>
+          ProductDetailScreen(args: getRouteArgs(context)),
       notFound: (context) => const NotFoundPage(),
     };
   }

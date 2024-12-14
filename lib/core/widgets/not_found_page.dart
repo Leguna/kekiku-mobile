@@ -18,7 +18,7 @@ class NotFoundPage extends StatelessWidget {
               const SizedBox(height: 32),
               Lottie.asset(
                 reverse: true,
-                Assets.lotties.notfound,
+                Assets.lotties.maintenance,
                 height: 400,
               ),
               Text(Strings.oops, style: Theme.of(context).textTheme.titleLarge),

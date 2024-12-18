@@ -32,14 +32,15 @@ final mainTheme = ThemeData(
       ),
     ),
   ),
-  tabBarTheme: const TabBarTheme(
+  tabBarTheme: TabBarTheme(
+    overlayColor: WidgetStateProperty.all(AppColors.primaryColorLight),
     labelColor: AppColors.primaryColorLight,
     unselectedLabelColor: Colors.grey,
-    labelStyle: TextStyle(
+    labelStyle: const TextStyle(
       fontSize: 16.0,
       fontWeight: FontWeight.w600,
     ),
-    unselectedLabelStyle: TextStyle(
+    unselectedLabelStyle: const TextStyle(
       fontSize: 16.0,
       fontWeight: FontWeight.w600,
     ),

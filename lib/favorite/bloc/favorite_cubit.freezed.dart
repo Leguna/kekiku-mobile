@@ -645,27 +645,27 @@ class _$FavoriteChangedImpl<T> implements _FavoriteChanged<T> {
   }
 
   @override
-@optionalTypeArgs
-TResult maybeMap<TResult extends Object?>({
-TResult Function(_Initial<T> value)? initial,
-TResult Function(_Loading<T> value)? loading,
-TResult Function(_Loaded<T> value)? loaded,
-TResult Function(_FavoriteChanged<T> value)? favoriteChanged,
-TResult Function(_Error<T> value)? error,
-required TResult orElse(),
-}) {
-if (favoriteChanged != null) {
-return favoriteChanged(this);
-}
-return orElse();
-}
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial<T> value)? initial,
+    TResult Function(_Loading<T> value)? loading,
+    TResult Function(_Loaded<T> value)? loaded,
+    TResult Function(_FavoriteChanged<T> value)? favoriteChanged,
+    TResult Function(_Error<T> value)? error,
+    required TResult orElse(),
+  }) {
+    if (favoriteChanged != null) {
+      return favoriteChanged(this);
+    }
+    return orElse();
+  }
 }
 
 abstract class _FavoriteChanged<T> implements FavoriteState<T> {
-const factory _FavoriteChanged(final String id, final bool isFavorite) =
-_$FavoriteChangedImpl<T>;
+  const factory _FavoriteChanged(final String id, final bool isFavorite) =
+      _$FavoriteChangedImpl<T>;
 
-String get id;
+  String get id;
 bool get isFavorite;
 
   /// Create a copy of FavoriteState

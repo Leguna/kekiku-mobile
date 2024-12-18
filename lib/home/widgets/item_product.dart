@@ -16,8 +16,8 @@ class ItemProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isDiscounted = product.discount != null && product.discount != 0;
-    final bool isLowStock = product.stock != null && (product.stock ?? 0) < 10;
+    final bool isDiscounted = product.discount != 0;
+    final bool isLowStock = (product.stock) < 10;
     return ClipRRect(
       borderRadius: BorderRadius.circular(8),
       child: Material(
@@ -44,6 +44,15 @@ class ItemProduct extends StatelessWidget {
                       width: imageSize,
                       height: imageSize,
                     ),
+                    if (product.stock == 0)
+                      Container(
+                        width: imageSize,
+                        height: imageSize,
+                        color: Colors.black.withOpacity(0.5),
+                        child: const Center(
+                          child: SizedBox(),
+                        ),
+                      ),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -51,8 +60,15 @@ class ItemProduct extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const SizedBox(height: 8),
-                            if (isLowStock) ...[
-                              _buildImageLabel('${product.stock ?? 0} left',
+                            if (product.stock == 0) ...[
+                              _buildImageLabel(
+                                Strings.outOfStock,
+                                backgroundColor: Colors.grey,
+                              ),
+                              const SizedBox(height: 4),
+                            ],
+                            if (isLowStock && product.stock > 0) ...[
+                              _buildImageLabel('${product.stock} left',
                                   backgroundColor: Colors.blueGrey),
                               const SizedBox(height: 4),
                             ],
@@ -60,10 +76,9 @@ class ItemProduct extends StatelessWidget {
                               _buildImageLabel(product.label!),
                               const SizedBox(height: 4),
                             ],
-                            if (product.discount != null &&
-                                product.discount != 0) ...[
+                            if (product.discount != 0) ...[
                               _buildImageLabel(
-                                  "${product.discount?.toStringAsFixed(0) ?? 0}%"),
+                                  "${product.discount.toStringAsFixed(0)}%"),
                               const SizedBox(height: 4),
                             ],
                           ],
@@ -87,7 +102,7 @@ class ItemProduct extends StatelessWidget {
                   product.name ?? '',
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
-                if ((product.discount ?? 0) > 0) ...[
+                if ((product.discount) > 0) ...[
                   Text(
                     '\$${product.discountedPrice.toStringAsFixed(2)}',
                     style: Theme.of(context).textTheme.labelMedium?.copyWith(
@@ -102,8 +117,7 @@ class ItemProduct extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           )
                       : Theme.of(context).textTheme.labelSmall?.copyWith(
-                            decoration: product.discount != null &&
-                                    product.discount != 0
+                            decoration: product.discount != 0
                                 ? TextDecoration.lineThrough
                                 : TextDecoration.none,
                           ),

@@ -7,12 +7,12 @@ part 'user.g.dart';
 class User with _$User {
   const factory User({
     required String displayName,
-    @Default('local') String authMethod,
     required String email,
+    @Default('') String id,
+    @Default('local') String authMethod,
     @Default('') String phone,
     @Default('user') String role,
     @Default('') String address,
-    @Default('') String id,
     @Default('') String photoUrl,
     @Default('male') String gender,
     @Default('') String birthday,

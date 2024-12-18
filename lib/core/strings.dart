@@ -257,4 +257,6 @@ final class Strings {
   static const String favorite = 'Favorite Products';
 
   static const String description = 'Description';
+
+  static const String outOfStock = 'Out of stock';
 }

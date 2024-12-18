@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:kekiku/core/configs.dart';
 import 'package:talker_dio_logger/talker_dio_logger_interceptor.dart';
 import 'package:talker_dio_logger/talker_dio_logger_settings.dart';
 
@@ -202,8 +201,7 @@ class BaseApiClient {
   Future<dynamic> delete(String endpoint,
       {Map<String, dynamic>? queryParams}) async {
     try {
-      final response =
-          await dio.delete(endpoint, queryParameters: queryParams);
+      final response = await dio.delete(endpoint, queryParameters: queryParams);
       return _handleResponse(response);
     } on DioException catch (e) {
       throw ApiErrorHandler.getErrorMessage(e);

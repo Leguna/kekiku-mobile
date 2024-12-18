@@ -1,7 +1,6 @@
 import 'package:workmanager/workmanager.dart';
 
 import '../../app_setup.dart';
-import '../configs.dart';
 import '../index.dart';
 import 'notification_service.dart';
 
@@ -76,7 +75,8 @@ class ScheduleNotification {
   ScheduleNotification(this.workManager);
 
   init() async {
-    final isShow = await getIt<LocalDatabase>().getBool(scheduleNotificationKey);
+    final isShow =
+        await getIt<LocalDatabase>().getBool(scheduleNotificationKey);
     await setWeeklyNotification(workManager, isEnable: isShow ?? true);
   }
 }

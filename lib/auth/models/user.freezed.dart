@@ -21,12 +21,14 @@ User _$UserFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$User {
   String get displayName => throw _privateConstructorUsedError;
-  String get authMethod => throw _privateConstructorUsedError;
+
   String get email => throw _privateConstructorUsedError;
+
+  String get id => throw _privateConstructorUsedError;
+  String get authMethod => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
   String get role => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
-  String get id => throw _privateConstructorUsedError;
   String get photoUrl => throw _privateConstructorUsedError;
   String get gender => throw _privateConstructorUsedError;
   String get birthday => throw _privateConstructorUsedError;
@@ -49,12 +51,12 @@ abstract class $UserCopyWith<$Res> {
   @useResult
   $Res call(
       {String displayName,
-      String authMethod,
       String email,
+      String id,
+      String authMethod,
       String phone,
       String role,
       String address,
-      String id,
       String photoUrl,
       String gender,
       String birthday,
@@ -78,12 +80,12 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
   @override
   $Res call({
     Object? displayName = null,
-    Object? authMethod = null,
     Object? email = null,
+    Object? id = null,
+    Object? authMethod = null,
     Object? phone = null,
     Object? role = null,
     Object? address = null,
-    Object? id = null,
     Object? photoUrl = null,
     Object? gender = null,
     Object? birthday = null,
@@ -95,13 +97,17 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.displayName
           : displayName // ignore: cast_nullable_to_non_nullable
               as String,
-      authMethod: null == authMethod
-          ? _value.authMethod
-          : authMethod // ignore: cast_nullable_to_non_nullable
-              as String,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      authMethod: null == authMethod
+          ? _value.authMethod
+          : authMethod // ignore: cast_nullable_to_non_nullable
               as String,
       phone: null == phone
           ? _value.phone
@@ -114,10 +120,6 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
       address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
-              as String,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
               as String,
       photoUrl: null == photoUrl
           ? _value.photoUrl
@@ -152,12 +154,12 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
   @useResult
   $Res call(
       {String displayName,
-      String authMethod,
       String email,
+      String id,
+      String authMethod,
       String phone,
       String role,
       String address,
-      String id,
       String photoUrl,
       String gender,
       String birthday,
@@ -178,12 +180,12 @@ class __$$UserImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? displayName = null,
-    Object? authMethod = null,
     Object? email = null,
+    Object? id = null,
+    Object? authMethod = null,
     Object? phone = null,
     Object? role = null,
     Object? address = null,
-    Object? id = null,
     Object? photoUrl = null,
     Object? gender = null,
     Object? birthday = null,
@@ -195,13 +197,17 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.displayName
           : displayName // ignore: cast_nullable_to_non_nullable
               as String,
-      authMethod: null == authMethod
-          ? _value.authMethod
-          : authMethod // ignore: cast_nullable_to_non_nullable
-              as String,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      authMethod: null == authMethod
+          ? _value.authMethod
+          : authMethod // ignore: cast_nullable_to_non_nullable
               as String,
       phone: null == phone
           ? _value.phone
@@ -214,10 +220,6 @@ class __$$UserImplCopyWithImpl<$Res>
       address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
-              as String,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
               as String,
       photoUrl: null == photoUrl
           ? _value.photoUrl
@@ -245,12 +247,12 @@ class __$$UserImplCopyWithImpl<$Res>
 class _$UserImpl implements _User {
   const _$UserImpl(
       {required this.displayName,
-      this.authMethod = 'local',
       required this.email,
+      this.id = '',
+      this.authMethod = 'local',
       this.phone = '',
       this.role = 'user',
       this.address = '',
-      this.id = '',
       this.photoUrl = '',
       this.gender = 'male',
       this.birthday = '',
@@ -263,10 +265,13 @@ class _$UserImpl implements _User {
   @override
   final String displayName;
   @override
+  final String email;
+  @override
+  @JsonKey()
+  final String id;
+  @override
   @JsonKey()
   final String authMethod;
-  @override
-  final String email;
   @override
   @JsonKey()
   final String phone;
@@ -276,9 +281,6 @@ class _$UserImpl implements _User {
   @override
   @JsonKey()
   final String address;
-  @override
-  @JsonKey()
-  final String id;
   @override
   @JsonKey()
   final String photoUrl;
@@ -297,7 +299,7 @@ class _$UserImpl implements _User {
 
   @override
   String toString() {
-    return 'User(displayName: $displayName, authMethod: $authMethod, email: $email, phone: $phone, role: $role, address: $address, id: $id, photoUrl: $photoUrl, gender: $gender, birthday: $birthday, bio: $bio, username: $username)';
+    return 'User(displayName: $displayName, email: $email, id: $id, authMethod: $authMethod, phone: $phone, role: $role, address: $address, photoUrl: $photoUrl, gender: $gender, birthday: $birthday, bio: $bio, username: $username)';
   }
 
   @override
@@ -307,13 +309,13 @@ class _$UserImpl implements _User {
             other is _$UserImpl &&
             (identical(other.displayName, displayName) ||
                 other.displayName == displayName) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.authMethod, authMethod) ||
                 other.authMethod == authMethod) &&
-            (identical(other.email, email) || other.email == email) &&
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.role, role) || other.role == role) &&
             (identical(other.address, address) || other.address == address) &&
-            (identical(other.id, id) || other.id == id) &&
             (identical(other.photoUrl, photoUrl) ||
                 other.photoUrl == photoUrl) &&
             (identical(other.gender, gender) || other.gender == gender) &&
@@ -328,12 +330,12 @@ class _$UserImpl implements _User {
   int get hashCode => Object.hash(
       runtimeType,
       displayName,
-      authMethod,
       email,
+      id,
+      authMethod,
       phone,
       role,
       address,
-      id,
       photoUrl,
       gender,
       birthday,
@@ -359,12 +361,12 @@ class _$UserImpl implements _User {
 abstract class _User implements User {
   const factory _User(
       {required final String displayName,
-      final String authMethod,
       required final String email,
+      final String id,
+      final String authMethod,
       final String phone,
       final String role,
       final String address,
-      final String id,
       final String photoUrl,
       final String gender,
       final String birthday,
@@ -376,17 +378,18 @@ abstract class _User implements User {
   @override
   String get displayName;
   @override
-  String get authMethod;
-  @override
   String get email;
+  @override
+  String get id;
+
+  @override
+  String get authMethod;
   @override
   String get phone;
   @override
   String get role;
   @override
   String get address;
-  @override
-  String get id;
   @override
   String get photoUrl;
   @override

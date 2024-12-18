@@ -10,36 +10,70 @@ _$ProductImpl _$$ProductImplFromJson(Map<String, dynamic> json) =>
     _$ProductImpl(
       id: json['id'] as String? ?? '',
       name: json['name'] as String?,
-      price: (json['price'] as num?)?.toInt(),
-      categories: (json['categories'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
-      tag: json['tag'] as String?,
+      label: json['label'] as String?,
+      price: (json['price'] as num?)?.toDouble(),
       description: json['description'] as String?,
-      image: json['image'] as String?,
-      rating: (json['rating'] as num?)?.toDouble() ?? 0,
+      tags:
+          (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+              const [],
+      ingredients: (json['ingredients'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
       discount: (json['discount'] as num?)?.toDouble() ?? 0,
+      rating: (json['rating'] as num?)?.toDouble() ?? 0,
       stock: (json['stock'] as num?)?.toInt() ?? 0,
       sold: (json['sold'] as num?)?.toInt() ?? 0,
-      label: json['label'] as String?,
-      address: json['address'] as String?,
       isFavorite: json['isFavorite'] as bool? ?? false,
+      video: json['video'] as String?,
+      image: json['image'] as String?,
+      address: json['address'] as String?,
+      categories: (json['categories'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
+      variants: json['variants'] == null
+          ? const []
+          : _variantListFromJson(json['variants'] as List?),
+      tag: json['tag'] as String?,
     );
 
 Map<String, dynamic> _$$ProductImplToJson(_$ProductImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
+      'label': instance.label,
       'price': instance.price,
-      'categories': instance.categories,
-      'tag': instance.tag,
       'description': instance.description,
-      'image': instance.image,
-      'rating': instance.rating,
+      'tags': instance.tags,
+      'ingredients': instance.ingredients,
       'discount': instance.discount,
+      'rating': instance.rating,
       'stock': instance.stock,
       'sold': instance.sold,
-      'label': instance.label,
-      'address': instance.address,
       'isFavorite': instance.isFavorite,
+      'video': instance.video,
+      'image': instance.image,
+      'address': instance.address,
+      'categories': instance.categories,
+      'variants': _variantListToJson(instance.variants),
+      'tag': instance.tag,
+    };
+
+_$VariantImpl _$$VariantImplFromJson(Map<String, dynamic> json) =>
+    _$VariantImpl(
+      id: json['id'] as String? ?? '',
+      name: json['name'] as String?,
+      price: (json['price'] as num?)?.toDouble(),
+      stock: (json['stock'] as num?)?.toInt(),
+      image: json['image'] as String?,
+    );
+
+Map<String, dynamic> _$$VariantImplToJson(_$VariantImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'price': instance.price,
+      'stock': instance.stock,
+      'image': instance.image,
     };

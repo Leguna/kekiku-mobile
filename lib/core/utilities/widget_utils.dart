@@ -151,3 +151,27 @@ showMyDialogOption(
     },
   );
 }
+
+getWidgetSize(GlobalKey key) {
+  final RenderBox renderBox =
+      key.currentContext!.findRenderObject() as RenderBox;
+  return renderBox.size;
+}
+
+getWidgetPosition(GlobalKey key) {
+  final RenderBox renderBox =
+      key.currentContext!.findRenderObject() as RenderBox;
+  return renderBox.localToGlobal(Offset.zero);
+}
+
+scrollToKey(GlobalKey key, {int scrollSpeed = 200, double alignment = 0.1}) {
+  final context = key.currentContext;
+  if (context != null) {
+    Scrollable.ensureVisible(
+      context,
+      alignment: alignment,
+      duration: Duration(milliseconds: scrollSpeed),
+      curve: Curves.easeInOut,
+    );
+  }
+}

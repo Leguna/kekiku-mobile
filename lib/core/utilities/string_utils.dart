@@ -21,6 +21,14 @@ String getFormattedDateCompact(DateTime? dateTime) {
   return formatter.format(dateTime);
 }
 
+String formatDuration(Duration duration) {
+  final int minutes = duration.inMinutes;
+  final int seconds = duration.inSeconds % 60;
+  final String minutesStr = minutes < 10 ? '0$minutes' : '$minutes';
+  final String secondsStr = seconds < 10 ? '0$seconds' : '$seconds';
+  return '$minutesStr:$secondsStr';
+}
+
 DateTime getDateTime(String date) {
   final List<String> dateList = date.split(' ');
   final int day = int.parse(dateList[0]);
@@ -180,7 +188,6 @@ String getFormattedDuration(int duration) {
   return '$minutes minutes $seconds seconds';
 }
 
-
 String getFormattedDateTime(DateTime dateTime) {
   final DateTime now =
       DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
@@ -224,7 +231,9 @@ String getDay(int weekday) {
 String randomString({int length = 10}) {
   const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
   final random = Random.secure();
-  final result = List.generate(length, (index) => chars[random.nextInt(chars.length)]).join();
+  final result =
+      List.generate(length, (index) => chars[random.nextInt(chars.length)])
+          .join();
   return result;
 }
 

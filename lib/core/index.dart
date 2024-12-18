@@ -6,6 +6,7 @@ export 'package:flutter_bloc/flutter_bloc.dart';
 
 export '../gen/assets.gen.dart';
 export 'colors.dart';
+export 'configs.dart';
 export 'data_sources/index.dart';
 export 'dimens.dart';
 export 'input_formatters.dart';

@@ -73,7 +73,10 @@ class ItemProduct extends StatelessWidget {
                               const SizedBox(height: 4),
                             ],
                             if (product.label != null) ...[
-                              _buildImageLabel(product.label!),
+                              _buildImageLabel(
+                                product.label!,
+                                backgroundColor: Theme.of(context).primaryColor,
+                              ),
                               const SizedBox(height: 4),
                             ],
                             if (product.discount != 0) ...[

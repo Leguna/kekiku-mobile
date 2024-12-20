@@ -666,7 +666,7 @@ abstract class _FavoriteChanged<T> implements FavoriteState<T> {
       _$FavoriteChangedImpl<T>;
 
   String get id;
-bool get isFavorite;
+  bool get isFavorite;
 
   /// Create a copy of FavoriteState
   /// with the given fields replaced by the non-null parameter values.

@@ -12,7 +12,7 @@ class HomeListHorizontalProduct extends StatelessWidget {
       const Product(
         name: 'Pudding Raisin',
         price: 10,
-        tag: 'New',
+        label: 'New',
         categories: ['Pudding'],
         description:
             'Pudding is a type of food that can be either a dessert or a savory dish that is part of the main meal.',

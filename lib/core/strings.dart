@@ -259,4 +259,16 @@ final class Strings {
   static const String description = 'Description';
 
   static const String outOfStock = 'Out of stock';
+
+  static const String sold = 'Sold';
+
+  static const String top = 'Top';
+
+  static const String noReviews = 'No reviews';
+
+  static const String addToCart = 'Add to cart';
+
+  static const String buy = 'Buy';
+
+  static const String buyNow = 'Buy now';
 }

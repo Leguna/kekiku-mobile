@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Dimens.init(context);
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => BottomNavBarCubit()),

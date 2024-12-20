@@ -16,6 +16,9 @@ class ProductCubit extends Cubit<ProductState> {
 
   List<Product> products = [];
 
+  Product? selectedProduct;
+  Variant? selectedVariant;
+
   Future<void> refresh() async {
     products = [];
     pagingController.itemList = [];
@@ -39,5 +42,15 @@ class ProductCubit extends Cubit<ProductState> {
     } catch (e) {
       emit(ProductState.error(e.toString()));
     }
+  }
+
+  void selectProduct(Product product) {
+    selectedProduct = product;
+    emit(ProductState.selectedProduct(product));
+  }
+
+  void selectVariant(Variant variant) {
+    selectedVariant = variant;
+    emit(ProductState.selectedVariant(variant));
   }
 }

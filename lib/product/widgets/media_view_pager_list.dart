@@ -97,7 +97,7 @@ class MediaViewPagerListState extends State<MediaViewPagerList> {
             ),
           ),
           Positioned(
-            bottom: 16,
+            bottom: 24,
             left: 16,
             child: AnimatedOpacity(
               duration: const Duration(milliseconds: 300),
@@ -115,16 +115,28 @@ class MediaViewPagerListState extends State<MediaViewPagerList> {
               ),
             ),
           ),
+          // Corner top radius
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              width: screenWidth,
+              height: 16,
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.vertical(
+                  top: Radius.circular(Dimens.small),
+                ),
+                color: Theme.of(context).scaffoldBackgroundColor,
+              ),
+            ),
+          ),
         ],
       ),
     );
   }
 
   void changePage(int index) {
-    pageController.animateToPage(
+    pageController.jumpToPage(
       index,
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.easeInOut,
     );
   }
 }

@@ -22,36 +22,25 @@ Product _$ProductFromJson(Map<String, dynamic> json) {
 mixin _$Product {
   String get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
-
   String? get label => throw _privateConstructorUsedError;
-
   double? get price => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
-
   List<String>? get tags => throw _privateConstructorUsedError;
-
   List<String>? get ingredients => throw _privateConstructorUsedError;
-
   double get discount => throw _privateConstructorUsedError;
   double? get rating => throw _privateConstructorUsedError;
-
   int get stock => throw _privateConstructorUsedError;
-
   int get sold => throw _privateConstructorUsedError;
-
   bool get isFavorite => throw _privateConstructorUsedError;
-
   String? get video => throw _privateConstructorUsedError;
-
   String? get image => throw _privateConstructorUsedError;
   String? get address => throw _privateConstructorUsedError;
-
   List<String>? get categories => throw _privateConstructorUsedError;
-
   @JsonKey(fromJson: _variantListFromJson, toJson: _variantListToJson)
   List<Variant> get variants => throw _privateConstructorUsedError;
 
-  String? get tag => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: _reviewListFromJson, toJson: _reviewListToJson)
+  List<Review> get reviews => throw _privateConstructorUsedError;
 
   /// Serializes this Product to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -86,7 +75,8 @@ abstract class $ProductCopyWith<$Res> {
       List<String>? categories,
       @JsonKey(fromJson: _variantListFromJson, toJson: _variantListToJson)
       List<Variant> variants,
-      String? tag});
+        @JsonKey(fromJson: _reviewListFromJson, toJson: _reviewListToJson) List<
+            Review> reviews});
 }
 
 /// @nodoc
@@ -121,7 +111,7 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
     Object? address = freezed,
     Object? categories = freezed,
     Object? variants = null,
-    Object? tag = freezed,
+    Object? reviews = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -192,10 +182,10 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
           ? _value.variants
           : variants // ignore: cast_nullable_to_non_nullable
               as List<Variant>,
-      tag: freezed == tag
-          ? _value.tag
-          : tag // ignore: cast_nullable_to_non_nullable
-              as String?,
+      reviews: null == reviews
+          ? _value.reviews
+          : reviews // ignore: cast_nullable_to_non_nullable
+      as List<Review>,
     ) as $Val);
   }
 }
@@ -226,7 +216,8 @@ abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
       List<String>? categories,
       @JsonKey(fromJson: _variantListFromJson, toJson: _variantListToJson)
       List<Variant> variants,
-      String? tag});
+        @JsonKey(fromJson: _reviewListFromJson, toJson: _reviewListToJson) List<
+            Review> reviews});
 }
 
 /// @nodoc
@@ -259,7 +250,7 @@ class __$$ProductImplCopyWithImpl<$Res>
     Object? address = freezed,
     Object? categories = freezed,
     Object? variants = null,
-    Object? tag = freezed,
+    Object? reviews = null,
   }) {
     return _then(_$ProductImpl(
       id: null == id
@@ -330,10 +321,10 @@ class __$$ProductImplCopyWithImpl<$Res>
           ? _value._variants
           : variants // ignore: cast_nullable_to_non_nullable
               as List<Variant>,
-      tag: freezed == tag
-          ? _value.tag
-          : tag // ignore: cast_nullable_to_non_nullable
-              as String?,
+      reviews: null == reviews
+          ? _value._reviews
+          : reviews // ignore: cast_nullable_to_non_nullable
+      as List<Review>,
     ));
   }
 }
@@ -360,11 +351,13 @@ class _$ProductImpl extends _Product {
       final List<String>? categories = const [],
       @JsonKey(fromJson: _variantListFromJson, toJson: _variantListToJson)
       final List<Variant> variants = const [],
-      this.tag})
+        @JsonKey(fromJson: _reviewListFromJson,
+            toJson: _reviewListToJson) final List<Review> reviews = const []})
       : _tags = tags,
         _ingredients = ingredients,
         _categories = categories,
         _variants = variants,
+        _reviews = reviews,
         super._();
 
   factory _$ProductImpl.fromJson(Map<String, dynamic> json) =>
@@ -382,7 +375,6 @@ class _$ProductImpl extends _Product {
   @override
   final String? description;
   final List<String>? _tags;
-
   @override
   @JsonKey()
   List<String>? get tags {
@@ -437,7 +429,6 @@ class _$ProductImpl extends _Product {
   }
 
   final List<Variant> _variants;
-
   @override
   @JsonKey(fromJson: _variantListFromJson, toJson: _variantListToJson)
   List<Variant> get variants {
@@ -446,12 +437,18 @@ class _$ProductImpl extends _Product {
     return EqualUnmodifiableListView(_variants);
   }
 
+  final List<Review> _reviews;
   @override
-  final String? tag;
+  @JsonKey(fromJson: _reviewListFromJson, toJson: _reviewListToJson)
+  List<Review> get reviews {
+    if (_reviews is EqualUnmodifiableListView) return _reviews;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_reviews);
+  }
 
   @override
   String toString() {
-    return 'Product(id: $id, name: $name, label: $label, price: $price, description: $description, tags: $tags, ingredients: $ingredients, discount: $discount, rating: $rating, stock: $stock, sold: $sold, isFavorite: $isFavorite, video: $video, image: $image, address: $address, categories: $categories, variants: $variants, tag: $tag)';
+    return 'Product(id: $id, name: $name, label: $label, price: $price, description: $description, tags: $tags, ingredients: $ingredients, discount: $discount, rating: $rating, stock: $stock, sold: $sold, isFavorite: $isFavorite, video: $video, image: $image, address: $address, categories: $categories, variants: $variants, reviews: $reviews)';
   }
 
   @override
@@ -481,7 +478,7 @@ class _$ProductImpl extends _Product {
             const DeepCollectionEquality()
                 .equals(other._categories, _categories) &&
             const DeepCollectionEquality().equals(other._variants, _variants) &&
-            (identical(other.tag, tag) || other.tag == tag));
+            const DeepCollectionEquality().equals(other._reviews, _reviews));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -505,7 +502,7 @@ class _$ProductImpl extends _Product {
       address,
       const DeepCollectionEquality().hash(_categories),
       const DeepCollectionEquality().hash(_variants),
-      tag);
+      const DeepCollectionEquality().hash(_reviews));
 
   /// Create a copy of Product
   /// with the given fields replaced by the non-null parameter values.
@@ -543,7 +540,8 @@ abstract class _Product extends Product {
       final List<String>? categories,
       @JsonKey(fromJson: _variantListFromJson, toJson: _variantListToJson)
       final List<Variant> variants,
-      final String? tag}) = _$ProductImpl;
+      @JsonKey(fromJson: _reviewListFromJson, toJson: _reviewListToJson)
+      final List<Review> reviews}) = _$ProductImpl;
   const _Product._() : super._();
 
   factory _Product.fromJson(Map<String, dynamic> json) = _$ProductImpl.fromJson;
@@ -556,7 +554,6 @@ abstract class _Product extends Product {
   String? get label;
   @override
   double? get price;
-
   @override
   String? get description;
   @override
@@ -575,20 +572,18 @@ abstract class _Product extends Product {
   bool get isFavorite;
   @override
   String? get video;
-
   @override
   String? get image;
   @override
   String? get address;
   @override
   List<String>? get categories;
-
   @override
   @JsonKey(fromJson: _variantListFromJson, toJson: _variantListToJson)
   List<Variant> get variants;
-
   @override
-  String? get tag;
+  @JsonKey(fromJson: _reviewListFromJson, toJson: _reviewListToJson)
+  List<Review> get reviews;
 
   /// Create a copy of Product
   /// with the given fields replaced by the non-null parameter values.
@@ -605,13 +600,9 @@ Variant _$VariantFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Variant {
   String get id => throw _privateConstructorUsedError;
-
   String? get name => throw _privateConstructorUsedError;
-
   double? get price => throw _privateConstructorUsedError;
-
   int? get stock => throw _privateConstructorUsedError;
-
   String? get image => throw _privateConstructorUsedError;
 
   /// Serializes this Variant to a JSON map.
@@ -627,7 +618,6 @@ mixin _$Variant {
 abstract class $VariantCopyWith<$Res> {
   factory $VariantCopyWith(Variant value, $Res Function(Variant) then) =
       _$VariantCopyWithImpl<$Res, Variant>;
-
   @useResult
   $Res call(
       {String id, String? name, double? price, int? stock, String? image});
@@ -640,7 +630,6 @@ class _$VariantCopyWithImpl<$Res, $Val extends Variant>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -685,7 +674,6 @@ abstract class _$$VariantImplCopyWith<$Res> implements $VariantCopyWith<$Res> {
   factory _$$VariantImplCopyWith(
           _$VariantImpl value, $Res Function(_$VariantImpl) then) =
       __$$VariantImplCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
@@ -806,16 +794,12 @@ abstract class _Variant implements Variant {
 
   @override
   String get id;
-
   @override
   String? get name;
-
   @override
   double? get price;
-
   @override
   int? get stock;
-
   @override
   String? get image;
 
@@ -824,5 +808,212 @@ abstract class _Variant implements Variant {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$VariantImplCopyWith<_$VariantImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Review _$ReviewFromJson(Map<String, dynamic> json) {
+  return _Review.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Review {
+  String get id => throw _privateConstructorUsedError;
+
+  String? get name => throw _privateConstructorUsedError;
+
+  double? get rating => throw _privateConstructorUsedError;
+
+  String? get comment => throw _privateConstructorUsedError;
+
+  /// Serializes this Review to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of Review
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $ReviewCopyWith<Review> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ReviewCopyWith<$Res> {
+  factory $ReviewCopyWith(Review value, $Res Function(Review) then) =
+      _$ReviewCopyWithImpl<$Res, Review>;
+
+  @useResult
+  $Res call({String id, String? name, double? rating, String? comment});
+}
+
+/// @nodoc
+class _$ReviewCopyWithImpl<$Res, $Val extends Review>
+    implements $ReviewCopyWith<$Res> {
+  _$ReviewCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of Review
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? name = freezed,
+    Object? rating = freezed,
+    Object? comment = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      rating: freezed == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as double?,
+      comment: freezed == comment
+          ? _value.comment
+          : comment // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ReviewImplCopyWith<$Res> implements $ReviewCopyWith<$Res> {
+  factory _$$ReviewImplCopyWith(
+          _$ReviewImpl value, $Res Function(_$ReviewImpl) then) =
+      __$$ReviewImplCopyWithImpl<$Res>;
+
+  @override
+  @useResult
+  $Res call({String id, String? name, double? rating, String? comment});
+}
+
+/// @nodoc
+class __$$ReviewImplCopyWithImpl<$Res>
+    extends _$ReviewCopyWithImpl<$Res, _$ReviewImpl>
+    implements _$$ReviewImplCopyWith<$Res> {
+  __$$ReviewImplCopyWithImpl(
+      _$ReviewImpl _value, $Res Function(_$ReviewImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of Review
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? name = freezed,
+    Object? rating = freezed,
+    Object? comment = freezed,
+  }) {
+    return _then(_$ReviewImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      rating: freezed == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as double?,
+      comment: freezed == comment
+          ? _value.comment
+          : comment // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ReviewImpl implements _Review {
+  const _$ReviewImpl({this.id = '', this.name, this.rating, this.comment});
+
+  factory _$ReviewImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ReviewImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final String id;
+  @override
+  final String? name;
+  @override
+  final double? rating;
+  @override
+  final String? comment;
+
+  @override
+  String toString() {
+    return 'Review(id: $id, name: $name, rating: $rating, comment: $comment)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ReviewImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.rating, rating) || other.rating == rating) &&
+            (identical(other.comment, comment) || other.comment == comment));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, name, rating, comment);
+
+  /// Create a copy of Review
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ReviewImplCopyWith<_$ReviewImpl> get copyWith =>
+      __$$ReviewImplCopyWithImpl<_$ReviewImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ReviewImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Review implements Review {
+  const factory _Review(
+      {final String id,
+      final String? name,
+      final double? rating,
+      final String? comment}) = _$ReviewImpl;
+
+  factory _Review.fromJson(Map<String, dynamic> json) = _$ReviewImpl.fromJson;
+
+  @override
+  String get id;
+
+  @override
+  String? get name;
+
+  @override
+  double? get rating;
+
+  @override
+  String? get comment;
+
+  /// Create a copy of Review
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ReviewImplCopyWith<_$ReviewImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -14,4 +14,10 @@ class ProductState with _$ProductState {
   const factory ProductState.detail(Product product) = _Detail;
 
   const factory ProductState.error(String message) = _Error;
+
+  const factory ProductState.selectedProduct(Product product) =
+      _SelectedProduct;
+
+  const factory ProductState.selectedVariant(Variant variant) =
+      _SelectedVariant;
 }

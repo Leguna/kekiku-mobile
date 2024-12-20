@@ -27,12 +27,21 @@ class Product with _$Product {
     @JsonKey(fromJson: _variantListFromJson, toJson: _variantListToJson)
     @Default([])
     List<Variant> variants,
-    String? tag,
+    @JsonKey(fromJson: _reviewListFromJson, toJson: _reviewListToJson) @Default(
+        []) List<Review> reviews,
   }) = _Product;
 
   const Product._();
 
   double get discountedPrice => (price ?? 0) * (1 - discount / 100);
+
+  int get totalReviews => reviews.length;
+
+  double get averageRating {
+    if (reviews.isEmpty) return 0;
+    return reviews.map((e) => e.rating ?? 0).reduce((a, b) => a + b) /
+        reviews.length;
+  }
 
   factory Product.fromJson(Map<String, dynamic> json) =>
       _$ProductFromJson(json);
@@ -53,6 +62,18 @@ List<Map<String, dynamic>> _variantListToJson(List<Variant>? variants) {
   return variants.map((e) => e.toJson()).toList();
 }
 
+List<Review> _reviewListFromJson(List<dynamic>? jsonList) {
+  if (jsonList == null) return [];
+  return jsonList
+      .map((e) => Review.fromJson(e as Map<String, dynamic>))
+      .toList();
+}
+
+List<Map<String, dynamic>> _reviewListToJson(List<Review>? reviews) {
+  if (reviews == null) return [];
+  return reviews.map((e) => e.toJson()).toList();
+}
+
 @freezed
 class Variant with _$Variant {
   const factory Variant({
@@ -65,4 +86,16 @@ class Variant with _$Variant {
 
   factory Variant.fromJson(Map<String, dynamic> json) =>
       _$VariantFromJson(json);
+}
+
+@freezed
+class Review with _$Review {
+  const factory Review({
+    @Default('') String id,
+    String? name,
+    double? rating,
+    String? comment,
+  }) = _Review;
+
+  factory Review.fromJson(Map<String, dynamic> json) => _$ReviewFromJson(json);
 }

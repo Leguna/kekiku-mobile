@@ -23,6 +23,8 @@ mixin _$ProductState {
     required TResult Function(List<Product> products, bool isLastPage) success,
     required TResult Function(Product product) detail,
     required TResult Function(String message) error,
+    required TResult Function(Product product) selectedProduct,
+    required TResult Function(Variant variant) selectedVariant,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +34,8 @@ mixin _$ProductState {
     TResult? Function(List<Product> products, bool isLastPage)? success,
     TResult? Function(Product product)? detail,
     TResult? Function(String message)? error,
+    TResult? Function(Product product)? selectedProduct,
+    TResult? Function(Variant variant)? selectedVariant,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,6 +45,8 @@ mixin _$ProductState {
     TResult Function(List<Product> products, bool isLastPage)? success,
     TResult Function(Product product)? detail,
     TResult Function(String message)? error,
+    TResult Function(Product product)? selectedProduct,
+    TResult Function(Variant variant)? selectedVariant,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -51,6 +57,8 @@ mixin _$ProductState {
     required TResult Function(_Success value) success,
     required TResult Function(_Detail value) detail,
     required TResult Function(_Error value) error,
+    required TResult Function(_SelectedProduct value) selectedProduct,
+    required TResult Function(_SelectedVariant value) selectedVariant,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,6 +68,8 @@ mixin _$ProductState {
     TResult? Function(_Success value)? success,
     TResult? Function(_Detail value)? detail,
     TResult? Function(_Error value)? error,
+    TResult? Function(_SelectedProduct value)? selectedProduct,
+    TResult? Function(_SelectedVariant value)? selectedVariant,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +79,8 @@ mixin _$ProductState {
     TResult Function(_Success value)? success,
     TResult Function(_Detail value)? detail,
     TResult Function(_Error value)? error,
+    TResult Function(_SelectedProduct value)? selectedProduct,
+    TResult Function(_SelectedVariant value)? selectedVariant,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -141,6 +153,8 @@ class _$InitialImpl implements _Initial {
     required TResult Function(List<Product> products, bool isLastPage) success,
     required TResult Function(Product product) detail,
     required TResult Function(String message) error,
+    required TResult Function(Product product) selectedProduct,
+    required TResult Function(Variant variant) selectedVariant,
   }) {
     return initial();
   }
@@ -153,6 +167,8 @@ class _$InitialImpl implements _Initial {
     TResult? Function(List<Product> products, bool isLastPage)? success,
     TResult? Function(Product product)? detail,
     TResult? Function(String message)? error,
+    TResult? Function(Product product)? selectedProduct,
+    TResult? Function(Variant variant)? selectedVariant,
   }) {
     return initial?.call();
   }
@@ -165,6 +181,8 @@ class _$InitialImpl implements _Initial {
     TResult Function(List<Product> products, bool isLastPage)? success,
     TResult Function(Product product)? detail,
     TResult Function(String message)? error,
+    TResult Function(Product product)? selectedProduct,
+    TResult Function(Variant variant)? selectedVariant,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -181,6 +199,8 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Success value) success,
     required TResult Function(_Detail value) detail,
     required TResult Function(_Error value) error,
+    required TResult Function(_SelectedProduct value) selectedProduct,
+    required TResult Function(_SelectedVariant value) selectedVariant,
   }) {
     return initial(this);
   }
@@ -193,6 +213,8 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Success value)? success,
     TResult? Function(_Detail value)? detail,
     TResult? Function(_Error value)? error,
+    TResult? Function(_SelectedProduct value)? selectedProduct,
+    TResult? Function(_SelectedVariant value)? selectedVariant,
   }) {
     return initial?.call(this);
   }
@@ -205,6 +227,8 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Success value)? success,
     TResult Function(_Detail value)? detail,
     TResult Function(_Error value)? error,
+    TResult Function(_SelectedProduct value)? selectedProduct,
+    TResult Function(_SelectedVariant value)? selectedVariant,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -264,6 +288,8 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(List<Product> products, bool isLastPage) success,
     required TResult Function(Product product) detail,
     required TResult Function(String message) error,
+    required TResult Function(Product product) selectedProduct,
+    required TResult Function(Variant variant) selectedVariant,
   }) {
     return loading();
   }
@@ -276,6 +302,8 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(List<Product> products, bool isLastPage)? success,
     TResult? Function(Product product)? detail,
     TResult? Function(String message)? error,
+    TResult? Function(Product product)? selectedProduct,
+    TResult? Function(Variant variant)? selectedVariant,
   }) {
     return loading?.call();
   }
@@ -288,6 +316,8 @@ class _$LoadingImpl implements _Loading {
     TResult Function(List<Product> products, bool isLastPage)? success,
     TResult Function(Product product)? detail,
     TResult Function(String message)? error,
+    TResult Function(Product product)? selectedProduct,
+    TResult Function(Variant variant)? selectedVariant,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -304,6 +334,8 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Success value) success,
     required TResult Function(_Detail value) detail,
     required TResult Function(_Error value) error,
+    required TResult Function(_SelectedProduct value) selectedProduct,
+    required TResult Function(_SelectedVariant value) selectedVariant,
   }) {
     return loading(this);
   }
@@ -316,6 +348,8 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Success value)? success,
     TResult? Function(_Detail value)? detail,
     TResult? Function(_Error value)? error,
+    TResult? Function(_SelectedProduct value)? selectedProduct,
+    TResult? Function(_SelectedVariant value)? selectedVariant,
   }) {
     return loading?.call(this);
   }
@@ -328,6 +362,8 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Success value)? success,
     TResult Function(_Detail value)? detail,
     TResult Function(_Error value)? error,
+    TResult Function(_SelectedProduct value)? selectedProduct,
+    TResult Function(_SelectedVariant value)? selectedVariant,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -432,6 +468,8 @@ class _$SuccessImpl implements _Success {
     required TResult Function(List<Product> products, bool isLastPage) success,
     required TResult Function(Product product) detail,
     required TResult Function(String message) error,
+    required TResult Function(Product product) selectedProduct,
+    required TResult Function(Variant variant) selectedVariant,
   }) {
     return success(products, isLastPage);
   }
@@ -444,6 +482,8 @@ class _$SuccessImpl implements _Success {
     TResult? Function(List<Product> products, bool isLastPage)? success,
     TResult? Function(Product product)? detail,
     TResult? Function(String message)? error,
+    TResult? Function(Product product)? selectedProduct,
+    TResult? Function(Variant variant)? selectedVariant,
   }) {
     return success?.call(products, isLastPage);
   }
@@ -456,6 +496,8 @@ class _$SuccessImpl implements _Success {
     TResult Function(List<Product> products, bool isLastPage)? success,
     TResult Function(Product product)? detail,
     TResult Function(String message)? error,
+    TResult Function(Product product)? selectedProduct,
+    TResult Function(Variant variant)? selectedVariant,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -472,6 +514,8 @@ class _$SuccessImpl implements _Success {
     required TResult Function(_Success value) success,
     required TResult Function(_Detail value) detail,
     required TResult Function(_Error value) error,
+    required TResult Function(_SelectedProduct value) selectedProduct,
+    required TResult Function(_SelectedVariant value) selectedVariant,
   }) {
     return success(this);
   }
@@ -484,6 +528,8 @@ class _$SuccessImpl implements _Success {
     TResult? Function(_Success value)? success,
     TResult? Function(_Detail value)? detail,
     TResult? Function(_Error value)? error,
+    TResult? Function(_SelectedProduct value)? selectedProduct,
+    TResult? Function(_SelectedVariant value)? selectedVariant,
   }) {
     return success?.call(this);
   }
@@ -496,6 +542,8 @@ class _$SuccessImpl implements _Success {
     TResult Function(_Success value)? success,
     TResult Function(_Detail value)? detail,
     TResult Function(_Error value)? error,
+    TResult Function(_SelectedProduct value)? selectedProduct,
+    TResult Function(_SelectedVariant value)? selectedVariant,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -604,6 +652,8 @@ class _$DetailImpl implements _Detail {
     required TResult Function(List<Product> products, bool isLastPage) success,
     required TResult Function(Product product) detail,
     required TResult Function(String message) error,
+    required TResult Function(Product product) selectedProduct,
+    required TResult Function(Variant variant) selectedVariant,
   }) {
     return detail(product);
   }
@@ -616,6 +666,8 @@ class _$DetailImpl implements _Detail {
     TResult? Function(List<Product> products, bool isLastPage)? success,
     TResult? Function(Product product)? detail,
     TResult? Function(String message)? error,
+    TResult? Function(Product product)? selectedProduct,
+    TResult? Function(Variant variant)? selectedVariant,
   }) {
     return detail?.call(product);
   }
@@ -628,6 +680,8 @@ class _$DetailImpl implements _Detail {
     TResult Function(List<Product> products, bool isLastPage)? success,
     TResult Function(Product product)? detail,
     TResult Function(String message)? error,
+    TResult Function(Product product)? selectedProduct,
+    TResult Function(Variant variant)? selectedVariant,
     required TResult orElse(),
   }) {
     if (detail != null) {
@@ -644,6 +698,8 @@ class _$DetailImpl implements _Detail {
     required TResult Function(_Success value) success,
     required TResult Function(_Detail value) detail,
     required TResult Function(_Error value) error,
+    required TResult Function(_SelectedProduct value) selectedProduct,
+    required TResult Function(_SelectedVariant value) selectedVariant,
   }) {
     return detail(this);
   }
@@ -656,6 +712,8 @@ class _$DetailImpl implements _Detail {
     TResult? Function(_Success value)? success,
     TResult? Function(_Detail value)? detail,
     TResult? Function(_Error value)? error,
+    TResult? Function(_SelectedProduct value)? selectedProduct,
+    TResult? Function(_SelectedVariant value)? selectedVariant,
   }) {
     return detail?.call(this);
   }
@@ -668,6 +726,8 @@ class _$DetailImpl implements _Detail {
     TResult Function(_Success value)? success,
     TResult Function(_Detail value)? detail,
     TResult Function(_Error value)? error,
+    TResult Function(_SelectedProduct value)? selectedProduct,
+    TResult Function(_SelectedVariant value)? selectedVariant,
     required TResult orElse(),
   }) {
     if (detail != null) {
@@ -762,6 +822,8 @@ class _$ErrorImpl implements _Error {
     required TResult Function(List<Product> products, bool isLastPage) success,
     required TResult Function(Product product) detail,
     required TResult Function(String message) error,
+    required TResult Function(Product product) selectedProduct,
+    required TResult Function(Variant variant) selectedVariant,
   }) {
     return error(message);
   }
@@ -774,6 +836,8 @@ class _$ErrorImpl implements _Error {
     TResult? Function(List<Product> products, bool isLastPage)? success,
     TResult? Function(Product product)? detail,
     TResult? Function(String message)? error,
+    TResult? Function(Product product)? selectedProduct,
+    TResult? Function(Variant variant)? selectedVariant,
   }) {
     return error?.call(message);
   }
@@ -786,6 +850,8 @@ class _$ErrorImpl implements _Error {
     TResult Function(List<Product> products, bool isLastPage)? success,
     TResult Function(Product product)? detail,
     TResult Function(String message)? error,
+    TResult Function(Product product)? selectedProduct,
+    TResult Function(Variant variant)? selectedVariant,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -802,6 +868,8 @@ class _$ErrorImpl implements _Error {
     required TResult Function(_Success value) success,
     required TResult Function(_Detail value) detail,
     required TResult Function(_Error value) error,
+    required TResult Function(_SelectedProduct value) selectedProduct,
+    required TResult Function(_SelectedVariant value) selectedVariant,
   }) {
     return error(this);
   }
@@ -814,6 +882,8 @@ class _$ErrorImpl implements _Error {
     TResult? Function(_Success value)? success,
     TResult? Function(_Detail value)? detail,
     TResult? Function(_Error value)? error,
+    TResult? Function(_SelectedProduct value)? selectedProduct,
+    TResult? Function(_SelectedVariant value)? selectedVariant,
   }) {
     return error?.call(this);
   }
@@ -826,6 +896,8 @@ class _$ErrorImpl implements _Error {
     TResult Function(_Success value)? success,
     TResult Function(_Detail value)? detail,
     TResult Function(_Error value)? error,
+    TResult Function(_SelectedProduct value)? selectedProduct,
+    TResult Function(_SelectedVariant value)? selectedVariant,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -844,5 +916,371 @@ abstract class _Error implements ProductState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SelectedProductImplCopyWith<$Res> {
+  factory _$$SelectedProductImplCopyWith(_$SelectedProductImpl value,
+          $Res Function(_$SelectedProductImpl) then) =
+      __$$SelectedProductImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Product product});
+
+  $ProductCopyWith<$Res> get product;
+}
+
+/// @nodoc
+class __$$SelectedProductImplCopyWithImpl<$Res>
+    extends _$ProductStateCopyWithImpl<$Res, _$SelectedProductImpl>
+    implements _$$SelectedProductImplCopyWith<$Res> {
+  __$$SelectedProductImplCopyWithImpl(
+      _$SelectedProductImpl _value, $Res Function(_$SelectedProductImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ProductState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? product = null,
+  }) {
+    return _then(_$SelectedProductImpl(
+      null == product
+          ? _value.product
+          : product // ignore: cast_nullable_to_non_nullable
+              as Product,
+    ));
+  }
+
+  /// Create a copy of ProductState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ProductCopyWith<$Res> get product {
+    return $ProductCopyWith<$Res>(_value.product, (value) {
+      return _then(_value.copyWith(product: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$SelectedProductImpl implements _SelectedProduct {
+  const _$SelectedProductImpl(this.product);
+
+  @override
+  final Product product;
+
+  @override
+  String toString() {
+    return 'ProductState.selectedProduct(product: $product)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectedProductImpl &&
+            (identical(other.product, product) || other.product == product));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, product);
+
+  /// Create a copy of ProductState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SelectedProductImplCopyWith<_$SelectedProductImpl> get copyWith =>
+      __$$SelectedProductImplCopyWithImpl<_$SelectedProductImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<Product> products, bool isLastPage) success,
+    required TResult Function(Product product) detail,
+    required TResult Function(String message) error,
+    required TResult Function(Product product) selectedProduct,
+    required TResult Function(Variant variant) selectedVariant,
+  }) {
+    return selectedProduct(product);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<Product> products, bool isLastPage)? success,
+    TResult? Function(Product product)? detail,
+    TResult? Function(String message)? error,
+    TResult? Function(Product product)? selectedProduct,
+    TResult? Function(Variant variant)? selectedVariant,
+  }) {
+    return selectedProduct?.call(product);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<Product> products, bool isLastPage)? success,
+    TResult Function(Product product)? detail,
+    TResult Function(String message)? error,
+    TResult Function(Product product)? selectedProduct,
+    TResult Function(Variant variant)? selectedVariant,
+    required TResult orElse(),
+  }) {
+    if (selectedProduct != null) {
+      return selectedProduct(product);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Detail value) detail,
+    required TResult Function(_Error value) error,
+    required TResult Function(_SelectedProduct value) selectedProduct,
+    required TResult Function(_SelectedVariant value) selectedVariant,
+  }) {
+    return selectedProduct(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Detail value)? detail,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_SelectedProduct value)? selectedProduct,
+    TResult? Function(_SelectedVariant value)? selectedVariant,
+  }) {
+    return selectedProduct?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Detail value)? detail,
+    TResult Function(_Error value)? error,
+    TResult Function(_SelectedProduct value)? selectedProduct,
+    TResult Function(_SelectedVariant value)? selectedVariant,
+    required TResult orElse(),
+  }) {
+    if (selectedProduct != null) {
+      return selectedProduct(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SelectedProduct implements ProductState {
+  const factory _SelectedProduct(final Product product) = _$SelectedProductImpl;
+
+  Product get product;
+
+  /// Create a copy of ProductState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SelectedProductImplCopyWith<_$SelectedProductImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SelectedVariantImplCopyWith<$Res> {
+  factory _$$SelectedVariantImplCopyWith(_$SelectedVariantImpl value,
+          $Res Function(_$SelectedVariantImpl) then) =
+      __$$SelectedVariantImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Variant variant});
+
+  $VariantCopyWith<$Res> get variant;
+}
+
+/// @nodoc
+class __$$SelectedVariantImplCopyWithImpl<$Res>
+    extends _$ProductStateCopyWithImpl<$Res, _$SelectedVariantImpl>
+    implements _$$SelectedVariantImplCopyWith<$Res> {
+  __$$SelectedVariantImplCopyWithImpl(
+      _$SelectedVariantImpl _value, $Res Function(_$SelectedVariantImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ProductState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? variant = null,
+  }) {
+    return _then(_$SelectedVariantImpl(
+      null == variant
+          ? _value.variant
+          : variant // ignore: cast_nullable_to_non_nullable
+              as Variant,
+    ));
+  }
+
+  /// Create a copy of ProductState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $VariantCopyWith<$Res> get variant {
+    return $VariantCopyWith<$Res>(_value.variant, (value) {
+      return _then(_value.copyWith(variant: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$SelectedVariantImpl implements _SelectedVariant {
+  const _$SelectedVariantImpl(this.variant);
+
+  @override
+  final Variant variant;
+
+  @override
+  String toString() {
+    return 'ProductState.selectedVariant(variant: $variant)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectedVariantImpl &&
+            (identical(other.variant, variant) || other.variant == variant));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, variant);
+
+  /// Create a copy of ProductState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SelectedVariantImplCopyWith<_$SelectedVariantImpl> get copyWith =>
+      __$$SelectedVariantImplCopyWithImpl<_$SelectedVariantImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<Product> products, bool isLastPage) success,
+    required TResult Function(Product product) detail,
+    required TResult Function(String message) error,
+    required TResult Function(Product product) selectedProduct,
+    required TResult Function(Variant variant) selectedVariant,
+  }) {
+    return selectedVariant(variant);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<Product> products, bool isLastPage)? success,
+    TResult? Function(Product product)? detail,
+    TResult? Function(String message)? error,
+    TResult? Function(Product product)? selectedProduct,
+    TResult? Function(Variant variant)? selectedVariant,
+  }) {
+    return selectedVariant?.call(variant);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<Product> products, bool isLastPage)? success,
+    TResult Function(Product product)? detail,
+    TResult Function(String message)? error,
+    TResult Function(Product product)? selectedProduct,
+    TResult Function(Variant variant)? selectedVariant,
+    required TResult orElse(),
+  }) {
+    if (selectedVariant != null) {
+      return selectedVariant(variant);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Detail value) detail,
+    required TResult Function(_Error value) error,
+    required TResult Function(_SelectedProduct value) selectedProduct,
+    required TResult Function(_SelectedVariant value) selectedVariant,
+  }) {
+    return selectedVariant(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Detail value)? detail,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_SelectedProduct value)? selectedProduct,
+    TResult? Function(_SelectedVariant value)? selectedVariant,
+  }) {
+    return selectedVariant?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Detail value)? detail,
+    TResult Function(_Error value)? error,
+    TResult Function(_SelectedProduct value)? selectedProduct,
+    TResult Function(_SelectedVariant value)? selectedVariant,
+    required TResult orElse(),
+  }) {
+    if (selectedVariant != null) {
+      return selectedVariant(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SelectedVariant implements ProductState {
+  const factory _SelectedVariant(final Variant variant) = _$SelectedVariantImpl;
+
+  Variant get variant;
+
+  /// Create a copy of ProductState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SelectedVariantImplCopyWith<_$SelectedVariantImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

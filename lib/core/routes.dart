@@ -37,6 +37,9 @@ class Routes {
   static const String productDetail = '/product-detail';
   static const String search = '/search';
 
+  static const String cart = '/cart';
+  static const String checkout = '/checkout';
+
   static WidgetBuilder getRoute(String route) {
     return getRoutes()[route] ?? (context) => const NotFoundPage();
   }

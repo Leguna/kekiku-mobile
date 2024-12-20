@@ -11,8 +11,7 @@ class Dimens {
 
   static const EdgeInsets horizontalPadding =
       EdgeInsets.symmetric(horizontal: 8.0);
-  static const EdgeInsets verticalPadding =
-      EdgeInsets.symmetric(vertical: 8.0);
+  static const EdgeInsets verticalPadding = EdgeInsets.symmetric(vertical: 8.0);
 
   static const EdgeInsets customPadding =
       EdgeInsets.only(left: 12.0, right: 12.0, top: 8.0, bottom: 16.0);
@@ -21,4 +20,11 @@ class Dimens {
   static var smallText = 14.0;
   static var mediumText = 16.0;
 
+  static late double screenWidth;
+  static late double screenHeight;
+
+  static void init(BuildContext context) {
+    screenWidth = MediaQuery.of(context).size.width;
+    screenHeight = MediaQuery.of(context).size.height;
+  }
 }

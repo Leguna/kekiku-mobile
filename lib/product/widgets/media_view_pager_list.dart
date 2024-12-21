@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+
 import '../../core/index.dart';
 import '../../core/widgets/my_video_player.dart';
 
@@ -42,13 +44,16 @@ class MediaViewPagerListState extends State<MediaViewPagerList> {
             children: [
               for (final image in widget.files)
                 if (image.type == AssetType.image)
-                  Image.network(image.path,
-                      height: screenWidth, fit: BoxFit.cover,
-                      loadingBuilder: (context, child, loadingProgress) {
-                    return loadingProgress == null
-                        ? child
-                        : const Center(child: CircularProgressIndicator());
-                  })
+                  CachedNetworkImage(
+                      imageUrl: image.path,
+                      height: screenWidth,
+                      filterQuality: FilterQuality.low,
+                      fit: BoxFit.cover,
+                      placeholder: (context, url) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      })
                 else if (image.type == AssetType.video)
                   MyVideoPlayer(
                     videoUrl: image.path,

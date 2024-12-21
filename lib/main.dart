@@ -2,6 +2,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:kekiku/core/themes.dart';
+import 'package:kekiku/home/blocs/home_cubit.dart';
 import 'package:kekiku/product/bloc/product_cubit.dart';
 import 'package:kekiku/splash/onboarding_screen.dart';
 
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => AuthCubit()),
         BlocProvider(create: (context) => ProductCubit()),
         BlocProvider(create: (context) => FavoriteCubit()),
+        BlocProvider(create: (context) => HomeCubit()),
       ],
       child: MaterialApp(
         title: Strings.appName,

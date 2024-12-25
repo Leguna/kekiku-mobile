@@ -51,7 +51,7 @@ class MyBottomNavBarItem extends StatelessWidget {
 
   static List<Map<String, Widget>> bottomNavBarItemsWithIcons = [
     {'Home': const Icon(Icons.home)},
-    {'Transaction': const Icon(Icons.shopping_cart)},
+    {'Transaction': const Icon(Icons.handshake)},
     {'Favorites': const Icon(Icons.favorite)},
     {'Lainnya': const Icon(Icons.menu)},
   ];

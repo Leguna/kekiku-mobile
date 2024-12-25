@@ -19,7 +19,9 @@ class HomePage extends StatelessWidget {
     productCubit.getProducts();
     return MyScaffold(
       appBar: AppBar(
-        title: const FakeSearchBar(),
+        title: FakeSearchBar(
+          onTap: () {},
+        ),
         leading: const SizedBox(width: 16),
         leadingWidth: 16,
         titleSpacing: 0,

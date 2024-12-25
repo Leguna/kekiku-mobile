@@ -5,6 +5,7 @@ import 'package:kekiku/core/themes.dart';
 import 'package:kekiku/home/blocs/home_cubit.dart';
 import 'package:kekiku/product/bloc/product_cubit.dart';
 import 'package:kekiku/splash/onboarding_screen.dart';
+import 'package:oktoast/oktoast.dart';
 
 import 'app_setup.dart';
 import 'auth/bloc/auth_cubit.dart';
@@ -45,14 +46,18 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => FavoriteCubit()),
         BlocProvider(create: (context) => HomeCubit()),
       ],
-      child: MaterialApp(
-        title: Strings.appName,
-        debugShowCheckedModeBanner: dotenv.env['DEBUG'] == 'true',
-        theme: mainTheme,
-        home: const OnBoardingScreen(),
-        routes: Routes.getRoutes(),
-        onGenerateRoute: Routes.generateRoute,
-        initialRoute: isFirstTime ? Routes.onBoarding : Routes.home,
+      child: OKToast(
+        position: ToastPosition.bottom,
+        dismissOtherOnShow: true,
+        child: MaterialApp(
+          title: Strings.appName,
+          debugShowCheckedModeBanner: dotenv.env['DEBUG'] == 'true',
+          theme: mainTheme,
+          home: const OnBoardingScreen(),
+          routes: Routes.getRoutes(),
+          onGenerateRoute: Routes.generateRoute,
+          initialRoute: isFirstTime ? Routes.onBoarding : Routes.home,
+        ),
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:oktoast/oktoast.dart';
 
 import '../../core/index.dart';
 
@@ -36,5 +37,17 @@ class HomeCubit extends Cubit<HomeState> {
 
   Future<void> refreshHome() async {
     await Future.delayed(const Duration(seconds: 2));
+  }
+
+  var lastTimePressed = DateTime.now();
+
+  void tryQuitApp(BuildContext context) {
+    final now = DateTime.now();
+    if (now.difference(lastTimePressed).inSeconds > 1) {
+      showToast("Press back again to exit");
+    } else {
+      Navigator.of(context).pop();
+    }
+    lastTimePressed = now;
   }
 }

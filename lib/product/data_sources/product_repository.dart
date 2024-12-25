@@ -15,7 +15,33 @@ class ProductRepository {
   final ProductRemoteSource remoteDataSource;
   final ProductLocalSource localDataSource;
 
-  Future<BaseResponse<PagingResponse<Product>>> getProducts() async {
+  Future<BaseResponse<PagingResponse<Product>>> getProducts({
+    page = 1,
+    limit = 10,
+  }) async {
+    final response = await localDataSource.getProductFromJson();
+    final data = BaseResponse<PagingResponse<Product>>.fromJson(
+      jsonDecode(response),
+      (json) => PagingResponse<Product>.fromJson(
+        json as Map<String, dynamic>,
+        (json) => Product.fromJson(json as Map<String, dynamic>),
+      ),
+    );
+    return data.copyWith(
+      success: true,
+      data: data.data.copyWith(
+        currentPage: 1,
+        totalPages: 1,
+        pageSize: 10,
+      ),
+    );
+  }
+
+  Future<BaseResponse<PagingResponse<Product>>> searchProducts({
+    required String query,
+    page = 1,
+    limit = 10,
+  }) async {
     final response = await localDataSource.getProductFromJson();
     final data = BaseResponse<PagingResponse<Product>>.fromJson(
       jsonDecode(response),

@@ -24,7 +24,7 @@ class HomeChip extends StatelessWidget {
 
 List<ChipData> chips = [
   ChipData(
-      label: 'Rp.0',
+      label: 'My Order',
       leading: const Icon(
         Icons.wallet,
         color: Colors.green,

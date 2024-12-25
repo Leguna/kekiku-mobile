@@ -66,7 +66,13 @@
         "rating": 4,
         "comment": "Delicious cake, but a bit too sweet for my taste."
       }
-    ]
+    ],
+    "address": {
+      "lat": 40.712776,
+      "long": -74.005974,
+      "name": "Baker Street",
+      "physicalAddress": "123 Baker Street, Cake City"
+    }
   },
   {
     "id": "PqXy45Tb9VuAjkZ1",
@@ -128,7 +134,13 @@
         "rating": 4,
         "comment": "Delicious cake, but a bit too sweet for my taste."
       }
-    ]
+    ],
+    "address": {
+      "lat": 40.712776,
+      "long": -74.005974,
+      "name": "Velvet Avenue",
+      "physicalAddress": "456 Velvet Avenue, Cake City"
+    }
   },
   {
     "id": "BwNqkLm49XoRtP7Z",
@@ -152,7 +164,13 @@
     ],
     "stock": 40,
     "sold": 60,
-    "image": "https://plus.unsplash.com/premium_photo-1663839412123-44da7b5f481f?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    "image": "https://plus.unsplash.com/premium_photo-1663839412123-44da7b5f481f?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "address": {
+      "lat": 40.712776,
+      "long": -74.005974,
+      "name": "Cupcake Lane",
+      "physicalAddress": "789 Cupcake Lane, Cake City"
+    }
   },
   {
     "id": "ZfTnXkMp57Vc8BwR",
@@ -206,7 +224,13 @@
         "rating": 4,
         "comment": "Delicious cake, but a bit too sweet for my taste."
       }
-    ]
+    ],
+    "address": {
+      "lat": 40.712776,
+      "long": -74.005974,
+      "name": "Lemon Drive",
+      "physicalAddress": "321 Lemon Drive, Cake City"
+    }
   },
   {
     "id": "JkRqYpLz85XtNvBW",
@@ -230,7 +254,13 @@
     ],
     "stock": 10,
     "sold": 20,
-    "image": "https://images.unsplash.com/photo-1594741920744-0a7f4a65817a?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    "image": "https://images.unsplash.com/photo-1594741920744-0a7f4a65817a?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "address": {
+      "lat": 40.712776,
+      "long": -74.005974,
+      "name": "Carrot Road",
+      "physicalAddress": "654 Carrot Road, Cake City"
+    }
   },
   {
     "id": "LmXnWqVp78TkRfBZ",
@@ -254,7 +284,13 @@
     ],
     "stock": 30,
     "sold": 40,
-    "image": "https://images.unsplash.com/photo-1569775683473-c534979f35a9?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    "image": "https://images.unsplash.com/photo-1569775683473-c534979f35a9?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "address": {
+      "lat": 40.712776,
+      "long": -74.005974,
+      "name": "Coconut Boulevard",
+      "physicalAddress": "987 Coconut Boulevard, Cake City"
+    }
   },
   {
     "id": "BwXqRmTp87VkNcZL",
@@ -278,7 +314,13 @@
     ],
     "stock": 15,
     "sold": 25,
-    "image": "https://plus.unsplash.com/premium_photo-1679486569841-95697c33a216?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    "image": "https://plus.unsplash.com/premium_photo-1679486569841-95697c33a216?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "address": {
+      "lat": 40.712776,
+      "long": -74.005974,
+      "name": "Coffee Street",
+      "physicalAddress": "111 Coffee Street, Cake City"
+    }
   },
   {
     "id": "RmXpLqVz98TkWcBY",
@@ -302,7 +344,13 @@
     ],
     "stock": 18,
     "sold": 22,
-    "image": "https://images.unsplash.com/photo-1508737690671-77fe4101791e?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    "image": "https://images.unsplash.com/photo-1508737690671-77fe4101791e?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "address": {
+      "lat": 40.712776,
+      "long": -74.005974,
+      "name": "Pistachio Boulevard",
+      "physicalAddress": "222 Pistachio Boulevard, Cake City"
+    }
   },
   {
     "id": "WmBpKqXn67TcRvYL",
@@ -326,7 +374,13 @@
     ],
     "stock": 12,
     "sold": 19,
-    "image": "https://plus.unsplash.com/premium_photo-1672192166851-71d218e64544?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    "image": "https://plus.unsplash.com/premium_photo-1672192166851-71d218e64544?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "address": {
+      "lat": 40.712776,
+      "long": -74.005974,
+      "name": "Pistachio Boulevard",
+      "physicalAddress": "222 Pistachio Boulevard, Cake City"
+    }
   },
   {
     "id": "XkTpNmLq97BWcRYZ",
@@ -350,6 +404,12 @@
     ],
     "stock": 14,
     "sold": 20,
-    "image": "https://images.unsplash.com/photo-1701688749320-294017bbce63?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    "image": "https://images.unsplash.com/photo-1701688749320-294017bbce63?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "address": {
+      "lat": 40.712776,
+      "long": -74.005974,
+      "name": "Pistachio Boulevard",
+      "physicalAddress": "222 Pistachio Boulevard, Cake City"
+    }
   }
 ]

@@ -21,9 +21,7 @@ User _$UserFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$User {
   String get displayName => throw _privateConstructorUsedError;
-
   String get email => throw _privateConstructorUsedError;
-
   String get id => throw _privateConstructorUsedError;
   String get authMethod => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
@@ -381,7 +379,6 @@ abstract class _User implements User {
   String get email;
   @override
   String get id;
-
   @override
   String get authMethod;
   @override

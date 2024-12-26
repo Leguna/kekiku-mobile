@@ -50,9 +50,19 @@ class ProductRepository {
         (json) => Product.fromJson(json as Map<String, dynamic>),
       ),
     );
+
+    final dataFiltered = data.data.copyWith(
+      items: data.data.items.where((element) {
+        return element.name
+            .toString()
+            .toLowerCase()
+            .contains(query.toLowerCase());
+      }).toList(),
+    );
+
     return data.copyWith(
       success: true,
-      data: data.data.copyWith(
+      data: dataFiltered.copyWith(
         currentPage: 1,
         totalPages: 1,
         pageSize: 10,

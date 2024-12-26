@@ -116,8 +116,11 @@ class $AssetsJsonsGen {
   /// File path: assets/jsons/popular_cake.json
   String get popularCake => 'assets/jsons/popular_cake.json';
 
+  /// File path: assets/jsons/transaction.json
+  String get transaction => 'assets/jsons/transaction.json';
+
   /// List of all assets
-  List<String> get values => [cake, popularCake];
+  List<String> get values => [cake, popularCake, transaction];
 }
 
 class $AssetsLottiesGen {

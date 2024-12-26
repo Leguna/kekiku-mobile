@@ -22,13 +22,14 @@ class Product with _$Product {
     @Default(false) bool isFavorite,
     String? video,
     String? image,
-    String? address,
+    @MyJsonConverter() @Default(Address()) Address? address,
     @Default([]) List<String>? categories,
     @JsonKey(fromJson: _variantListFromJson, toJson: _variantListToJson)
     @Default([])
     List<Variant> variants,
-    @JsonKey(fromJson: _reviewListFromJson, toJson: _reviewListToJson) @Default(
-        []) List<Review> reviews,
+    @JsonKey(fromJson: _reviewListFromJson, toJson: _reviewListToJson)
+    @Default([])
+    List<Review> reviews,
   }) = _Product;
 
   const Product._();
@@ -98,4 +99,31 @@ class Review with _$Review {
   }) = _Review;
 
   factory Review.fromJson(Map<String, dynamic> json) => _$ReviewFromJson(json);
+}
+
+@freezed
+class Address with _$Address {
+  const factory Address({
+    @Default(0.0) double? lat,
+    @Default(0.0) double? long,
+    @Default('') String? name,
+    @Default('') String? physicalAddress,
+  }) = _Address;
+
+  factory Address.fromJson(Map<String, dynamic> json) =>
+      _$AddressFromJson(json);
+}
+
+class MyJsonConverter extends JsonConverter<Address, Map<String, dynamic>> {
+  const MyJsonConverter();
+
+  @override
+  Address fromJson(Map<String, dynamic> json) {
+    return Address.fromJson(json);
+  }
+
+  @override
+  Map<String, dynamic> toJson(Address object) {
+    return object.toJson();
+  }
 }

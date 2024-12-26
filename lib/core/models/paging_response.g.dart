@@ -11,11 +11,12 @@ _$PagingResponseImpl<T> _$$PagingResponseImplFromJson<T>(
   T Function(Object? json) fromJsonT,
 ) =>
     _$PagingResponseImpl<T>(
-      currentPage: (json['currentPage'] as num).toInt(),
-      totalPages: (json['totalPages'] as num).toInt(),
-      pageSize: (json['pageSize'] as num).toInt(),
-      totalItems: (json['totalItems'] as num).toInt(),
-      items: (json['items'] as List<dynamic>).map(fromJsonT).toList(),
+      currentPage: (json['currentPage'] as num?)?.toInt() ?? 1,
+      totalPages: (json['totalPages'] as num?)?.toInt() ?? 1,
+      pageSize: (json['pageSize'] as num?)?.toInt() ?? 10,
+      totalItems: (json['totalItems'] as num?)?.toInt() ?? 0,
+      items: (json['items'] as List<dynamic>?)?.map(fromJsonT).toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$PagingResponseImplToJson<T>(

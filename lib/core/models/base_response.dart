@@ -7,10 +7,10 @@ part 'base_response.g.dart';
 class BaseResponse<T> with _$BaseResponse<T> {
   const factory BaseResponse({
     required bool success,
-    required int statusCode,
-    required String message,
+    @Default(200) int statusCode,
+    @Default('') String message,
     required T data,
-    required List<Error> errors,
+    @Default([]) List<Error> errors,
   }) = _BaseResponse<T>;
 
   factory BaseResponse.fromJson(Map<String, dynamic> json,

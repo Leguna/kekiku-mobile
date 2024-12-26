@@ -33,11 +33,12 @@ class DetailAppBar extends MyAppBar {
           borderRadius: BorderRadius.circular(Dimens.xlarge),
           backgroundColor: Colors.transparent,
         ),
-        const IconButton(
-          padding: EdgeInsets.all(0),
-          icon: Icon(Icons.shopping_cart),
-          onPressed: null,
-        ),
+        IconButton(
+            padding: const EdgeInsets.all(0),
+            icon: const Icon(Icons.shopping_cart),
+            onPressed: () {
+              Navigator.pushNamed(context, Routes.cart);
+            }),
         IconButton(
           padding: const EdgeInsets.all(0),
           icon: const Icon(Icons.menu),

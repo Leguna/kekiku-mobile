@@ -80,7 +80,8 @@ final mainTheme = ThemeData(
   inputDecorationTheme: InputDecorationTheme(
     isDense: true,
     suffixIconColor: Colors.white,
-    hintStyle: const TextStyle(fontSize: 0),
+    hintStyle:
+        const TextStyle(fontSize: 14, color: AppColors.primaryColorLight),
     contentPadding: const EdgeInsets.symmetric(
       horizontal: Dimens.small,
       vertical: Dimens.small,

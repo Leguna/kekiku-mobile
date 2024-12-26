@@ -34,11 +34,12 @@ mixin _$Product {
   bool get isFavorite => throw _privateConstructorUsedError;
   String? get video => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
-  String? get address => throw _privateConstructorUsedError;
+
+  @MyJsonConverter()
+  Address? get address => throw _privateConstructorUsedError;
   List<String>? get categories => throw _privateConstructorUsedError;
   @JsonKey(fromJson: _variantListFromJson, toJson: _variantListToJson)
   List<Variant> get variants => throw _privateConstructorUsedError;
-
   @JsonKey(fromJson: _reviewListFromJson, toJson: _reviewListToJson)
   List<Review> get reviews => throw _privateConstructorUsedError;
 
@@ -71,12 +72,14 @@ abstract class $ProductCopyWith<$Res> {
       bool isFavorite,
       String? video,
       String? image,
-      String? address,
+      @MyJsonConverter() Address? address,
       List<String>? categories,
       @JsonKey(fromJson: _variantListFromJson, toJson: _variantListToJson)
       List<Variant> variants,
-        @JsonKey(fromJson: _reviewListFromJson, toJson: _reviewListToJson) List<
-            Review> reviews});
+      @JsonKey(fromJson: _reviewListFromJson, toJson: _reviewListToJson)
+      List<Review> reviews});
+
+  $AddressCopyWith<$Res>? get address;
 }
 
 /// @nodoc
@@ -173,7 +176,7 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
       address: freezed == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as Address?,
       categories: freezed == categories
           ? _value.categories
           : categories // ignore: cast_nullable_to_non_nullable
@@ -185,8 +188,22 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
       reviews: null == reviews
           ? _value.reviews
           : reviews // ignore: cast_nullable_to_non_nullable
-      as List<Review>,
+              as List<Review>,
     ) as $Val);
+  }
+
+  /// Create a copy of Product
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AddressCopyWith<$Res>? get address {
+    if (_value.address == null) {
+      return null;
+    }
+
+    return $AddressCopyWith<$Res>(_value.address!, (value) {
+      return _then(_value.copyWith(address: value) as $Val);
+    });
   }
 }
 
@@ -212,12 +229,15 @@ abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
       bool isFavorite,
       String? video,
       String? image,
-      String? address,
+      @MyJsonConverter() Address? address,
       List<String>? categories,
       @JsonKey(fromJson: _variantListFromJson, toJson: _variantListToJson)
       List<Variant> variants,
-        @JsonKey(fromJson: _reviewListFromJson, toJson: _reviewListToJson) List<
-            Review> reviews});
+      @JsonKey(fromJson: _reviewListFromJson, toJson: _reviewListToJson)
+      List<Review> reviews});
+
+  @override
+  $AddressCopyWith<$Res>? get address;
 }
 
 /// @nodoc
@@ -312,7 +332,7 @@ class __$$ProductImplCopyWithImpl<$Res>
       address: freezed == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as Address?,
       categories: freezed == categories
           ? _value._categories
           : categories // ignore: cast_nullable_to_non_nullable
@@ -324,7 +344,7 @@ class __$$ProductImplCopyWithImpl<$Res>
       reviews: null == reviews
           ? _value._reviews
           : reviews // ignore: cast_nullable_to_non_nullable
-      as List<Review>,
+              as List<Review>,
     ));
   }
 }
@@ -347,12 +367,12 @@ class _$ProductImpl extends _Product {
       this.isFavorite = false,
       this.video,
       this.image,
-      this.address,
+      @MyJsonConverter() this.address = const Address(),
       final List<String>? categories = const [],
       @JsonKey(fromJson: _variantListFromJson, toJson: _variantListToJson)
       final List<Variant> variants = const [],
-        @JsonKey(fromJson: _reviewListFromJson,
-            toJson: _reviewListToJson) final List<Review> reviews = const []})
+      @JsonKey(fromJson: _reviewListFromJson, toJson: _reviewListToJson)
+      final List<Review> reviews = const []})
       : _tags = tags,
         _ingredients = ingredients,
         _categories = categories,
@@ -416,7 +436,9 @@ class _$ProductImpl extends _Product {
   @override
   final String? image;
   @override
-  final String? address;
+  @JsonKey()
+  @MyJsonConverter()
+  final Address? address;
   final List<String>? _categories;
   @override
   @JsonKey()
@@ -536,7 +558,7 @@ abstract class _Product extends Product {
       final bool isFavorite,
       final String? video,
       final String? image,
-      final String? address,
+      @MyJsonConverter() final Address? address,
       final List<String>? categories,
       @JsonKey(fromJson: _variantListFromJson, toJson: _variantListToJson)
       final List<Variant> variants,
@@ -575,7 +597,8 @@ abstract class _Product extends Product {
   @override
   String? get image;
   @override
-  String? get address;
+  @MyJsonConverter()
+  Address? get address;
   @override
   List<String>? get categories;
   @override
@@ -818,11 +841,8 @@ Review _$ReviewFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Review {
   String get id => throw _privateConstructorUsedError;
-
   String? get name => throw _privateConstructorUsedError;
-
   double? get rating => throw _privateConstructorUsedError;
-
   String? get comment => throw _privateConstructorUsedError;
 
   /// Serializes this Review to a JSON map.
@@ -838,7 +858,6 @@ mixin _$Review {
 abstract class $ReviewCopyWith<$Res> {
   factory $ReviewCopyWith(Review value, $Res Function(Review) then) =
       _$ReviewCopyWithImpl<$Res, Review>;
-
   @useResult
   $Res call({String id, String? name, double? rating, String? comment});
 }
@@ -850,7 +869,6 @@ class _$ReviewCopyWithImpl<$Res, $Val extends Review>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -890,7 +908,6 @@ abstract class _$$ReviewImplCopyWith<$Res> implements $ReviewCopyWith<$Res> {
   factory _$$ReviewImplCopyWith(
           _$ReviewImpl value, $Res Function(_$ReviewImpl) then) =
       __$$ReviewImplCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call({String id, String? name, double? rating, String? comment});
@@ -1000,13 +1017,10 @@ abstract class _Review implements Review {
 
   @override
   String get id;
-
   @override
   String? get name;
-
   @override
   double? get rating;
-
   @override
   String? get comment;
 
@@ -1015,5 +1029,221 @@ abstract class _Review implements Review {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ReviewImplCopyWith<_$ReviewImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Address _$AddressFromJson(Map<String, dynamic> json) {
+  return _Address.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Address {
+  double? get lat => throw _privateConstructorUsedError;
+
+  double? get long => throw _privateConstructorUsedError;
+
+  String? get name => throw _privateConstructorUsedError;
+
+  String? get physicalAddress => throw _privateConstructorUsedError;
+
+  /// Serializes this Address to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of Address
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $AddressCopyWith<Address> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AddressCopyWith<$Res> {
+  factory $AddressCopyWith(Address value, $Res Function(Address) then) =
+      _$AddressCopyWithImpl<$Res, Address>;
+
+  @useResult
+  $Res call({double? lat, double? long, String? name, String? physicalAddress});
+}
+
+/// @nodoc
+class _$AddressCopyWithImpl<$Res, $Val extends Address>
+    implements $AddressCopyWith<$Res> {
+  _$AddressCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of Address
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? lat = freezed,
+    Object? long = freezed,
+    Object? name = freezed,
+    Object? physicalAddress = freezed,
+  }) {
+    return _then(_value.copyWith(
+      lat: freezed == lat
+          ? _value.lat
+          : lat // ignore: cast_nullable_to_non_nullable
+              as double?,
+      long: freezed == long
+          ? _value.long
+          : long // ignore: cast_nullable_to_non_nullable
+              as double?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      physicalAddress: freezed == physicalAddress
+          ? _value.physicalAddress
+          : physicalAddress // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$AddressImplCopyWith<$Res> implements $AddressCopyWith<$Res> {
+  factory _$$AddressImplCopyWith(
+          _$AddressImpl value, $Res Function(_$AddressImpl) then) =
+      __$$AddressImplCopyWithImpl<$Res>;
+
+  @override
+  @useResult
+  $Res call({double? lat, double? long, String? name, String? physicalAddress});
+}
+
+/// @nodoc
+class __$$AddressImplCopyWithImpl<$Res>
+    extends _$AddressCopyWithImpl<$Res, _$AddressImpl>
+    implements _$$AddressImplCopyWith<$Res> {
+  __$$AddressImplCopyWithImpl(
+      _$AddressImpl _value, $Res Function(_$AddressImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of Address
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? lat = freezed,
+    Object? long = freezed,
+    Object? name = freezed,
+    Object? physicalAddress = freezed,
+  }) {
+    return _then(_$AddressImpl(
+      lat: freezed == lat
+          ? _value.lat
+          : lat // ignore: cast_nullable_to_non_nullable
+              as double?,
+      long: freezed == long
+          ? _value.long
+          : long // ignore: cast_nullable_to_non_nullable
+              as double?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      physicalAddress: freezed == physicalAddress
+          ? _value.physicalAddress
+          : physicalAddress // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$AddressImpl implements _Address {
+  const _$AddressImpl(
+      {this.lat = 0.0,
+      this.long = 0.0,
+      this.name = '',
+      this.physicalAddress = ''});
+
+  factory _$AddressImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AddressImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final double? lat;
+  @override
+  @JsonKey()
+  final double? long;
+  @override
+  @JsonKey()
+  final String? name;
+  @override
+  @JsonKey()
+  final String? physicalAddress;
+
+  @override
+  String toString() {
+    return 'Address(lat: $lat, long: $long, name: $name, physicalAddress: $physicalAddress)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AddressImpl &&
+            (identical(other.lat, lat) || other.lat == lat) &&
+            (identical(other.long, long) || other.long == long) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.physicalAddress, physicalAddress) ||
+                other.physicalAddress == physicalAddress));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, lat, long, name, physicalAddress);
+
+  /// Create a copy of Address
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AddressImplCopyWith<_$AddressImpl> get copyWith =>
+      __$$AddressImplCopyWithImpl<_$AddressImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$AddressImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Address implements Address {
+  const factory _Address(
+      {final double? lat,
+      final double? long,
+      final String? name,
+      final String? physicalAddress}) = _$AddressImpl;
+
+  factory _Address.fromJson(Map<String, dynamic> json) = _$AddressImpl.fromJson;
+
+  @override
+  double? get lat;
+
+  @override
+  double? get long;
+
+  @override
+  String? get name;
+
+  @override
+  String? get physicalAddress;
+
+  /// Create a copy of Address
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AddressImplCopyWith<_$AddressImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

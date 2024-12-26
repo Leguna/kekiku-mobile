@@ -163,10 +163,10 @@ class __$$BaseResponseImplCopyWithImpl<T, $Res>
 class _$BaseResponseImpl<T> implements _BaseResponse<T> {
   const _$BaseResponseImpl(
       {required this.success,
-      required this.statusCode,
-      required this.message,
+      this.statusCode = 200,
+      this.message = '',
       required this.data,
-      required final List<Error> errors})
+      final List<Error> errors = const []})
       : _errors = errors;
 
   factory _$BaseResponseImpl.fromJson(
@@ -176,13 +176,16 @@ class _$BaseResponseImpl<T> implements _BaseResponse<T> {
   @override
   final bool success;
   @override
+  @JsonKey()
   final int statusCode;
   @override
+  @JsonKey()
   final String message;
   @override
   final T data;
   final List<Error> _errors;
   @override
+  @JsonKey()
   List<Error> get errors {
     if (_errors is EqualUnmodifiableListView) return _errors;
     // ignore: implicit_dynamic_type
@@ -235,10 +238,10 @@ class _$BaseResponseImpl<T> implements _BaseResponse<T> {
 abstract class _BaseResponse<T> implements BaseResponse<T> {
   const factory _BaseResponse(
       {required final bool success,
-      required final int statusCode,
-      required final String message,
+      final int statusCode,
+      final String message,
       required final T data,
-      required final List<Error> errors}) = _$BaseResponseImpl<T>;
+      final List<Error> errors}) = _$BaseResponseImpl<T>;
 
   factory _BaseResponse.fromJson(
           Map<String, dynamic> json, T Function(Object?) fromJsonT) =

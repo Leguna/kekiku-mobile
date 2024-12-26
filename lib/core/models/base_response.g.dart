@@ -12,12 +12,13 @@ _$BaseResponseImpl<T> _$$BaseResponseImplFromJson<T>(
 ) =>
     _$BaseResponseImpl<T>(
       success: json['success'] as bool,
-      statusCode: (json['statusCode'] as num).toInt(),
-      message: json['message'] as String,
+      statusCode: (json['statusCode'] as num?)?.toInt() ?? 200,
+      message: json['message'] as String? ?? '',
       data: fromJsonT(json['data']),
-      errors: (json['errors'] as List<dynamic>)
-          .map((e) => Error.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      errors: (json['errors'] as List<dynamic>?)
+              ?.map((e) => Error.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$BaseResponseImplToJson<T>(

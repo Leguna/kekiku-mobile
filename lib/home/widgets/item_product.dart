@@ -1,6 +1,7 @@
 import 'package:kekiku/favorite/favorite_button.dart';
 
 import '../../core/index.dart';
+import '../../product/bloc/product_cubit.dart';
 
 class ItemProduct extends StatelessWidget {
   const ItemProduct({
@@ -24,10 +25,10 @@ class ItemProduct extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
           onTap: () {
+            context.read<ProductCubit>().selectProduct(product);
             Navigator.pushNamed(
               context,
               Routes.productDetail,
-              arguments: product.toJson(),
             );
           },
           child: SingleChildScrollView(
@@ -128,9 +129,6 @@ class ItemProduct extends StatelessWidget {
                 if (product.rating != null) ...[
                   _buildRating(context),
                 ],
-                if (product.address != null) ...[
-                  _buildLocation(context),
-                ],
               ],
             ),
           ),
@@ -175,21 +173,6 @@ class ItemProduct extends StatelessWidget {
             style: Theme.of(context).textTheme.labelMedium,
           ),
         ],
-      ],
-    );
-  }
-
-  Row _buildLocation(BuildContext context) {
-    return Row(
-      children: [
-        const Icon(
-          Icons.location_on,
-          size: 16,
-        ),
-        Text(
-          product.address ?? '',
-          style: Theme.of(context).textTheme.labelMedium,
-        ),
       ],
     );
   }

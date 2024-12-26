@@ -20,18 +20,24 @@ class HomePage extends StatelessWidget {
     return MyScaffold(
       appBar: AppBar(
         title: FakeSearchBar(
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(context, Routes.search);
+          },
         ),
         leading: const SizedBox(width: 16),
         leadingWidth: 16,
         titleSpacing: 0,
         actions: [
           IconButtonBadged(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, Routes.notification);
+            },
             icon: const Icon(Icons.notifications_none),
           ),
           IconButtonBadged(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, Routes.cart);
+            },
             icon: const Icon(Icons.shopping_cart_outlined),
           ),
         ],

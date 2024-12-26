@@ -161,12 +161,11 @@ class __$$PagingResponseImplCopyWithImpl<T, $Res>
 /// @nodoc
 @JsonSerializable(genericArgumentFactories: true)
 class _$PagingResponseImpl<T> extends _PagingResponse<T> {
-  const _$PagingResponseImpl(
-      {required this.currentPage,
-      required this.totalPages,
-      required this.pageSize,
-      required this.totalItems,
-      required final List<T> items})
+  const _$PagingResponseImpl({this.currentPage = 1,
+    this.totalPages = 1,
+    this.pageSize = 10,
+    this.totalItems = 0,
+    final List<T> items = const []})
       : _items = items,
         super._();
 
@@ -175,15 +174,20 @@ class _$PagingResponseImpl<T> extends _PagingResponse<T> {
       _$$PagingResponseImplFromJson(json, fromJsonT);
 
   @override
+  @JsonKey()
   final int currentPage;
   @override
+  @JsonKey()
   final int totalPages;
   @override
+  @JsonKey()
   final int pageSize;
   @override
+  @JsonKey()
   final int totalItems;
   final List<T> _items;
   @override
+  @JsonKey()
   List<T> get items {
     if (_items is EqualUnmodifiableListView) return _items;
     // ignore: implicit_dynamic_type
@@ -232,12 +236,11 @@ class _$PagingResponseImpl<T> extends _PagingResponse<T> {
 }
 
 abstract class _PagingResponse<T> extends PagingResponse<T> {
-  const factory _PagingResponse(
-      {required final int currentPage,
-      required final int totalPages,
-      required final int pageSize,
-      required final int totalItems,
-      required final List<T> items}) = _$PagingResponseImpl<T>;
+  const factory _PagingResponse({final int currentPage,
+    final int totalPages,
+    final int pageSize,
+    final int totalItems,
+    final List<T> items}) = _$PagingResponseImpl<T>;
   const _PagingResponse._() : super._();
 
   factory _PagingResponse.fromJson(

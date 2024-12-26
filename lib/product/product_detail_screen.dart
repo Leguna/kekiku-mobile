@@ -30,7 +30,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   @override
   void initState() {
     super.initState();
-    product = Product.fromJson(widget.args ?? {});
+    product = context.read<ProductCubit>().selectedProduct ?? product;
     mainController = ScrollController();
     mainController.addListener(() {
       final offset = mainController.offset;

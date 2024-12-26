@@ -51,11 +51,10 @@ class ButtonVariantsState extends State<ButtonVariants> {
                       ),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8),
-                        child: Image.network(
-                          widget.variants[i].image!,
+                        child: MyImageLoader(
+                          path: widget.variants[i].image,
                           width: 64,
                           height: 64,
-                          fit: BoxFit.cover,
                         ),
                       ),
                     ),

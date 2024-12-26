@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kekiku/product/product_detail_screen.dart';
+import 'package:kekiku/search/search_screen.dart';
 
 import '../auth/create_profile_screen.dart';
 import '../auth/login_screen.dart';
@@ -36,9 +37,11 @@ class Routes {
   static const String notFound = '/not-found';
   static const String productDetail = '/product-detail';
   static const String search = '/search';
+  static const String transactionFilter = '/transaction-filter';
 
   static const String cart = '/cart';
   static const String checkout = '/checkout';
+  static const String notification = '/notification';
 
   static WidgetBuilder getRoute(String route) {
     return getRoutes()[route] ?? (context) => const NotFoundPage();
@@ -68,6 +71,7 @@ class Routes {
       productDetail: (context) =>
           ProductDetailScreen(args: getRouteArgs(context)),
       notFound: (context) => const NotFoundPage(),
+      search: (context) => const SearchScreen(),
     };
   }
 

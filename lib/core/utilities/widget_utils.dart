@@ -40,6 +40,8 @@ showMyModalOptionBottomSheet(
   String title = '',
   String description = '',
   VoidCallback? onConfirm,
+  List<String> options = const [],
+  onSelected,
 }) {
   showModalBottomSheet(
     context: context,
@@ -175,4 +177,3 @@ scrollToKey(GlobalKey key, {int scrollSpeed = 200, double alignment = 0.1}) {
     );
   }
 }
-

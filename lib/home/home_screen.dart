@@ -13,6 +13,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bottomNavBarCubit = context.read<BottomNavBarCubit>();
+    bottomNavBarCubit.pageController = PageController(initialPage: 0);
     final homeCubit = context.read<HomeCubit>();
     return PopScope(
       canPop: false,

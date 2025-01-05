@@ -39,6 +39,7 @@ class _SearchScreenState extends State<SearchScreen> {
               automaticallyImplyLeading: true,
               title: TextFormField(
                 focusNode: focusNode,
+                textInputAction: TextInputAction.search,
                 decoration: const InputDecoration(
                   hintText: 'Search',
                 ),

@@ -1,6 +1,7 @@
 import 'package:lottie/lottie.dart';
 
 import '../index.dart';
+import 'bottom_nav_bar/bloc/bottom_nav_bar_cubit.dart';
 
 class NotFoundPage extends StatelessWidget {
   const NotFoundPage({super.key});
@@ -25,6 +26,7 @@ class NotFoundPage extends StatelessWidget {
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
+                  context.read<BottomNavBarCubit>().reset();
                   Navigator.pushNamedAndRemoveUntil(
                     context,
                     Routes.home,

@@ -10,7 +10,12 @@ class BottomNavBarCubit extends Cubit<BottomNavBarState> {
     emit(const BottomNavBarState.initial(page: 0));
   }
 
-  final PageController pageController = PageController(initialPage: 0);
+  PageController pageController = PageController(initialPage: 0);
+
+  void reset() {
+    pageController.jumpToPage(0);
+    emit(const BottomNavBarState.initial(page: 0));
+  }
 
   void jumpToPage(int index) {
     pageController.jumpToPage(index);

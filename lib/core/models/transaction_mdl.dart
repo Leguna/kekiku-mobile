@@ -19,7 +19,7 @@ class Transaction with _$Transaction {
     String? userId,
     String? userName,
     Address? destinationAddress,
-    Product? product,
+    List<Product>? products,
   }) = _Transaction;
 
   factory Transaction.fromJson(Map<String, dynamic> json) =>
@@ -27,18 +27,4 @@ class Transaction with _$Transaction {
 
   factory Transaction.fromJsonString(String jsonString) =>
       _$TransactionFromJson(json.decode(jsonString));
-}
-
-class MyJsonConverter extends JsonConverter<Transaction, Map<String, dynamic>> {
-  const MyJsonConverter();
-
-  @override
-  Transaction fromJson(Map<String, dynamic> json) {
-    return Transaction.fromJson(json);
-  }
-
-  @override
-  Map<String, dynamic> toJson(Transaction object) {
-    return object.toJson();
-  }
 }

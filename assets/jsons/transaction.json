@@ -3,15 +3,15 @@
     "id": "txn001",
     "amount": 34.99,
     "date": "2024-12-01T09:30:00Z",
-    "type": "purchase",
+    "type": "gift",
     "description": "Purchase of Chocolate Fudge Cake",
     "status": "completed",
     "userId": "user123",
     "userName": "John Doe",
     "destinationAddress": {
-      "lat": 40.712776,
-      "long": -74.005974,
-      "name": "Baker Street",
+      "lat": 51.51895556,
+      "long": -0.16202948815,
+      "name": "Home",
       "physicalAddress": "123 Baker Street, Cake City"
     },
     "product": {
@@ -83,8 +83,8 @@
         }
       ],
       "address": {
-        "lat": 40.712776,
-        "long": -74.005974,
+        "lat": 51.5225862,
+        "long": -0.1567349,
         "name": "Baker Street",
         "physicalAddress": "123 Baker Street, Cake City"
       }
@@ -100,9 +100,9 @@
     "userId": "user456",
     "userName": "Jane Doe",
     "destinationAddress": {
-      "lat": 40.712776,
-      "long": -74.005974,
-      "name": "Velvet Avenue",
+      "lat": 40.7466062,
+      "long": -73.973300,
+      "name": "My Home",
       "physicalAddress": "456 Velvet Avenue, Cake City"
     },
     "product": {
@@ -302,7 +302,7 @@
     "date": "2024-12-20T18:00:00Z",
     "type": "purchase",
     "description": "Purchase of Carrot Cake",
-    "status": "completed",
+    "status": "ongoing",
     "userId": "user654",
     "userName": "Charlie Brown",
     "destinationAddress": {

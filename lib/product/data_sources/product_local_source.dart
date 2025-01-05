@@ -8,7 +8,7 @@ class ProductLocalSource {
 
   final String _favoriteKey = 'favorite';
 
-  Future<String> getProductFromJson() async {
+  Future<String> getProductFromJson({String query = ""}) async {
     final jsonProduct = jsonDecode(await getJson(Assets.jsons.cake));
 
     final favorite = await getFavorites();
@@ -30,6 +30,65 @@ class ProductLocalSource {
       'errors': [],
     };
     return jsonEncode(products);
+  }
+
+  Future<String> getTransactionFromJson({
+    String query = '',
+    String status = '',
+    String type = '',
+    DateTime? startDate,
+    DateTime? endDate,
+  }) async {
+    final jsonData = jsonDecode(await getJson(Assets.jsons.transaction));
+
+    if (query.isNotEmpty) {
+      final filtered = jsonData
+          .where((element) => element['product']['name']
+              .toString()
+              .toLowerCase()
+              .contains(query))
+          .toList();
+      jsonData['data']['items'] = filtered;
+    }
+
+    if (status.isNotEmpty) {
+      final filtered = jsonData
+          .where((element) =>
+              element['status'].toString().toLowerCase().contains(status))
+          .toList();
+      jsonData['data']['items'] = filtered;
+    }
+
+    if (type.isNotEmpty) {
+      final filtered = jsonData
+          .where((element) =>
+              element['type'].toString().toLowerCase().contains(type))
+          .toList();
+      jsonData['data']['items'] = filtered;
+    }
+
+    if (startDate != null && endDate != null) {
+      final filtered = jsonData.where((element) {
+        final date = DateTime.parse(element['date']);
+        return date.isAfter(startDate) && date.isBefore(endDate);
+      }).toList();
+      jsonData['data']['items'] = filtered;
+    }
+
+    final transactions = {
+      'success': true,
+      'statusCode': 200,
+      'message': 'Success',
+      'data': {
+        'currentPage': 1,
+        'totalPages': 1,
+        'pageSize': 10,
+        'totalItems': 10,
+        'items': jsonData,
+      },
+      'errors': [],
+    };
+    return jsonEncode(transactions);
   }
 
   Future<void> addFavorite(String id, String value) async {

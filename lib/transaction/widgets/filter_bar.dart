@@ -1,4 +1,5 @@
 import '../../core/index.dart';
+import '../blocs/transaction_cubit.dart';
 
 class FilterBar extends StatelessWidget {
   const FilterBar({super.key});
@@ -21,11 +22,32 @@ class FilterBar extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  _filterChip(context, label: "All Status", isSelected: true),
+                  _filterChip(
+                    context,
+                    label: "All Status",
+                    isSelected: true,
+                    onTap: () {
+                      // Show dialog bottom sheet
+                      showMyModalOptionBottomSheet(
+                        context,
+                        title: "Status",
+                        options: ["All Status", "Success", "Failed", "Pending"],
+                        onSelected: (index) {
+                          final cubit = context.read<TransactionCubit>();
+                          cubit.setStatusFilter([
+                            "All Status",
+                            "Success",
+                            "Failed",
+                            "Pending"
+                          ][index]);
+                        },
+                      );
+                    },
+                  ),
                   const SizedBox(width: Dimens.small),
-                  _filterChip(context, label: "All Category"),
+                  _filterChip(context, label: "All Type", onTap: () {}),
                   const SizedBox(width: Dimens.small),
-                  _filterChip(context, label: "All Date"),
+                  _filterChip(context, label: "All Date", onTap: () {}),
                 ],
               ),
             ),
@@ -45,6 +67,7 @@ class FilterBar extends StatelessWidget {
     final unselectedColor =
         Theme.of(context).colorScheme.secondary.withOpacity(0.2);
     return InkWell(
+      borderRadius: BorderRadius.circular(Dimens.small),
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(

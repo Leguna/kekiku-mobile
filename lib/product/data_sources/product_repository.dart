@@ -91,4 +91,15 @@ class ProductRepository {
   Future<void> removeFavorite(Product product) async {
     await localDataSource.removeFavorite(product.id);
   }
+
+  Future<List<Transaction>> getTransactions() async {
+    final response = await localDataSource.getTransactionFromJson();
+    final data = BaseResponse<List<Transaction>>.fromJson(
+      jsonDecode(response),
+      (json) => (json as List)
+          .map((e) => Transaction.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+    return data.data;
+  }
 }

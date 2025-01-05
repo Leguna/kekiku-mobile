@@ -3,7 +3,7 @@ import 'package:kekiku/core/widgets/bottom_nav_bar/bloc/bottom_nav_bar_cubit.dar
 import '../../index.dart';
 import 'my_bottom_nav_bar_item.dart';
 
-class MyBottomNavBar extends StatelessWidget {
+class MyBottomNavBar extends StatefulWidget {
   const MyBottomNavBar({
     super.key,
     required this.bloc,
@@ -12,9 +12,20 @@ class MyBottomNavBar extends StatelessWidget {
   final BottomNavBarCubit bloc;
 
   @override
+  State<MyBottomNavBar> createState() => _MyBottomNavBarState();
+}
+
+class _MyBottomNavBarState extends State<MyBottomNavBar> {
+  @override
+  void dispose() {
+    super.dispose();
+    widget.bloc.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocBuilder<BottomNavBarCubit, BottomNavBarState>(
-      bloc: bloc,
+      bloc: widget.bloc,
       builder: (context, state) {
         return ClipRRect(
           borderRadius: const BorderRadius.only(
@@ -24,7 +35,7 @@ class MyBottomNavBar extends StatelessWidget {
           child: BottomNavigationBar(
             currentIndex: state.page,
             onTap: (index) {
-              bloc.jumpToPage(index);
+              widget.bloc.jumpToPage(index);
             },
             type: BottomNavigationBarType.fixed,
             showSelectedLabels: true,

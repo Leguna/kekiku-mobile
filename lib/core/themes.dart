@@ -6,7 +6,7 @@ import 'typography.dart';
 
 final mainTheme = ThemeData(
   cardTheme: const CardTheme(
-    color: AppColors.primaryColorDark,
+    color: AppColors.primaryColor,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.all(Radius.circular(Dimens.small)),
     ),

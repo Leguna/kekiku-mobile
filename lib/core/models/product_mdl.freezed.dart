@@ -34,8 +34,6 @@ mixin _$Product {
   bool get isFavorite => throw _privateConstructorUsedError;
   String? get video => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
-
-  @MyJsonConverter()
   Address? get address => throw _privateConstructorUsedError;
   List<String>? get categories => throw _privateConstructorUsedError;
   @JsonKey(fromJson: _variantListFromJson, toJson: _variantListToJson)
@@ -72,7 +70,7 @@ abstract class $ProductCopyWith<$Res> {
       bool isFavorite,
       String? video,
       String? image,
-      @MyJsonConverter() Address? address,
+      Address? address,
       List<String>? categories,
       @JsonKey(fromJson: _variantListFromJson, toJson: _variantListToJson)
       List<Variant> variants,
@@ -229,7 +227,7 @@ abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
       bool isFavorite,
       String? video,
       String? image,
-      @MyJsonConverter() Address? address,
+      Address? address,
       List<String>? categories,
       @JsonKey(fromJson: _variantListFromJson, toJson: _variantListToJson)
       List<Variant> variants,
@@ -367,7 +365,7 @@ class _$ProductImpl extends _Product {
       this.isFavorite = false,
       this.video,
       this.image,
-      @MyJsonConverter() this.address = const Address(),
+      this.address = const Address(),
       final List<String>? categories = const [],
       @JsonKey(fromJson: _variantListFromJson, toJson: _variantListToJson)
       final List<Variant> variants = const [],
@@ -437,7 +435,6 @@ class _$ProductImpl extends _Product {
   final String? image;
   @override
   @JsonKey()
-  @MyJsonConverter()
   final Address? address;
   final List<String>? _categories;
   @override
@@ -558,7 +555,7 @@ abstract class _Product extends Product {
       final bool isFavorite,
       final String? video,
       final String? image,
-      @MyJsonConverter() final Address? address,
+      final Address? address,
       final List<String>? categories,
       @JsonKey(fromJson: _variantListFromJson, toJson: _variantListToJson)
       final List<Variant> variants,
@@ -597,7 +594,6 @@ abstract class _Product extends Product {
   @override
   String? get image;
   @override
-  @MyJsonConverter()
   Address? get address;
   @override
   List<String>? get categories;
@@ -1039,11 +1035,8 @@ Address _$AddressFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Address {
   double? get lat => throw _privateConstructorUsedError;
-
   double? get long => throw _privateConstructorUsedError;
-
   String? get name => throw _privateConstructorUsedError;
-
   String? get physicalAddress => throw _privateConstructorUsedError;
 
   /// Serializes this Address to a JSON map.
@@ -1059,7 +1052,6 @@ mixin _$Address {
 abstract class $AddressCopyWith<$Res> {
   factory $AddressCopyWith(Address value, $Res Function(Address) then) =
       _$AddressCopyWithImpl<$Res, Address>;
-
   @useResult
   $Res call({double? lat, double? long, String? name, String? physicalAddress});
 }
@@ -1071,7 +1063,6 @@ class _$AddressCopyWithImpl<$Res, $Val extends Address>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -1111,7 +1102,6 @@ abstract class _$$AddressImplCopyWith<$Res> implements $AddressCopyWith<$Res> {
   factory _$$AddressImplCopyWith(
           _$AddressImpl value, $Res Function(_$AddressImpl) then) =
       __$$AddressImplCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call({double? lat, double? long, String? name, String? physicalAddress});
@@ -1230,13 +1220,10 @@ abstract class _Address implements Address {
 
   @override
   double? get lat;
-
   @override
   double? get long;
-
   @override
   String? get name;
-
   @override
   String? get physicalAddress;
 

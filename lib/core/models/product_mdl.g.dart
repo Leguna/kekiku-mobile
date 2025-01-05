@@ -27,9 +27,9 @@ _$ProductImpl _$$ProductImplFromJson(Map<String, dynamic> json) =>
       isFavorite: json['isFavorite'] as bool? ?? false,
       video: json['video'] as String?,
       image: json['image'] as String?,
-      address: _$JsonConverterFromJson<Map<String, dynamic>, Address>(
-              json['address'], const MyJsonConverter().fromJson) ??
-          const Address(),
+      address: json['address'] == null
+          ? const Address()
+          : Address.fromJson(json['address'] as Map<String, dynamic>),
       categories: (json['categories'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
@@ -58,24 +58,11 @@ Map<String, dynamic> _$$ProductImplToJson(_$ProductImpl instance) =>
       'isFavorite': instance.isFavorite,
       'video': instance.video,
       'image': instance.image,
-      'address': _$JsonConverterToJson<Map<String, dynamic>, Address>(
-          instance.address, const MyJsonConverter().toJson),
+      'address': instance.address,
       'categories': instance.categories,
       'variants': _variantListToJson(instance.variants),
       'reviews': _reviewListToJson(instance.reviews),
     };
-
-Value? _$JsonConverterFromJson<Json, Value>(
-  Object? json,
-  Value? Function(Json json) fromJson,
-) =>
-    json == null ? null : fromJson(json as Json);
-
-Json? _$JsonConverterToJson<Json, Value>(
-  Value? value,
-  Json? Function(Value value) toJson,
-) =>
-    value == null ? null : toJson(value);
 
 _$VariantImpl _$$VariantImplFromJson(Map<String, dynamic> json) =>
     _$VariantImpl(

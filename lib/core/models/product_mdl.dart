@@ -22,7 +22,7 @@ class Product with _$Product {
     @Default(false) bool isFavorite,
     String? video,
     String? image,
-    @MyJsonConverter() @Default(Address()) Address? address,
+    @Default(Address()) Address? address,
     @Default([]) List<String>? categories,
     @JsonKey(fromJson: _variantListFromJson, toJson: _variantListToJson)
     @Default([])

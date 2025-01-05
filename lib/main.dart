@@ -5,6 +5,7 @@ import 'package:kekiku/core/themes.dart';
 import 'package:kekiku/home/blocs/home_cubit.dart';
 import 'package:kekiku/product/bloc/product_cubit.dart';
 import 'package:kekiku/splash/onboarding_screen.dart';
+import 'package:kekiku/transaction/blocs/transaction_cubit.dart';
 import 'package:oktoast/oktoast.dart';
 
 import 'app_setup.dart';
@@ -45,6 +46,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => ProductCubit()),
         BlocProvider(create: (context) => FavoriteCubit()),
         BlocProvider(create: (context) => HomeCubit()),
+        BlocProvider(create: (context) => TransactionCubit()),
       ],
       child: OKToast(
         position: ToastPosition.bottom,

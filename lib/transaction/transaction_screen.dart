@@ -82,23 +82,16 @@ class _TransactionScreenState extends State<TransactionScreen> {
               const SizedBox(width: Dimens.tiny),
             ],
           ),
-          body: ListView.builder(
-            itemCount: 1,
-            itemBuilder: (context, index) {
-              final transaction = Transaction(
-                products: [
-                  Product(
-                    name: 'Product Name',
-                    price: 100000,
-                    image: 'https://via.placeholder.com/150',
-                  ),
-                ],
-                status: 'Finished',
-                date: '12 Jan 2025',
-                description: 'Description',
-                amount: 100000,
-              );
-              return TransactionItem(transaction);
+          body: RefreshIndicator(
+            child: ListView.builder(
+              itemCount: cubit.transactions.length,
+              itemBuilder: (context, index) {
+                return TransactionItem(cubit.transactions[index]);
+              },
+            ),
+            onRefresh: () async {
+              cubit.clear();
+              cubit.fetchTransactions();
             },
           ),
         );

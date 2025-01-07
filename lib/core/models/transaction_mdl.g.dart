@@ -20,9 +20,9 @@ _$TransactionImpl _$$TransactionImplFromJson(Map<String, dynamic> json) =>
           ? null
           : Address.fromJson(
               json['destinationAddress'] as Map<String, dynamic>),
-      products: (json['products'] as List<dynamic>?)
-          ?.map((e) => Product.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      products: json['products'] == null
+          ? const []
+          : _productListFromJson(json['products'] as List?),
     );
 
 Map<String, dynamic> _$$TransactionImplToJson(_$TransactionImpl instance) =>
@@ -36,5 +36,5 @@ Map<String, dynamic> _$$TransactionImplToJson(_$TransactionImpl instance) =>
       'userId': instance.userId,
       'userName': instance.userName,
       'destinationAddress': instance.destinationAddress,
-      'products': instance.products,
+      'products': _productListToJson(instance.products),
     };

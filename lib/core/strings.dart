@@ -271,4 +271,8 @@ final class Strings {
   static const String buy = 'Buy';
 
   static const String buyNow = 'Buy now';
+
+  static const String buyAgain = 'Buy again';
+
+  static const String totalPrice = 'Total Price';
 }

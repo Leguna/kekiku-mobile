@@ -14,81 +14,83 @@
       "name": "Home",
       "physicalAddress": "123 Baker Street, Cake City"
     },
-    "product": {
-      "id": "8k2Lm4nQ7xBvZcHf",
-      "name": "Chocolate Fudge Cake",
-      "tag": "Popular",
-      "label": "Best Seller",
-      "price": 34.99,
-      "description": "Rich and moist chocolate cake with a smooth fudge icing.",
-      "tags": [
-        "chocolate",
-        "fudge",
-        "birthday",
-        "popular",
-        "moist",
-        "smooth",
-        "icing"
-      ],
-      "ingredients": [
-        "flour",
-        "sugar",
-        "cocoa powder",
-        "butter",
-        "eggs",
-        "milk"
-      ],
-      "discount": 20,
-      "stock": 9,
-      "sold": 2,
-      "rating": 4.7,
-      "isFavorite": true,
-      "video": "https://media.istockphoto.com/id/1048817772/id/video/memotong-kue-cokelat-dari-dekat.mp4?s=mp4-640x640-is&k=20&c=kO9C2DjHEJzC3dqUGElfScremsOURloLejmQF-lqPiU=",
-      "image": "https://plus.unsplash.com/premium_photo-1722686589246-f0969c3d72c4?q=80&w=1989&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "variants": [
-        {
-          "id": "VWOee6xoPXxQyAsg",
-          "name": "Chocolate Fudge Cake",
-          "price": 34.99,
-          "stock": 5,
-          "image": "https://images.unsplash.com/photo-1607920591413-4ec007e70023?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        },
-        {
-          "id": "4xJgE9oAJBX74Ujy",
-          "name": "Umbrella Cake",
-          "price": 23.99,
-          "stock": 3,
-          "image": "https://images.unsplash.com/photo-1553452118-621e1f860f43?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        },
-        {
-          "id": "nP3yL9gVMWx6DmwY",
-          "name": "Choco Ball Cake",
-          "price": 12.99,
-          "stock": 1,
-          "image": "https://plus.unsplash.com/premium_photo-1667031518595-9cb4b0d504ef?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    "products": [
+      {
+        "id": "8k2Lm4nQ7xBvZcHf",
+        "name": "Chocolate Fudge Cake",
+        "tag": "Popular",
+        "label": "Best Seller",
+        "price": 34.99,
+        "description": "Rich and moist chocolate cake with a smooth fudge icing.",
+        "tags": [
+          "chocolate",
+          "fudge",
+          "birthday",
+          "popular",
+          "moist",
+          "smooth",
+          "icing"
+        ],
+        "ingredients": [
+          "flour",
+          "sugar",
+          "cocoa powder",
+          "butter",
+          "eggs",
+          "milk"
+        ],
+        "discount": 20,
+        "stock": 9,
+        "sold": 2,
+        "rating": 4.7,
+        "isFavorite": true,
+        "video": "https://media.istockphoto.com/id/1048817772/id/video/memotong-kue-cokelat-dari-dekat.mp4?s=mp4-640x640-is&k=20&c=kO9C2DjHEJzC3dqUGElfScremsOURloLejmQF-lqPiU=",
+        "image": "https://plus.unsplash.com/premium_photo-1722686589246-f0969c3d72c4?q=80&w=1989&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "variants": [
+          {
+            "id": "VWOee6xoPXxQyAsg",
+            "name": "Chocolate Fudge Cake",
+            "price": 34.99,
+            "stock": 5,
+            "image": "https://images.unsplash.com/photo-1607920591413-4ec007e70023?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          },
+          {
+            "id": "4xJgE9oAJBX74Ujy",
+            "name": "Umbrella Cake",
+            "price": 23.99,
+            "stock": 3,
+            "image": "https://images.unsplash.com/photo-1553452118-621e1f860f43?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          },
+          {
+            "id": "nP3yL9gVMWx6DmwY",
+            "name": "Choco Ball Cake",
+            "price": 12.99,
+            "stock": 1,
+            "image": "https://plus.unsplash.com/premium_photo-1667031518595-9cb4b0d504ef?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          }
+        ],
+        "reviews": [
+          {
+            "id": "1",
+            "name": "John Doe",
+            "rating": 5,
+            "comment": "The best chocolate cake I've ever had!"
+          },
+          {
+            "id": "2",
+            "name": "Jane Doe",
+            "rating": 4,
+            "comment": "Delicious cake, but a bit too sweet for my taste."
+          }
+        ],
+        "address": {
+          "lat": 51.5225862,
+          "long": -0.1567349,
+          "name": "Baker Street",
+          "physicalAddress": "123 Baker Street, Cake City"
         }
-      ],
-      "reviews": [
-        {
-          "id": "1",
-          "name": "John Doe",
-          "rating": 5,
-          "comment": "The best chocolate cake I've ever had!"
-        },
-        {
-          "id": "2",
-          "name": "Jane Doe",
-          "rating": 4,
-          "comment": "Delicious cake, but a bit too sweet for my taste."
-        }
-      ],
-      "address": {
-        "lat": 51.5225862,
-        "long": -0.1567349,
-        "name": "Baker Street",
-        "physicalAddress": "123 Baker Street, Cake City"
       }
-    }
+    ]
   },
   {
     "id": "txn002",
@@ -105,7 +107,8 @@
       "name": "My Home",
       "physicalAddress": "456 Velvet Avenue, Cake City"
     },
-    "product": {
+    "products": [
+      {
       "id": "PqXy45Tb9VuAjkZ1",
       "name": "Red Velvet Cake",
       "price": 45.99,
@@ -172,7 +175,8 @@
         "name": "Velvet Avenue",
         "physicalAddress": "456 Velvet Avenue, Cake City"
       }
-    }
+      }
+    ]
   },
   {
     "id": "txn003",
@@ -189,7 +193,8 @@
       "name": "Cupcake Lane",
       "physicalAddress": "789 Cupcake Lane, Cake City"
     },
-    "product": {
+    "products": [
+      {
       "id": "BwNqkLm49XoRtP7Z",
       "name": "Vanilla Cupcakes",
       "price": 12.99,
@@ -218,7 +223,8 @@
         "name": "Cupcake Lane",
         "physicalAddress": "789 Cupcake Lane, Cake City"
       }
-    }
+      }
+    ]
   },
   {
     "id": "txn004",
@@ -235,7 +241,8 @@
       "name": "Lemon Drive",
       "physicalAddress": "321 Lemon Drive, Cake City"
     },
-    "product": {
+    "products": [
+      {
       "id": "ZfTnXkMp57Vc8BwR",
       "name": "Lemon Drizzle Cake",
       "price": 30.0,
@@ -294,7 +301,8 @@
         "name": "Lemon Drive",
         "physicalAddress": "321 Lemon Drive, Cake City"
       }
-    }
+      }
+    ]
   },
   {
     "id": "txn005",
@@ -311,7 +319,8 @@
       "name": "Carrot Road",
       "physicalAddress": "654 Carrot Road, Cake City"
     },
-    "product": {
+    "products": [
+      {
       "id": "JkRqYpLz85XtNvBW",
       "name": "Carrot Cake",
       "rating": 4.8,
@@ -340,6 +349,7 @@
         "name": "Carrot Road",
         "physicalAddress": "654 Carrot Road, Cake City"
       }
-    }
+      }
+    ]
   }
 ]

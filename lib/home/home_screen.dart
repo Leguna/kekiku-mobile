@@ -27,8 +27,11 @@ class HomeScreen extends StatelessWidget {
               return Stack(
                 children: [
                   MyScaffold(
-                    bottomNavigationBar:
-                        MyBottomNavBar(bloc: bottomNavBarCubit),
+                    bottomNavigationBar: MyBottomNavBar(
+                      onChanged: (index) {
+                        bottomNavBarCubit.jumpToPage(index);
+                      },
+                    ),
                     body: PageView(
                       physics: const NeverScrollableScrollPhysics(),
                       controller: bottomNavBarCubit.pageController,

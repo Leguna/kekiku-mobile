@@ -6,23 +6,22 @@ part 'bottom_nav_bar_cubit.freezed.dart';
 part 'bottom_nav_bar_state.dart';
 
 class BottomNavBarCubit extends Cubit<BottomNavBarState> {
-  BottomNavBarCubit() : super(const BottomNavBarState.initial(page: 0)) {
-    emit(const BottomNavBarState.initial(page: 0));
-  }
+  BottomNavBarCubit() : super(const BottomNavBarState.initial(page: 0));
 
-  PageController pageController = PageController(initialPage: 0);
+  PageController? pageController;
 
   void reset() {
-    pageController.jumpToPage(0);
+    pageController?.jumpToPage(0);
     emit(const BottomNavBarState.initial(page: 0));
   }
 
   void jumpToPage(int index) {
-    pageController.jumpToPage(index);
+    pageController?.jumpToPage(index);
     emit(BottomNavBarState.success(page: index));
   }
 
   void dispose() {
-    pageController.dispose();
+    pageController?.dispose();
+    pageController = null;
   }
 }

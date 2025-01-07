@@ -30,7 +30,8 @@ mixin _$Transaction {
   String? get userName => throw _privateConstructorUsedError;
   Address? get destinationAddress => throw _privateConstructorUsedError;
 
-  List<Product>? get products => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: _productListFromJson, toJson: _productListToJson)
+  List<Product> get products => throw _privateConstructorUsedError;
 
   /// Serializes this Transaction to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -58,7 +59,8 @@ abstract class $TransactionCopyWith<$Res> {
       String? userId,
       String? userName,
       Address? destinationAddress,
-      List<Product>? products});
+      @JsonKey(fromJson: _productListFromJson, toJson: _productListToJson)
+      List<Product> products});
 
   $AddressCopyWith<$Res>? get destinationAddress;
 }
@@ -87,7 +89,7 @@ class _$TransactionCopyWithImpl<$Res, $Val extends Transaction>
     Object? userId = freezed,
     Object? userName = freezed,
     Object? destinationAddress = freezed,
-    Object? products = freezed,
+    Object? products = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -126,10 +128,10 @@ class _$TransactionCopyWithImpl<$Res, $Val extends Transaction>
           ? _value.destinationAddress
           : destinationAddress // ignore: cast_nullable_to_non_nullable
               as Address?,
-      products: freezed == products
+      products: null == products
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
-              as List<Product>?,
+              as List<Product>,
     ) as $Val);
   }
 
@@ -166,7 +168,8 @@ abstract class _$$TransactionImplCopyWith<$Res>
       String? userId,
       String? userName,
       Address? destinationAddress,
-      List<Product>? products});
+      @JsonKey(fromJson: _productListFromJson, toJson: _productListToJson)
+      List<Product> products});
 
   @override
   $AddressCopyWith<$Res>? get destinationAddress;
@@ -194,7 +197,7 @@ class __$$TransactionImplCopyWithImpl<$Res>
     Object? userId = freezed,
     Object? userName = freezed,
     Object? destinationAddress = freezed,
-    Object? products = freezed,
+    Object? products = null,
   }) {
     return _then(_$TransactionImpl(
       id: null == id
@@ -233,10 +236,10 @@ class __$$TransactionImplCopyWithImpl<$Res>
           ? _value.destinationAddress
           : destinationAddress // ignore: cast_nullable_to_non_nullable
               as Address?,
-      products: freezed == products
+      products: null == products
           ? _value._products
           : products // ignore: cast_nullable_to_non_nullable
-              as List<Product>?,
+              as List<Product>,
     ));
   }
 }
@@ -254,7 +257,8 @@ class _$TransactionImpl implements _Transaction {
       this.userId,
       this.userName,
       this.destinationAddress,
-      final List<Product>? products})
+      @JsonKey(fromJson: _productListFromJson, toJson: _productListToJson)
+      final List<Product> products = const []})
       : _products = products;
 
   factory _$TransactionImpl.fromJson(Map<String, dynamic> json) =>
@@ -279,14 +283,13 @@ class _$TransactionImpl implements _Transaction {
   final String? userName;
   @override
   final Address? destinationAddress;
-  final List<Product>? _products;
+  final List<Product> _products;
   @override
-  List<Product>? get products {
-    final value = _products;
-    if (value == null) return null;
+  @JsonKey(fromJson: _productListFromJson, toJson: _productListToJson)
+  List<Product> get products {
     if (_products is EqualUnmodifiableListView) return _products;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_products);
   }
 
   @override
@@ -356,7 +359,8 @@ abstract class _Transaction implements Transaction {
       final String? userId,
       final String? userName,
       final Address? destinationAddress,
-      final List<Product>? products}) = _$TransactionImpl;
+      @JsonKey(fromJson: _productListFromJson, toJson: _productListToJson)
+      final List<Product> products}) = _$TransactionImpl;
 
   factory _Transaction.fromJson(Map<String, dynamic> json) =
       _$TransactionImpl.fromJson;
@@ -380,7 +384,8 @@ abstract class _Transaction implements Transaction {
   @override
   Address? get destinationAddress;
   @override
-  List<Product>? get products;
+  @JsonKey(fromJson: _productListFromJson, toJson: _productListToJson)
+  List<Product> get products;
 
   /// Create a copy of Transaction
   /// with the given fields replaced by the non-null parameter values.

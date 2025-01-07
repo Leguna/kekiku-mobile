@@ -6,26 +6,23 @@ import 'my_bottom_nav_bar_item.dart';
 class MyBottomNavBar extends StatefulWidget {
   const MyBottomNavBar({
     super.key,
-    required this.bloc,
+    this.onChanged,
   });
 
-  final BottomNavBarCubit bloc;
+  final Function(int)? onChanged;
 
   @override
   State<MyBottomNavBar> createState() => _MyBottomNavBarState();
 }
 
 class _MyBottomNavBarState extends State<MyBottomNavBar> {
-  @override
-  void dispose() {
-    super.dispose();
-    widget.bloc.dispose();
-  }
+  final PageController pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
+    final bottomNavBarCubit = context.read<BottomNavBarCubit>();
     return BlocBuilder<BottomNavBarCubit, BottomNavBarState>(
-      bloc: widget.bloc,
+      bloc: bottomNavBarCubit,
       builder: (context, state) {
         return ClipRRect(
           borderRadius: const BorderRadius.only(
@@ -35,7 +32,8 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
           child: BottomNavigationBar(
             currentIndex: state.page,
             onTap: (index) {
-              widget.bloc.jumpToPage(index);
+              widget.onChanged?.call(index);
+              bottomNavBarCubit.jumpToPage(index);
             },
             type: BottomNavigationBarType.fixed,
             showSelectedLabels: true,

@@ -7,7 +7,9 @@ part 'transaction_cubit.freezed.dart';
 part 'transaction_state.dart';
 
 class TransactionCubit extends Cubit<TransactionState> {
-  TransactionCubit() : super(const TransactionState.initial());
+  TransactionCubit() : super(const TransactionState.initial()) {
+    fetchTransactions();
+  }
 
   TextEditingController searchController = TextEditingController();
   List<Transaction> transactions = [];

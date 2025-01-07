@@ -25,7 +25,6 @@ mixin _$TransactionState {
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
@@ -45,7 +44,6 @@ mixin _$TransactionState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
@@ -55,7 +53,6 @@ mixin _$TransactionState {
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
@@ -510,7 +507,7 @@ class _$LoadedImpl implements _Loaded {
   @override
   List<Transaction> get transactions {
     if (_transactions is EqualUnmodifiableListView) return _transactions;
-// ignore: implicit_dynamic_type
+    // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_transactions);
   }
 

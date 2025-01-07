@@ -94,12 +94,13 @@ class ProductRepository {
 
   Future<List<Transaction>> getTransactions() async {
     final response = await localDataSource.getTransactionFromJson();
-    final data = BaseResponse<List<Transaction>>.fromJson(
+    final data = BaseResponse<PagingResponse<Transaction>>.fromJson(
       jsonDecode(response),
-      (json) => (json as List)
-          .map((e) => Transaction.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      (json) => PagingResponse<Transaction>.fromJson(
+        json as Map<String, dynamic>,
+        (json) => Transaction.fromJson(json as Map<String, dynamic>),
+      ),
     );
-    return data.data;
+    return data.data.items;
   }
 }

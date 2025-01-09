@@ -39,16 +39,30 @@ List<Product> _productListFromJson(List<dynamic>? jsonList) {
 }
 
 extension TransactionExtension on Transaction {
+  TransactionStatus get transactionStatus {
+    if (status == null) return TransactionStatus.none;
+    return TransactionStatus.values.firstWhere(
+        (e) => e.toString().split('.').last == status,
+        orElse: () => TransactionStatus.completed);
+  }
+
+  TransactionType get transactionType {
+    if (type == null) return TransactionType.none;
+    return TransactionType.values.firstWhere(
+        (e) => e.toString().split('.').last == type,
+        orElse: () => TransactionType.other);
+  }
+
   String getPrice() {
     return amount?.toCurrency() ?? '';
   }
 
   String getType() {
-    return mapTypeTransaction[type ?? ''] ?? '';
+    return (type ?? '').capitalize();
   }
 
   String getStatus() {
-    return mapStatusTransaction[status ?? ''] ?? '';
+    return (status ?? '').capitalize();
   }
 
   Color getStatusColor() {
@@ -64,12 +78,60 @@ List<Map<String, dynamic>> _productListToJson(List<Product> products) {
   return products.map((e) => e.toJson()).toList();
 }
 
-const Map<String, String> mapTypeTransaction = {
-  'purchase': 'Purchase',
-  "gift": "Gift",
-  'payment': 'Payment',
-  'refund': 'Refund',
-  'other': 'Other',
+enum TransactionType {
+  none,
+  purchase,
+  gift,
+  payment,
+  refund,
+  other,
+}
+
+enum TransactionStatus {
+  none,
+  pending,
+  processing,
+  completed,
+  failed,
+  cancelled,
+  ongoing,
+}
+
+extension TransactionTypeExtension on TransactionType {
+  String get value => mapTypeTransactionString[this] ?? '';
+
+  String get text {
+    if (value.isEmpty) return 'All Type';
+    return value.capitalize();
+  }
+}
+
+extension TransactionStatusExtension on TransactionStatus {
+  String get value => mapStatusTransactionString[this] ?? '';
+
+  String get text {
+    if (value.isEmpty) return 'All Status';
+    return value.capitalize();
+  }
+}
+
+const Map<TransactionType, String> mapTypeTransactionString = {
+  TransactionType.none: '',
+  TransactionType.purchase: 'purchase',
+  TransactionType.gift: 'gift',
+  TransactionType.payment: 'payment',
+  TransactionType.refund: 'refund',
+  TransactionType.other: 'other',
+};
+
+const Map<TransactionStatus, String> mapStatusTransactionString = {
+  TransactionStatus.none: '',
+  TransactionStatus.pending: 'pending',
+  TransactionStatus.processing: 'processing',
+  TransactionStatus.completed: 'completed',
+  TransactionStatus.failed: 'failed',
+  TransactionStatus.cancelled: 'cancelled',
+  TransactionStatus.ongoing: 'ongoing',
 };
 
 const Map<String, IconData> mapTypeIcon = {
@@ -78,15 +140,6 @@ const Map<String, IconData> mapTypeIcon = {
   'payment': Icons.payment,
   'refund': Icons.refresh,
   'other': Icons.shopping_bag,
-};
-
-const Map<String, String> mapStatusTransaction = {
-  "pending": "Pending",
-  "processing": "Processing",
-  "completed": "Completed",
-  "failed": "Failed",
-  "cancelled": "Cancelled",
-  "ongoing": "Ongoing",
 };
 
 const Map<String, Color> mapStatusColor = {

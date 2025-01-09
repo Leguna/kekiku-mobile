@@ -1,4 +1,5 @@
 import 'package:kekiku/transaction/blocs/transaction_cubit.dart';
+import 'package:lottie/lottie.dart';
 
 import '../core/index.dart';
 import 'widgets/filter_bar.dart';
@@ -45,7 +46,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                   Icons.search,
                   color: Theme.of(context).iconTheme.color,
                 ),
-                suffixIcon: cubit.searchController.text.isEmpty
+                suffixIcon: cubit.isQueryEmpty
                     ? null
                     : IconButton(
                         icon: const Icon(Icons.close),
@@ -83,12 +84,29 @@ class _TransactionScreenState extends State<TransactionScreen> {
             ],
           ),
           body: RefreshIndicator(
-            child: ListView.builder(
-              itemCount: cubit.transactions.length,
-              itemBuilder: (context, index) {
-                return TransactionItem(cubit.transactions[index]);
-              },
-            ),
+            child: cubit.transactions.isEmpty
+                ? SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Lottie.asset(
+                          Assets.lotties.notfound,
+                          reverse: true,
+                        ),
+                        Text(
+                          Strings.noItemsFound,
+                          style: Theme.of(context).textTheme.labelMedium,
+                        ),
+                      ],
+                    ),
+                  )
+                : ListView.builder(
+                    itemCount: cubit.transactions.length,
+                    itemBuilder: (context, index) {
+                      return TransactionItem(cubit.transactions[index]);
+                    },
+                  ),
             onRefresh: () async {
               cubit.clear();
               cubit.fetchTransactions();

@@ -6,54 +6,145 @@ class FilterBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: Dimens.screenWidth,
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const SizedBox(width: 16),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.close),
-          ),
-          const SizedBox(width: Dimens.tiny),
-          Expanded(
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  _filterChip(
-                    context,
-                    label: "All Status",
-                    isSelected: true,
-                    onTap: () {
-                      // Show dialog bottom sheet
-                      showMyModalOptionBottomSheet(
+    return BlocBuilder<TransactionCubit, TransactionState>(
+      builder: (context, state) {
+        final c = context.read<TransactionCubit>();
+        return SizedBox(
+          width: Dimens.screenWidth,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SizedBox(width: 16),
+              if (c.isFiltering())
+                IconButton(
+                  onPressed: () {
+                    c.clear(tags: true);
+                  },
+                  icon: const Icon(Icons.close),
+                ),
+              const SizedBox(width: Dimens.tiny),
+              Expanded(
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      _filterChip(
                         context,
-                        title: "Status",
-                        options: ["All Status", "Success", "Failed", "Pending"],
-                        onSelected: (index) {
-                          final cubit = context.read<TransactionCubit>();
-                          cubit.setStatusFilter([
-                            "All Status",
-                            "Success",
-                            "Failed",
-                            "Pending"
-                          ][index]);
+                        label: c.statusFilter.text,
+                        isSelected: c.statusFilter != TransactionStatus.none,
+                        onTap: () {
+                          FocusScope.of(context).requestFocus(FocusNode());
+                          showMyModalBottomSheet(context,
+                              title: Strings.filter,
+                              child: Column(
+                                children: [
+                                  for (var status in TransactionStatus.values)
+                                    RadioListTile(
+                                      title: Text(status.text),
+                                      value: status,
+                                      groupValue: c.statusFilter,
+                                      onChanged: (value) {
+                                        c.statusFilter =
+                                            value as TransactionStatus;
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                ],
+                              ));
                         },
-                      );
-                    },
+                      ),
+                      const SizedBox(width: Dimens.small),
+                      _filterChip(
+                        context,
+                        label: c.typeFilter.text,
+                        isSelected: c.typeFilter != TransactionType.none,
+                        onTap: () {
+                          FocusScope.of(context).requestFocus(FocusNode());
+                          showMyModalBottomSheet(context,
+                              title: Strings.filter,
+                              child: Column(
+                                children: [
+                                  for (var type in TransactionType.values)
+                                    RadioListTile(
+                                      title: Text(type.text),
+                                      value: type,
+                                      groupValue: c.typeFilter,
+                                      onChanged: (value) {
+                                        c.typeFilter = value as TransactionType;
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                ],
+                              ));
+                        },
+                      ),
+                      const SizedBox(width: Dimens.small),
+                      _filterChip(
+                        context,
+                        isSelected: c.startDateFilter != null,
+                        onTap: () {
+                          FocusScope.of(context).requestFocus(FocusNode());
+                          showMyModalBottomSheet(context,
+                              title: Strings.filter,
+                              child: Column(
+                                children: [
+                                  // 1 Month
+                                  RadioListTile(
+                                    title: Text("1 Month"),
+                                    value: 1,
+                                    groupValue: c.startDateFilter,
+                                    onChanged: (value) {
+                                      c.setDateTime(
+                                        DateTime.now().subtract(
+                                          const Duration(days: 30),
+                                        ),
+                                        DateTime.now(),
+                                      );
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                  // 3 Months
+                                  RadioListTile(
+                                    title: Text("3 Months"),
+                                    value: 3,
+                                    groupValue: c.startDateFilter,
+                                    onChanged: (value) {
+                                      c.setDateTime(
+                                        DateTime.now().subtract(
+                                          const Duration(days: 90),
+                                        ),
+                                        DateTime.now(),
+                                      );
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                  // 6 Months
+                                  RadioListTile(
+                                    title: Text("6 Months"),
+                                    value: 6,
+                                    groupValue: c.startDateFilter,
+                                    onChanged: (value) {
+                                      c.setDateTime(
+                                        DateTime.now().subtract(
+                                          const Duration(days: 180),
+                                        ),
+                                        DateTime.now(),
+                                      );
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                ],
+                              ));
+                        },
+                      ),
+                    ],
                   ),
-                  const SizedBox(width: Dimens.small),
-                  _filterChip(context, label: "All Type", onTap: () {}),
-                  const SizedBox(width: Dimens.small),
-                  _filterChip(context, label: "All Date", onTap: () {}),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 

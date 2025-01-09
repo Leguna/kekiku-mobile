@@ -92,8 +92,20 @@ class ProductRepository {
     await localDataSource.removeFavorite(product.id);
   }
 
-  Future<List<Transaction>> getTransactions() async {
-    final response = await localDataSource.getTransactionFromJson();
+  Future<List<Transaction>> getTransactions({
+    query = '',
+    type = '',
+    status = '',
+    endDate,
+    startDate,
+  }) async {
+    final response = await localDataSource.getTransactionFromJson(
+      query: query,
+      type: type,
+      status: status,
+      endDate: endDate,
+      startDate: startDate,
+    );
     final data = BaseResponse<PagingResponse<Transaction>>.fromJson(
       jsonDecode(response),
       (json) => PagingResponse<Transaction>.fromJson(

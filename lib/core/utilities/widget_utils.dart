@@ -14,6 +14,7 @@ showMySnackBar(context, String message, {bool error = true}) {
 showMyModalBottomSheet(
   BuildContext context, {
   Widget? child,
+  String title = "",
 }) {
   showModalBottomSheet(
     context: context,
@@ -29,7 +30,38 @@ showMyModalBottomSheet(
         padding: EdgeInsets.only(
           bottom: MediaQuery.of(context).viewInsets.bottom,
         ),
-        child: child ?? const SizedBox(),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.close),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                Text(
+                  title,
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(Dimens.medium),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  child ?? const SizedBox(),
+                ],
+              ),
+            ),
+            SizedBox(height: MediaQuery.of(context).viewInsets.bottom),
+          ],
+        ),
       );
     },
   );

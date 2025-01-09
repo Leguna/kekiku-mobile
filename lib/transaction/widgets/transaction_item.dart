@@ -9,7 +9,7 @@ class TransactionItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       color: Theme.of(context).cardTheme.color?.withOpacity(0.2),
-      margin: const EdgeInsets.all(Dimens.small),
+      margin: const EdgeInsets.all(Dimens.tiny),
       child: Padding(
         padding: const EdgeInsets.all(Dimens.small),
         child: Column(
@@ -25,7 +25,7 @@ class TransactionItem extends StatelessWidget {
                   children: [
                     Text(transaction?.getType() ?? ''),
                     Text(
-                      transaction?.date ?? '',
+                      transaction?.date?.toFormattedDate() ?? '',
                       style: TextStyle(
                         fontSize: Dimens.small,
                         color: Theme.of(context).textTheme.labelSmall?.color,

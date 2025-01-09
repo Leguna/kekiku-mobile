@@ -5,6 +5,56 @@ import 'dart:math';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
+extension StringUtils on String {
+  String timeAgo() {
+    final DateTime dateTime = DateTime.parse(this);
+    final DateTime now = DateTime.now();
+    final Duration difference = now.difference(dateTime);
+    if (difference.inDays > 365) {
+      return '${difference.inDays ~/ 365} years ago';
+    } else if (difference.inDays > 30) {
+      return '${difference.inDays ~/ 30} months ago';
+    } else if (difference.inDays > 0) {
+      return '${difference.inDays} days ago';
+    } else if (difference.inHours > 0) {
+      return '${difference.inHours} hours ago';
+    } else if (difference.inMinutes > 0) {
+      return '${difference.inMinutes} minutes ago';
+    } else {
+      return 'Just now';
+    }
+  }
+
+  DateTime toDateTime() {
+    return DateTime.parse(this);
+  }
+
+  String toFormattedDate() {
+    final DateTime dateTime = DateTime.parse(this);
+    return '${dateTime.day} ${getMonth(dateTime.month)} ${dateTime.year}';
+  }
+
+  String capitalize() {
+    if (isEmpty) {
+      return '';
+    }
+    return '${this[0].toUpperCase()}${substring(1)}';
+  }
+}
+
+extension DateTimeUtils on DateTime {
+  String getFormattedDate() {
+    return '$day ${getMonth(month)} $year';
+  }
+
+  String getFormattedTime() {
+    final String hours = hour < 10 ? '0$hour' : '$hour';
+    final String minutes = minute < 10 ? '0$minute' : '$minute';
+    final String amPm = hour < 12 ? 'AM' : 'PM';
+    return '$hours:$minutes $amPm';
+  }
+}
+
 String getFormattedDate(DateTime? dateTime) {
   if (dateTime == null) {
     return '';

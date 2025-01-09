@@ -16,34 +16,57 @@ class TransactionCubit extends Cubit<TransactionState> {
 
   final ProductRepository productRepository = getIt<ProductRepository>();
 
-  String statusFilter = '';
-  String categoryFilter = '';
   DateTime? startDateFilter;
   DateTime? endDateFilter;
 
+  TransactionType typeFilter = TransactionType.none;
+  TransactionStatus statusFilter = TransactionStatus.none;
+
   bool isFiltering() {
-    return statusFilter.isNotEmpty ||
-        categoryFilter.isNotEmpty ||
+    return statusFilter != TransactionStatus.none ||
+        typeFilter != TransactionType.none ||
         startDateFilter != null ||
-        endDateFilter != null ||
-        searchController.text.isNotEmpty;
+        endDateFilter != null;
   }
 
-  void trySearchTransaction() {
-    try {} catch (e) {
+  final Debouncer debouncer = Debouncer(milliseconds: 1000);
+
+  get isQueryEmpty => searchController.text.isEmpty;
+
+  void trySearchTransaction() async {
+    emit(const TransactionState.loading());
+    try {
+      if (searchController.text.isEmpty) {
+        emit(TransactionState.loaded(transactions));
+        return;
+      }
+      debouncer.run(() async {
+        emit(const TransactionState.loading());
+        final filteredTransactions = await productRepository.getTransactions(
+          query: searchController.text.toLowerCase(),
+        );
+        transactions = filteredTransactions;
+        emit(TransactionState.loaded(filteredTransactions));
+      });
+    } catch (e) {
       emit(TransactionState.error(message: e.toString()));
     }
   }
 
   void clear({bool tags = false}) {
+    emit(const TransactionState.loading());
     transactions = [];
-    if (!tags) searchController.clear();
+    if (!tags) {
+      searchController.clear();
+      trySearchTransaction();
+    }
     if (tags) {
-      statusFilter = '';
-      categoryFilter = '';
+      statusFilter = TransactionStatus.none;
+      typeFilter = TransactionType.none;
       startDateFilter = null;
       endDateFilter = null;
     }
+    emit(const TransactionState.updated());
   }
 
   void setDateTime(DateTime? startDate, DateTime? endDate) {
@@ -53,15 +76,15 @@ class TransactionCubit extends Cubit<TransactionState> {
     emit(const TransactionState.updated());
   }
 
-  void setStatusFilter(String status) {
+  void setStatusFilter(TransactionStatus status) {
     emit(const TransactionState.loading());
     statusFilter = status;
     emit(const TransactionState.updated());
   }
 
-  void setCategoryFilter(String category) {
+  void setCategoryFilter(TransactionType type) {
     emit(const TransactionState.loading());
-    categoryFilter = category;
+    typeFilter = type;
     emit(const TransactionState.updated());
   }
 

@@ -39,16 +39,16 @@ class ProductLocalSource {
     DateTime? startDate,
     DateTime? endDate,
   }) async {
-    final jsonData = jsonDecode(await getJson(Assets.jsons.transaction));
+    var jsonData = jsonDecode(await getJson(Assets.jsons.transaction));
 
     if (query.isNotEmpty) {
       final filtered = jsonData
-          .where((element) => element['product']['name']
+          .where((element) => element['products'][0]['name']
               .toString()
               .toLowerCase()
               .contains(query))
           .toList();
-      jsonData['data']['items'] = filtered;
+      jsonData = filtered;
     }
 
     if (status.isNotEmpty) {
@@ -56,7 +56,7 @@ class ProductLocalSource {
           .where((element) =>
               element['status'].toString().toLowerCase().contains(status))
           .toList();
-      jsonData['data']['items'] = filtered;
+      jsonData = filtered;
     }
 
     if (type.isNotEmpty) {
@@ -64,7 +64,7 @@ class ProductLocalSource {
           .where((element) =>
               element['type'].toString().toLowerCase().contains(type))
           .toList();
-      jsonData['data']['items'] = filtered;
+      jsonData = filtered;
     }
 
     if (startDate != null && endDate != null) {
@@ -72,7 +72,7 @@ class ProductLocalSource {
         final date = DateTime.parse(element['date']);
         return date.isAfter(startDate) && date.isBefore(endDate);
       }).toList();
-      jsonData['data']['items'] = filtered;
+      jsonData = filtered;
     }
 
     final transactions = {

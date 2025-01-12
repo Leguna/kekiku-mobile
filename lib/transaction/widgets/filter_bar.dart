@@ -1,5 +1,6 @@
 import '../../core/index.dart';
 import '../blocs/transaction_cubit.dart';
+import 'date_filter_widget.dart';
 
 class FilterBar extends StatelessWidget {
   const FilterBar({super.key});
@@ -44,8 +45,8 @@ class FilterBar extends StatelessWidget {
                                       value: status,
                                       groupValue: c.statusFilter,
                                       onChanged: (value) {
-                                        c.statusFilter =
-                                            value as TransactionStatus;
+                                        c.changeStatusFilter(
+                                            value as TransactionStatus);
                                         Navigator.pop(context);
                                       },
                                     ),
@@ -70,7 +71,8 @@ class FilterBar extends StatelessWidget {
                                       value: type,
                                       groupValue: c.typeFilter,
                                       onChanged: (value) {
-                                        c.typeFilter = value as TransactionType;
+                                        c.changeTypeFilter(
+                                            value as TransactionType);
                                         Navigator.pop(context);
                                       },
                                     ),
@@ -81,60 +83,14 @@ class FilterBar extends StatelessWidget {
                       const SizedBox(width: Dimens.small),
                       _filterChip(
                         context,
+                        label: c.getDateLabel,
                         isSelected: c.startDateFilter != null,
                         onTap: () {
                           FocusScope.of(context).requestFocus(FocusNode());
+                          c.chooseDateFilter(c.currentFilter);
                           showMyModalBottomSheet(context,
                               title: Strings.filter,
-                              child: Column(
-                                children: [
-                                  // 1 Month
-                                  RadioListTile(
-                                    title: Text("1 Month"),
-                                    value: 1,
-                                    groupValue: c.startDateFilter,
-                                    onChanged: (value) {
-                                      c.setDateTime(
-                                        DateTime.now().subtract(
-                                          const Duration(days: 30),
-                                        ),
-                                        DateTime.now(),
-                                      );
-                                      Navigator.pop(context);
-                                    },
-                                  ),
-                                  // 3 Months
-                                  RadioListTile(
-                                    title: Text("3 Months"),
-                                    value: 3,
-                                    groupValue: c.startDateFilter,
-                                    onChanged: (value) {
-                                      c.setDateTime(
-                                        DateTime.now().subtract(
-                                          const Duration(days: 90),
-                                        ),
-                                        DateTime.now(),
-                                      );
-                                      Navigator.pop(context);
-                                    },
-                                  ),
-                                  // 6 Months
-                                  RadioListTile(
-                                    title: Text("6 Months"),
-                                    value: 6,
-                                    groupValue: c.startDateFilter,
-                                    onChanged: (value) {
-                                      c.setDateTime(
-                                        DateTime.now().subtract(
-                                          const Duration(days: 180),
-                                        ),
-                                        DateTime.now(),
-                                      );
-                                      Navigator.pop(context);
-                                    },
-                                  ),
-                                ],
-                              ));
+                              child: const DateFilterWidget());
                         },
                       ),
                     ],

@@ -277,4 +277,15 @@ final class Strings {
   static const String totalPrice = 'Total Price';
 
   static const String filter = 'Filter';
+
+  static const String allDates = 'All dates';
+
+  static const String month = 'Month';
+
+  static const String custom = 'Custom';
+
+  static const String confirm = 'Confirm';
+
+  static const String startDate = 'Start Date';
+  static const String endDate = 'End Date';
 }

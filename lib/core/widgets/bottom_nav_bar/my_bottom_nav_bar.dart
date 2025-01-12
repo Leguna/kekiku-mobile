@@ -3,20 +3,13 @@ import 'package:kekiku/core/widgets/bottom_nav_bar/bloc/bottom_nav_bar_cubit.dar
 import '../../index.dart';
 import 'my_bottom_nav_bar_item.dart';
 
-class MyBottomNavBar extends StatefulWidget {
+class MyBottomNavBar extends StatelessWidget {
   const MyBottomNavBar({
     super.key,
     this.onChanged,
   });
 
   final Function(int)? onChanged;
-
-  @override
-  State<MyBottomNavBar> createState() => _MyBottomNavBarState();
-}
-
-class _MyBottomNavBarState extends State<MyBottomNavBar> {
-  final PageController pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +25,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
           child: BottomNavigationBar(
             currentIndex: state.page,
             onTap: (index) {
-              widget.onChanged?.call(index);
-              bottomNavBarCubit.jumpToPage(index);
+              onChanged?.call(index);
             },
             type: BottomNavigationBarType.fixed,
             showSelectedLabels: true,

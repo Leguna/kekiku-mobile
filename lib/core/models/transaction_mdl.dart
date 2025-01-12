@@ -89,10 +89,8 @@ enum TransactionType {
 
 enum TransactionStatus {
   none,
-  pending,
   processing,
   completed,
-  failed,
   cancelled,
   ongoing,
 }
@@ -126,10 +124,8 @@ const Map<TransactionType, String> mapTypeTransactionString = {
 
 const Map<TransactionStatus, String> mapStatusTransactionString = {
   TransactionStatus.none: '',
-  TransactionStatus.pending: 'pending',
   TransactionStatus.processing: 'processing',
   TransactionStatus.completed: 'completed',
-  TransactionStatus.failed: 'failed',
   TransactionStatus.cancelled: 'cancelled',
   TransactionStatus.ongoing: 'ongoing',
 };
@@ -143,9 +139,8 @@ const Map<String, IconData> mapTypeIcon = {
 };
 
 const Map<String, Color> mapStatusColor = {
-  "pending": Colors.orange,
   "completed": Colors.green,
-  "failed": Colors.red,
+  "processing": Colors.blue,
   "cancelled": Colors.red,
   "ongoing": Colors.yellow,
 };

@@ -56,74 +56,47 @@ class EditProfileTile extends StatelessWidget {
               bloc.setValue(type);
               showMyModalBottomSheet(
                 context,
+                title: "${Strings.edit} ${editProfileTypeMap[type]}",
                 child: Column(
-                  mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
-                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        IconButton(
-                          icon: const Icon(Icons.close),
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
+                    if (!isGender && !isBirthday)
+                      TextField(
+                        keyboardType:
+                            isPhone ? TextInputType.phone : TextInputType.text,
+                        controller: bloc.value,
+                        decoration: InputDecoration(
+                          labelText: editProfileTypeMap[type],
                         ),
-                        Text(
-                          "${Strings.edit} ${editProfileTypeMap[type]}",
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(Dimens.medium),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          if (!isGender && !isBirthday)
-                            TextField(
-                              keyboardType: isPhone
-                                  ? TextInputType.phone
-                                  : TextInputType.text,
-                              controller: bloc.value,
-                              decoration: InputDecoration(
-                                labelText: editProfileTypeMap[type],
-                              ),
-                              inputFormatters: isPhone
-                                  ? [
-                                      FilteringTextInputFormatter.digitsOnly,
-                                      LengthLimitingTextInputFormatter(15),
-                                    ]
-                                  : null,
-                              onSubmitted: (value) {
-                                bloc.editProfileValue(type, value);
-                                Navigator.pop(context);
-                              },
-                            ),
-                          if (isGender)
-                            buildGenderBottomSheet(
-                              context,
-                              value: bloc.value.text,
-                            ),
-                          if (isBirthday)
-                            buildBirthdayBottomSheet(context, bloc),
-                          const SizedBox(height: Dimens.medium),
-                          ElevatedButton(
-                            onPressed: () {
-                              if (isBirthday) {
-                                bloc.setProfileBirthday();
-                              } else {
-                                bloc.editProfileValue(type, bloc.value.text);
-                              }
-                              Navigator.pop(context);
-                            },
-                            child: const Text(Strings.save),
-                          ),
-                        ],
+                        inputFormatters: isPhone
+                            ? [
+                                FilteringTextInputFormatter.digitsOnly,
+                                LengthLimitingTextInputFormatter(15),
+                              ]
+                            : null,
+                        onSubmitted: (value) {
+                          bloc.editProfileValue(type, value);
+                          Navigator.pop(context);
+                        },
                       ),
+                    if (isGender)
+                      buildGenderBottomSheet(
+                        context,
+                        value: bloc.value.text,
+                      ),
+                    if (isBirthday) buildBirthdayBottomSheet(context, bloc),
+                    const SizedBox(height: Dimens.medium),
+                    ElevatedButton(
+                      onPressed: () {
+                        if (isBirthday) {
+                          bloc.setProfileBirthday();
+                        } else {
+                          bloc.editProfileValue(type, bloc.value.text);
+                        }
+                        Navigator.pop(context);
+                      },
+                      child: const Text(Strings.save),
                     ),
-                    SizedBox(height: MediaQuery.of(context).viewInsets.bottom),
                   ],
                 ),
               );

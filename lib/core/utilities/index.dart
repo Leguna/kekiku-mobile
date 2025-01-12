@@ -1,3 +1,4 @@
+export 'date_utils.dart';
 export 'debouncer.dart';
 export 'file_utils.dart';
 export 'number_utils.dart';

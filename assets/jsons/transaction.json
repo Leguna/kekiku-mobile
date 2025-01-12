@@ -2,7 +2,7 @@
   {
     "id": "txn001",
     "amount": 34.99,
-    "date": "2024-12-01T09:30:00Z",
+    "date": "2025-01-01T09:30:00Z",
     "type": "gift",
     "description": "Purchase of Chocolate Fudge Cake",
     "status": "completed",
@@ -98,7 +98,7 @@
     "date": "2024-12-05T14:15:00Z",
     "type": "purchase",
     "description": "Purchase of Red Velvet Cake",
-    "status": "completed",
+    "status": "cancelled",
     "userId": "user456",
     "userName": "Jane Doe",
     "destinationAddress": {
@@ -184,7 +184,7 @@
     "date": "2024-12-10T11:45:00Z",
     "type": "purchase",
     "description": "Purchase of Vanilla Cupcakes",
-    "status": "completed",
+    "status": "processing",
     "userId": "user789",
     "userName": "Alice Smith",
     "destinationAddress": {
@@ -229,8 +229,8 @@
   {
     "id": "txn004",
     "amount": 30.0,
-    "date": "2024-12-15T16:30:00Z",
-    "type": "purchase",
+    "date": "2024-07-15T16:30:00Z",
+    "type": "refund",
     "description": "Purchase of Lemon Drizzle Cake",
     "status": "completed",
     "userId": "user321",
@@ -307,7 +307,7 @@
   {
     "id": "txn005",
     "amount": 35.0,
-    "date": "2024-12-20T18:00:00Z",
+    "date": "2024-04-20T18:00:00Z",
     "type": "purchase",
     "description": "Purchase of Carrot Cake",
     "status": "ongoing",

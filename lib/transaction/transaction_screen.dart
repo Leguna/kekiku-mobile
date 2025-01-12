@@ -16,16 +16,14 @@ class _TransactionScreenState extends State<TransactionScreen> {
   @override
   void initState() {
     final cubit = context.read<TransactionCubit>();
-    cubit.searchController = TextEditingController();
-    cubit.searchController.addListener(() {
-      cubit.trySearchTransaction();
-    });
+    cubit.initView();
     super.initState();
   }
 
   @override
   void dispose() {
     super.dispose();
+    context.read<TransactionCubit>().dispose();
   }
 
   @override
@@ -108,7 +106,8 @@ class _TransactionScreenState extends State<TransactionScreen> {
                     },
                   ),
             onRefresh: () async {
-              cubit.clear();
+              cubit.clear(tags: true);
+              cubit.searchController.clear();
               cubit.fetchTransactions();
             },
           ),

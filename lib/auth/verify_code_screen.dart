@@ -17,9 +17,9 @@ class VerifyCodeScreen extends StatelessWidget {
         listener: (context, state) {
           state.maybeWhen(
             orElse: () {},
-            success: (message) {
+            verified: () {
               context.read<AuthCubit>().passwordController.clear();
-              Navigator.pushReplacementNamed(context, Routes.createProfile);
+              Navigator.pushNamed(context, Routes.createProfile);
             },
           );
         },
@@ -90,7 +90,7 @@ class VerifyCodeScreen extends StatelessWidget {
                 const SizedBox(height: 16),
                 canResend
                     ? TextButton(
-                        onPressed: cubit.resend,
+                        onPressed: cubit.resendCodeVerificationCode,
                         child: const Text(Strings.resendCode),
                       )
                     : Wrap(

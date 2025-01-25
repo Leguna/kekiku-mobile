@@ -27,11 +27,11 @@ class AuthCubit extends Cubit<AuthState> {
   User? user;
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  GlobalKey<FormState> createProfileKey = GlobalKey<FormState>();
 
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  final userNameController = TextEditingController();
+  final emailController =
+      TextEditingController(text: 'ahmadtuflihunxd@gmail.com');
+  final passwordController = TextEditingController(text: 'password');
+  final userNameController = TextEditingController(text: 'ahmad');
   final verificationCodeController = TextEditingController();
 
   bool isFormValid = false;
@@ -101,33 +101,6 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  Future<void> tryVerification({bool isRegister = false}) async {
-    emit(const AuthState.loading());
-    try {
-      final text = emailController.text;
-      final isEmail = Validators.isEmail(text);
-      await Future.delayed(const Duration(seconds: 1));
-      if (!isEmail) {
-      } else {}
-      isUsingEmail = isEmail;
-      isFormValid = false;
-
-      emit(AuthState.form(
-        emailController.text,
-        passwordController.text,
-        false,
-      ));
-      emit(AuthState.checked(isEmail));
-      if (isRegister) {
-        passwordController.clear();
-        resend();
-        return;
-      }
-    } catch (e) {
-      emit(AuthState.error(e.toString()));
-    }
-  }
-
   void togglePassword() {
     emit(const AuthState.loading());
     showPassword = !showPassword;
@@ -135,35 +108,29 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   void reset() {
-    formKey = GlobalKey<FormState>();
-    isFormValid = false;
     showPassword = false;
     codeVerify = false;
+    canResend = true;
     isUsingEmail = false;
+    isFormValid = false;
     emailController.clear();
     passwordController.clear();
+    verificationCodeController.clear();
+    userNameController.clear();
     emit(const AuthState.initial());
   }
 
   Future<void> login() async {
-    emit(const AuthState.loading());
     try {
-      await Future.delayed(const Duration(seconds: 1));
+      emit(const AuthState.loading());
       final email = emailController.text;
       final password = passwordController.text;
-      var isSuccess = false;
       if (isUsingEmail) {
-        isSuccess = await ds.loginWithEmail(email, password);
+        user = await ds.loginWithEmail(email, password);
       } else {
-        isSuccess = await ds.loginWithPhone(email, password);
+        user = await ds.loginWithPhone(email, password);
       }
-      if (!isSuccess) {
-        emit(const AuthState.error(Strings.failedToLogin));
-        return;
-      }
-      await ss.writeData(userKey, user!.id);
-      await ss.writeData(user!.id, jsonEncode(user!.toJson()));
-      emit(AuthState.updated(user!));
+      emit(AuthState.updated(user));
     } catch (e) {
       emit(const AuthState.error(Strings.failedToLogin));
     }
@@ -200,15 +167,7 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  bool canResend = false;
-
-  Future<void> validateFormVerifyCode(String value) async {
-    if (verificationCodeController.text.length == 6) {
-      emit(const AuthState.loading());
-      await Future.delayed(const Duration(seconds: 1));
-      emit(const AuthState.success(Strings.codeVerified));
-    }
-  }
+  bool canResend = true;
 
   void onTimerVerifyEnd() {
     emit(const AuthState.loading());
@@ -216,36 +175,117 @@ class AuthCubit extends Cubit<AuthState> {
     emit(const AuthState.initial());
   }
 
-  void resend() async {
-    verificationCodeController.clear();
-    if (!canResend) return;
-    emit(const AuthState.loading());
-    // TODO: Request new verification code
-    await Future.delayed(const Duration(seconds: 1));
-    canResend = false;
-    emit(const AuthState.success(Strings.verificationCodeSent));
-  }
-
-  Future<void> createProfile() async {
-    emit(const AuthState.loading());
-    await Future.delayed(const Duration(seconds: 1));
-    user = User(
-      id: randomString(),
-      email: (isUsingEmail) ? emailController.text : '',
-      displayName: userNameController.text,
-      phone: (!isUsingEmail) ? emailController.text : '',
-      photoUrl: '',
-    );
-    emit(const AuthState.success(Strings.profileCreated));
-    await ss.writeData(userKey, user!.id);
-    await ss.writeData(user!.id, jsonEncode(user!.toJson()));
-    emit(AuthState.updated(user));
-  }
-
   Future<void> setUser(User user) async {
     this.user = user;
     await ss.writeData(userKey, user.id);
     await ss.writeData(user.id, jsonEncode(user.toJson()));
     emit(AuthState.updated(user));
+  }
+
+  Future<void> checkEmailOrPhone() async {
+    emit(const AuthState.loading());
+    if (Validators.isEmail(emailController.text)) {
+      isUsingEmail = true;
+    } else {
+      isUsingEmail = false;
+    }
+    emit(const AuthState.initial());
+  }
+
+  Future<void> trySendVerificationMessage({bool isRegister = false}) async {
+    try {
+      emit(const AuthState.loading());
+      final text = emailController.text;
+      final isEmail = Validators.isEmail(text);
+
+      isUsingEmail = isEmail;
+
+      emit(AuthState.form(
+        emailController.text,
+        passwordController.text,
+        false,
+      ));
+      if (isRegister) {
+        passwordController.clear();
+        resendCodeVerificationCode();
+        return;
+      }
+      emit(const AuthState.error("Failed to send verification message"));
+    } catch (e) {
+      emit(AuthState.error(e.toString()));
+    }
+  }
+
+  Future<void> registerEmail() async {
+    try {
+      emit(const AuthState.loading());
+      final text = emailController.text;
+      final isEmail = Validators.isEmail(text);
+
+      isUsingEmail = isEmail;
+
+      emit(AuthState.form(
+        emailController.text,
+        passwordController.text,
+        false,
+      ));
+      await resendCodeVerificationCode();
+    } catch (e) {
+      isFormValid = true;
+      emit(AuthState.error(e.toString()));
+    }
+  }
+
+  Future<void> resendCodeVerificationCode() async {
+    try {
+      if (!canResend) return;
+      canResend = false;
+
+      emit(const AuthState.loading());
+      passwordController.clear();
+      verificationCodeController.clear();
+      await ds.sendVerificationEmail(emailController.text);
+      emit(const AuthState.checked(true));
+    } catch (e) {
+      canResend = true;
+      emit(AuthState.error((e as Error).message));
+    }
+  }
+
+  Future<void> createProfile() async {
+    try {
+      emit(const AuthState.loading());
+
+      final email = (isUsingEmail) ? emailController.text : '';
+      final name = userNameController.text;
+      final password = passwordController.text;
+      final pin = verificationCodeController.text;
+
+      user = await ds.createProfile(
+        email: email,
+        name: name,
+        password: password,
+        pin: pin,
+      );
+
+      emit(const AuthState.success(Strings.profileCreated));
+      emit(AuthState.updated(user));
+    } catch (e) {
+      emit(AuthState.error(e.toString()));
+    }
+  }
+
+  Future<void> validateFormVerifyCode(String value) async {
+    try {
+      if (verificationCodeController.text.length == 6) {
+        emit(const AuthState.loading());
+        final email = emailController.text;
+        final code = verificationCodeController.text;
+        await ds.validateVerificationCode(email, code);
+        emit(const AuthState.verified());
+      }
+    } catch (e) {
+      emit(AuthState.error((e as Error).message));
+    }
   }
 }

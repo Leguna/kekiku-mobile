@@ -3,8 +3,6 @@ import 'package:kekiku/product/bloc/product_cubit.dart';
 import '../core/index.dart';
 import 'blocs/home_cubit.dart';
 import 'widgets/fake_search_bar.dart';
-import 'widgets/home_badged_icon_list.dart';
-import 'widgets/home_chip.dart';
 import 'widgets/home_image_swiper.dart';
 import 'widgets/home_list_horizontal_product.dart';
 import 'widgets/list_infinite_product.dart';
@@ -58,11 +56,11 @@ class HomePage extends StatelessWidget {
                   [
                     const Divider(height: 1, thickness: 1),
                     const HomeImageSwiper(),
-                    const SizedBox(height: Dimens.small),
-                    const HomeChip(),
-                    const SizedBox(height: Dimens.small),
-                    const HomeBadgedIconList(),
-                    const SizedBox(height: Dimens.small),
+                    // const SizedBox(height: Dimens.small),
+                    // const HomeChip(),
+                    // const SizedBox(height: Dimens.small),
+                    // const HomeBadgedIconList(),
+                    // const SizedBox(height: Dimens.small),
                     const HomeListHorizontalProduct(),
                     const SizedBox(height: Dimens.small),
                   ],

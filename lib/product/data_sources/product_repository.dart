@@ -115,4 +115,8 @@ class ProductRepository {
     );
     return data.data.items;
   }
+
+  getPopularProducts() {
+    return getProducts();
+  }
 }

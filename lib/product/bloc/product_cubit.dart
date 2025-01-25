@@ -15,6 +15,7 @@ class ProductCubit extends Cubit<ProductState> {
   final ProductRepository _productRepository = getIt<ProductRepository>();
 
   List<Product> products = [];
+  List<Product> popularProducts = <Product>[];
 
   Product? selectedProduct;
   Variant? selectedVariant;
@@ -24,6 +25,17 @@ class ProductCubit extends Cubit<ProductState> {
     pagingController.itemList = [];
     pagingController.refresh();
     await getProducts();
+  }
+
+  getPopularProducts() async {
+    emit(const ProductState.loading());
+    try {
+      final response = await _productRepository.getPopularProducts();
+      popularProducts = response.data.items;
+      emit(ProductState.success(popularProducts));
+    } catch (e) {
+      emit(ProductState.error(e.toString()));
+    }
   }
 
   Future<void> getProducts() async {

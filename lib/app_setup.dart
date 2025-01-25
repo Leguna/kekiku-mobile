@@ -11,6 +11,8 @@ import 'package:workmanager/workmanager.dart';
 import 'core/index.dart';
 import 'core/services/firebase/firebase_service.dart';
 import 'core/services/google_sso.dart';
+import 'notification/data_sources/notification_local_source.dart';
+import 'notification/data_sources/notification_repository.dart';
 
 var initialized = false;
 
@@ -27,9 +29,8 @@ Future<void> setupServices() async {
     getIt.registerSingleton<Workmanager>(Workmanager());
     getIt.registerSingleton<SecureStorageManager>(SecureStorageManager());
 
-    getIt.registerSingleton<Dio>(Dio(BaseOptions(
-      baseUrl: dotenv.env['BASE_URL'] ?? dotenv.env['DEV_BASE_URL'] ?? '',
-    )));
+    final dio = BaseApiClient.init(dio: Dio());
+    getIt.registerSingleton<Dio>(dio);
 
     getIt.registerSingleton<AuthRepository>(AuthRepository(AuthApiClient()));
     FirebaseApp? firebaseApp = await FirebaseService().init();
@@ -44,6 +45,10 @@ Future<void> setupServices() async {
         remoteDataSource: ProductRemoteSource(),
         localDataSource: ProductLocalSource(),
       ),
+    );
+
+    getIt.registerSingleton<NotificationRepository>(
+      NotificationRepository(NotificationLocalSource()),
     );
   } catch (e) {
     // ignore: avoid_print

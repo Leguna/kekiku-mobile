@@ -79,9 +79,9 @@ final class Strings {
 
   static const String email = 'Email';
 
-  static const String emailOrPhone = 'Email or Phone';
+  static const String emailOrPhone = 'Email';
 
-  static const String examplePhone = 'Example: 081234567890';
+  static const String examplePhone = 'Example: emailku@mail.com';
 
   static const String needHelp = 'Need help?';
 
@@ -93,7 +93,7 @@ final class Strings {
 
   static const String requiredField = 'This field is required';
 
-  static const String invalidEmailOrPhone = 'Invalid email or phone';
+  static const String invalidEmailOrPhone = 'Invalid email';
 
   static const String logoutConfirmation = 'Are you sure you want to logout?';
 
@@ -288,4 +288,6 @@ final class Strings {
 
   static const String startDate = 'Start Date';
   static const String endDate = 'End Date';
+
+  static const String phoneNotSupported = 'Phone not supported';
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:kekiku/cart/cart_screen.dart';
+import 'package:kekiku/notification/notification_screen.dart';
 import 'package:kekiku/product/product_detail_screen.dart';
 import 'package:kekiku/search/search_screen.dart';
 
@@ -72,6 +74,8 @@ class Routes {
           ProductDetailScreen(args: getRouteArgs(context)),
       notFound: (context) => const NotFoundPage(),
       search: (context) => const SearchScreen(),
+      cart: (context) => const CartScreen(),
+      notification: (context) => const NotificationScreen(),
     };
   }
 

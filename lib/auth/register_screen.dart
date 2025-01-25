@@ -15,7 +15,6 @@ class RegisterScreen extends StatelessWidget {
             Navigator.pushNamed(context, Routes.verifyCode, arguments: {
               Routes.isEmail: isEmail,
             });
-            context.read<AuthCubit>().resend();
           },
           updated: (user) {
             if (user != null) {
@@ -44,86 +43,88 @@ class RegisterScreen extends StatelessWidget {
           orElse: () => false,
           loading: () => true,
         );
-        return MyScaffold(
-          appBar: MyAppBar(
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pushReplacementNamed(context, Routes.login);
-                },
-                child: const Text(Strings.login),
+        return Stack(
+          children: [
+            MyScaffold(
+              appBar: MyAppBar(
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, Routes.login);
+                    },
+                    child: const Text(Strings.login),
+                  ),
+                ],
               ),
-            ],
-          ),
-          body: isLoading
-              ? const MyLoading()
-              : SingleChildScrollView(
-                  padding: const EdgeInsets.all(Dimens.small),
-                  child: Form(
-                    key: cubit.formKey,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text(Strings.signUpWith),
-                        const SizedBox(height: Dimens.medium),
-                        TextFormField(
-                          controller: cubit.emailController,
-                          onChanged: (value) {
-                            context.read<AuthCubit>().validateForm();
-                          },
-                          inputFormatters: [
-                            InputFormatter.emailOrPhone(),
-                          ],
-                          keyboardType: TextInputType.emailAddress,
-                          validator: Validators.emailOrPhone,
-                          decoration: const InputDecoration(
-                            labelText: Strings.emailOrPhone,
-                            helperText: Strings.examplePhone,
-                          ),
+              body: SingleChildScrollView(
+                padding: const EdgeInsets.all(Dimens.small),
+                child: Form(
+                  key: cubit.formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(Strings.signUpWith),
+                      const SizedBox(height: Dimens.medium),
+                      TextFormField(
+                        controller: cubit.emailController,
+                        onChanged: (value) {
+                          cubit.validateForm();
+                        },
+                        inputFormatters: [
+                          InputFormatter.emailOrPhone(),
+                        ],
+                        keyboardType: TextInputType.emailAddress,
+                        validator: Validators.emailOrPhone,
+                        decoration: const InputDecoration(
+                          labelText: Strings.emailOrPhone,
+                          helperText: Strings.examplePhone,
                         ),
-                        const SizedBox(height: Dimens.medium),
-                        BlocSelector<AuthCubit, AuthState, bool>(
-                          selector: (state) {
-                            return state.maybeWhen(
-                              orElse: () => false,
-                              form: (email, password, valid) => valid,
-                            );
+                      ),
+                      const SizedBox(height: Dimens.medium),
+                      BlocSelector<AuthCubit, AuthState, bool>(
+                        selector: (state) {
+                          return state.maybeWhen(
+                            orElse: () => false,
+                            form: (email, password, valid) => valid,
+                          );
+                        },
+                        builder: (context, state) {
+                          final bool valid = context
+                              .select((AuthCubit cubit) => cubit.isFormValid);
+                          return ElevatedButton(
+                            onPressed: valid
+                                ? () {
+                                    FocusScope.of(context).unfocus();
+                                    cubit.trySendVerificationMessage(
+                                        isRegister: true);
+                                  }
+                                : null,
+                            child: const Text(Strings.register),
+                          );
+                        },
+                      ),
+                      const MyDivider(Strings.orSignUpWith),
+                      const GoogleSsoButton(isOutlined: true),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: TextButton(
+                          style: TextButton.styleFrom(
+                              visualDensity: VisualDensity.compact,
+                              padding: const EdgeInsets.all(Dimens.micro)),
+                          onPressed: () {
+                            Navigator.pushNamed(context, Routes.help);
                           },
-                          builder: (context, state) {
-                            final bool valid = context
-                                .select((AuthCubit cubit) => cubit.isFormValid);
-                            return ElevatedButton(
-                              onPressed: valid
-                                  ? () {
-                                      FocusScope.of(context).unfocus();
-                                      context
-                                          .read<AuthCubit>()
-                                          .tryVerification();
-                                    }
-                                  : null,
-                              child: const Text(Strings.register),
-                            );
-                          },
+                          child: const Text(Strings.needHelp),
                         ),
-                        const MyDivider(Strings.orSignUpWith),
-                        const GoogleSsoButton(isOutlined: true),
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: TextButton(
-                            style: TextButton.styleFrom(
-                                visualDensity: VisualDensity.compact,
-                                padding: const EdgeInsets.all(Dimens.micro)),
-                            onPressed: () {
-                              Navigator.pushNamed(context, Routes.help);
-                            },
-                            child: const Text(Strings.needHelp),
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
+              ),
+            ),
+            if (isLoading) const MyLoading(),
+          ],
         );
       },
     );

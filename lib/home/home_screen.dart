@@ -17,9 +17,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    final bottomNavBarCubit = context.read<BottomNavBarCubit>();
     final pageController = PageController(initialPage: 0);
-    bottomNavBarCubit.pageController = pageController;
     final homeCubit = context.read<HomeCubit>();
     return PopScope(
       canPop: false,
@@ -35,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   MyScaffold(
                     bottomNavigationBar: MyBottomNavBar(
                       onChanged: (index) {
-                        bottomNavBarCubit.jumpToPage(index);
+                        pageController.jumpToPage(index);
                       },
                     ),
                     body: PageView(

@@ -20,7 +20,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   final GlobalKey tabBar = GlobalKey();
   final GlobalKey<MediaViewPagerListState> mediaDisplay = GlobalKey();
   final GlobalKey<ButtonVariantsState> buttonVariants = GlobalKey();
-  late Product product;
+  Product product = const Product();
 
   late ScrollController mainController;
   final int animSpeed = 100;

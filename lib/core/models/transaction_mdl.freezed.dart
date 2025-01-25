@@ -29,7 +29,6 @@ mixin _$Transaction {
   String? get userId => throw _privateConstructorUsedError;
   String? get userName => throw _privateConstructorUsedError;
   Address? get destinationAddress => throw _privateConstructorUsedError;
-
   @JsonKey(fromJson: _productListFromJson, toJson: _productListToJson)
   List<Product> get products => throw _privateConstructorUsedError;
 

@@ -14,6 +14,7 @@ class MyBottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bottomNavBarCubit = context.read<BottomNavBarCubit>();
+    bottomNavBarCubit.onReset = () => onChanged?.call(0);
     return BlocBuilder<BottomNavBarCubit, BottomNavBarState>(
       bloc: bottomNavBarCubit,
       builder: (context, state) {

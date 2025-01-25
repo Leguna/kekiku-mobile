@@ -27,6 +27,7 @@ mixin _$AuthState {
     required TResult Function(dynamic isEmail) checked,
     required TResult Function(String message) error,
     required TResult Function(String message) success,
+    required TResult Function() verified,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -39,6 +40,7 @@ mixin _$AuthState {
     TResult? Function(dynamic isEmail)? checked,
     TResult? Function(String message)? error,
     TResult? Function(String message)? success,
+    TResult? Function()? verified,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -51,6 +53,7 @@ mixin _$AuthState {
     TResult Function(dynamic isEmail)? checked,
     TResult Function(String message)? error,
     TResult Function(String message)? success,
+    TResult Function()? verified,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -64,6 +67,7 @@ mixin _$AuthState {
     required TResult Function(_Checked value) checked,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(_Verified value) verified,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -76,6 +80,7 @@ mixin _$AuthState {
     TResult? Function(_Checked value)? checked,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(_Verified value)? verified,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -88,6 +93,7 @@ mixin _$AuthState {
     TResult Function(_Checked value)? checked,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(_Verified value)? verified,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -163,6 +169,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(dynamic isEmail) checked,
     required TResult Function(String message) error,
     required TResult Function(String message) success,
+    required TResult Function() verified,
   }) {
     return initial();
   }
@@ -178,6 +185,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(dynamic isEmail)? checked,
     TResult? Function(String message)? error,
     TResult? Function(String message)? success,
+    TResult? Function()? verified,
   }) {
     return initial?.call();
   }
@@ -193,6 +201,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(dynamic isEmail)? checked,
     TResult Function(String message)? error,
     TResult Function(String message)? success,
+    TResult Function()? verified,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -212,6 +221,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Checked value) checked,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(_Verified value) verified,
   }) {
     return initial(this);
   }
@@ -227,6 +237,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Checked value)? checked,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(_Verified value)? verified,
   }) {
     return initial?.call(this);
   }
@@ -242,6 +253,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Checked value)? checked,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(_Verified value)? verified,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -305,6 +317,7 @@ class _$LoggedOutImpl implements _LoggedOut {
     required TResult Function(dynamic isEmail) checked,
     required TResult Function(String message) error,
     required TResult Function(String message) success,
+    required TResult Function() verified,
   }) {
     return loggedOut();
   }
@@ -320,6 +333,7 @@ class _$LoggedOutImpl implements _LoggedOut {
     TResult? Function(dynamic isEmail)? checked,
     TResult? Function(String message)? error,
     TResult? Function(String message)? success,
+    TResult? Function()? verified,
   }) {
     return loggedOut?.call();
   }
@@ -335,6 +349,7 @@ class _$LoggedOutImpl implements _LoggedOut {
     TResult Function(dynamic isEmail)? checked,
     TResult Function(String message)? error,
     TResult Function(String message)? success,
+    TResult Function()? verified,
     required TResult orElse(),
   }) {
     if (loggedOut != null) {
@@ -354,6 +369,7 @@ class _$LoggedOutImpl implements _LoggedOut {
     required TResult Function(_Checked value) checked,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(_Verified value) verified,
   }) {
     return loggedOut(this);
   }
@@ -369,6 +385,7 @@ class _$LoggedOutImpl implements _LoggedOut {
     TResult? Function(_Checked value)? checked,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(_Verified value)? verified,
   }) {
     return loggedOut?.call(this);
   }
@@ -384,6 +401,7 @@ class _$LoggedOutImpl implements _LoggedOut {
     TResult Function(_Checked value)? checked,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(_Verified value)? verified,
     required TResult orElse(),
   }) {
     if (loggedOut != null) {
@@ -490,6 +508,7 @@ class _$UpdatedImpl implements _Updated {
     required TResult Function(dynamic isEmail) checked,
     required TResult Function(String message) error,
     required TResult Function(String message) success,
+    required TResult Function() verified,
   }) {
     return updated(user);
   }
@@ -505,6 +524,7 @@ class _$UpdatedImpl implements _Updated {
     TResult? Function(dynamic isEmail)? checked,
     TResult? Function(String message)? error,
     TResult? Function(String message)? success,
+    TResult? Function()? verified,
   }) {
     return updated?.call(user);
   }
@@ -520,6 +540,7 @@ class _$UpdatedImpl implements _Updated {
     TResult Function(dynamic isEmail)? checked,
     TResult Function(String message)? error,
     TResult Function(String message)? success,
+    TResult Function()? verified,
     required TResult orElse(),
   }) {
     if (updated != null) {
@@ -539,6 +560,7 @@ class _$UpdatedImpl implements _Updated {
     required TResult Function(_Checked value) checked,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(_Verified value) verified,
   }) {
     return updated(this);
   }
@@ -554,6 +576,7 @@ class _$UpdatedImpl implements _Updated {
     TResult? Function(_Checked value)? checked,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(_Verified value)? verified,
   }) {
     return updated?.call(this);
   }
@@ -569,6 +592,7 @@ class _$UpdatedImpl implements _Updated {
     TResult Function(_Checked value)? checked,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(_Verified value)? verified,
     required TResult orElse(),
   }) {
     if (updated != null) {
@@ -640,6 +664,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(dynamic isEmail) checked,
     required TResult Function(String message) error,
     required TResult Function(String message) success,
+    required TResult Function() verified,
   }) {
     return loading();
   }
@@ -655,6 +680,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(dynamic isEmail)? checked,
     TResult? Function(String message)? error,
     TResult? Function(String message)? success,
+    TResult? Function()? verified,
   }) {
     return loading?.call();
   }
@@ -670,6 +696,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(dynamic isEmail)? checked,
     TResult Function(String message)? error,
     TResult Function(String message)? success,
+    TResult Function()? verified,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -689,6 +716,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Checked value) checked,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(_Verified value) verified,
   }) {
     return loading(this);
   }
@@ -704,6 +732,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Checked value)? checked,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(_Verified value)? verified,
   }) {
     return loading?.call(this);
   }
@@ -719,6 +748,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Checked value)? checked,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(_Verified value)? verified,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -819,6 +849,7 @@ class _$FormImpl implements _Form {
     required TResult Function(dynamic isEmail) checked,
     required TResult Function(String message) error,
     required TResult Function(String message) success,
+    required TResult Function() verified,
   }) {
     return form(email, password, valid);
   }
@@ -834,6 +865,7 @@ class _$FormImpl implements _Form {
     TResult? Function(dynamic isEmail)? checked,
     TResult? Function(String message)? error,
     TResult? Function(String message)? success,
+    TResult? Function()? verified,
   }) {
     return form?.call(email, password, valid);
   }
@@ -849,6 +881,7 @@ class _$FormImpl implements _Form {
     TResult Function(dynamic isEmail)? checked,
     TResult Function(String message)? error,
     TResult Function(String message)? success,
+    TResult Function()? verified,
     required TResult orElse(),
   }) {
     if (form != null) {
@@ -868,6 +901,7 @@ class _$FormImpl implements _Form {
     required TResult Function(_Checked value) checked,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(_Verified value) verified,
   }) {
     return form(this);
   }
@@ -883,6 +917,7 @@ class _$FormImpl implements _Form {
     TResult? Function(_Checked value)? checked,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(_Verified value)? verified,
   }) {
     return form?.call(this);
   }
@@ -898,6 +933,7 @@ class _$FormImpl implements _Form {
     TResult Function(_Checked value)? checked,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(_Verified value)? verified,
     required TResult orElse(),
   }) {
     if (form != null) {
@@ -998,6 +1034,7 @@ class _$CheckedImpl implements _Checked {
     required TResult Function(dynamic isEmail) checked,
     required TResult Function(String message) error,
     required TResult Function(String message) success,
+    required TResult Function() verified,
   }) {
     return checked(isEmail);
   }
@@ -1013,6 +1050,7 @@ class _$CheckedImpl implements _Checked {
     TResult? Function(dynamic isEmail)? checked,
     TResult? Function(String message)? error,
     TResult? Function(String message)? success,
+    TResult? Function()? verified,
   }) {
     return checked?.call(isEmail);
   }
@@ -1028,6 +1066,7 @@ class _$CheckedImpl implements _Checked {
     TResult Function(dynamic isEmail)? checked,
     TResult Function(String message)? error,
     TResult Function(String message)? success,
+    TResult Function()? verified,
     required TResult orElse(),
   }) {
     if (checked != null) {
@@ -1047,6 +1086,7 @@ class _$CheckedImpl implements _Checked {
     required TResult Function(_Checked value) checked,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(_Verified value) verified,
   }) {
     return checked(this);
   }
@@ -1062,6 +1102,7 @@ class _$CheckedImpl implements _Checked {
     TResult? Function(_Checked value)? checked,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(_Verified value)? verified,
   }) {
     return checked?.call(this);
   }
@@ -1077,6 +1118,7 @@ class _$CheckedImpl implements _Checked {
     TResult Function(_Checked value)? checked,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(_Verified value)? verified,
     required TResult orElse(),
   }) {
     if (checked != null) {
@@ -1175,6 +1217,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function(dynamic isEmail) checked,
     required TResult Function(String message) error,
     required TResult Function(String message) success,
+    required TResult Function() verified,
   }) {
     return error(message);
   }
@@ -1190,6 +1233,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function(dynamic isEmail)? checked,
     TResult? Function(String message)? error,
     TResult? Function(String message)? success,
+    TResult? Function()? verified,
   }) {
     return error?.call(message);
   }
@@ -1205,6 +1249,7 @@ class _$ErrorImpl implements _Error {
     TResult Function(dynamic isEmail)? checked,
     TResult Function(String message)? error,
     TResult Function(String message)? success,
+    TResult Function()? verified,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -1224,6 +1269,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function(_Checked value) checked,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(_Verified value) verified,
   }) {
     return error(this);
   }
@@ -1239,6 +1285,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function(_Checked value)? checked,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(_Verified value)? verified,
   }) {
     return error?.call(this);
   }
@@ -1254,6 +1301,7 @@ class _$ErrorImpl implements _Error {
     TResult Function(_Checked value)? checked,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(_Verified value)? verified,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -1352,6 +1400,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function(dynamic isEmail) checked,
     required TResult Function(String message) error,
     required TResult Function(String message) success,
+    required TResult Function() verified,
   }) {
     return success(message);
   }
@@ -1367,6 +1416,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function(dynamic isEmail)? checked,
     TResult? Function(String message)? error,
     TResult? Function(String message)? success,
+    TResult? Function()? verified,
   }) {
     return success?.call(message);
   }
@@ -1382,6 +1432,7 @@ class _$SuccessImpl implements _Success {
     TResult Function(dynamic isEmail)? checked,
     TResult Function(String message)? error,
     TResult Function(String message)? success,
+    TResult Function()? verified,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -1401,6 +1452,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function(_Checked value) checked,
     required TResult Function(_Error value) error,
     required TResult Function(_Success value) success,
+    required TResult Function(_Verified value) verified,
   }) {
     return success(this);
   }
@@ -1416,6 +1468,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function(_Checked value)? checked,
     TResult? Function(_Error value)? error,
     TResult? Function(_Success value)? success,
+    TResult? Function(_Verified value)? verified,
   }) {
     return success?.call(this);
   }
@@ -1431,6 +1484,7 @@ class _$SuccessImpl implements _Success {
     TResult Function(_Checked value)? checked,
     TResult Function(_Error value)? error,
     TResult Function(_Success value)? success,
+    TResult Function(_Verified value)? verified,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -1450,4 +1504,152 @@ abstract class _Success implements AuthState {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$VerifiedImplCopyWith<$Res> {
+  factory _$$VerifiedImplCopyWith(
+          _$VerifiedImpl value, $Res Function(_$VerifiedImpl) then) =
+      __$$VerifiedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$VerifiedImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$VerifiedImpl>
+    implements _$$VerifiedImplCopyWith<$Res> {
+  __$$VerifiedImplCopyWithImpl(
+      _$VerifiedImpl _value, $Res Function(_$VerifiedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$VerifiedImpl implements _Verified {
+  const _$VerifiedImpl();
+
+  @override
+  String toString() {
+    return 'AuthState.verified()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$VerifiedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loggedOut,
+    required TResult Function(User? user) updated,
+    required TResult Function() loading,
+    required TResult Function(dynamic email, dynamic password, dynamic valid)
+        form,
+    required TResult Function(dynamic isEmail) checked,
+    required TResult Function(String message) error,
+    required TResult Function(String message) success,
+    required TResult Function() verified,
+  }) {
+    return verified();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loggedOut,
+    TResult? Function(User? user)? updated,
+    TResult? Function()? loading,
+    TResult? Function(dynamic email, dynamic password, dynamic valid)? form,
+    TResult? Function(dynamic isEmail)? checked,
+    TResult? Function(String message)? error,
+    TResult? Function(String message)? success,
+    TResult? Function()? verified,
+  }) {
+    return verified?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loggedOut,
+    TResult Function(User? user)? updated,
+    TResult Function()? loading,
+    TResult Function(dynamic email, dynamic password, dynamic valid)? form,
+    TResult Function(dynamic isEmail)? checked,
+    TResult Function(String message)? error,
+    TResult Function(String message)? success,
+    TResult Function()? verified,
+    required TResult orElse(),
+  }) {
+    if (verified != null) {
+      return verified();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_LoggedOut value) loggedOut,
+    required TResult Function(_Updated value) updated,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Form value) form,
+    required TResult Function(_Checked value) checked,
+    required TResult Function(_Error value) error,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Verified value) verified,
+  }) {
+    return verified(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_LoggedOut value)? loggedOut,
+    TResult? Function(_Updated value)? updated,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Form value)? form,
+    TResult? Function(_Checked value)? checked,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Verified value)? verified,
+  }) {
+    return verified?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoggedOut value)? loggedOut,
+    TResult Function(_Updated value)? updated,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Form value)? form,
+    TResult Function(_Checked value)? checked,
+    TResult Function(_Error value)? error,
+    TResult Function(_Success value)? success,
+    TResult Function(_Verified value)? verified,
+    required TResult orElse(),
+  }) {
+    if (verified != null) {
+      return verified(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Verified implements AuthState {
+  const factory _Verified() = _$VerifiedImpl;
 }

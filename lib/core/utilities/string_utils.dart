@@ -219,7 +219,6 @@ String removeNewLine(String text) {
   return newText;
 }
 
-// 00:00 AM add 0 if hour or minute is less than 10
 String getFormattedTime(DateTime dateTime) {
   final String hour =
       dateTime.hour < 10 ? '0${dateTime.hour}' : '${dateTime.hour}';

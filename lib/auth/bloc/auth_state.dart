@@ -17,4 +17,6 @@ class AuthState with _$AuthState {
   const factory AuthState.error(String message) = _Error;
 
   const factory AuthState.success(String message) = _Success;
+
+  const factory AuthState.verified() = _Verified;
 }

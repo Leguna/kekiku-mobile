@@ -41,3 +41,9 @@ dart run build_runner build
 ```bash
 flutter build apk --target-platform android-arm,android-arm64,android-x64
 ```
+
+### APK RELEASE Build
+
+```bash
+flutter build apk --release --target-platform android-arm,android-arm64,android-x64
+```

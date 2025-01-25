@@ -22,15 +22,20 @@ class EditProfileCubit extends Cubit<EditProfileState> {
   User? user;
 
   Future<void> changePhotoProfile() async {
-    emit(const EditProfileState.loading());
-    XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (image != null) {
-      user = user?.copyWith(photoUrl: image.path);
-      await ds.setUser(user!);
-      authCubit.setUser(user!);
-      emit(EditProfileState.success(user!));
-    } else {
-      emit(const EditProfileState.error('Failed to pick image'));
+    try {
+      emit(const EditProfileState.loading());
+      XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (image != null) {
+        final photoUrl = await ds.uploadImage(image);
+        user = user?.copyWith(photoUrl: photoUrl);
+        await ds.setUser(user!);
+        authCubit.setUser(user!);
+        emit(EditProfileState.success(user!));
+      } else {
+        emit(const EditProfileState.error('Failed to pick image'));
+      }
+    } catch (e) {
+      emit(EditProfileState.error(e.toString()));
     }
   }
 
@@ -63,11 +68,15 @@ class EditProfileCubit extends Cubit<EditProfileState> {
   }
 
   Future<void> deleteAccount() async {
-    emit(const EditProfileState.loading());
-    await ds.deleteAccount();
-    await authCubit.logout();
-    user = null;
-    emit(const EditProfileState.deleted());
+    try {
+      emit(const EditProfileState.loading());
+      await ds.deleteAccount();
+      await authCubit.logout();
+      user = null;
+      emit(const EditProfileState.deleted());
+    } catch (e) {
+      emit(EditProfileState.error(e.toString()));
+    }
   }
 
   Future<void> setValue(ProfileField type) async {

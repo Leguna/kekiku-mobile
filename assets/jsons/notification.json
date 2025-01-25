@@ -1,0 +1,36 @@
+[
+  {
+    "notification_id": "12345",
+    "title": "Welcome to Kekiku!",
+    "body": "Enjoy a wide selection of delicious cakes at Kekiku. Start shopping now!",
+    "type": "welcome",
+    "timestamp": "2025-01-13T09:00:00Z",
+    "data": {},
+    "read": false
+  },
+  {
+    "notification_id": "12346",
+    "title": "Your Order is Being Processed",
+    "body": "Your strawberry cake order has been received and is being processed.",
+    "type": "order_update",
+    "timestamp": "2025-01-13T10:30:00Z",
+    "data": {
+      "order_id": "98765",
+      "status": "processed",
+      "estimated_delivery": "2025-01-14T12:00:00Z"
+    },
+    "read": false
+  },
+  {
+    "notification_id": "12347",
+    "title": "Order Reminder",
+    "body": "Don’t forget to complete your order before your favorite cakes run out!",
+    "type": "reminder",
+    "timestamp": "2025-01-13T12:00:00Z",
+    "data": {
+      "cart_items": 3,
+      "cart_total": "$10.00"
+    },
+    "read": false
+  }
+]

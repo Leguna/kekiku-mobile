@@ -23,7 +23,6 @@ class _TransactionScreenState extends State<TransactionScreen> {
   @override
   void dispose() {
     super.dispose();
-    context.read<TransactionCubit>().dispose();
   }
 
   @override

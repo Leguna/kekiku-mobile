@@ -1,5 +1,7 @@
 import 'package:kekiku/core/index.dart';
 
+import '../../product/bloc/product_cubit.dart';
+
 class ProductCard extends StatelessWidget {
   const ProductCard({
     super.key,
@@ -14,6 +16,7 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        context.read<ProductCubit>().selectProduct(product);
         Navigator.pushNamed(
           context,
           Routes.productDetail,

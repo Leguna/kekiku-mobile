@@ -10,12 +10,20 @@ class CreateProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {},
+      buildWhen: (previous, current) {
+        return current.maybeWhen(
+          orElse: () => true,
+          loading: () => true,
+          form: (email, password, valid) => false,
+        );
+      },
       builder: (context, state) {
         final isLoading = state.maybeWhen(
           orElse: () => false,
           loading: () => true,
         );
         final cubit = context.read<AuthCubit>();
+        final formKey = GlobalKey<FormState>();
         return MyScaffold(
           appBar: AppBar(
             title: const Text(Strings.createProfile),
@@ -25,7 +33,7 @@ class CreateProfileScreen extends StatelessWidget {
               : SingleChildScrollView(
                   padding: const EdgeInsets.all(Dimens.medium),
                   child: Form(
-                    key: cubit.createProfileKey,
+                    key: formKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -42,8 +50,7 @@ class CreateProfileScreen extends StatelessWidget {
                         TextFormField(
                           controller: cubit.userNameController,
                           onChanged: (value) {
-                            context.read<AuthCubit>().validateForm(
-                                createProfileKey: cubit.createProfileKey);
+                            cubit.validateForm(createProfileKey: formKey);
                           },
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           decoration: const InputDecoration(
@@ -63,9 +70,7 @@ class CreateProfileScreen extends StatelessWidget {
                                 AutovalidateMode.onUserInteraction,
                             controller: cubit.passwordController,
                             onChanged: (value) {
-                              context.read<AuthCubit>().validateForm(
-                                    createProfileKey: cubit.createProfileKey,
-                                  );
+                              cubit.validateForm(createProfileKey: formKey);
                             },
                             validator: Validators.password,
                             inputFormatters: [
@@ -77,7 +82,7 @@ class CreateProfileScreen extends StatelessWidget {
                               suffixIcon: InkWell(
                                 borderRadius: BorderRadius.circular(20),
                                 onTap: () {
-                                  context.read<AuthCubit>().togglePassword();
+                                  cubit.togglePassword();
                                 },
                                 child: Icon(
                                   cubit.showPassword
@@ -93,7 +98,6 @@ class CreateProfileScreen extends StatelessWidget {
                           selector: (state) {
                             return state.maybeWhen(
                               orElse: () => false,
-                              form: (email, password, valid) => valid,
                             );
                           },
                           builder: (context, state) {

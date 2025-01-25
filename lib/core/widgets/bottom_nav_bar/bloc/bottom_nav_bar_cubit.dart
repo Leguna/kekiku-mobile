@@ -8,20 +8,14 @@ part 'bottom_nav_bar_state.dart';
 class BottomNavBarCubit extends Cubit<BottomNavBarState> {
   BottomNavBarCubit() : super(const BottomNavBarState.initial(page: 0));
 
-  PageController? pageController;
+  VoidCallback? onReset;
 
-  void reset() {
-    pageController?.jumpToPage(0);
+  Future<void> reset() async {
+    onReset?.call();
     emit(const BottomNavBarState.initial(page: 0));
   }
 
-  void jumpToPage(int index) {
-    pageController?.jumpToPage(index);
-    emit(BottomNavBarState.success(page: index));
-  }
-
-  void dispose() {
-    pageController?.dispose();
-    pageController = null;
+  Future<void> changePage(int page) async {
+    emit(BottomNavBarState.initial(page: page));
   }
 }

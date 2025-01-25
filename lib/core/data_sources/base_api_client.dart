@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:talker_dio_logger/talker_dio_logger_interceptor.dart';
 import 'package:talker_dio_logger/talker_dio_logger_settings.dart';
 
@@ -12,21 +13,20 @@ class BaseApiClient {
   final Dio dio = getIt<Dio>();
   final localDatabase = getIt<LocalDatabase>();
 
-  BaseApiClient({Interceptor? interceptor}) {
+  static Dio init({required Dio dio, Interceptor? interceptor}) {
     dio.options = BaseOptions(
-      baseUrl: dotenv.env['BASE_URL'] ?? '',
-      connectTimeout: const Duration(seconds: 5),
-      receiveTimeout: const Duration(seconds: 5),
+      baseUrl: dotenv.env['BASE_URL'] ?? dotenv.env['DEV_BASE_URL'] ?? '',
+      connectTimeout: const Duration(seconds: 8),
+      receiveTimeout: const Duration(seconds: 8),
+      sendTimeout: const Duration(seconds: 8),
+      validateStatus: (status) {
+        return status != null && status >= 200 && status < 500;
+      },
       headers: {
-        'Content-Type': 'application/json',
         'Accept': '*/*',
-        'Authorization': 'Bearer ${dotenv.env['API_KEY']}',
-        'Connection': 'keep-alive',
-        'Accept-Encoding': 'gzip, deflate, br, base64',
+        'Content-Type': 'application/json',
       },
     );
-    dio.interceptors.add(TokenRefreshInterceptor(dio));
-    dio.interceptors.add(interceptorErrorWrapper);
 
     (dio.httpClientAdapter as IOHttpClientAdapter).createHttpClient = () =>
         HttpClient()
@@ -39,16 +39,22 @@ class BaseApiClient {
       dio.interceptors.add(TalkerDioLogger(
         settings: const TalkerDioLoggerSettings(
           printRequestHeaders: true,
-          printResponseMessage: true,
           printRequestData: true,
+          printResponseData: true,
+          printResponseMessage: true,
+          printErrorData: true,
+          printErrorHeaders: true,
+          printErrorMessage: true,
         ),
       ));
     }
+    dio.interceptors.add(TokenRefreshInterceptor(dio));
     if (interceptor != null) dio.interceptors.add(interceptor);
     dio.interceptors.add(interceptorErrorWrapper);
+    return dio;
   }
 
-  final InterceptorsWrapper interceptorErrorWrapper = InterceptorsWrapper(
+  static InterceptorsWrapper interceptorErrorWrapper = InterceptorsWrapper(
     onError: (error, handler) {
       try {
         if (error.response?.statusCode.toString().startsWith('5') == true ||
@@ -176,11 +182,19 @@ class BaseApiClient {
   Future<dynamic> post(
     String endpoint, {
     dynamic data,
+    Map<String, XFile>? fileData,
     Map<String, dynamic>? queryParams,
   }) async {
     try {
-      final response =
-          await dio.post(endpoint, data: data, queryParameters: queryParams);
+      final response = await dio.post(
+        endpoint,
+        data: data,
+        queryParameters: queryParams,
+      );
+
+      if (response.data['success'] == false) {
+        throw Error(message: response.data['message']);
+      }
       return _handleResponse(response);
     } on DioException catch (e) {
       throw ApiErrorHandler.getErrorMessage(e);
@@ -204,15 +218,11 @@ class BaseApiClient {
       final response = await dio.delete(endpoint, queryParameters: queryParams);
       return _handleResponse(response);
     } on DioException catch (e) {
-      throw ApiErrorHandler.getErrorMessage(e);
+      throw Error(message: e.response?.data['message'] ?? e.message);
     }
   }
 
   dynamic _handleResponse(Response response) {
-    if (response.statusCode! >= 200 && response.statusCode! < 300) {
-      return response.data;
-    } else {
-      throw Exception('Failed to load data');
-    }
+    return response.data;
   }
 }

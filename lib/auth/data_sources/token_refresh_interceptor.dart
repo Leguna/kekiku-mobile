@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../core/index.dart';
 
@@ -11,11 +12,15 @@ class TokenRefreshInterceptor extends Interceptor {
   @override
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
-    final accessToken = await _tokenManager.getAccessToken();
-    if (accessToken != null) {
-      options.headers['Authorization'] = 'Bearer $accessToken';
+    try {
+      final accessToken = await _tokenManager.getAccessToken();
+      if (accessToken != null) {
+        options.headers['Authorization'] = 'Bearer $accessToken';
+      }
+      super.onRequest(options, handler);
+    } catch (e) {
+      handler.reject(DioException(requestOptions: options));
     }
-    super.onRequest(options, handler);
   }
 
   @override
@@ -55,10 +60,13 @@ class TokenRefreshInterceptor extends Interceptor {
   }
 
   Future<String> getAccessToken(String refreshToken) async {
-    final response = await _dio.post(
-      'auth/refresh-token',
-      data: {'refresh_token': refreshToken},
-    );
-    return response.data['data']['access_token'];
+    User? user = FirebaseAuth.instance.currentUser;
+
+    if (user != null) {
+      String token = await user.getIdToken() ?? '';
+      return token;
+    } else {
+      throw Exception('You are not logged in');
+    }
   }
 }

@@ -31,7 +31,7 @@ class LoginScreen extends StatelessWidget {
               error: false,
             );
           },
-       updated: (user) {
+          updated: (user) {
             Navigator.pushNamedAndRemoveUntil(
               context,
               Routes.home,
@@ -53,7 +53,6 @@ class LoginScreen extends StatelessWidget {
         );
         final isEmailLogin = cubit.isUsingEmail;
         return MyScaffold(
-          infoText: Strings.signInInfo,
           appBar: MyAppBar(
             actions: [
               TextButton(
@@ -101,13 +100,12 @@ class LoginScreen extends StatelessWidget {
                                     helperText: Strings.examplePhone,
                                   ),
                                   onFieldSubmitted: (value) {
-                                    context.read<AuthCubit>().tryVerification();
+                                    cubit.checkEmailOrPhone();
                                   },
                                 ),
                                 const SizedBox(height: Dimens.medium),
                               ],
                               if (isEmailLogin) ...[
-                                // Email Form
                                 TextFormField(
                                   controller: cubit.emailController,
                                   onChanged: (value) {
@@ -121,7 +119,7 @@ class LoginScreen extends StatelessWidget {
                                     label: Text(Strings.email),
                                   ),
                                   onFieldSubmitted: (value) {
-                                    context.read<AuthCubit>().tryVerification();
+                                    cubit.trySendVerificationMessage();
                                   },
                                 ),
                                 const SizedBox(height: Dimens.medium),
@@ -135,14 +133,15 @@ class LoginScreen extends StatelessWidget {
                                     InputFormatter.password(),
                                   ],
                                   obscureText: !cubit.showPassword,
+                                  onFieldSubmitted: (value) {
+                                    cubit.login();
+                                  },
                                   decoration: InputDecoration(
                                     label: const Text(Strings.password),
                                     suffixIcon: InkWell(
                                       borderRadius: BorderRadius.circular(20),
                                       onTap: () {
-                                        context
-                                            .read<AuthCubit>()
-                                            .togglePassword();
+                                        cubit.togglePassword();
                                       },
                                       child: Icon(
                                         cubit.showPassword
@@ -163,17 +162,15 @@ class LoginScreen extends StatelessWidget {
                                 },
                                 builder: (context, state) {
                                   final cubit = context.read<AuthCubit>();
-                                  final isFormValid = cubit.isFormValid;
                                   return ElevatedButton(
-                                    onPressed: isFormValid
+                                    onPressed: cubit.isFormValid
                                         ? () {
                                             if (!isEmailLogin) {
                                               FocusScope.of(context).unfocus();
-                                              context
-                                                  .read<AuthCubit>()
-                                                  .tryVerification();
+                                              cubit
+                                                  .trySendVerificationMessage();
                                             } else {
-                                              context.read<AuthCubit>().login();
+                                              cubit.login();
                                             }
                                           }
                                         : null,

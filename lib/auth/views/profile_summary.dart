@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:kekiku/auth/bloc/auth_cubit.dart';
 import 'package:kekiku/auth/models/user.dart';
 import 'package:kekiku/core/widgets/login_buttons.dart';
@@ -102,18 +99,12 @@ class ProfileSummary extends StatelessWidget {
     );
   }
 
-  CachedNetworkImage buildImage(User user) {
-    return CachedNetworkImage(
-      imageUrl: user.photoUrl,
-      imageBuilder: (context, imageProvider) => CircleAvatar(
-        backgroundImage: imageProvider,
-      ),
-      placeholder: (context, url) => const CircleAvatar(
-        child: Icon(Icons.account_circle),
-      ),
-      errorWidget: (context, url, error) => CircleAvatar(
-        backgroundImage: FileImage(File(user.photoUrl)),
-      ),
+  Widget buildImage(User user) {
+    return MyImageLoader(
+      path: user.photo,
+      width: Dimens.large * 2,
+      height: Dimens.large * 2,
+      radius: Dimens.large * 2,
     );
   }
 }

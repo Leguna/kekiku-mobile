@@ -21,17 +21,11 @@ NotificationMdl _$NotificationMdlFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$NotificationMdl {
   String get notificationId => throw _privateConstructorUsedError;
-
   String? get title => throw _privateConstructorUsedError;
-
   String? get body => throw _privateConstructorUsedError;
-
   String? get type => throw _privateConstructorUsedError;
-
   DateTime? get timestamp => throw _privateConstructorUsedError;
-
   Data? get data => throw _privateConstructorUsedError;
-
   bool get read => throw _privateConstructorUsedError;
 
   /// Serializes this NotificationMdl to a JSON map.
@@ -49,7 +43,6 @@ abstract class $NotificationMdlCopyWith<$Res> {
   factory $NotificationMdlCopyWith(
           NotificationMdl value, $Res Function(NotificationMdl) then) =
       _$NotificationMdlCopyWithImpl<$Res, NotificationMdl>;
-
   @useResult
   $Res call(
       {String notificationId,
@@ -70,7 +63,6 @@ class _$NotificationMdlCopyWithImpl<$Res, $Val extends NotificationMdl>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -140,7 +132,6 @@ abstract class _$$NotificationImplCopyWith<$Res>
   factory _$$NotificationImplCopyWith(
           _$NotificationImpl value, $Res Function(_$NotificationImpl) then) =
       __$$NotificationImplCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
@@ -299,22 +290,16 @@ abstract class _Notification implements NotificationMdl {
 
   @override
   String get notificationId;
-
   @override
   String? get title;
-
   @override
   String? get body;
-
   @override
   String? get type;
-
   @override
   DateTime? get timestamp;
-
   @override
   Data? get data;
-
   @override
   bool get read;
 
@@ -333,13 +318,9 @@ Data _$DataFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Data {
   String? get orderId => throw _privateConstructorUsedError;
-
   String? get status => throw _privateConstructorUsedError;
-
   DateTime? get estimatedDelivery => throw _privateConstructorUsedError;
-
   int? get cartItems => throw _privateConstructorUsedError;
-
   String? get cartTotal => throw _privateConstructorUsedError;
 
   /// Serializes this Data to a JSON map.
@@ -355,7 +336,6 @@ mixin _$Data {
 abstract class $DataCopyWith<$Res> {
   factory $DataCopyWith(Data value, $Res Function(Data) then) =
       _$DataCopyWithImpl<$Res, Data>;
-
   @useResult
   $Res call(
       {String? orderId,
@@ -372,7 +352,6 @@ class _$DataCopyWithImpl<$Res, $Val extends Data>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -417,7 +396,6 @@ abstract class _$$DataImplCopyWith<$Res> implements $DataCopyWith<$Res> {
   factory _$$DataImplCopyWith(
           _$DataImpl value, $Res Function(_$DataImpl) then) =
       __$$DataImplCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
@@ -548,16 +526,12 @@ abstract class _Data implements Data {
 
   @override
   String? get orderId;
-
   @override
   String? get status;
-
   @override
   DateTime? get estimatedDelivery;
-
   @override
   int? get cartItems;
-
   @override
   String? get cartTotal;
 

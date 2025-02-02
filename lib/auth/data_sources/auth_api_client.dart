@@ -100,4 +100,8 @@ class AuthApiClient extends BaseApiClient {
       data: formData,
     );
   }
+
+  Future<dynamic> updateProfile(Map<dynamic, dynamic> updatedField) async {
+    return await put('/auth/profile', data: updatedField);
+  }
 }

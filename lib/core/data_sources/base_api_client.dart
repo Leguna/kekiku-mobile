@@ -3,17 +3,16 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:talker_dio_logger/talker_dio_logger_interceptor.dart';
 import 'package:talker_dio_logger/talker_dio_logger_settings.dart';
 
 import '../index.dart';
 
 class BaseApiClient {
-  final Dio dio = getIt<Dio>();
   final localDatabase = getIt<LocalDatabase>();
 
-  static Dio init({required Dio dio, Interceptor? interceptor}) {
+  static Dio setupDio() {
+    final dio = Dio();
     dio.options = BaseOptions(
       baseUrl: dotenv.env['BASE_URL'] ?? dotenv.env['DEV_BASE_URL'] ?? '',
       connectTimeout: const Duration(seconds: 8),
@@ -48,8 +47,6 @@ class BaseApiClient {
         ),
       ));
     }
-    dio.interceptors.add(TokenRefreshInterceptor(dio));
-    if (interceptor != null) dio.interceptors.add(interceptor);
     dio.interceptors.add(interceptorErrorWrapper);
     return dio;
   }
@@ -136,45 +133,16 @@ class BaseApiClient {
     },
   );
 
-  Dio get client => dio;
+  Dio get client => getIt<Dio>();
 
   String get apiKey => dotenv.env['API_KEY'] ?? '';
 
   Future<dynamic> get(String endpoint,
       {Map<String, dynamic>? queryParams}) async {
     try {
-      final response = await dio.get(endpoint, queryParameters: queryParams);
+      final response = await client.get(endpoint, queryParameters: queryParams);
       return _handleResponse(response);
     } on DioException catch (e) {
-      switch (e.response?.statusCode) {
-        case 401:
-          throw DioException(
-            message: Strings.unauthorized,
-            response: Response(
-              requestOptions: e.requestOptions,
-              statusCode: e.response?.statusCode ?? 401,
-            ),
-            requestOptions: RequestOptions(path: ''),
-          );
-        case 404:
-          throw DioException(
-            message: Strings.notFound,
-            response: Response(
-              requestOptions: e.requestOptions,
-              statusCode: e.response?.statusCode ?? 404,
-            ),
-            requestOptions: RequestOptions(path: ''),
-          );
-        case 408:
-          throw DioException(
-            message: Strings.checkYourConnection,
-            response: Response(
-              requestOptions: e.requestOptions,
-              statusCode: e.response?.statusCode ?? 408,
-            ),
-            requestOptions: RequestOptions(path: ''),
-          );
-      }
       throw ApiErrorHandler.getErrorMessage(e);
     }
   }
@@ -182,11 +150,10 @@ class BaseApiClient {
   Future<dynamic> post(
     String endpoint, {
     dynamic data,
-    Map<String, XFile>? fileData,
     Map<String, dynamic>? queryParams,
   }) async {
     try {
-      final response = await dio.post(
+      final response = await client.post(
         endpoint,
         data: data,
         queryParameters: queryParams,
@@ -205,7 +172,7 @@ class BaseApiClient {
       {dynamic data, Map<String, dynamic>? queryParams}) async {
     try {
       final response =
-          await dio.put(endpoint, data: data, queryParameters: queryParams);
+          await client.put(endpoint, data: data, queryParameters: queryParams);
       return _handleResponse(response);
     } on DioException catch (e) {
       throw ApiErrorHandler.getErrorMessage(e);
@@ -215,14 +182,18 @@ class BaseApiClient {
   Future<dynamic> delete(String endpoint,
       {Map<String, dynamic>? queryParams}) async {
     try {
-      final response = await dio.delete(endpoint, queryParameters: queryParams);
+      final response =
+          await client.delete(endpoint, queryParameters: queryParams);
       return _handleResponse(response);
     } on DioException catch (e) {
-      throw Error(message: e.response?.data['message'] ?? e.message);
+      throw Exception(e.response?.data['message'] ?? e.message);
     }
   }
 
   dynamic _handleResponse(Response response) {
+    if (response.data['success'] == false) {
+      throw Exception(response.data['message']);
+    }
     return response.data;
   }
 }

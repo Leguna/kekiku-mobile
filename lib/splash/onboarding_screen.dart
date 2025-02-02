@@ -9,8 +9,9 @@ class OnBoardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = OnboardingCubit();
     return BlocProvider(
-      create: (context) => OnboardingCubit(),
+      create: (context) => cubit,
       child: BlocConsumer<OnboardingCubit, OnboardingState>(
           listener: (context, state) {
         state.maybeWhen(
@@ -24,7 +25,6 @@ class OnBoardingScreen extends StatelessWidget {
           orElse: () {},
         );
       }, builder: (context, state) {
-        final cubit = context.read<OnboardingCubit>();
         cubit.init();
         return _buildContent(context);
       }),
@@ -32,6 +32,7 @@ class OnBoardingScreen extends StatelessWidget {
   }
 
   _buildContent(BuildContext context) {
+    final cubit = context.read<OnboardingCubit>();
     return MyScaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -104,7 +105,7 @@ class OnBoardingScreen extends StatelessWidget {
             ),
             GoogleSsoButton(
               onSignIn: () {
-                context.read<OnboardingCubit>().done();
+                cubit.done();
                 Navigator.pushNamedAndRemoveUntil(
                   context,
                   Routes.home,

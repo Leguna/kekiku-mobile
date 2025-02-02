@@ -13,9 +13,9 @@ class User with _$User {
     @Default('') String phone,
     @Default('user') String role,
     @Default('') String address,
-    @Default('') String photoUrl,
+    @Default('') String photo,
     @Default('male') String gender,
-    @Default('') String birthday,
+    @Default('') String dateOfBirth,
     @Default('') String bio,
     @Default('') username,
   }) = _User;
@@ -36,10 +36,10 @@ class User with _$User {
     'id': 'ID',
     'email': 'Email',
     'phone': 'Phone',
-    'photoUrl': 'Photo Profile',
+    'photo': 'Photo Profile',
     'address': 'Address',
     'gender': 'Gender',
-    'birthday': 'Birthday',
+    'dateOfBirth': 'Birthday',
   };
 }
 
@@ -59,10 +59,10 @@ User? copyWithField(ProfileField type, String value, User user) {
       return user.copyWith(phone: value);
     case ProfileField.gender:
       return user.copyWith(gender: value);
-    case ProfileField.birthday:
-      return user.copyWith(birthday: value);
-    case ProfileField.photoUrl:
-      return user.copyWith(photoUrl: value);
+    case ProfileField.dateOfBirth:
+      return user.copyWith(dateOfBirth: value);
+    case ProfileField.photo:
+      return user.copyWith(photo: value);
     case ProfileField.address:
       return user.copyWith(address: value);
   }
@@ -76,8 +76,8 @@ enum ProfileField {
   email,
   phone,
   gender,
-  birthday,
-  photoUrl,
+  dateOfBirth,
+  photo,
   address,
 }
 
@@ -89,7 +89,7 @@ Map<ProfileField, String> editProfileTypeMap = {
   ProfileField.email: 'Email',
   ProfileField.phone: 'Phone',
   ProfileField.gender: 'Gender',
-  ProfileField.birthday: 'Birthday',
+  ProfileField.dateOfBirth: 'Birthday',
 };
 
 Map<String, String> genderMap = {
@@ -107,7 +107,7 @@ String getTypeValue(ProfileField type, User? user) {
     ProfileField.email: user?.email,
     ProfileField.phone: user?.phone,
     ProfileField.gender: user?.gender,
-    ProfileField.birthday: user?.birthday,
+    ProfileField.dateOfBirth: user?.dateOfBirth,
   };
   return propertyMapping[type] ?? '';
 }

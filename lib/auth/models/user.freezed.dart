@@ -27,9 +27,11 @@ mixin _$User {
   String get phone => throw _privateConstructorUsedError;
   String get role => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
-  String get photoUrl => throw _privateConstructorUsedError;
+
+  String get photo => throw _privateConstructorUsedError;
   String get gender => throw _privateConstructorUsedError;
-  String get birthday => throw _privateConstructorUsedError;
+
+  String get dateOfBirth => throw _privateConstructorUsedError;
   String get bio => throw _privateConstructorUsedError;
   dynamic get username => throw _privateConstructorUsedError;
 
@@ -55,9 +57,9 @@ abstract class $UserCopyWith<$Res> {
       String phone,
       String role,
       String address,
-      String photoUrl,
+      String photo,
       String gender,
-      String birthday,
+      String dateOfBirth,
       String bio,
       dynamic username});
 }
@@ -84,9 +86,9 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? phone = null,
     Object? role = null,
     Object? address = null,
-    Object? photoUrl = null,
+    Object? photo = null,
     Object? gender = null,
-    Object? birthday = null,
+    Object? dateOfBirth = null,
     Object? bio = null,
     Object? username = freezed,
   }) {
@@ -119,17 +121,17 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
-      photoUrl: null == photoUrl
-          ? _value.photoUrl
-          : photoUrl // ignore: cast_nullable_to_non_nullable
+      photo: null == photo
+          ? _value.photo
+          : photo // ignore: cast_nullable_to_non_nullable
               as String,
       gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as String,
-      birthday: null == birthday
-          ? _value.birthday
-          : birthday // ignore: cast_nullable_to_non_nullable
+      dateOfBirth: null == dateOfBirth
+          ? _value.dateOfBirth
+          : dateOfBirth // ignore: cast_nullable_to_non_nullable
               as String,
       bio: null == bio
           ? _value.bio
@@ -158,9 +160,9 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       String phone,
       String role,
       String address,
-      String photoUrl,
+      String photo,
       String gender,
-      String birthday,
+      String dateOfBirth,
       String bio,
       dynamic username});
 }
@@ -184,9 +186,9 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? phone = null,
     Object? role = null,
     Object? address = null,
-    Object? photoUrl = null,
+    Object? photo = null,
     Object? gender = null,
-    Object? birthday = null,
+    Object? dateOfBirth = null,
     Object? bio = null,
     Object? username = freezed,
   }) {
@@ -219,17 +221,17 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
-      photoUrl: null == photoUrl
-          ? _value.photoUrl
-          : photoUrl // ignore: cast_nullable_to_non_nullable
+      photo: null == photo
+          ? _value.photo
+          : photo // ignore: cast_nullable_to_non_nullable
               as String,
       gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as String,
-      birthday: null == birthday
-          ? _value.birthday
-          : birthday // ignore: cast_nullable_to_non_nullable
+      dateOfBirth: null == dateOfBirth
+          ? _value.dateOfBirth
+          : dateOfBirth // ignore: cast_nullable_to_non_nullable
               as String,
       bio: null == bio
           ? _value.bio
@@ -251,9 +253,9 @@ class _$UserImpl implements _User {
       this.phone = '',
       this.role = 'user',
       this.address = '',
-      this.photoUrl = '',
+      this.photo = '',
       this.gender = 'male',
-      this.birthday = '',
+      this.dateOfBirth = '',
       this.bio = '',
       this.username = ''});
 
@@ -281,13 +283,13 @@ class _$UserImpl implements _User {
   final String address;
   @override
   @JsonKey()
-  final String photoUrl;
+  final String photo;
   @override
   @JsonKey()
   final String gender;
   @override
   @JsonKey()
-  final String birthday;
+  final String dateOfBirth;
   @override
   @JsonKey()
   final String bio;
@@ -297,7 +299,7 @@ class _$UserImpl implements _User {
 
   @override
   String toString() {
-    return 'User(displayName: $displayName, email: $email, id: $id, authMethod: $authMethod, phone: $phone, role: $role, address: $address, photoUrl: $photoUrl, gender: $gender, birthday: $birthday, bio: $bio, username: $username)';
+    return 'User(displayName: $displayName, email: $email, id: $id, authMethod: $authMethod, phone: $phone, role: $role, address: $address, photo: $photo, gender: $gender, dateOfBirth: $dateOfBirth, bio: $bio, username: $username)';
   }
 
   @override
@@ -314,11 +316,10 @@ class _$UserImpl implements _User {
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.role, role) || other.role == role) &&
             (identical(other.address, address) || other.address == address) &&
-            (identical(other.photoUrl, photoUrl) ||
-                other.photoUrl == photoUrl) &&
+            (identical(other.photo, photo) || other.photo == photo) &&
             (identical(other.gender, gender) || other.gender == gender) &&
-            (identical(other.birthday, birthday) ||
-                other.birthday == birthday) &&
+            (identical(other.dateOfBirth, dateOfBirth) ||
+                other.dateOfBirth == dateOfBirth) &&
             (identical(other.bio, bio) || other.bio == bio) &&
             const DeepCollectionEquality().equals(other.username, username));
   }
@@ -334,9 +335,9 @@ class _$UserImpl implements _User {
       phone,
       role,
       address,
-      photoUrl,
+      photo,
       gender,
-      birthday,
+      dateOfBirth,
       bio,
       const DeepCollectionEquality().hash(username));
 
@@ -365,9 +366,9 @@ abstract class _User implements User {
       final String phone,
       final String role,
       final String address,
-      final String photoUrl,
+      final String photo,
       final String gender,
-      final String birthday,
+      final String dateOfBirth,
       final String bio,
       final dynamic username}) = _$UserImpl;
 
@@ -388,11 +389,11 @@ abstract class _User implements User {
   @override
   String get address;
   @override
-  String get photoUrl;
+  String get photo;
   @override
   String get gender;
   @override
-  String get birthday;
+  String get dateOfBirth;
   @override
   String get bio;
   @override

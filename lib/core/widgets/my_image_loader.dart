@@ -9,12 +9,14 @@ class MyImageLoader extends StatefulWidget {
     this.height = 100,
     this.radius = 8,
     this.onImageLoaded,
+    this.isLoading = false,
   });
 
   final String? path;
   final double width;
   final double height;
   final double radius;
+  final bool isLoading;
   final Function()? onImageLoaded;
 
   @override
@@ -26,6 +28,10 @@ class _MyImageLoaderState extends State<MyImageLoader> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.isLoading) {
+      return _buildShimmer();
+    }
+
     return ClipRRect(
       borderRadius: BorderRadius.circular(widget.radius),
       child: _buildImage(),
@@ -98,7 +104,10 @@ class _MyImageLoaderState extends State<MyImageLoader> {
 
   Widget _buildShimmer() {
     return Container(
-      color: Colors.grey[300],
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(widget.radius),
+        color: Colors.grey[300],
+      ),
       width: widget.width,
       height: widget.height,
     );

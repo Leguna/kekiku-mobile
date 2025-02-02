@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kekiku/core/services/google_sso.dart';
@@ -78,23 +77,9 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> loginWithGoogle() async {
     try {
       emit(const AuthState.loading());
-      final googleSSOService = getIt<GoogleSSOService>();
-      final googleUser = await googleSSOService.signIn();
-
-      if (googleUser == null) throw Exception(Strings.failedToLogin);
-
-      // user = await ds.loginWithGoogle(googleUser.id);
-      user = User(
-        id: googleUser.id,
-        email: googleUser.email,
-        displayName: googleUser.displayName ?? '',
-        photoUrl: googleUser.photoUrl ?? '',
-        username: nameToUsername(
-            googleUser.displayName ?? Random().nextInt(1000).toString()),
-      );
+      user = await ds.loginWithGoogleToken();
       await ss.writeData(userKey, user!.id);
       await ss.writeData(user!.id, jsonEncode(user!.toJson()));
-      emit(const AuthState.success(Strings.successLogin));
       emit(AuthState.updated(user!));
     } catch (e) {
       emit(const AuthState.error(Strings.failedToLogin));

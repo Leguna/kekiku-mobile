@@ -3,23 +3,24 @@ import 'dart:convert';
 import 'package:image_picker/image_picker.dart';
 
 import '../../core/index.dart';
+import '../../core/services/google_sso.dart';
 import '../models/user.dart';
 
 class AuthRepository {
-  AuthRepository(this._authApiClient);
+  AuthRepository(this._ds);
 
-  final AuthApiClient _authApiClient;
+  final AuthApiClient _ds;
   final SecureStorageManager _ss = getIt<SecureStorageManager>();
   final localDatabase = getIt<LocalDatabase>();
 
   Future<dynamic> register(String username, String password) async {
-    return await _authApiClient.register(username, password);
+    return await _ds.register(username, password);
   }
 
   Future<bool> logout() async {
     try {
       _ss.deleteData(userKey);
-      final response = await _authApiClient.logout();
+      final response = await _ds.logout();
       response['data']['isSuccess'];
       return true;
     } catch (e) {
@@ -28,32 +29,39 @@ class AuthRepository {
   }
 
   Future<bool> checkPhone(String phone) async {
-    final response = await _authApiClient.checkPhone(phone);
+    final response = await _ds.checkPhone(phone);
     bool isExist = response['data']['isExist'];
     return isExist;
   }
 
   Future<User> loginWithPhone(String phone, String password) async {
-    final response = await _authApiClient.loginWithPhone(phone, password);
+    final response = await _ds.loginWithPhone(phone, password);
     final user = User.fromJson(response['data']['user']);
     await setUser(user);
     return response;
   }
 
   Future<User> loginWithEmail(String email, String password) async {
-    final response = await _authApiClient.loginWithEmail(email, password);
+    final response = await _ds.loginWithEmail(email, password);
     final user = User.fromJson(response['data']['user']);
+    await _ss.setAccessToken(response['data']['accessToken']);
+    await _ss.setRefreshToken(response['data']['refreshToken']);
     await setUser(user);
     return user;
   }
 
-  Future<bool> loginWithGoogleToken(String idToken) async {
-    final response = await _authApiClient.loginWithGoogle(idToken);
-    await _ss.writeData(
-      userKey,
-      jsonEncode(response['data']['user']),
-    );
-    return true;
+  Future<User> loginWithGoogleToken() async {
+    final googleSSOService = getIt<GoogleSSOService>();
+    await googleSSOService.signOut();
+    await googleSSOService.signIn();
+    final idToken = await googleSSOService.getIdToken();
+    final accessToken = await googleSSOService.getAccessToken();
+    await _ss.setAccessToken(accessToken);
+    final response = await _ds.loginWithGoogle(idToken);
+    final user = User.fromJson(response['data']['user']);
+    await setUser(user);
+
+    return user;
   }
 
   Future<bool> isFingerprintRegistered() async {
@@ -81,7 +89,14 @@ class AuthRepository {
     return user;
   }
 
-  Future<User?> getUser() async {
+  Future<User?> getProfile() async {
+    final response = await _ds.getUserProfile();
+    final user = User.fromJson(response['data']);
+    await setUser(user);
+    return user;
+  }
+
+  Future<User?> getLocalUser() async {
     final id = await _ss.readData(userKey);
     if (id == null) throw Exception(Strings.dataNotFound);
     final userJson = await _ss.readData(id);
@@ -94,7 +109,7 @@ class AuthRepository {
     final userId = await _ss.readData(userKey);
     if (userId == null) throw Exception(Strings.dataNotFound);
 
-    await _authApiClient.deleteAccount();
+    await _ds.deleteAccount();
     await _ss.deleteData(userId);
   }
 
@@ -110,7 +125,7 @@ class AuthRepository {
   }
 
   Future<bool> sendVerificationEmail(String email) async {
-    final response = await _authApiClient.requestRegisterEmail(email);
+    final response = await _ds.requestRegisterEmail(email);
     if (response['success']) {
       return true;
     } else {
@@ -119,7 +134,7 @@ class AuthRepository {
   }
 
   Future<void> validateVerificationCode(String email, String pin) async {
-    await _authApiClient.validateVerificationCode(email, pin);
+    await _ds.validateVerificationCode(email, pin);
   }
 
   Future<User> createProfile({
@@ -128,7 +143,7 @@ class AuthRepository {
     required String password,
     required String pin,
   }) async {
-    final response = await _authApiClient.createProfile(
+    final response = await _ds.createProfile(
       email: email,
       name: name,
       password: password,
@@ -154,8 +169,51 @@ class AuthRepository {
   }
 
   Future<String> uploadImage(XFile image) async {
-    final response = await _authApiClient.uploadImage(image);
-    final photoUrl = response['data']['photoUrl'];
+    final response = await _ds.uploadImage(image);
+    final photoUrl = response['data']['photo'];
     return photoUrl;
+  }
+
+  Future<User> updateProfile(Map<ProfileField, String> fieldsToUpdate) async {
+    var updatedField = {};
+    fieldsToUpdate.forEach((field, value) {
+      switch (field) {
+        case ProfileField.displayName:
+          updatedField['displayName'] = value;
+          break;
+        case ProfileField.username:
+          updatedField['username'] = value;
+          break;
+        case ProfileField.bio:
+          updatedField['bio'] = value;
+          break;
+        case ProfileField.id:
+          updatedField['id'] = value;
+          break;
+        case ProfileField.email:
+          updatedField['email'] = value;
+          break;
+        case ProfileField.phone:
+          updatedField['phone'] = value;
+          break;
+        case ProfileField.gender:
+          updatedField['gender'] = value;
+          break;
+        case ProfileField.dateOfBirth:
+          updatedField['dateOfBirth'] = value;
+          break;
+        case ProfileField.photo:
+          updatedField['photo'] = value;
+          break;
+        case ProfileField.address:
+          updatedField['address'] = value;
+          break;
+      }
+    });
+
+    final response = await _ds.updateProfile(updatedField);
+    final user = User.fromJson(response['data']);
+    await setUser(user);
+    return user;
   }
 }

@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,7 +16,6 @@ import 'notification/data_sources/notification_repository.dart';
 var initialized = false;
 
 Future<void> setupServices() async {
-  try {
     if (initialized) return;
     initialized = true;
     await dotenv.load(fileName: '.env');
@@ -25,14 +23,15 @@ Future<void> setupServices() async {
     await Hive.initFlutter();
     GoogleFonts.config.allowRuntimeFetching = false;
 
-    getIt.registerSingleton<LocalDatabase>(LocalDatabase());
+  getIt.registerSingleton<LocalDatabase>(LocalDatabase());
     getIt.registerSingleton<Workmanager>(Workmanager());
     getIt.registerSingleton<SecureStorageManager>(SecureStorageManager());
 
-    final dio = BaseApiClient.init(dio: Dio());
-    getIt.registerSingleton<Dio>(dio);
+  final dio = BaseApiClient.setupDio();
+  getIt.registerSingleton(dio);
+  dio.interceptors.add(TokenRefreshInterceptor());
 
-    getIt.registerSingleton<AuthRepository>(AuthRepository(AuthApiClient()));
+  getIt.registerSingleton<AuthRepository>(AuthRepository(AuthApiClient()));
     FirebaseApp? firebaseApp = await FirebaseService().init();
     if (firebaseApp != null) {
       getIt.registerSingleton<FirebaseApp>(firebaseApp);
@@ -50,8 +49,4 @@ Future<void> setupServices() async {
     getIt.registerSingleton<NotificationRepository>(
       NotificationRepository(NotificationLocalSource()),
     );
-  } catch (e) {
-    // ignore: avoid_print
-    print('Error initializing services: $e');
-  }
 }

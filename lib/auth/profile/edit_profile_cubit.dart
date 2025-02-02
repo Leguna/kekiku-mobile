@@ -10,9 +10,7 @@ part 'edit_profile_cubit.freezed.dart';
 part 'edit_profile_state.dart';
 
 class EditProfileCubit extends Cubit<EditProfileState> {
-  EditProfileCubit(this.authCubit) : super(const EditProfileState.initial()) {
-    getUser();
-  }
+  EditProfileCubit(this.authCubit) : super(const EditProfileState.initial());
 
   final AuthCubit authCubit;
   final ds = getIt<AuthRepository>();
@@ -21,19 +19,20 @@ class EditProfileCubit extends Cubit<EditProfileState> {
 
   User? user;
 
+  bool get isLoading =>
+      state.maybeWhen(loading: (fullscreen) => true, orElse: () => false);
+
   Future<void> changePhotoProfile() async {
     try {
-      emit(const EditProfileState.loading());
+      emit(const EditProfileState.loading(fullscreen: true));
       XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
       if (image != null) {
-        final photoUrl = await ds.uploadImage(image);
-        user = user?.copyWith(photoUrl: photoUrl);
+        final photo = await ds.uploadImage(image);
+        user = user?.copyWith(photo: photo);
         await ds.setUser(user!);
-        authCubit.setUser(user!);
-        emit(EditProfileState.success(user!));
-      } else {
-        emit(const EditProfileState.error('Failed to pick image'));
+        await authCubit.setUser(user!);
       }
+      emit(EditProfileState.success(user!));
     } catch (e) {
       emit(EditProfileState.error(e.toString()));
     }
@@ -42,24 +41,27 @@ class EditProfileCubit extends Cubit<EditProfileState> {
   Future<void> editProfileValue(ProfileField type, dynamic value) async {
     try {
       emit(const EditProfileState.loading());
-      await Future.delayed(const Duration(seconds: 1));
-      if (user == null) {
-        emit(const EditProfileState.error('User not found'));
-        return;
-      }
-      user = copyWithField(type, value, user!);
+      if (user == null) return;
+      user = await ds.updateProfile({type: value});
       await authCubit.setUser(user!);
       emit(EditProfileState.success(user!));
     } catch (e) {
-      emit(EditProfileState.error(e.toString()));
+      return emit(EditProfileState.error(e.toString()));
     }
     await getUser();
   }
 
-  Future<void> getUser() async {
-    emit(const EditProfileState.loading());
+  Future<void> getLocalUser() async {
+    emit(const EditProfileState.loading(fullscreen: false));
+    user = await ds.getLocalUser();
+    emit(EditProfileState.success(user!));
+  }
+
+  Future<void> getUser({fullscreenLoading = true}) async {
     try {
-      user = await ds.getUser();
+      emit(EditProfileState.loading(fullscreen: fullscreenLoading));
+      user = await ds.getProfile();
+      authCubit.setUser(user!);
       setBirthdayController();
       emit(EditProfileState.success(user!));
     } catch (e) {
@@ -90,8 +92,8 @@ class EditProfileCubit extends Cubit<EditProfileState> {
 
   void setBirthdayController() {
     if (user == null) return;
-    if (user?.birthday == null || user?.birthday == '') return;
-    final birthday = user?.birthday ?? '';
+    if (user?.dateOfBirth == null || user?.dateOfBirth == '') return;
+    final birthday = user?.dateOfBirth ?? '';
     final date = birthday.split(' ');
     final dayIndex = day.indexOf(date[0]);
     final monthIndex = month.indexOf(date[1]);
@@ -106,7 +108,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     final monthIndex = monthController.selectedItem % 12;
     final yearIndex = yearController.selectedItem % 100;
     final birthday = '${day[dayIndex]} ${month[monthIndex]} ${year[yearIndex]}';
-    await editProfileValue(ProfileField.birthday, birthday);
+    await editProfileValue(ProfileField.dateOfBirth, birthday);
   }
 }
 

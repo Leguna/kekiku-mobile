@@ -2,6 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import '../strings.dart';
+
 class GoogleSSOService {
   late final GoogleSignIn googleSignIn;
 
@@ -12,7 +14,7 @@ class GoogleSSOService {
     ];
 
     googleSignIn = GoogleSignIn(
-      serverClientId: dotenv.env['GOOGLE_SERVER_CLIENT_ID'],
+      clientId: dotenv.env['GOOGLE_CLIENT_ID'],
       scopes: scopes,
     );
   }
@@ -21,19 +23,22 @@ class GoogleSSOService {
     googleSignIn.onCurrentUserChanged.listen(listener);
   }
 
-  Future<GoogleSignInAccount?> signIn() async {
-    try {
-      final googleUser = await googleSignIn.signIn();
-      if (googleUser == null) {
-        return null;
-      }
-      return googleUser;
-    } catch (error) {
-      if (kDebugMode) {
-        print(error);
-      }
-    }
-    return null;
+  Future<GoogleSignInAccount> signIn() async {
+    final googleUser = await googleSignIn.signIn();
+    if (googleUser == null) throw Exception(Strings.failedToLogin);
+    return googleUser;
+  }
+
+  Future<String> getAccessToken() async {
+    final googleSignInAuthentication =
+        await googleSignIn.currentUser?.authentication;
+    return googleSignInAuthentication?.accessToken ?? '';
+  }
+
+  Future<String> getIdToken() async {
+    final googleSignInAuthentication =
+        await googleSignIn.currentUser?.authentication;
+    return googleSignInAuthentication?.idToken ?? '';
   }
 
   Future<void> signOut() async {

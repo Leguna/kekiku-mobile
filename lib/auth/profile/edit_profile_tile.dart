@@ -28,7 +28,7 @@ class EditProfileTile extends StatelessWidget {
           var value = getTypeValue(type, bloc.user);
           var isPhone = type == ProfileField.phone;
           var isGender = type == ProfileField.gender;
-          var isBirthday = type == ProfileField.birthday;
+          var isBirthday = type == ProfileField.dateOfBirth;
           if (isGender) {
             value = (genderMap[value] ?? genderMap["other"])!;
           }

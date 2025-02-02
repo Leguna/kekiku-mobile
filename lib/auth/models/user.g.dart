@@ -14,9 +14,9 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
       phone: json['phone'] as String? ?? '',
       role: json['role'] as String? ?? 'user',
       address: json['address'] as String? ?? '',
-      photoUrl: json['photoUrl'] as String? ?? '',
+      photo: json['photo'] as String? ?? '',
       gender: json['gender'] as String? ?? 'male',
-      birthday: json['birthday'] as String? ?? '',
+      dateOfBirth: json['dateOfBirth'] as String? ?? '',
       bio: json['bio'] as String? ?? '',
       username: json['username'] ?? '',
     );
@@ -30,9 +30,9 @@ Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
       'phone': instance.phone,
       'role': instance.role,
       'address': instance.address,
-      'photoUrl': instance.photoUrl,
+      'photo': instance.photo,
       'gender': instance.gender,
-      'birthday': instance.birthday,
+      'dateOfBirth': instance.dateOfBirth,
       'bio': instance.bio,
       'username': instance.username,
     };

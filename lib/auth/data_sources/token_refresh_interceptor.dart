@@ -1,49 +1,42 @@
 import 'package:dio/dio.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:kekiku/core/services/google_sso.dart';
 
 import '../../core/index.dart';
 
 class TokenRefreshInterceptor extends Interceptor {
-  TokenRefreshInterceptor(this._dio);
-
+  TokenRefreshInterceptor() : super();
   final SecureStorageManager _tokenManager = SecureStorageManager();
-  final Dio _dio;
+  final Dio dio = getIt<Dio>();
 
   @override
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
-    try {
-      final accessToken = await _tokenManager.getAccessToken();
-      if (accessToken != null) {
-        options.headers['Authorization'] = 'Bearer $accessToken';
-      }
-      super.onRequest(options, handler);
-    } catch (e) {
-      handler.reject(DioException(requestOptions: options));
-    }
+    final firebase = getIt<GoogleSSOService>();
+    final accessToken = await firebase.getIdToken();
+    options.headers['Authorization'] = 'Bearer $accessToken';
+    super.onRequest(options, handler);
   }
 
   @override
-  void onError(DioException err, ErrorInterceptorHandler handler) async {
+  Future<void> onResponse(
+      Response response, ResponseInterceptorHandler handler) async {
     try {
-      if (err.response?.statusCode != 401) {
-        handler.reject(err);
+      final statusCode = response.statusCode;
+      if (statusCode != 401) {
+        handler.next(response);
         return;
       }
-
+      final requestOptions = response.requestOptions;
       final refreshToken =
           await _tokenManager.readData(SecureStorageManager.refreshTokenKey);
 
       if (refreshToken == null) {
-        handler.reject(err);
-        return;
+        throw Exception('Refresh token not found');
       }
 
-      final newAccessToken = await getAccessToken(refreshToken);
-      await _tokenManager.setToken(newAccessToken);
-      final requestOptions = err.requestOptions;
+      final newAccessToken = await getNewAccessToken(dio);
       requestOptions.headers['Authorization'] = 'Bearer $newAccessToken';
-      final response = await _dio.request(
+      final newResponse = await dio.request(
         requestOptions.path,
         options: Options(
           method: requestOptions.method,
@@ -52,21 +45,30 @@ class TokenRefreshInterceptor extends Interceptor {
         data: requestOptions.data,
         queryParameters: requestOptions.queryParameters,
       );
-      handler.resolve(response);
+
+      handler.resolve(newResponse);
     } catch (e) {
-      _tokenManager.deleteData(SecureStorageManager.refreshTokenKey);
-      handler.reject(err);
+      _tokenManager.deleteAll();
+      handler.reject(DioException(
+        requestOptions: response.requestOptions,
+        response: response,
+        error: e,
+      ));
     }
   }
 
-  Future<String> getAccessToken(String refreshToken) async {
-    User? user = FirebaseAuth.instance.currentUser;
+  Future<String> getNewAccessToken(Dio dio) async {
+    final refreshToken = await _tokenManager.getRefreshToken();
+    final response = await dio.post('/auth/refresh', data: {
+      'refreshToken': refreshToken,
+    });
 
-    if (user != null) {
-      String token = await user.getIdToken() ?? '';
-      return token;
-    } else {
-      throw Exception('You are not logged in');
-    }
+    final newAccessToken = response.data['data']['accessToken'];
+    final newRefreshToken = response.data['data']['refreshToken'];
+
+    await _tokenManager.setAccessToken(newAccessToken);
+    await _tokenManager.setRefreshToken(newRefreshToken);
+
+    return newAccessToken;
   }
 }

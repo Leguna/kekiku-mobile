@@ -19,7 +19,7 @@ mixin _$EditProfileState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function(bool fullscreen) loading,
     required TResult Function(String message) error,
     required TResult Function(User user) success,
     required TResult Function() deleted,
@@ -29,7 +29,7 @@ mixin _$EditProfileState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function(bool fullscreen)? loading,
     TResult? Function(String message)? error,
     TResult? Function(User user)? success,
     TResult? Function()? deleted,
@@ -39,7 +39,7 @@ mixin _$EditProfileState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function(bool fullscreen)? loading,
     TResult Function(String message)? error,
     TResult Function(User user)? success,
     TResult Function()? deleted,
@@ -143,7 +143,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function(bool fullscreen) loading,
     required TResult Function(String message) error,
     required TResult Function(User user) success,
     required TResult Function() deleted,
@@ -156,7 +156,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function(bool fullscreen)? loading,
     TResult? Function(String message)? error,
     TResult? Function(User user)? success,
     TResult? Function()? deleted,
@@ -169,7 +169,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function(bool fullscreen)? loading,
     TResult Function(String message)? error,
     TResult Function(User user)? success,
     TResult Function()? deleted,
@@ -235,6 +235,8 @@ abstract class _$$LoadingImplCopyWith<$Res> {
   factory _$$LoadingImplCopyWith(
           _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
       __$$LoadingImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool fullscreen});
 }
 
 /// @nodoc
@@ -247,58 +249,85 @@ class __$$LoadingImplCopyWithImpl<$Res>
 
   /// Create a copy of EditProfileState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? fullscreen = null,
+  }) {
+    return _then(_$LoadingImpl(
+      fullscreen: null == fullscreen
+          ? _value.fullscreen
+          : fullscreen // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$LoadingImpl implements _Loading {
-  const _$LoadingImpl();
+  const _$LoadingImpl({this.fullscreen = true});
+
+  @override
+  @JsonKey()
+  final bool fullscreen;
 
   @override
   String toString() {
-    return 'EditProfileState.loading()';
+    return 'EditProfileState.loading(fullscreen: $fullscreen)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$LoadingImpl &&
+            (identical(other.fullscreen, fullscreen) ||
+                other.fullscreen == fullscreen));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, fullscreen);
+
+  /// Create a copy of EditProfileState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadingImplCopyWith<_$LoadingImpl> get copyWith =>
+      __$$LoadingImplCopyWithImpl<_$LoadingImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function(bool fullscreen) loading,
     required TResult Function(String message) error,
     required TResult Function(User user) success,
     required TResult Function() deleted,
     required TResult Function(ProfileField type) changed,
   }) {
-    return loading();
+    return loading(fullscreen);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function(bool fullscreen)? loading,
     TResult? Function(String message)? error,
     TResult? Function(User user)? success,
     TResult? Function()? deleted,
     TResult? Function(ProfileField type)? changed,
   }) {
-    return loading?.call();
+    return loading?.call(fullscreen);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function(bool fullscreen)? loading,
     TResult Function(String message)? error,
     TResult Function(User user)? success,
     TResult Function()? deleted,
@@ -306,7 +335,7 @@ class _$LoadingImpl implements _Loading {
     required TResult orElse(),
   }) {
     if (loading != null) {
-      return loading();
+      return loading(fullscreen);
     }
     return orElse();
   }
@@ -356,7 +385,15 @@ class _$LoadingImpl implements _Loading {
 }
 
 abstract class _Loading implements EditProfileState {
-  const factory _Loading() = _$LoadingImpl;
+  const factory _Loading({final bool fullscreen}) = _$LoadingImpl;
+
+  bool get fullscreen;
+
+  /// Create a copy of EditProfileState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$LoadingImplCopyWith<_$LoadingImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -428,7 +465,7 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function(bool fullscreen) loading,
     required TResult Function(String message) error,
     required TResult Function(User user) success,
     required TResult Function() deleted,
@@ -441,7 +478,7 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function(bool fullscreen)? loading,
     TResult? Function(String message)? error,
     TResult? Function(User user)? success,
     TResult? Function()? deleted,
@@ -454,7 +491,7 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function(bool fullscreen)? loading,
     TResult Function(String message)? error,
     TResult Function(User user)? success,
     TResult Function()? deleted,
@@ -604,7 +641,7 @@ class _$SuccessImpl implements _Success {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function(bool fullscreen) loading,
     required TResult Function(String message) error,
     required TResult Function(User user) success,
     required TResult Function() deleted,
@@ -617,7 +654,7 @@ class _$SuccessImpl implements _Success {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function(bool fullscreen)? loading,
     TResult? Function(String message)? error,
     TResult? Function(User user)? success,
     TResult? Function()? deleted,
@@ -630,7 +667,7 @@ class _$SuccessImpl implements _Success {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function(bool fullscreen)? loading,
     TResult Function(String message)? error,
     TResult Function(User user)? success,
     TResult Function()? deleted,
@@ -741,7 +778,7 @@ class _$DeletedImpl implements _Deleted {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function(bool fullscreen) loading,
     required TResult Function(String message) error,
     required TResult Function(User user) success,
     required TResult Function() deleted,
@@ -754,7 +791,7 @@ class _$DeletedImpl implements _Deleted {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function(bool fullscreen)? loading,
     TResult? Function(String message)? error,
     TResult? Function(User user)? success,
     TResult? Function()? deleted,
@@ -767,7 +804,7 @@ class _$DeletedImpl implements _Deleted {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function(bool fullscreen)? loading,
     TResult Function(String message)? error,
     TResult Function(User user)? success,
     TResult Function()? deleted,
@@ -897,7 +934,7 @@ class _$ChangedImpl implements _Changed {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function(bool fullscreen) loading,
     required TResult Function(String message) error,
     required TResult Function(User user) success,
     required TResult Function() deleted,
@@ -910,7 +947,7 @@ class _$ChangedImpl implements _Changed {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function(bool fullscreen)? loading,
     TResult? Function(String message)? error,
     TResult? Function(User user)? success,
     TResult? Function()? deleted,
@@ -923,7 +960,7 @@ class _$ChangedImpl implements _Changed {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function(bool fullscreen)? loading,
     TResult Function(String message)? error,
     TResult Function(User user)? success,
     TResult Function()? deleted,

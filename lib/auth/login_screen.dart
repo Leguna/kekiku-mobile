@@ -167,8 +167,7 @@ class LoginScreen extends StatelessWidget {
                                         ? () {
                                             if (!isEmailLogin) {
                                               FocusScope.of(context).unfocus();
-                                              cubit
-                                                  .trySendVerificationMessage();
+                                              cubit.checkEmailOrPhone();
                                             } else {
                                               cubit.login();
                                             }
@@ -186,29 +185,29 @@ class LoginScreen extends StatelessWidget {
                           ),
                         ),
                         const MyDivider(Strings.orSignInWith),
-                        OutlinedButton(
-                          onPressed: () {
-                            context.read<AuthCubit>().loginFingerprint();
-                          },
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.fingerprint,
-                                color: Theme.of(context).colorScheme.onPrimary,
-                              ),
-                              const SizedBox(width: Dimens.micro),
-                              Text(
-                                Strings.fingerPrint,
-                                style: TextStyle(
-                                  color:
-                                      Theme.of(context).colorScheme.onPrimary,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                        // OutlinedButton(
+                        //   onPressed: () {
+                        //     context.read<AuthCubit>().loginFingerprint();
+                        //   },
+                        //   child: Row(
+                        //     crossAxisAlignment: CrossAxisAlignment.center,
+                        //     mainAxisAlignment: MainAxisAlignment.center,
+                        //     children: [
+                        //       Icon(
+                        //         Icons.fingerprint,
+                        //         color: Theme.of(context).colorScheme.onPrimary,
+                        //       ),
+                        //       const SizedBox(width: Dimens.micro),
+                        //       Text(
+                        //         Strings.fingerPrint,
+                        //         style: TextStyle(
+                        //           color:
+                        //               Theme.of(context).colorScheme.onPrimary,
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
                         const GoogleSsoButton(
                           isOutlined: true,
                         ),

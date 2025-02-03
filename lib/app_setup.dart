@@ -16,37 +16,40 @@ import 'notification/data_sources/notification_repository.dart';
 var initialized = false;
 
 Future<void> setupServices() async {
-    if (initialized) return;
-    initialized = true;
-    await dotenv.load(fileName: '.env');
+  if (initialized) return;
+  initialized = true;
+  await dotenv.load(fileName: '.env');
 
-    await Hive.initFlutter();
-    GoogleFonts.config.allowRuntimeFetching = false;
+  await Hive.initFlutter();
+  GoogleFonts.config.allowRuntimeFetching = false;
+
+  getIt.registerSingleton<GlobalKey<NavigatorState>>(
+      GlobalKey<NavigatorState>());
 
   getIt.registerSingleton<LocalDatabase>(LocalDatabase());
-    getIt.registerSingleton<Workmanager>(Workmanager());
-    getIt.registerSingleton<SecureStorageManager>(SecureStorageManager());
+  getIt.registerSingleton<Workmanager>(Workmanager());
+  getIt.registerSingleton<SecureStorageManager>(SecureStorageManager());
 
   final dio = BaseApiClient.setupDio();
   getIt.registerSingleton(dio);
   dio.interceptors.add(TokenRefreshInterceptor());
 
   getIt.registerSingleton<AuthRepository>(AuthRepository(AuthApiClient()));
-    FirebaseApp? firebaseApp = await FirebaseService().init();
-    if (firebaseApp != null) {
-      getIt.registerSingleton<FirebaseApp>(firebaseApp);
-    }
-    GoogleSSOService googleSSOService = GoogleSSOService();
-    getIt.registerSingleton<GoogleSSOService>(googleSSOService);
+  FirebaseApp? firebaseApp = await FirebaseService().init();
+  if (firebaseApp != null) {
+    getIt.registerSingleton<FirebaseApp>(firebaseApp);
+  }
+  GoogleSSOService googleSSOService = GoogleSSOService();
+  getIt.registerSingleton<GoogleSSOService>(googleSSOService);
 
-    getIt.registerSingleton<ProductRepository>(
-      ProductRepository(
-        remoteDataSource: ProductRemoteSource(),
-        localDataSource: ProductLocalSource(),
-      ),
-    );
+  getIt.registerSingleton<ProductRepository>(
+    ProductRepository(
+      remoteDataSource: ProductRemoteSource(),
+      localDataSource: ProductLocalSource(),
+    ),
+  );
 
-    getIt.registerSingleton<NotificationRepository>(
-      NotificationRepository(NotificationLocalSource()),
-    );
+  getIt.registerSingleton<NotificationRepository>(
+    NotificationRepository(NotificationLocalSource()),
+  );
 }

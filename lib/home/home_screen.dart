@@ -19,6 +19,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final pageController = PageController(initialPage: 0);
     final homeCubit = context.read<HomeCubit>();
+    final bottomNavBarCubit = context.read<BottomNavBarCubit>();
+    bottomNavBarCubit.reset();
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) {
@@ -32,8 +34,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   MyScaffold(
                     bottomNavigationBar: MyBottomNavBar(
-                      onChanged: (index) {
-                        pageController.jumpToPage(index);
+                      onNavTap: (index) {
+                        if (pageController.hasClients) {
+                          pageController.jumpToPage(index);
+                        }
                       },
                     ),
                     body: PageView(

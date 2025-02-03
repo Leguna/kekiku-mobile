@@ -49,6 +49,10 @@ class TokenRefreshInterceptor extends Interceptor {
       handler.resolve(newResponse);
     } catch (e) {
       _tokenManager.deleteAll();
+      final firebase = getIt<GoogleSSOService>();
+      await firebase.signOut();
+      Navigator.of(getIt<GlobalKey<NavigatorState>>().currentContext!)
+          .pushNamedAndRemoveUntil(Routes.login, (route) => false);
       handler.reject(DioException(
         requestOptions: response.requestOptions,
         response: response,

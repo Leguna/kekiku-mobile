@@ -6,15 +6,14 @@ import 'my_bottom_nav_bar_item.dart';
 class MyBottomNavBar extends StatelessWidget {
   const MyBottomNavBar({
     super.key,
-    this.onChanged,
+    this.onNavTap,
   });
 
-  final Function(int)? onChanged;
+  final Function(int)? onNavTap;
 
   @override
   Widget build(BuildContext context) {
     final bottomNavBarCubit = context.read<BottomNavBarCubit>();
-    bottomNavBarCubit.onReset = () => onChanged?.call(0);
     return BlocBuilder<BottomNavBarCubit, BottomNavBarState>(
       bloc: bottomNavBarCubit,
       builder: (context, state) {
@@ -26,7 +25,8 @@ class MyBottomNavBar extends StatelessWidget {
           child: BottomNavigationBar(
             currentIndex: state.page,
             onTap: (index) {
-              onChanged?.call(index);
+              onNavTap?.call(index);
+              bottomNavBarCubit.changePage(index);
             },
             type: BottomNavigationBarType.fixed,
             showSelectedLabels: true,

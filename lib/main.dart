@@ -67,6 +67,7 @@ class MyApp extends StatelessWidget {
         position: ToastPosition.bottom,
         dismissOtherOnShow: true,
         child: MaterialApp(
+          navigatorKey: getIt<GlobalKey<NavigatorState>>(),
           title: Strings.appName,
           debugShowCheckedModeBanner: dotenv.env['DEBUG'] == 'true',
           theme: mainTheme,

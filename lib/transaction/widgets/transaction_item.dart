@@ -8,7 +8,7 @@ class TransactionItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Theme.of(context).cardTheme.color?.withOpacity(0.2),
+      color: Theme.of(context).cardTheme.color?.withAlpha(50),
       margin: const EdgeInsets.all(Dimens.tiny),
       child: Padding(
         padding: const EdgeInsets.all(Dimens.small),

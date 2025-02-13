@@ -89,7 +89,7 @@ class MediaViewPagerListState extends State<MediaViewPagerList> {
                     borderRadius: const BorderRadius.horizontal(
                       right: Radius.circular(Dimens.small),
                     ),
-                    color: Colors.black.withOpacity(0.5),
+                    color: Colors.black.withAlpha(125),
                   ),
                   child: IconButton(
                     icon: const Icon(Icons.arrow_back_ios),
@@ -110,7 +110,7 @@ class MediaViewPagerListState extends State<MediaViewPagerList> {
               child: Container(
                 padding: const EdgeInsets.all(Dimens.small),
                 decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.5),
+                  color: Colors.black.withAlpha(125),
                   borderRadius: BorderRadius.circular(Dimens.small),
                 ),
                 child: Text(

@@ -49,7 +49,7 @@ class ItemProduct extends StatelessWidget {
                       Container(
                         width: imageSize,
                         height: imageSize,
-                        color: Colors.black.withOpacity(0.5),
+                        color: Colors.black.withAlpha(125),
                         child: const Center(
                           child: SizedBox(),
                         ),

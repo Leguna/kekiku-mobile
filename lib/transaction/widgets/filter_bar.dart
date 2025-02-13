@@ -112,7 +112,7 @@ class FilterBar extends StatelessWidget {
   }) {
     final selectedColor = Theme.of(context).colorScheme.secondary;
     final unselectedColor =
-        Theme.of(context).colorScheme.secondary.withOpacity(0.2);
+        Theme.of(context).colorScheme.secondary.withAlpha(50);
     return InkWell(
       borderRadius: BorderRadius.circular(Dimens.small),
       onTap: onTap,

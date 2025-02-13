@@ -119,7 +119,7 @@ class _MyVideoPlayerState extends State<MyVideoPlayer>
                   child: Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.5),
+                      color: Colors.black.withAlpha(125),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(

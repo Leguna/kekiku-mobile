@@ -45,7 +45,7 @@ class ImageSwiper extends StatelessWidget {
                             end: Alignment.bottomCenter,
                             colors: [
                               Colors.transparent,
-                              Colors.black.withOpacity(0.8),
+                              Colors.black.withAlpha(200),
                             ],
                           ),
                         ),

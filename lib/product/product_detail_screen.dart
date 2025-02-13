@@ -338,7 +338,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                             color: Theme.of(context)
                                 .colorScheme
                                 .onPrimary
-                                .withOpacity(0.5),
+                                .withAlpha(125),
                           ),
                     ),
                     const SizedBox(width: Dimens.small),

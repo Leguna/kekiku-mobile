@@ -27,10 +27,8 @@ mixin _$User {
   String get phone => throw _privateConstructorUsedError;
   String get role => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
-
   String get photo => throw _privateConstructorUsedError;
   String get gender => throw _privateConstructorUsedError;
-
   String get dateOfBirth => throw _privateConstructorUsedError;
   String get bio => throw _privateConstructorUsedError;
   dynamic get username => throw _privateConstructorUsedError;

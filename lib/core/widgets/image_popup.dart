@@ -24,7 +24,7 @@ class ImagePopup extends StatelessWidget {
               onBack?.call();
             },
             child: Container(
-              color: Colors.black.withOpacity(0.5),
+              color: Colors.black.withAlpha(127),
             ),
           ),
         ),
@@ -51,7 +51,7 @@ class ImagePopup extends StatelessWidget {
                 child: IconButton(
                   style: ButtonStyle(
                     backgroundColor:
-                        WidgetStateProperty.all(Colors.black.withOpacity(0.5)),
+                        WidgetStateProperty.all(Colors.black.withAlpha(125)),
                     shape: WidgetStateProperty.all(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50),

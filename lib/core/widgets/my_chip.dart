@@ -19,11 +19,11 @@ class MyChip extends StatelessWidget {
         decoration: BoxDecoration(
           color: data.isEnable
               ? Theme.of(context).primaryColorDark
-              : Theme.of(context).primaryColorDark.withOpacity(0.5),
+              : Theme.of(context).primaryColorDark.withAlpha(125),
           borderRadius: BorderRadius.circular(64),
           border: Border.all(
             color: data.isSelected
-                ? Theme.of(context).colorScheme.onSecondary.withOpacity(0.3)
+                ? Theme.of(context).colorScheme.onSecondary.withAlpha(76)
                 : Theme.of(context).primaryColorDark,
           ),
         ),

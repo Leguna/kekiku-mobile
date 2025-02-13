@@ -20,7 +20,7 @@ class MultipleImageWidget extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(color: Colors.black, width: lineSize),
         borderRadius: BorderRadius.circular(100.0),
-        color: Colors.grey.withOpacity(0.5),
+        color: Colors.grey.withAlpha(125),
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(100.0),

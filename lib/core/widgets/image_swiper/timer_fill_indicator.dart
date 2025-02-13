@@ -82,7 +82,7 @@ class _TimerFillIndicatorState extends State<TimerFillIndicator> with SingleTick
         curve: Curves.easeInOut,
         duration: const Duration(milliseconds: 500),
         decoration: BoxDecoration(
-          color: widget.backgroundColor.withOpacity(0.5),
+          color: widget.backgroundColor.withAlpha(125),
           borderRadius: BorderRadius.circular(4.0),
         ),
         child: AnimatedBuilder(

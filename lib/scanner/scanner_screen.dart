@@ -38,7 +38,7 @@ class ScannerScreen extends StatelessWidget {
       children: [
         Container(
           width: double.infinity,
-          color: Colors.black.withOpacity(0.6),
+          color: Colors.black.withAlpha(150),
           padding: const EdgeInsets.all(16),
           child: (bloc.isCaptured)
               ? SingleChildScrollView(

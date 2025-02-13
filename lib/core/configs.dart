@@ -22,8 +22,6 @@ final class Config {
             dotenv.env['DEV_BASE_URL'] ??
             dotenv.env['MOCK_URL'] ??
             '';
-      default:
-        return dotenv.env['MOCK_URL'] ?? '';
     }
   }
 }

@@ -9,7 +9,6 @@ class HomeListHorizontalProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = context.read<ProductCubit>();
-    c.getPopularProducts();
     return BlocBuilder<ProductCubit, ProductState>(
       builder: (context, state) {
         return Column(

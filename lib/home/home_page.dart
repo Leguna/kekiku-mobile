@@ -14,7 +14,6 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final homeCubit = context.read<HomeCubit>();
     final productCubit = ProductCubit();
-    productCubit.getProducts();
     return MyScaffold(
       appBar: AppBar(
         title: FakeSearchBar(
@@ -72,8 +71,10 @@ class HomePage extends StatelessWidget {
             bloc: productCubit,
             builder: (context, state) {
               return ListInfiniteProduct(
-                products: productCubit.products,
-                pagingController: productCubit.pagingController,
+                state: productCubit.pagingState,
+                onNextPage: () {
+                  productCubit.getProducts();
+                },
               );
             },
           ),

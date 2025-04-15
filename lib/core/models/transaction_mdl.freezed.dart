@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,44 +10,87 @@ part of 'transaction_mdl.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-Transaction _$TransactionFromJson(Map<String, dynamic> json) {
-  return _Transaction.fromJson(json);
-}
 
 /// @nodoc
 mixin _$Transaction {
-  String get id => throw _privateConstructorUsedError;
-  double? get amount => throw _privateConstructorUsedError;
-  String? get date => throw _privateConstructorUsedError;
-  String? get type => throw _privateConstructorUsedError;
-  String? get description => throw _privateConstructorUsedError;
-  String? get status => throw _privateConstructorUsedError;
-  String? get userId => throw _privateConstructorUsedError;
-  String? get userName => throw _privateConstructorUsedError;
-  Address? get destinationAddress => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: _productListFromJson, toJson: _productListToJson)
-  List<Product> get products => throw _privateConstructorUsedError;
+  String get id;
 
-  /// Serializes this Transaction to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  double? get amount;
+
+  String? get date;
+
+  String? get type;
+
+  String? get description;
+
+  String? get status;
+
+  String? get userId;
+
+  String? get userName;
+
+  Address? get destinationAddress;
+  @JsonKey(fromJson: _productListFromJson, toJson: _productListToJson)
+  List<Product> get products;
 
   /// Create a copy of Transaction
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $TransactionCopyWith<Transaction> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$TransactionCopyWithImpl<Transaction>(this as Transaction, _$identity);
+
+  /// Serializes this Transaction to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is Transaction &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.amount, amount) || other.amount == amount) &&
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.userName, userName) ||
+                other.userName == userName) &&
+            (identical(other.destinationAddress, destinationAddress) ||
+                other.destinationAddress == destinationAddress) &&
+            const DeepCollectionEquality().equals(other.products, products));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      amount,
+      date,
+      type,
+      description,
+      status,
+      userId,
+      userName,
+      destinationAddress,
+      const DeepCollectionEquality().hash(products));
+
+  @override
+  String toString() {
+    return 'Transaction(id: $id, amount: $amount, date: $date, type: $type, description: $description, status: $status, userId: $userId, userName: $userName, destinationAddress: $destinationAddress, products: $products)';
+  }
 }
 
 /// @nodoc
-abstract class $TransactionCopyWith<$Res> {
-  factory $TransactionCopyWith(
-          Transaction value, $Res Function(Transaction) then) =
-      _$TransactionCopyWithImpl<$Res, Transaction>;
+abstract mixin class $TransactionCopyWith<$Res> {
+  factory $TransactionCopyWith(Transaction value,
+      $Res Function(Transaction) _then) =
+  _$TransactionCopyWithImpl;
   @useResult
   $Res call(
       {String id,
@@ -65,14 +109,11 @@ abstract class $TransactionCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TransactionCopyWithImpl<$Res, $Val extends Transaction>
-    implements $TransactionCopyWith<$Res> {
-  _$TransactionCopyWithImpl(this._value, this._then);
+class _$TransactionCopyWithImpl<$Res> implements $TransactionCopyWith<$Res> {
+  _$TransactionCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final Transaction _self;
+  final $Res Function(Transaction) _then;
 
   /// Create a copy of Transaction
   /// with the given fields replaced by the non-null parameter values.
@@ -90,48 +131,48 @@ class _$TransactionCopyWithImpl<$Res, $Val extends Transaction>
     Object? destinationAddress = freezed,
     Object? products = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
       amount: freezed == amount
-          ? _value.amount
+          ? _self.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as double?,
       date: freezed == date
-          ? _value.date
+          ? _self.date
           : date // ignore: cast_nullable_to_non_nullable
               as String?,
       type: freezed == type
-          ? _value.type
+          ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
               as String?,
       description: freezed == description
-          ? _value.description
+          ? _self.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
       status: freezed == status
-          ? _value.status
+          ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
               as String?,
       userId: freezed == userId
-          ? _value.userId
+          ? _self.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String?,
       userName: freezed == userName
-          ? _value.userName
+          ? _self.userName
           : userName // ignore: cast_nullable_to_non_nullable
               as String?,
       destinationAddress: freezed == destinationAddress
-          ? _value.destinationAddress
+          ? _self.destinationAddress
           : destinationAddress // ignore: cast_nullable_to_non_nullable
               as Address?,
       products: null == products
-          ? _value.products
+          ? _self.products
           : products // ignore: cast_nullable_to_non_nullable
               as List<Product>,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of Transaction
@@ -139,114 +180,20 @@ class _$TransactionCopyWithImpl<$Res, $Val extends Transaction>
   @override
   @pragma('vm:prefer-inline')
   $AddressCopyWith<$Res>? get destinationAddress {
-    if (_value.destinationAddress == null) {
+    if (_self.destinationAddress == null) {
       return null;
     }
 
-    return $AddressCopyWith<$Res>(_value.destinationAddress!, (value) {
-      return _then(_value.copyWith(destinationAddress: value) as $Val);
+    return $AddressCopyWith<$Res>(_self.destinationAddress!, (value) {
+      return _then(_self.copyWith(destinationAddress: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$TransactionImplCopyWith<$Res>
-    implements $TransactionCopyWith<$Res> {
-  factory _$$TransactionImplCopyWith(
-          _$TransactionImpl value, $Res Function(_$TransactionImpl) then) =
-      __$$TransactionImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String id,
-      double? amount,
-      String? date,
-      String? type,
-      String? description,
-      String? status,
-      String? userId,
-      String? userName,
-      Address? destinationAddress,
-      @JsonKey(fromJson: _productListFromJson, toJson: _productListToJson)
-      List<Product> products});
-
-  @override
-  $AddressCopyWith<$Res>? get destinationAddress;
-}
-
-/// @nodoc
-class __$$TransactionImplCopyWithImpl<$Res>
-    extends _$TransactionCopyWithImpl<$Res, _$TransactionImpl>
-    implements _$$TransactionImplCopyWith<$Res> {
-  __$$TransactionImplCopyWithImpl(
-      _$TransactionImpl _value, $Res Function(_$TransactionImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of Transaction
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? amount = freezed,
-    Object? date = freezed,
-    Object? type = freezed,
-    Object? description = freezed,
-    Object? status = freezed,
-    Object? userId = freezed,
-    Object? userName = freezed,
-    Object? destinationAddress = freezed,
-    Object? products = null,
-  }) {
-    return _then(_$TransactionImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      amount: freezed == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as double?,
-      date: freezed == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as String?,
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String?,
-      userId: freezed == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      userName: freezed == userName
-          ? _value.userName
-          : userName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      destinationAddress: freezed == destinationAddress
-          ? _value.destinationAddress
-          : destinationAddress // ignore: cast_nullable_to_non_nullable
-              as Address?,
-      products: null == products
-          ? _value._products
-          : products // ignore: cast_nullable_to_non_nullable
-              as List<Product>,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$TransactionImpl implements _Transaction {
-  const _$TransactionImpl(
+class _Transaction implements Transaction {
+  const _Transaction(
       {this.id = '',
       this.amount,
       this.date,
@@ -260,8 +207,8 @@ class _$TransactionImpl implements _Transaction {
       final List<Product> products = const []})
       : _products = products;
 
-  factory _$TransactionImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TransactionImplFromJson(json);
+  factory _Transaction.fromJson(Map<String, dynamic> json) =>
+      _$TransactionFromJson(json);
 
   @override
   @JsonKey()
@@ -291,16 +238,26 @@ class _$TransactionImpl implements _Transaction {
     return EqualUnmodifiableListView(_products);
   }
 
+  /// Create a copy of Transaction
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'Transaction(id: $id, amount: $amount, date: $date, type: $type, description: $description, status: $status, userId: $userId, userName: $userName, destinationAddress: $destinationAddress, products: $products)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$TransactionCopyWith<_Transaction> get copyWith =>
+      __$TransactionCopyWithImpl<_Transaction>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$TransactionToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TransactionImpl &&
+            other is _Transaction &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.date, date) || other.date == date) &&
@@ -331,65 +288,117 @@ class _$TransactionImpl implements _Transaction {
       destinationAddress,
       const DeepCollectionEquality().hash(_products));
 
-  /// Create a copy of Transaction
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$TransactionImplCopyWith<_$TransactionImpl> get copyWith =>
-      __$$TransactionImplCopyWithImpl<_$TransactionImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$TransactionImplToJson(
-      this,
-    );
+  String toString() {
+    return 'Transaction(id: $id, amount: $amount, date: $date, type: $type, description: $description, status: $status, userId: $userId, userName: $userName, destinationAddress: $destinationAddress, products: $products)';
   }
 }
 
-abstract class _Transaction implements Transaction {
-  const factory _Transaction(
-      {final String id,
-      final double? amount,
-      final String? date,
-      final String? type,
-      final String? description,
-      final String? status,
-      final String? userId,
-      final String? userName,
-      final Address? destinationAddress,
+/// @nodoc
+abstract mixin class _$TransactionCopyWith<$Res>
+    implements $TransactionCopyWith<$Res> {
+  factory _$TransactionCopyWith(
+          _Transaction value, $Res Function(_Transaction) _then) =
+      __$TransactionCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String id,
+      double? amount,
+      String? date,
+      String? type,
+      String? description,
+      String? status,
+      String? userId,
+      String? userName,
+      Address? destinationAddress,
       @JsonKey(fromJson: _productListFromJson, toJson: _productListToJson)
-      final List<Product> products}) = _$TransactionImpl;
-
-  factory _Transaction.fromJson(Map<String, dynamic> json) =
-      _$TransactionImpl.fromJson;
+      List<Product> products});
 
   @override
-  String get id;
-  @override
-  double? get amount;
-  @override
-  String? get date;
-  @override
-  String? get type;
-  @override
-  String? get description;
-  @override
-  String? get status;
-  @override
-  String? get userId;
-  @override
-  String? get userName;
-  @override
-  Address? get destinationAddress;
-  @override
-  @JsonKey(fromJson: _productListFromJson, toJson: _productListToJson)
-  List<Product> get products;
+  $AddressCopyWith<$Res>? get destinationAddress;
+}
+
+/// @nodoc
+class __$TransactionCopyWithImpl<$Res> implements _$TransactionCopyWith<$Res> {
+  __$TransactionCopyWithImpl(this._self, this._then);
+
+  final _Transaction _self;
+  final $Res Function(_Transaction) _then;
 
   /// Create a copy of Transaction
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TransactionImplCopyWith<_$TransactionImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = null,
+    Object? amount = freezed,
+    Object? date = freezed,
+    Object? type = freezed,
+    Object? description = freezed,
+    Object? status = freezed,
+    Object? userId = freezed,
+    Object? userName = freezed,
+    Object? destinationAddress = freezed,
+    Object? products = null,
+  }) {
+    return _then(_Transaction(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      amount: freezed == amount
+          ? _self.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as double?,
+      date: freezed == date
+          ? _self.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as String?,
+      type: freezed == type
+          ? _self.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _self.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      userId: freezed == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      userName: freezed == userName
+          ? _self.userName
+          : userName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      destinationAddress: freezed == destinationAddress
+          ? _self.destinationAddress
+          : destinationAddress // ignore: cast_nullable_to_non_nullable
+              as Address?,
+      products: null == products
+          ? _self._products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<Product>,
+    ));
+  }
+
+  /// Create a copy of Transaction
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AddressCopyWith<$Res>? get destinationAddress {
+    if (_self.destinationAddress == null) {
+      return null;
+    }
+
+    return $AddressCopyWith<$Res>(_self.destinationAddress!, (value) {
+      return _then(_self.copyWith(destinationAddress: value));
+    });
+  }
 }
+
+// dart format on

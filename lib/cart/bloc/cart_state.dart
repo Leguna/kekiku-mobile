@@ -6,7 +6,7 @@ class CartState with _$CartState {
 
   const factory CartState.loading() = _Loading;
 
-  const factory CartState.loaded({required Cart cart}) = _Loaded;
+  const factory CartState.loaded() = _Loaded;
 
   const factory CartState.error(String message) = _Error;
 

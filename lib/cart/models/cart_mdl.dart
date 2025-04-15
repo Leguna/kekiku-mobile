@@ -8,8 +8,8 @@ part 'cart_mdl.freezed.dart';
 part 'cart_mdl.g.dart';
 
 @freezed
-class Cart with _$Cart {
-  const factory Cart({required List<Product> products}) = _Cart;
+sealed class Cart with _$Cart {
+  const factory Cart({required List<Product> products}) = _CartMdl;
 
   const factory Cart.empty() = _Empty;
 

@@ -17,19 +17,19 @@ class EditProfileScreen extends StatelessWidget {
       create: (context) => cubit,
       child: BlocConsumer<EditProfileCubit, EditProfileState>(
         listener: (context, state) {
-          state.maybeWhen(
-            error: (message) {
+          switch (state) {
+            case ProfileError(:final message):
               showMySnackBar(context, message);
-            },
-            deleted: () {
+              break;
+            case Deleted():
               Navigator.pushNamedAndRemoveUntil(
                 context,
                 Routes.home,
                 (route) => false,
               );
-            },
-            orElse: () {},
-          );
+            case _:
+              break;
+          }
         },
         builder: (context, state) {
           return Stack(
@@ -117,13 +117,10 @@ class EditProfileScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              state.maybeWhen(
-                loading: (state) {
-                  if (state) return const MyLoading();
-                  return const SizedBox();
-                },
-                orElse: () => const SizedBox.shrink(),
-              ),
+              switch (state) {
+                EditProfileLoading(:final fullscreen) => MyLoading(),
+                _ => const SizedBox.shrink(),
+              },
             ],
           );
         },

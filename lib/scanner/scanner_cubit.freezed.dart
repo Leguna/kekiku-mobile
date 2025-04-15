@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,218 +10,116 @@ part of 'scanner_cubit.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$ScannerState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(List<Barcode> barcodes) dataScanned,
-    required TResult Function(String message) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(List<Barcode> barcodes)? dataScanned,
-    TResult? Function(String message)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(List<Barcode> barcodes)? dataScanned,
-    TResult Function(String message)? error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_DataScanned value) dataScanned,
-    required TResult Function(_Error value) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_DataScanned value)? dataScanned,
-    TResult? Function(_Error value)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_DataScanned value)? dataScanned,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ScannerStateCopyWith<$Res> {
-  factory $ScannerStateCopyWith(
-          ScannerState value, $Res Function(ScannerState) then) =
-      _$ScannerStateCopyWithImpl<$Res, ScannerState>;
-}
-
-/// @nodoc
-class _$ScannerStateCopyWithImpl<$Res, $Val extends ScannerState>
-    implements $ScannerStateCopyWith<$Res> {
-  _$ScannerStateCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of ScannerState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$ScannerStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ScannerState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
-
-  @override
-  String toString() {
-    return 'ScannerState.initial()';
-  }
-
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
+        (other.runtimeType == runtimeType && other is ScannerState);
   }
 
   @override
   int get hashCode => runtimeType.hashCode;
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(List<Barcode> barcodes) dataScanned,
-    required TResult Function(String message) error,
-  }) {
-    return initial();
+  String toString() {
+    return 'ScannerState()';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(List<Barcode> barcodes)? dataScanned,
-    TResult? Function(String message)? error,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(List<Barcode> barcodes)? dataScanned,
-    TResult Function(String message)? error,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_DataScanned value) dataScanned,
-    required TResult Function(_Error value) error,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_DataScanned value)? dataScanned,
-    TResult? Function(_Error value)? error,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_DataScanned value)? dataScanned,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Initial implements ScannerState {
-  const factory _Initial() = _$InitialImpl;
 }
 
 /// @nodoc
-abstract class _$$DataScannedImplCopyWith<$Res> {
-  factory _$$DataScannedImplCopyWith(
-          _$DataScannedImpl value, $Res Function(_$DataScannedImpl) then) =
-      __$$DataScannedImplCopyWithImpl<$Res>;
+class $ScannerStateCopyWith<$Res> {
+  $ScannerStateCopyWith(ScannerState _, $Res Function(ScannerState) __);
+}
+
+/// @nodoc
+
+class _Initial implements ScannerState {
+  const _Initial();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _Initial);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'ScannerState.initial()';
+  }
+}
+
+/// @nodoc
+
+class DataScannedBarcode implements ScannerState {
+  const DataScannedBarcode(final List<Barcode> barcodes) : _barcodes = barcodes;
+
+  final List<Barcode> _barcodes;
+
+  List<Barcode> get barcodes {
+    if (_barcodes is EqualUnmodifiableListView) return _barcodes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_barcodes);
+  }
+
+  /// Create a copy of ScannerState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $DataScannedBarcodeCopyWith<DataScannedBarcode> get copyWith =>
+      _$DataScannedBarcodeCopyWithImpl<DataScannedBarcode>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is DataScannedBarcode &&
+            const DeepCollectionEquality().equals(other._barcodes, _barcodes));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_barcodes));
+
+  @override
+  String toString() {
+    return 'ScannerState.dataScanned(barcodes: $barcodes)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $DataScannedBarcodeCopyWith<$Res>
+    implements $ScannerStateCopyWith<$Res> {
+  factory $DataScannedBarcodeCopyWith(
+          DataScannedBarcode value, $Res Function(DataScannedBarcode) _then) =
+      _$DataScannedBarcodeCopyWithImpl;
   @useResult
   $Res call({List<Barcode> barcodes});
 }
 
 /// @nodoc
-class __$$DataScannedImplCopyWithImpl<$Res>
-    extends _$ScannerStateCopyWithImpl<$Res, _$DataScannedImpl>
-    implements _$$DataScannedImplCopyWith<$Res> {
-  __$$DataScannedImplCopyWithImpl(
-      _$DataScannedImpl _value, $Res Function(_$DataScannedImpl) _then)
-      : super(_value, _then);
+class _$DataScannedBarcodeCopyWithImpl<$Res>
+    implements $DataScannedBarcodeCopyWith<$Res> {
+  _$DataScannedBarcodeCopyWithImpl(this._self, this._then);
+
+  final DataScannedBarcode _self;
+  final $Res Function(DataScannedBarcode) _then;
 
   /// Create a copy of ScannerState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? barcodes = null,
   }) {
-    return _then(_$DataScannedImpl(
+    return _then(DataScannedBarcode(
       null == barcodes
-          ? _value._barcodes
+          ? _self._barcodes
           : barcodes // ignore: cast_nullable_to_non_nullable
               as List<Barcode>,
     ));
@@ -229,265 +128,64 @@ class __$$DataScannedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DataScannedImpl implements _DataScanned {
-  const _$DataScannedImpl(final List<Barcode> barcodes) : _barcodes = barcodes;
+class _Error implements ScannerState {
+  const _Error(this.message);
 
-  final List<Barcode> _barcodes;
-  @override
-  List<Barcode> get barcodes {
-    if (_barcodes is EqualUnmodifiableListView) return _barcodes;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_barcodes);
-  }
-
-  @override
-  String toString() {
-    return 'ScannerState.dataScanned(barcodes: $barcodes)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$DataScannedImpl &&
-            const DeepCollectionEquality().equals(other._barcodes, _barcodes));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_barcodes));
-
-  /// Create a copy of ScannerState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$DataScannedImplCopyWith<_$DataScannedImpl> get copyWith =>
-      __$$DataScannedImplCopyWithImpl<_$DataScannedImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(List<Barcode> barcodes) dataScanned,
-    required TResult Function(String message) error,
-  }) {
-    return dataScanned(barcodes);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(List<Barcode> barcodes)? dataScanned,
-    TResult? Function(String message)? error,
-  }) {
-    return dataScanned?.call(barcodes);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(List<Barcode> barcodes)? dataScanned,
-    TResult Function(String message)? error,
-    required TResult orElse(),
-  }) {
-    if (dataScanned != null) {
-      return dataScanned(barcodes);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_DataScanned value) dataScanned,
-    required TResult Function(_Error value) error,
-  }) {
-    return dataScanned(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_DataScanned value)? dataScanned,
-    TResult? Function(_Error value)? error,
-  }) {
-    return dataScanned?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_DataScanned value)? dataScanned,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (dataScanned != null) {
-      return dataScanned(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _DataScanned implements ScannerState {
-  const factory _DataScanned(final List<Barcode> barcodes) = _$DataScannedImpl;
-
-  List<Barcode> get barcodes;
-
-  /// Create a copy of ScannerState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DataScannedImplCopyWith<_$DataScannedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ErrorImplCopyWith<$Res> {
-  factory _$$ErrorImplCopyWith(
-          _$ErrorImpl value, $Res Function(_$ErrorImpl) then) =
-      __$$ErrorImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String message});
-}
-
-/// @nodoc
-class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$ScannerStateCopyWithImpl<$Res, _$ErrorImpl>
-    implements _$$ErrorImplCopyWith<$Res> {
-  __$$ErrorImplCopyWithImpl(
-      _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ScannerState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? message = null,
-  }) {
-    return _then(_$ErrorImpl(
-      null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ErrorImpl implements _Error {
-  const _$ErrorImpl(this.message);
-
-  @override
   final String message;
 
-  @override
-  String toString() {
-    return 'ScannerState.error(message: $message)';
-  }
+  /// Create a copy of ScannerState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ErrorCopyWith<_Error> get copyWith =>
+      __$ErrorCopyWithImpl<_Error>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ErrorImpl &&
+            other is _Error &&
             (identical(other.message, message) || other.message == message));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
+  @override
+  String toString() {
+    return 'ScannerState.error(message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$ErrorCopyWith<$Res>
+    implements $ScannerStateCopyWith<$Res> {
+  factory _$ErrorCopyWith(_Error value, $Res Function(_Error) _then) =
+      __$ErrorCopyWithImpl;
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$ErrorCopyWithImpl<$Res> implements _$ErrorCopyWith<$Res> {
+  __$ErrorCopyWithImpl(this._self, this._then);
+
+  final _Error _self;
+  final $Res Function(_Error) _then;
+
   /// Create a copy of ScannerState
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
   @pragma('vm:prefer-inline')
-  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
-      __$$ErrorImplCopyWithImpl<_$ErrorImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(List<Barcode> barcodes) dataScanned,
-    required TResult Function(String message) error,
+  $Res call({
+    Object? message = null,
   }) {
-    return error(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(List<Barcode> barcodes)? dataScanned,
-    TResult? Function(String message)? error,
-  }) {
-    return error?.call(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(List<Barcode> barcodes)? dataScanned,
-    TResult Function(String message)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(message);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_DataScanned value) dataScanned,
-    required TResult Function(_Error value) error,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_DataScanned value)? dataScanned,
-    TResult? Function(_Error value)? error,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_DataScanned value)? dataScanned,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
+    return _then(_Error(
+      null == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 }
 
-abstract class _Error implements ScannerState {
-  const factory _Error(final String message) = _$ErrorImpl;
-
-  String get message;
-
-  /// Create a copy of ScannerState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+// dart format on

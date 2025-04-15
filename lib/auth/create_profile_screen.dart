@@ -11,17 +11,17 @@ class CreateProfileScreen extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {},
       buildWhen: (previous, current) {
-        return current.maybeWhen(
-          orElse: () => true,
-          loading: () => true,
-          form: (email, password, valid) => false,
-        );
+        switch (current) {
+          case AuthState.form:
+            return false;
+        }
+        return true;
       },
       builder: (context, state) {
-        final isLoading = state.maybeWhen(
-          orElse: () => false,
-          loading: () => true,
-        );
+        final isLoading = switch (state) {
+          AuthLoading() => true,
+          _ => false,
+        };
         final cubit = context.read<AuthCubit>();
         final formKey = GlobalKey<FormState>();
         return MyScaffold(
@@ -95,11 +95,7 @@ class CreateProfileScreen extends StatelessWidget {
                         ],
                         const SizedBox(height: Dimens.medium),
                         BlocSelector<AuthCubit, AuthState, bool>(
-                          selector: (state) {
-                            return state.maybeWhen(
-                              orElse: () => false,
-                            );
-                          },
+                          selector: (state) => false,
                           builder: (context, state) {
                             return ElevatedButton(
                               onPressed: cubit.isFormValid

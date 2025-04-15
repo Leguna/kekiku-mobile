@@ -84,7 +84,7 @@ class $AssetsIllustrationsGen {
         notFound,
         signup,
         tfa,
-        underConstruction
+        underConstruction,
       ];
 }
 
@@ -145,8 +145,13 @@ class $AssetsLottiesGen {
   String get qrCode => 'assets/lotties/qr-code.json';
 
   /// List of all assets
-  List<String> get values =>
-      [cake, customerReview, maintenance, notfound, qrCode];
+  List<String> get values => [
+        cake,
+        customerReview,
+        maintenance,
+        notfound,
+        qrCode,
+      ];
 }
 
 class $AssetsSvgsGen {
@@ -242,7 +247,7 @@ class $AssetsSvgsGen {
         note,
         people,
         search,
-        voucher
+        voucher,
       ];
 }
 
@@ -336,7 +341,7 @@ class $AssetsFontsMontserratGen {
         montserratSemiBold,
         montserratSemiBoldItalic,
         montserratThin,
-        montserratThinItalic
+        montserratThinItalic,
       ];
 }
 
@@ -426,12 +431,12 @@ class $AssetsFontsPoppinsGen {
         poppinsSemiBold,
         poppinsSemiBoldItalic,
         poppinsThin,
-        poppinsThinItalic
+        poppinsThinItalic,
       ];
 }
 
 class Assets {
-  Assets._();
+  const Assets._();
 
   static const String aEnv = '.env';
   static const AssetGenImage brandName = AssetGenImage('assets/brand-name.png');
@@ -444,10 +449,12 @@ class Assets {
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsJsonsGen jsons = $AssetsJsonsGen();
   static const AssetGenImage logo = AssetGenImage('assets/logo.png');
-  static const AssetGenImage logoGoogle =
-      AssetGenImage('assets/logo_google.png');
-  static const SvgGenImage logoGoogleSvg =
-      SvgGenImage('assets/logo_google_svg.svg');
+  static const AssetGenImage logoGoogle = AssetGenImage(
+    'assets/logo_google.png',
+  );
+  static const SvgGenImage logoGoogleSvg = SvgGenImage(
+    'assets/logo_google_svg.svg',
+  );
   static const AssetGenImage logoOnly = AssetGenImage('assets/logo_only.png');
   static const $AssetsLottiesGen lotties = $AssetsLottiesGen();
   static const AssetGenImage noImage = AssetGenImage('assets/no_image.png');
@@ -465,16 +472,12 @@ class Assets {
         logoGoogleSvg,
         logoOnly,
         noImage,
-        welcome
+        welcome,
       ];
 }
 
 class AssetGenImage {
-  const AssetGenImage(
-    this._assetName, {
-    this.size,
-    this.flavors = const {},
-  });
+  const AssetGenImage(this._assetName, {this.size, this.flavors = const {}});
 
   final String _assetName;
 
@@ -502,7 +505,7 @@ class AssetGenImage {
     bool gaplessPlayback = true,
     bool isAntiAlias = false,
     String? package,
-    FilterQuality filterQuality = FilterQuality.low,
+    FilterQuality filterQuality = FilterQuality.medium,
     int? cacheWidth,
     int? cacheHeight,
   }) {
@@ -534,15 +537,8 @@ class AssetGenImage {
     );
   }
 
-  ImageProvider provider({
-    AssetBundle? bundle,
-    String? package,
-  }) {
-    return AssetImage(
-      _assetName,
-      bundle: bundle,
-      package: package,
-    );
+  ImageProvider provider({AssetBundle? bundle, String? package}) {
+    return AssetImage(_assetName, bundle: bundle, package: package);
   }
 
   String get path => _assetName;
@@ -551,17 +547,11 @@ class AssetGenImage {
 }
 
 class SvgGenImage {
-  const SvgGenImage(
-    this._assetName, {
-    this.size,
-    this.flavors = const {},
-  }) : _isVecFormat = false;
+  const SvgGenImage(this._assetName, {this.size, this.flavors = const {}})
+      : _isVecFormat = false;
 
-  const SvgGenImage.vec(
-    this._assetName, {
-    this.size,
-    this.flavors = const {},
-  }) : _isVecFormat = true;
+  const SvgGenImage.vec(this._assetName, {this.size, this.flavors = const {}})
+      : _isVecFormat = true;
 
   final String _assetName;
   final Size? size;

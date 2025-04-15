@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,51 +10,120 @@ part of 'product_mdl.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-Product _$ProductFromJson(Map<String, dynamic> json) {
-  return _Product.fromJson(json);
-}
 
 /// @nodoc
 mixin _$Product {
-  String get id => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
-  String? get label => throw _privateConstructorUsedError;
-  double? get price => throw _privateConstructorUsedError;
-  String? get description => throw _privateConstructorUsedError;
-  List<String>? get tags => throw _privateConstructorUsedError;
-  List<String>? get ingredients => throw _privateConstructorUsedError;
-  double get discount => throw _privateConstructorUsedError;
-  double? get rating => throw _privateConstructorUsedError;
-  int get stock => throw _privateConstructorUsedError;
-  int get sold => throw _privateConstructorUsedError;
-  bool get isFavorite => throw _privateConstructorUsedError;
-  String? get video => throw _privateConstructorUsedError;
-  String? get image => throw _privateConstructorUsedError;
-  Address? get address => throw _privateConstructorUsedError;
-  List<String>? get categories => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: _variantListFromJson, toJson: _variantListToJson)
-  List<Variant> get variants => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: _reviewListFromJson, toJson: _reviewListToJson)
-  List<Review> get reviews => throw _privateConstructorUsedError;
+  String get id;
 
-  /// Serializes this Product to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String? get name;
+
+  String? get label;
+
+  double? get price;
+
+  String? get description;
+
+  List<String>? get tags;
+
+  List<String>? get ingredients;
+
+  double get discount;
+
+  double? get rating;
+
+  int get stock;
+
+  int get sold;
+
+  bool get isFavorite;
+
+  String? get video;
+
+  String? get image;
+
+  Address? get address;
+
+  List<String>? get categories;
+  @JsonKey(fromJson: _variantListFromJson, toJson: _variantListToJson)
+  List<Variant> get variants;
+  @JsonKey(fromJson: _reviewListFromJson, toJson: _reviewListToJson)
+  List<Review> get reviews;
 
   /// Create a copy of Product
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ProductCopyWith<Product> get copyWith => throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $ProductCopyWith<Product> get copyWith =>
+      _$ProductCopyWithImpl<Product>(this as Product, _$identity);
+
+  /// Serializes this Product to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is Product &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.label, label) || other.label == label) &&
+            (identical(other.price, price) || other.price == price) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            const DeepCollectionEquality().equals(other.tags, tags) &&
+            const DeepCollectionEquality()
+                .equals(other.ingredients, ingredients) &&
+            (identical(other.discount, discount) ||
+                other.discount == discount) &&
+            (identical(other.rating, rating) || other.rating == rating) &&
+            (identical(other.stock, stock) || other.stock == stock) &&
+            (identical(other.sold, sold) || other.sold == sold) &&
+            (identical(other.isFavorite, isFavorite) ||
+                other.isFavorite == isFavorite) &&
+            (identical(other.video, video) || other.video == video) &&
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.address, address) || other.address == address) &&
+            const DeepCollectionEquality()
+                .equals(other.categories, categories) &&
+            const DeepCollectionEquality().equals(other.variants, variants) &&
+            const DeepCollectionEquality().equals(other.reviews, reviews));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      name,
+      label,
+      price,
+      description,
+      const DeepCollectionEquality().hash(tags),
+      const DeepCollectionEquality().hash(ingredients),
+      discount,
+      rating,
+      stock,
+      sold,
+      isFavorite,
+      video,
+      image,
+      address,
+      const DeepCollectionEquality().hash(categories),
+      const DeepCollectionEquality().hash(variants),
+      const DeepCollectionEquality().hash(reviews));
+
+  @override
+  String toString() {
+    return 'Product(id: $id, name: $name, label: $label, price: $price, description: $description, tags: $tags, ingredients: $ingredients, discount: $discount, rating: $rating, stock: $stock, sold: $sold, isFavorite: $isFavorite, video: $video, image: $image, address: $address, categories: $categories, variants: $variants, reviews: $reviews)';
+  }
 }
 
 /// @nodoc
-abstract class $ProductCopyWith<$Res> {
-  factory $ProductCopyWith(Product value, $Res Function(Product) then) =
-      _$ProductCopyWithImpl<$Res, Product>;
+abstract mixin class $ProductCopyWith<$Res> {
+  factory $ProductCopyWith(Product value, $Res Function(Product) _then) =
+      _$ProductCopyWithImpl;
   @useResult
   $Res call(
       {String id,
@@ -81,14 +151,11 @@ abstract class $ProductCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ProductCopyWithImpl<$Res, $Val extends Product>
-    implements $ProductCopyWith<$Res> {
-  _$ProductCopyWithImpl(this._value, this._then);
+class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
+  _$ProductCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final Product _self;
+  final $Res Function(Product) _then;
 
   /// Create a copy of Product
   /// with the given fields replaced by the non-null parameter values.
@@ -114,80 +181,80 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
     Object? variants = null,
     Object? reviews = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
       name: freezed == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
       label: freezed == label
-          ? _value.label
+          ? _self.label
           : label // ignore: cast_nullable_to_non_nullable
               as String?,
       price: freezed == price
-          ? _value.price
+          ? _self.price
           : price // ignore: cast_nullable_to_non_nullable
               as double?,
       description: freezed == description
-          ? _value.description
+          ? _self.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
       tags: freezed == tags
-          ? _value.tags
+          ? _self.tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<String>?,
       ingredients: freezed == ingredients
-          ? _value.ingredients
+          ? _self.ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
               as List<String>?,
       discount: null == discount
-          ? _value.discount
+          ? _self.discount
           : discount // ignore: cast_nullable_to_non_nullable
               as double,
       rating: freezed == rating
-          ? _value.rating
+          ? _self.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as double?,
       stock: null == stock
-          ? _value.stock
+          ? _self.stock
           : stock // ignore: cast_nullable_to_non_nullable
               as int,
       sold: null == sold
-          ? _value.sold
+          ? _self.sold
           : sold // ignore: cast_nullable_to_non_nullable
               as int,
       isFavorite: null == isFavorite
-          ? _value.isFavorite
+          ? _self.isFavorite
           : isFavorite // ignore: cast_nullable_to_non_nullable
               as bool,
       video: freezed == video
-          ? _value.video
+          ? _self.video
           : video // ignore: cast_nullable_to_non_nullable
               as String?,
       image: freezed == image
-          ? _value.image
+          ? _self.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
       address: freezed == address
-          ? _value.address
+          ? _self.address
           : address // ignore: cast_nullable_to_non_nullable
               as Address?,
       categories: freezed == categories
-          ? _value.categories
+          ? _self.categories
           : categories // ignore: cast_nullable_to_non_nullable
               as List<String>?,
       variants: null == variants
-          ? _value.variants
+          ? _self.variants
           : variants // ignore: cast_nullable_to_non_nullable
               as List<Variant>,
       reviews: null == reviews
-          ? _value.reviews
+          ? _self.reviews
           : reviews // ignore: cast_nullable_to_non_nullable
               as List<Review>,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of Product
@@ -195,162 +262,20 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
   @override
   @pragma('vm:prefer-inline')
   $AddressCopyWith<$Res>? get address {
-    if (_value.address == null) {
+    if (_self.address == null) {
       return null;
     }
 
-    return $AddressCopyWith<$Res>(_value.address!, (value) {
-      return _then(_value.copyWith(address: value) as $Val);
+    return $AddressCopyWith<$Res>(_self.address!, (value) {
+      return _then(_self.copyWith(address: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
-  factory _$$ProductImplCopyWith(
-          _$ProductImpl value, $Res Function(_$ProductImpl) then) =
-      __$$ProductImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String id,
-      String? name,
-      String? label,
-      double? price,
-      String? description,
-      List<String>? tags,
-      List<String>? ingredients,
-      double discount,
-      double? rating,
-      int stock,
-      int sold,
-      bool isFavorite,
-      String? video,
-      String? image,
-      Address? address,
-      List<String>? categories,
-      @JsonKey(fromJson: _variantListFromJson, toJson: _variantListToJson)
-      List<Variant> variants,
-      @JsonKey(fromJson: _reviewListFromJson, toJson: _reviewListToJson)
-      List<Review> reviews});
-
-  @override
-  $AddressCopyWith<$Res>? get address;
-}
-
-/// @nodoc
-class __$$ProductImplCopyWithImpl<$Res>
-    extends _$ProductCopyWithImpl<$Res, _$ProductImpl>
-    implements _$$ProductImplCopyWith<$Res> {
-  __$$ProductImplCopyWithImpl(
-      _$ProductImpl _value, $Res Function(_$ProductImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of Product
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? name = freezed,
-    Object? label = freezed,
-    Object? price = freezed,
-    Object? description = freezed,
-    Object? tags = freezed,
-    Object? ingredients = freezed,
-    Object? discount = null,
-    Object? rating = freezed,
-    Object? stock = null,
-    Object? sold = null,
-    Object? isFavorite = null,
-    Object? video = freezed,
-    Object? image = freezed,
-    Object? address = freezed,
-    Object? categories = freezed,
-    Object? variants = null,
-    Object? reviews = null,
-  }) {
-    return _then(_$ProductImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      label: freezed == label
-          ? _value.label
-          : label // ignore: cast_nullable_to_non_nullable
-              as String?,
-      price: freezed == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as double?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      tags: freezed == tags
-          ? _value._tags
-          : tags // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      ingredients: freezed == ingredients
-          ? _value._ingredients
-          : ingredients // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      discount: null == discount
-          ? _value.discount
-          : discount // ignore: cast_nullable_to_non_nullable
-              as double,
-      rating: freezed == rating
-          ? _value.rating
-          : rating // ignore: cast_nullable_to_non_nullable
-              as double?,
-      stock: null == stock
-          ? _value.stock
-          : stock // ignore: cast_nullable_to_non_nullable
-              as int,
-      sold: null == sold
-          ? _value.sold
-          : sold // ignore: cast_nullable_to_non_nullable
-              as int,
-      isFavorite: null == isFavorite
-          ? _value.isFavorite
-          : isFavorite // ignore: cast_nullable_to_non_nullable
-              as bool,
-      video: freezed == video
-          ? _value.video
-          : video // ignore: cast_nullable_to_non_nullable
-              as String?,
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String?,
-      address: freezed == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as Address?,
-      categories: freezed == categories
-          ? _value._categories
-          : categories // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      variants: null == variants
-          ? _value._variants
-          : variants // ignore: cast_nullable_to_non_nullable
-              as List<Variant>,
-      reviews: null == reviews
-          ? _value._reviews
-          : reviews // ignore: cast_nullable_to_non_nullable
-              as List<Review>,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$ProductImpl extends _Product {
-  const _$ProductImpl(
+class _Product extends Product {
+  const _Product(
       {this.id = '',
       this.name,
       this.label,
@@ -378,8 +303,8 @@ class _$ProductImpl extends _Product {
         _reviews = reviews,
         super._();
 
-  factory _$ProductImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ProductImplFromJson(json);
+  factory _Product.fromJson(Map<String, dynamic> json) =>
+      _$ProductFromJson(json);
 
   @override
   @JsonKey()
@@ -465,16 +390,26 @@ class _$ProductImpl extends _Product {
     return EqualUnmodifiableListView(_reviews);
   }
 
+  /// Create a copy of Product
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'Product(id: $id, name: $name, label: $label, price: $price, description: $description, tags: $tags, ingredients: $ingredients, discount: $discount, rating: $rating, stock: $stock, sold: $sold, isFavorite: $isFavorite, video: $video, image: $image, address: $address, categories: $categories, variants: $variants, reviews: $reviews)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ProductCopyWith<_Product> get copyWith =>
+      __$ProductCopyWithImpl<_Product>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ProductToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProductImpl &&
+            other is _Product &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.label, label) || other.label == label) &&
@@ -523,189 +458,225 @@ class _$ProductImpl extends _Product {
       const DeepCollectionEquality().hash(_variants),
       const DeepCollectionEquality().hash(_reviews));
 
-  /// Create a copy of Product
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$ProductImplCopyWith<_$ProductImpl> get copyWith =>
-      __$$ProductImplCopyWithImpl<_$ProductImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ProductImplToJson(
-      this,
-    );
+  String toString() {
+    return 'Product(id: $id, name: $name, label: $label, price: $price, description: $description, tags: $tags, ingredients: $ingredients, discount: $discount, rating: $rating, stock: $stock, sold: $sold, isFavorite: $isFavorite, video: $video, image: $image, address: $address, categories: $categories, variants: $variants, reviews: $reviews)';
   }
 }
 
-abstract class _Product extends Product {
-  const factory _Product(
-      {final String id,
-      final String? name,
-      final String? label,
-      final double? price,
-      final String? description,
-      final List<String>? tags,
-      final List<String>? ingredients,
-      final double discount,
-      final double? rating,
-      final int stock,
-      final int sold,
-      final bool isFavorite,
-      final String? video,
-      final String? image,
-      final Address? address,
-      final List<String>? categories,
+/// @nodoc
+abstract mixin class _$ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
+  factory _$ProductCopyWith(_Product value, $Res Function(_Product) _then) =
+      __$ProductCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String id,
+      String? name,
+      String? label,
+      double? price,
+      String? description,
+      List<String>? tags,
+      List<String>? ingredients,
+      double discount,
+      double? rating,
+      int stock,
+      int sold,
+      bool isFavorite,
+      String? video,
+      String? image,
+      Address? address,
+      List<String>? categories,
       @JsonKey(fromJson: _variantListFromJson, toJson: _variantListToJson)
-      final List<Variant> variants,
+      List<Variant> variants,
       @JsonKey(fromJson: _reviewListFromJson, toJson: _reviewListToJson)
-      final List<Review> reviews}) = _$ProductImpl;
-  const _Product._() : super._();
-
-  factory _Product.fromJson(Map<String, dynamic> json) = _$ProductImpl.fromJson;
+      List<Review> reviews});
 
   @override
-  String get id;
-  @override
-  String? get name;
-  @override
-  String? get label;
-  @override
-  double? get price;
-  @override
-  String? get description;
-  @override
-  List<String>? get tags;
-  @override
-  List<String>? get ingredients;
-  @override
-  double get discount;
-  @override
-  double? get rating;
-  @override
-  int get stock;
-  @override
-  int get sold;
-  @override
-  bool get isFavorite;
-  @override
-  String? get video;
-  @override
-  String? get image;
-  @override
-  Address? get address;
-  @override
-  List<String>? get categories;
-  @override
-  @JsonKey(fromJson: _variantListFromJson, toJson: _variantListToJson)
-  List<Variant> get variants;
-  @override
-  @JsonKey(fromJson: _reviewListFromJson, toJson: _reviewListToJson)
-  List<Review> get reviews;
+  $AddressCopyWith<$Res>? get address;
+}
+
+/// @nodoc
+class __$ProductCopyWithImpl<$Res> implements _$ProductCopyWith<$Res> {
+  __$ProductCopyWithImpl(this._self, this._then);
+
+  final _Product _self;
+  final $Res Function(_Product) _then;
 
   /// Create a copy of Product
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ProductImplCopyWith<_$ProductImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = null,
+    Object? name = freezed,
+    Object? label = freezed,
+    Object? price = freezed,
+    Object? description = freezed,
+    Object? tags = freezed,
+    Object? ingredients = freezed,
+    Object? discount = null,
+    Object? rating = freezed,
+    Object? stock = null,
+    Object? sold = null,
+    Object? isFavorite = null,
+    Object? video = freezed,
+    Object? image = freezed,
+    Object? address = freezed,
+    Object? categories = freezed,
+    Object? variants = null,
+    Object? reviews = null,
+  }) {
+    return _then(_Product(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: freezed == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      label: freezed == label
+          ? _self.label
+          : label // ignore: cast_nullable_to_non_nullable
+              as String?,
+      price: freezed == price
+          ? _self.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as double?,
+      description: freezed == description
+          ? _self.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      tags: freezed == tags
+          ? _self._tags
+          : tags // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      ingredients: freezed == ingredients
+          ? _self._ingredients
+          : ingredients // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      discount: null == discount
+          ? _self.discount
+          : discount // ignore: cast_nullable_to_non_nullable
+              as double,
+      rating: freezed == rating
+          ? _self.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as double?,
+      stock: null == stock
+          ? _self.stock
+          : stock // ignore: cast_nullable_to_non_nullable
+              as int,
+      sold: null == sold
+          ? _self.sold
+          : sold // ignore: cast_nullable_to_non_nullable
+              as int,
+      isFavorite: null == isFavorite
+          ? _self.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool,
+      video: freezed == video
+          ? _self.video
+          : video // ignore: cast_nullable_to_non_nullable
+              as String?,
+      image: freezed == image
+          ? _self.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _self.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as Address?,
+      categories: freezed == categories
+          ? _self._categories
+          : categories // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      variants: null == variants
+          ? _self._variants
+          : variants // ignore: cast_nullable_to_non_nullable
+              as List<Variant>,
+      reviews: null == reviews
+          ? _self._reviews
+          : reviews // ignore: cast_nullable_to_non_nullable
+              as List<Review>,
+    ));
+  }
 
-Variant _$VariantFromJson(Map<String, dynamic> json) {
-  return _Variant.fromJson(json);
+  /// Create a copy of Product
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AddressCopyWith<$Res>? get address {
+    if (_self.address == null) {
+      return null;
+    }
+
+    return $AddressCopyWith<$Res>(_self.address!, (value) {
+      return _then(_self.copyWith(address: value));
+    });
+  }
 }
 
 /// @nodoc
 mixin _$Variant {
-  String get id => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
-  double? get price => throw _privateConstructorUsedError;
-  int? get stock => throw _privateConstructorUsedError;
-  String? get image => throw _privateConstructorUsedError;
+  String get id;
 
-  /// Serializes this Variant to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String? get name;
+
+  double? get price;
+
+  int? get stock;
+
+  String? get image;
 
   /// Create a copy of Variant
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $VariantCopyWith<Variant> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $VariantCopyWith<$Res> {
-  factory $VariantCopyWith(Variant value, $Res Function(Variant) then) =
-      _$VariantCopyWithImpl<$Res, Variant>;
-  @useResult
-  $Res call(
-      {String id, String? name, double? price, int? stock, String? image});
-}
-
-/// @nodoc
-class _$VariantCopyWithImpl<$Res, $Val extends Variant>
-    implements $VariantCopyWith<$Res> {
-  _$VariantCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of Variant
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $VariantCopyWith<Variant> get copyWith =>
+      _$VariantCopyWithImpl<Variant>(this as Variant, _$identity);
+
+  /// Serializes this Variant to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? id = null,
-    Object? name = freezed,
-    Object? price = freezed,
-    Object? stock = freezed,
-    Object? image = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      price: freezed == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as double?,
-      stock: freezed == stock
-          ? _value.stock
-          : stock // ignore: cast_nullable_to_non_nullable
-              as int?,
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is Variant &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.price, price) || other.price == price) &&
+            (identical(other.stock, stock) || other.stock == stock) &&
+            (identical(other.image, image) || other.image == image));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, name, price, stock, image);
+
+  @override
+  String toString() {
+    return 'Variant(id: $id, name: $name, price: $price, stock: $stock, image: $image)';
   }
 }
 
 /// @nodoc
-abstract class _$$VariantImplCopyWith<$Res> implements $VariantCopyWith<$Res> {
-  factory _$$VariantImplCopyWith(
-          _$VariantImpl value, $Res Function(_$VariantImpl) then) =
-      __$$VariantImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $VariantCopyWith<$Res> {
+  factory $VariantCopyWith(Variant value, $Res Function(Variant) _then) =
+      _$VariantCopyWithImpl;
   @useResult
   $Res call(
       {String id, String? name, double? price, int? stock, String? image});
 }
 
 /// @nodoc
-class __$$VariantImplCopyWithImpl<$Res>
-    extends _$VariantCopyWithImpl<$Res, _$VariantImpl>
-    implements _$$VariantImplCopyWith<$Res> {
-  __$$VariantImplCopyWithImpl(
-      _$VariantImpl _value, $Res Function(_$VariantImpl) _then)
-      : super(_value, _then);
+class _$VariantCopyWithImpl<$Res> implements $VariantCopyWith<$Res> {
+  _$VariantCopyWithImpl(this._self, this._then);
+
+  final Variant _self;
+  final $Res Function(Variant) _then;
 
   /// Create a copy of Variant
   /// with the given fields replaced by the non-null parameter values.
@@ -718,25 +689,25 @@ class __$$VariantImplCopyWithImpl<$Res>
     Object? stock = freezed,
     Object? image = freezed,
   }) {
-    return _then(_$VariantImpl(
+    return _then(_self.copyWith(
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
       name: freezed == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
       price: freezed == price
-          ? _value.price
+          ? _self.price
           : price // ignore: cast_nullable_to_non_nullable
               as double?,
       stock: freezed == stock
-          ? _value.stock
+          ? _self.stock
           : stock // ignore: cast_nullable_to_non_nullable
               as int?,
       image: freezed == image
-          ? _value.image
+          ? _self.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
@@ -745,12 +716,11 @@ class __$$VariantImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$VariantImpl implements _Variant {
-  const _$VariantImpl(
-      {this.id = '', this.name, this.price, this.stock, this.image});
+class _Variant implements Variant {
+  const _Variant({this.id = '', this.name, this.price, this.stock, this.image});
 
-  factory _$VariantImpl.fromJson(Map<String, dynamic> json) =>
-      _$$VariantImplFromJson(json);
+  factory _Variant.fromJson(Map<String, dynamic> json) =>
+      _$VariantFromJson(json);
 
   @override
   @JsonKey()
@@ -764,16 +734,26 @@ class _$VariantImpl implements _Variant {
   @override
   final String? image;
 
+  /// Create a copy of Variant
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'Variant(id: $id, name: $name, price: $price, stock: $stock, image: $image)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$VariantCopyWith<_Variant> get copyWith =>
+      __$VariantCopyWithImpl<_Variant>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$VariantToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$VariantImpl &&
+            other is _Variant &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.price, price) || other.price == price) &&
@@ -785,137 +765,121 @@ class _$VariantImpl implements _Variant {
   @override
   int get hashCode => Object.hash(runtimeType, id, name, price, stock, image);
 
-  /// Create a copy of Variant
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$VariantImplCopyWith<_$VariantImpl> get copyWith =>
-      __$$VariantImplCopyWithImpl<_$VariantImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$VariantImplToJson(
-      this,
-    );
+  String toString() {
+    return 'Variant(id: $id, name: $name, price: $price, stock: $stock, image: $image)';
   }
 }
 
-abstract class _Variant implements Variant {
-  const factory _Variant(
-      {final String id,
-      final String? name,
-      final double? price,
-      final int? stock,
-      final String? image}) = _$VariantImpl;
-
-  factory _Variant.fromJson(Map<String, dynamic> json) = _$VariantImpl.fromJson;
+/// @nodoc
+abstract mixin class _$VariantCopyWith<$Res> implements $VariantCopyWith<$Res> {
+  factory _$VariantCopyWith(_Variant value, $Res Function(_Variant) _then) =
+      __$VariantCopyWithImpl;
 
   @override
-  String get id;
-  @override
-  String? get name;
-  @override
-  double? get price;
-  @override
-  int? get stock;
-  @override
-  String? get image;
+  @useResult
+  $Res call(
+      {String id, String? name, double? price, int? stock, String? image});
+}
+
+/// @nodoc
+class __$VariantCopyWithImpl<$Res> implements _$VariantCopyWith<$Res> {
+  __$VariantCopyWithImpl(this._self, this._then);
+
+  final _Variant _self;
+  final $Res Function(_Variant) _then;
 
   /// Create a copy of Variant
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$VariantImplCopyWith<_$VariantImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-Review _$ReviewFromJson(Map<String, dynamic> json) {
-  return _Review.fromJson(json);
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = null,
+    Object? name = freezed,
+    Object? price = freezed,
+    Object? stock = freezed,
+    Object? image = freezed,
+  }) {
+    return _then(_Variant(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: freezed == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      price: freezed == price
+          ? _self.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as double?,
+      stock: freezed == stock
+          ? _self.stock
+          : stock // ignore: cast_nullable_to_non_nullable
+              as int?,
+      image: freezed == image
+          ? _self.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
 mixin _$Review {
-  String get id => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
-  double? get rating => throw _privateConstructorUsedError;
-  String? get comment => throw _privateConstructorUsedError;
+  String get id;
 
-  /// Serializes this Review to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String? get name;
+
+  double? get rating;
+
+  String? get comment;
 
   /// Create a copy of Review
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ReviewCopyWith<Review> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ReviewCopyWith<$Res> {
-  factory $ReviewCopyWith(Review value, $Res Function(Review) then) =
-      _$ReviewCopyWithImpl<$Res, Review>;
-  @useResult
-  $Res call({String id, String? name, double? rating, String? comment});
-}
-
-/// @nodoc
-class _$ReviewCopyWithImpl<$Res, $Val extends Review>
-    implements $ReviewCopyWith<$Res> {
-  _$ReviewCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of Review
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $ReviewCopyWith<Review> get copyWith =>
+      _$ReviewCopyWithImpl<Review>(this as Review, _$identity);
+
+  /// Serializes this Review to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? id = null,
-    Object? name = freezed,
-    Object? rating = freezed,
-    Object? comment = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      rating: freezed == rating
-          ? _value.rating
-          : rating // ignore: cast_nullable_to_non_nullable
-              as double?,
-      comment: freezed == comment
-          ? _value.comment
-          : comment // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is Review &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.rating, rating) || other.rating == rating) &&
+            (identical(other.comment, comment) || other.comment == comment));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, name, rating, comment);
+
+  @override
+  String toString() {
+    return 'Review(id: $id, name: $name, rating: $rating, comment: $comment)';
   }
 }
 
 /// @nodoc
-abstract class _$$ReviewImplCopyWith<$Res> implements $ReviewCopyWith<$Res> {
-  factory _$$ReviewImplCopyWith(
-          _$ReviewImpl value, $Res Function(_$ReviewImpl) then) =
-      __$$ReviewImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $ReviewCopyWith<$Res> {
+  factory $ReviewCopyWith(Review value, $Res Function(Review) _then) =
+      _$ReviewCopyWithImpl;
   @useResult
   $Res call({String id, String? name, double? rating, String? comment});
 }
 
 /// @nodoc
-class __$$ReviewImplCopyWithImpl<$Res>
-    extends _$ReviewCopyWithImpl<$Res, _$ReviewImpl>
-    implements _$$ReviewImplCopyWith<$Res> {
-  __$$ReviewImplCopyWithImpl(
-      _$ReviewImpl _value, $Res Function(_$ReviewImpl) _then)
-      : super(_value, _then);
+class _$ReviewCopyWithImpl<$Res> implements $ReviewCopyWith<$Res> {
+  _$ReviewCopyWithImpl(this._self, this._then);
+
+  final Review _self;
+  final $Res Function(Review) _then;
 
   /// Create a copy of Review
   /// with the given fields replaced by the non-null parameter values.
@@ -927,21 +891,21 @@ class __$$ReviewImplCopyWithImpl<$Res>
     Object? rating = freezed,
     Object? comment = freezed,
   }) {
-    return _then(_$ReviewImpl(
+    return _then(_self.copyWith(
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
       name: freezed == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
       rating: freezed == rating
-          ? _value.rating
+          ? _self.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as double?,
       comment: freezed == comment
-          ? _value.comment
+          ? _self.comment
           : comment // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
@@ -950,11 +914,10 @@ class __$$ReviewImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ReviewImpl implements _Review {
-  const _$ReviewImpl({this.id = '', this.name, this.rating, this.comment});
+class _Review implements Review {
+  const _Review({this.id = '', this.name, this.rating, this.comment});
 
-  factory _$ReviewImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ReviewImplFromJson(json);
+  factory _Review.fromJson(Map<String, dynamic> json) => _$ReviewFromJson(json);
 
   @override
   @JsonKey()
@@ -966,16 +929,26 @@ class _$ReviewImpl implements _Review {
   @override
   final String? comment;
 
+  /// Create a copy of Review
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'Review(id: $id, name: $name, rating: $rating, comment: $comment)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ReviewCopyWith<_Review> get copyWith =>
+      __$ReviewCopyWithImpl<_Review>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ReviewToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ReviewImpl &&
+            other is _Review &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.rating, rating) || other.rating == rating) &&
@@ -986,134 +959,117 @@ class _$ReviewImpl implements _Review {
   @override
   int get hashCode => Object.hash(runtimeType, id, name, rating, comment);
 
-  /// Create a copy of Review
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$ReviewImplCopyWith<_$ReviewImpl> get copyWith =>
-      __$$ReviewImplCopyWithImpl<_$ReviewImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ReviewImplToJson(
-      this,
-    );
+  String toString() {
+    return 'Review(id: $id, name: $name, rating: $rating, comment: $comment)';
   }
 }
 
-abstract class _Review implements Review {
-  const factory _Review(
-      {final String id,
-      final String? name,
-      final double? rating,
-      final String? comment}) = _$ReviewImpl;
-
-  factory _Review.fromJson(Map<String, dynamic> json) = _$ReviewImpl.fromJson;
+/// @nodoc
+abstract mixin class _$ReviewCopyWith<$Res> implements $ReviewCopyWith<$Res> {
+  factory _$ReviewCopyWith(_Review value, $Res Function(_Review) _then) =
+      __$ReviewCopyWithImpl;
 
   @override
-  String get id;
-  @override
-  String? get name;
-  @override
-  double? get rating;
-  @override
-  String? get comment;
+  @useResult
+  $Res call({String id, String? name, double? rating, String? comment});
+}
+
+/// @nodoc
+class __$ReviewCopyWithImpl<$Res> implements _$ReviewCopyWith<$Res> {
+  __$ReviewCopyWithImpl(this._self, this._then);
+
+  final _Review _self;
+  final $Res Function(_Review) _then;
 
   /// Create a copy of Review
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ReviewImplCopyWith<_$ReviewImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-Address _$AddressFromJson(Map<String, dynamic> json) {
-  return _Address.fromJson(json);
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = null,
+    Object? name = freezed,
+    Object? rating = freezed,
+    Object? comment = freezed,
+  }) {
+    return _then(_Review(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: freezed == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      rating: freezed == rating
+          ? _self.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as double?,
+      comment: freezed == comment
+          ? _self.comment
+          : comment // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
 mixin _$Address {
-  double? get lat => throw _privateConstructorUsedError;
-  double? get long => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
-  String? get physicalAddress => throw _privateConstructorUsedError;
+  double? get lat;
 
-  /// Serializes this Address to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  double? get long;
+
+  String? get name;
+
+  String? get physicalAddress;
 
   /// Create a copy of Address
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $AddressCopyWith<Address> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $AddressCopyWith<$Res> {
-  factory $AddressCopyWith(Address value, $Res Function(Address) then) =
-      _$AddressCopyWithImpl<$Res, Address>;
-  @useResult
-  $Res call({double? lat, double? long, String? name, String? physicalAddress});
-}
-
-/// @nodoc
-class _$AddressCopyWithImpl<$Res, $Val extends Address>
-    implements $AddressCopyWith<$Res> {
-  _$AddressCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of Address
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $AddressCopyWith<Address> get copyWith =>
+      _$AddressCopyWithImpl<Address>(this as Address, _$identity);
+
+  /// Serializes this Address to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? lat = freezed,
-    Object? long = freezed,
-    Object? name = freezed,
-    Object? physicalAddress = freezed,
-  }) {
-    return _then(_value.copyWith(
-      lat: freezed == lat
-          ? _value.lat
-          : lat // ignore: cast_nullable_to_non_nullable
-              as double?,
-      long: freezed == long
-          ? _value.long
-          : long // ignore: cast_nullable_to_non_nullable
-              as double?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      physicalAddress: freezed == physicalAddress
-          ? _value.physicalAddress
-          : physicalAddress // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is Address &&
+            (identical(other.lat, lat) || other.lat == lat) &&
+            (identical(other.long, long) || other.long == long) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.physicalAddress, physicalAddress) ||
+                other.physicalAddress == physicalAddress));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, lat, long, name, physicalAddress);
+
+  @override
+  String toString() {
+    return 'Address(lat: $lat, long: $long, name: $name, physicalAddress: $physicalAddress)';
   }
 }
 
 /// @nodoc
-abstract class _$$AddressImplCopyWith<$Res> implements $AddressCopyWith<$Res> {
-  factory _$$AddressImplCopyWith(
-          _$AddressImpl value, $Res Function(_$AddressImpl) then) =
-      __$$AddressImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $AddressCopyWith<$Res> {
+  factory $AddressCopyWith(Address value, $Res Function(Address) _then) =
+      _$AddressCopyWithImpl;
   @useResult
   $Res call({double? lat, double? long, String? name, String? physicalAddress});
 }
 
 /// @nodoc
-class __$$AddressImplCopyWithImpl<$Res>
-    extends _$AddressCopyWithImpl<$Res, _$AddressImpl>
-    implements _$$AddressImplCopyWith<$Res> {
-  __$$AddressImplCopyWithImpl(
-      _$AddressImpl _value, $Res Function(_$AddressImpl) _then)
-      : super(_value, _then);
+class _$AddressCopyWithImpl<$Res> implements $AddressCopyWith<$Res> {
+  _$AddressCopyWithImpl(this._self, this._then);
+
+  final Address _self;
+  final $Res Function(Address) _then;
 
   /// Create a copy of Address
   /// with the given fields replaced by the non-null parameter values.
@@ -1125,21 +1081,21 @@ class __$$AddressImplCopyWithImpl<$Res>
     Object? name = freezed,
     Object? physicalAddress = freezed,
   }) {
-    return _then(_$AddressImpl(
+    return _then(_self.copyWith(
       lat: freezed == lat
-          ? _value.lat
+          ? _self.lat
           : lat // ignore: cast_nullable_to_non_nullable
               as double?,
       long: freezed == long
-          ? _value.long
+          ? _self.long
           : long // ignore: cast_nullable_to_non_nullable
               as double?,
       name: freezed == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
       physicalAddress: freezed == physicalAddress
-          ? _value.physicalAddress
+          ? _self.physicalAddress
           : physicalAddress // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
@@ -1148,15 +1104,15 @@ class __$$AddressImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$AddressImpl implements _Address {
-  const _$AddressImpl(
+class _Address implements Address {
+  const _Address(
       {this.lat = 0.0,
       this.long = 0.0,
       this.name = '',
       this.physicalAddress = ''});
 
-  factory _$AddressImpl.fromJson(Map<String, dynamic> json) =>
-      _$$AddressImplFromJson(json);
+  factory _Address.fromJson(Map<String, dynamic> json) =>
+      _$AddressFromJson(json);
 
   @override
   @JsonKey()
@@ -1171,16 +1127,26 @@ class _$AddressImpl implements _Address {
   @JsonKey()
   final String? physicalAddress;
 
+  /// Create a copy of Address
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'Address(lat: $lat, long: $long, name: $name, physicalAddress: $physicalAddress)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$AddressCopyWith<_Address> get copyWith =>
+      __$AddressCopyWithImpl<_Address>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$AddressToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AddressImpl &&
+            other is _Address &&
             (identical(other.lat, lat) || other.lat == lat) &&
             (identical(other.long, long) || other.long == long) &&
             (identical(other.name, name) || other.name == name) &&
@@ -1193,44 +1159,57 @@ class _$AddressImpl implements _Address {
   int get hashCode =>
       Object.hash(runtimeType, lat, long, name, physicalAddress);
 
-  /// Create a copy of Address
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$AddressImplCopyWith<_$AddressImpl> get copyWith =>
-      __$$AddressImplCopyWithImpl<_$AddressImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$AddressImplToJson(
-      this,
-    );
+  String toString() {
+    return 'Address(lat: $lat, long: $long, name: $name, physicalAddress: $physicalAddress)';
   }
 }
 
-abstract class _Address implements Address {
-  const factory _Address(
-      {final double? lat,
-      final double? long,
-      final String? name,
-      final String? physicalAddress}) = _$AddressImpl;
+/// @nodoc
+abstract mixin class _$AddressCopyWith<$Res> implements $AddressCopyWith<$Res> {
+  factory _$AddressCopyWith(_Address value, $Res Function(_Address) _then) =
+      __$AddressCopyWithImpl;
+  @override
+  @useResult
+  $Res call({double? lat, double? long, String? name, String? physicalAddress});
+}
 
-  factory _Address.fromJson(Map<String, dynamic> json) = _$AddressImpl.fromJson;
+/// @nodoc
+class __$AddressCopyWithImpl<$Res> implements _$AddressCopyWith<$Res> {
+  __$AddressCopyWithImpl(this._self, this._then);
 
-  @override
-  double? get lat;
-  @override
-  double? get long;
-  @override
-  String? get name;
-  @override
-  String? get physicalAddress;
+  final _Address _self;
+  final $Res Function(_Address) _then;
 
   /// Create a copy of Address
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AddressImplCopyWith<_$AddressImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? lat = freezed,
+    Object? long = freezed,
+    Object? name = freezed,
+    Object? physicalAddress = freezed,
+  }) {
+    return _then(_Address(
+      lat: freezed == lat
+          ? _self.lat
+          : lat // ignore: cast_nullable_to_non_nullable
+              as double?,
+      long: freezed == long
+          ? _self.long
+          : long // ignore: cast_nullable_to_non_nullable
+              as double?,
+      name: freezed == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      physicalAddress: freezed == physicalAddress
+          ? _self.physicalAddress
+          : physicalAddress // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
+
+// dart format on

@@ -12,10 +12,10 @@ class MyCountdownCubit extends Cubit<MyCountdownState> {
   void startCountdown(Duration duration) {
     emit(MyCountdownState.counting(duration.inSeconds));
     Timer.periodic(const Duration(seconds: 1), (timer) {
-      final count = state.maybeWhen(
-        orElse: () => 0,
-        counting: (count) => count,
-      );
+      final count = switch (state) {
+        Counting(:final count) => count,
+        _ => 0,
+      };
       if (count == 0) {
         timer.cancel();
         emit(const MyCountdownState.finished());

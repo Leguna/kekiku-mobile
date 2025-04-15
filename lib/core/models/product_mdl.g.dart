@@ -6,8 +6,7 @@ part of 'product_mdl.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ProductImpl _$$ProductImplFromJson(Map<String, dynamic> json) =>
-    _$ProductImpl(
+_Product _$ProductFromJson(Map<String, dynamic> json) => _Product(
       id: json['id'] as String? ?? '',
       name: json['name'] as String?,
       label: json['label'] as String?,
@@ -42,8 +41,7 @@ _$ProductImpl _$$ProductImplFromJson(Map<String, dynamic> json) =>
           : _reviewListFromJson(json['reviews'] as List?),
     );
 
-Map<String, dynamic> _$$ProductImplToJson(_$ProductImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ProductToJson(_Product instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'label': instance.label,
@@ -64,8 +62,7 @@ Map<String, dynamic> _$$ProductImplToJson(_$ProductImpl instance) =>
       'reviews': _reviewListToJson(instance.reviews),
     };
 
-_$VariantImpl _$$VariantImplFromJson(Map<String, dynamic> json) =>
-    _$VariantImpl(
+_Variant _$VariantFromJson(Map<String, dynamic> json) => _Variant(
       id: json['id'] as String? ?? '',
       name: json['name'] as String?,
       price: (json['price'] as num?)?.toDouble(),
@@ -73,8 +70,7 @@ _$VariantImpl _$$VariantImplFromJson(Map<String, dynamic> json) =>
       image: json['image'] as String?,
     );
 
-Map<String, dynamic> _$$VariantImplToJson(_$VariantImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$VariantToJson(_Variant instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'price': instance.price,
@@ -82,31 +78,28 @@ Map<String, dynamic> _$$VariantImplToJson(_$VariantImpl instance) =>
       'image': instance.image,
     };
 
-_$ReviewImpl _$$ReviewImplFromJson(Map<String, dynamic> json) => _$ReviewImpl(
+_Review _$ReviewFromJson(Map<String, dynamic> json) => _Review(
       id: json['id'] as String? ?? '',
       name: json['name'] as String?,
       rating: (json['rating'] as num?)?.toDouble(),
       comment: json['comment'] as String?,
     );
 
-Map<String, dynamic> _$$ReviewImplToJson(_$ReviewImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ReviewToJson(_Review instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'rating': instance.rating,
       'comment': instance.comment,
     };
 
-_$AddressImpl _$$AddressImplFromJson(Map<String, dynamic> json) =>
-    _$AddressImpl(
+_Address _$AddressFromJson(Map<String, dynamic> json) => _Address(
       lat: (json['lat'] as num?)?.toDouble() ?? 0.0,
       long: (json['long'] as num?)?.toDouble() ?? 0.0,
       name: json['name'] as String? ?? '',
       physicalAddress: json['physicalAddress'] as String? ?? '',
     );
 
-Map<String, dynamic> _$$AddressImplToJson(_$AddressImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$AddressToJson(_Address instance) => <String, dynamic>{
       'lat': instance.lat,
       'long': instance.long,
       'name': instance.name,

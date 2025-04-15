@@ -37,22 +37,21 @@ class _FavoriteButtonState extends State<FavoriteButton> {
   Widget build(BuildContext context) {
     return BlocConsumer<FavoriteCubit, FavoriteState>(
       listener: (context, state) {
-        state.maybeWhen(
-            orElse: () {},
-            favoriteChanged: (id, isFavorite) {
-              if (widget.product.id == id) {
-                setState(() {
-                  this.isFavorite = isFavorite;
-                });
-              }
-            });
+        switch (state) {
+          case FavoriteChanged(id: final id, isFavorite: final isFavorite):
+            if (widget.product.id == id) {
+              setState(() {
+                this.isFavorite = isFavorite;
+              });
+            }
+            break;
+        }
       },
       buildWhen: (previous, current) {
-        return current.maybeWhen(
-            orElse: () => false,
-            favoriteChanged: (id, isFavorite) {
-              return widget.product.id == id;
-            });
+        return switch (current) {
+          FavoriteChanged(id: final id) => widget.product.id == id,
+          _ => false,
+        };
       },
       builder: (context, state) {
         return InkWell(

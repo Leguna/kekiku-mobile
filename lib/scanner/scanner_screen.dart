@@ -45,9 +45,17 @@ class ScannerScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      ...state.maybeWhen(
-                        initial: () => [],
-                        dataScanned: (barcodes) => barcodes
+                      ...switch (state) {
+                        ScannerState.initial => [
+                            const Text(
+                              Strings.scanHint,
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ],
+                        DataScannedBarcode(:var barcodes) => barcodes
                             .map(
                               (e) => Text(
                                 e.rawValue.toString(),
@@ -55,8 +63,8 @@ class ScannerScreen extends StatelessWidget {
                               ),
                             )
                             .toList(),
-                        orElse: () => [],
-                      ),
+                        _ => [],
+                      },
                       const SizedBox(height: Dimens.small),
                       ElevatedButton(
                         onPressed: () {

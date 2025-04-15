@@ -6,7 +6,7 @@ part 'product_mdl.freezed.dart';
 part 'product_mdl.g.dart';
 
 @freezed
-class Product with _$Product {
+sealed class Product with _$Product {
   const factory Product({
     @Default('') String id,
     String? name,
@@ -76,7 +76,7 @@ List<Map<String, dynamic>> _reviewListToJson(List<Review>? reviews) {
 }
 
 @freezed
-class Variant with _$Variant {
+sealed class Variant with _$Variant {
   const factory Variant({
     @Default('') String id,
     String? name,
@@ -90,7 +90,7 @@ class Variant with _$Variant {
 }
 
 @freezed
-class Review with _$Review {
+sealed class Review with _$Review {
   const factory Review({
     @Default('') String id,
     String? name,
@@ -102,7 +102,7 @@ class Review with _$Review {
 }
 
 @freezed
-class Address with _$Address {
+sealed class Address with _$Address {
   const factory Address({
     @Default(0.0) double? lat,
     @Default(0.0) double? long,

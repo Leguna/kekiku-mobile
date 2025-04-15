@@ -13,7 +13,7 @@ String notificationToJson(List<NotificationMdl> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 @freezed
-class NotificationMdl with _$NotificationMdl {
+sealed class NotificationMdl with _$NotificationMdl {
   const factory NotificationMdl({
     @Default('') String notificationId,
     String? title,
@@ -29,7 +29,7 @@ class NotificationMdl with _$NotificationMdl {
 }
 
 @freezed
-class Data with _$Data {
+sealed class Data with _$Data {
   const factory Data({
     String? orderId,
     String? status,

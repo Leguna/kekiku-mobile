@@ -14,16 +14,15 @@ class OnBoardingScreen extends StatelessWidget {
       create: (context) => cubit,
       child: BlocConsumer<OnboardingCubit, OnboardingState>(
           listener: (context, state) {
-        state.maybeWhen(
-          success: () {
+        switch (state) {
+          case OnboardingState.success:
             Navigator.pushNamedAndRemoveUntil(
               context,
               Routes.home,
               (route) => false,
             );
-          },
-          orElse: () {},
-        );
+            break;
+        }
       }, builder: (context, state) {
         cubit.init();
         return _buildContent(context);

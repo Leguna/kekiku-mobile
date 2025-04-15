@@ -7,6 +7,7 @@ import '../bloc/auth_cubit.dart';
 import '../models/user.dart';
 
 part 'edit_profile_cubit.freezed.dart';
+
 part 'edit_profile_state.dart';
 
 class EditProfileCubit extends Cubit<EditProfileState> {
@@ -19,8 +20,12 @@ class EditProfileCubit extends Cubit<EditProfileState> {
 
   User? user;
 
-  bool get isLoading =>
-      state.maybeWhen(loading: (fullscreen) => true, orElse: () => false);
+  bool get isLoading {
+    return switch (state) {
+      EditProfileState.loading => true,
+      _ => false,
+    };
+  }
 
   Future<void> changePhotoProfile() async {
     try {

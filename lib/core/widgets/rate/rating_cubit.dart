@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../index.dart';
 
 part 'rating_cubit.freezed.dart';
+
 part 'rating_state.dart';
 
 class RatingCubit extends Cubit<RatingState> {
@@ -14,11 +15,10 @@ class RatingCubit extends Cubit<RatingState> {
 
   bool get canSubmit => currentRating > 0;
 
-  bool get canRating => state.maybeWhen(
-        orElse: () => true,
-        submitting: () => false,
-        submitted: () => false,
-      );
+  bool get canRating => switch (state) {
+        RatingState.submitted || RatingState.submitting => false,
+        _ => true,
+      };
 
   void setRating(int rating) {
     currentRating = rating;
@@ -48,6 +48,6 @@ class RatingCubit extends Cubit<RatingState> {
     if (currentRating == 0) {
       return '';
     }
-    return Strings.rate[currentRating-1];
+    return Strings.rate[currentRating - 1];
   }
 }

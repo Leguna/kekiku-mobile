@@ -32,8 +32,10 @@ class FavoritePage extends StatelessWidget {
           builder: (context, state) {
             return ListInfiniteProduct(
               showFavorite: false,
-              pagingController: context.read<FavoriteCubit>().pagingController,
-              products: favoriteCubit.pagingController.itemList ?? [],
+              onNextPage: () {
+                favoriteCubit.getFavorites();
+              },
+              state: favoriteCubit.pagingState,
             );
           },
         ),

@@ -9,21 +9,18 @@ part 'product_state.dart';
 
 class ProductCubit extends Cubit<ProductState> {
   ProductCubit() : super(const ProductState.initial());
-
-  final PagingController<int, Product> pagingController =
-      PagingController(firstPageKey: 0);
   final ProductRepository _productRepository = getIt<ProductRepository>();
 
   List<Product> products = [];
   List<Product> popularProducts = <Product>[];
+  PagingState<int, Product> pagingState = PagingState();
 
   Product? selectedProduct;
   Variant? selectedVariant;
 
   Future<void> refresh() async {
     products = [];
-    pagingController.itemList = [];
-    pagingController.refresh();
+    popularProducts = [];
     await getProducts();
   }
 
@@ -31,23 +28,31 @@ class ProductCubit extends Cubit<ProductState> {
     emit(const ProductState.loading());
     try {
       final response = await _productRepository.getPopularProducts();
+      final newKey = (pagingState.keys?.last ?? 0) + 1;
       popularProducts = response.data.items;
-      emit(ProductState.success(popularProducts));
+      pagingState = pagingState.copyWith(
+        pages: [...?pagingState.pages, popularProducts],
+        keys: [...?pagingState.keys, newKey],
+        hasNextPage: !response.data.isLastPage,
+        isLoading: false,
+      );
+      emit(ProductState.success(popularProducts, pagingState: pagingState));
     } catch (e) {
       emit(ProductState.error(e.toString()));
     }
   }
 
-  Future<void> getProducts() async {
+  Future<void> getProducts({pageKey = 1}) async {
     emit(const ProductState.loading());
     try {
-      final response = await _productRepository.getProducts();
+      final response = await _productRepository.getProducts(page: 1);
       products = response.data.items;
-      if (response.data.isLastPage) {
-        pagingController.appendLastPage(products);
-      } else {
-        pagingController.appendPage(products, 0);
-      }
+      pagingState = pagingState.copyWith(
+        pages: [...?pagingState.pages, products],
+        keys: [...?pagingState.keys, pageKey],
+        hasNextPage: !response.data.isLastPage,
+        isLoading: false,
+      );
       emit(
         ProductState.success(products, isLastPage: response.data.isLastPage),
       );

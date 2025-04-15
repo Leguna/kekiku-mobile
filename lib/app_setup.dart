@@ -5,7 +5,6 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:kekiku/product/data_sources/product_local_source.dart';
 import 'package:kekiku/product/data_sources/product_remote_source.dart';
 import 'package:kekiku/product/data_sources/product_repository.dart';
-import 'package:workmanager/workmanager.dart';
 
 import 'core/index.dart';
 import 'core/services/firebase/firebase_service.dart';
@@ -27,7 +26,6 @@ Future<void> setupServices() async {
       GlobalKey<NavigatorState>());
 
   getIt.registerSingleton<LocalDatabase>(LocalDatabase());
-  getIt.registerSingleton<Workmanager>(Workmanager());
   getIt.registerSingleton<SecureStorageManager>(SecureStorageManager());
 
   final dio = BaseApiClient.setupDio();

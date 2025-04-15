@@ -4,7 +4,7 @@ part 'paging_response.freezed.dart';
 part 'paging_response.g.dart';
 
 @Freezed(genericArgumentFactories: true)
-class PagingResponse<T> with _$PagingResponse<T> {
+sealed class PagingResponse<T> with _$PagingResponse<T> {
   const factory PagingResponse({
     @Default(1) int currentPage,
     @Default(1) int totalPages,

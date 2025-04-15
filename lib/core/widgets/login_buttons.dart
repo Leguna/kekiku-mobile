@@ -1,4 +1,3 @@
-
 import '../../auth/bloc/auth_cubit.dart';
 import '../index.dart';
 
@@ -12,15 +11,12 @@ class LoginButtons extends StatelessWidget {
       builder: (context, state) {
         final isLoggedIn =
             context.select((AuthCubit cubit) => cubit.user != null);
-        return state.maybeWhen(
-          loading: () {
-            return const Padding(
+        return switch (state) {
+          AuthState.loading => const Padding(
               padding: EdgeInsets.all(16.0),
               child: Center(child: CircularProgressIndicator()),
-            );
-          },
-          orElse: () {
-            return Column(
+            ),
+          _ => Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 (isLoggedIn)
@@ -38,36 +34,35 @@ class LoginButtons extends StatelessWidget {
                         leading: const Icon(Icons.logout),
                       )
                     : Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        ...[
-                          ElevatedButton(
-                            onPressed: () {
-                              context.read<AuthCubit>().reset();
-                              Navigator.pushNamed(context, Routes.login);
-                            },
-                            child: const Text(Strings.login),
-                          ),
-                          OutlinedButton(
-                            onPressed: () {
-                              context.read<AuthCubit>().reset();
-                              Navigator.pushNamed(context, Routes.register);
-                            },
-                            child: Text(
-                              Strings.register,
-                              style: TextStyle(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onPrimary),
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          ...[
+                            ElevatedButton(
+                              onPressed: () {
+                                context.read<AuthCubit>().reset();
+                                Navigator.pushNamed(context, Routes.login);
+                              },
+                              child: const Text(Strings.login),
                             ),
-                          ),
-                        ]
-                      ],
-                    ),
+                            OutlinedButton(
+                              onPressed: () {
+                                context.read<AuthCubit>().reset();
+                                Navigator.pushNamed(context, Routes.register);
+                              },
+                              child: Text(
+                                Strings.register,
+                                style: TextStyle(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onPrimary),
+                              ),
+                            ),
+                          ]
+                        ],
+                      ),
               ],
-            );
-          },
-        );
+            ),
+        };
       },
     );
   }

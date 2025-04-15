@@ -7,28 +7,31 @@ import 'item_product.dart';
 class ListInfiniteProduct extends StatelessWidget {
   const ListInfiniteProduct({
     super.key,
-    this.products = const [],
-    required this.pagingController,
     this.showFavorite = true,
+    required this.onNextPage,
+    required this.state,
   });
 
-  final List<Product> products;
-  final PagingController<int, Product> pagingController;
   final bool showFavorite;
+
+  final Function() onNextPage;
+  final PagingState<int, Product> state;
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size.width / 2;
+
     return Padding(
       padding: const EdgeInsets.only(left: 16, right: 16),
-      child: PagedGridView(
+      child: PagedGridView<int, Product>(
+        state: state,
+        fetchNextPage: onNextPage,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 16,
           mainAxisSpacing: 16,
           childAspectRatio: 0.6,
         ),
-        pagingController: pagingController,
         builderDelegate: PagedChildBuilderDelegate<Product>(
           itemBuilder: (context, product, index) => ItemProduct(
             showFavorite: showFavorite,

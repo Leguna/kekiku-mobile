@@ -9,15 +9,14 @@ class ProductState with _$ProductState {
   const factory ProductState.success(
     List<Product> products, {
     @Default(false) bool isLastPage,
-  }) = _Success;
+    PagingState<int, Product>? pagingState,
+  }) = ProductSuccess;
 
-  const factory ProductState.detail(Product product) = _Detail;
+  const factory ProductState.detail(Product product) = ProductDetail;
 
   const factory ProductState.error(String message) = _Error;
 
-  const factory ProductState.selectedProduct(Product product) =
-      _SelectedProduct;
+  const factory ProductState.selectedProduct(Product product) = SelectedProduct;
 
-  const factory ProductState.selectedVariant(Variant variant) =
-      _SelectedVariant;
+  const factory ProductState.selectedVariant(Variant variant) = SelectedVariant;
 }

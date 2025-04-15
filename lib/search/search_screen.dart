@@ -57,8 +57,8 @@ class _SearchScreenState extends State<SearchScreen> {
             ),
             body: ListInfiniteProduct(
               showFavorite: false,
-              pagingController: searchCubit.pagingController,
-              products: searchCubit.pagingController.value.itemList ?? [],
+              state: searchCubit.pagingState,
+              onNextPage: () {},
             ),
           );
         },

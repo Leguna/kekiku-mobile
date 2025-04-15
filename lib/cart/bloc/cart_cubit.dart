@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:kekiku/cart/models/cart_mdl.dart';
 
 import '../../core/index.dart';
 

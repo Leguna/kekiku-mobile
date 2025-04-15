@@ -15,30 +15,32 @@ class SearchCubit extends Cubit<SearchState> {
   }
 
   final ProductRepository productRepository = getIt<ProductRepository>();
-  final PagingController<int, Product> pagingController =
-      PagingController(firstPageKey: 1);
 
   String _query = '';
   Timer? _debounce;
 
+  PagingState<int, Product> pagingState = PagingState<int, Product>();
+
   void init() {
-    pagingController.refresh();
-    pagingController.appendPage([], pagingController.nextPageKey);
+    pagingState = PagingState<int, Product>(
+      hasNextPage: true,
+      isLoading: false,
+    );
   }
 
   void search() async {
     if (_debounce?.isActive ?? false) _debounce?.cancel();
     _debounce = Timer(const Duration(milliseconds: 1000), () async {
       emit(const SearchState.loading());
-      pagingController.itemList = [];
-      pagingController.refresh();
       if (_query.isNotEmpty) {
         final responsePaging =
             await productRepository.searchProducts(query: _query);
-        pagingController.appendLastPage(responsePaging.data.items);
+        pagingState = pagingState.copyWith(
+          hasNextPage: responsePaging.data.isLastPage,
+          isLoading: false,
+        );
         emit(SearchState.success(responsePaging.data.items));
       } else {
-        pagingController.appendLastPage([]);
         emit(const SearchState.initial());
       }
     });

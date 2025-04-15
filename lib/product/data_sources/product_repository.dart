@@ -1,8 +1,7 @@
 import 'dart:convert';
 
-import 'package:kekiku/core/models/paging_response.dart';
-
 import '../../core/index.dart';
+import '../../core/models/paging_response.dart';
 import 'product_local_source.dart';
 import 'product_remote_source.dart';
 
@@ -116,7 +115,7 @@ class ProductRepository {
     return data.data.items;
   }
 
-  getPopularProducts() {
+  Future<BaseResponse<PagingResponse<Product>>> getPopularProducts() {
     return getProducts();
   }
 }

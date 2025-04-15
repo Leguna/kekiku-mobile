@@ -23,22 +23,19 @@ class MyCountdown extends StatelessWidget {
     return BlocConsumer<MyCountdownCubit, MyCountdownState>(
       bloc: cubit,
       listener: (context, state) {
-        state.maybeWhen(
-          orElse: () {},
-          finished: () {
+        switch (state) {
+          case MyCountdownState.finished:
             onFinished?.call();
-          },
-        );
+            break;
+        }
       },
       builder: (context, state) {
         return Text(
           style: style,
-          state.maybeWhen(
-            orElse: () => '',
-            counting: (count) {
-              return count.toString();
-            },
-          ),
+          switch (state) {
+            Counting(:final count) => count.toString(),
+            _ => "",
+          },
         );
       },
     );

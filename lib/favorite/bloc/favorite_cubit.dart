@@ -7,19 +7,20 @@ import '../../product/data_sources/product_repository.dart';
 part 'favorite_cubit.freezed.dart';
 part 'favorite_state.dart';
 
-class FavoriteCubit extends Cubit<FavoriteState> {
+class FavoriteCubit extends Cubit<FavoriteState<Product>> {
   FavoriteCubit() : super(const FavoriteState.initial());
 
   final ProductRepository _productRepository = getIt<ProductRepository>();
-  final PagingController<int, Product> pagingController =
-      PagingController(firstPageKey: 1);
+  PagingState<int, Product> pagingState = PagingState<int, Product>();
 
   Future<void> getFavorites() async {
     emit(const FavoriteState.loading());
-    pagingController.itemList = [];
-    pagingController.refresh();
-    pagingController.appendLastPage(await _productRepository.getFavorites());
-    emit(FavoriteState.loaded(pagingController.itemList!));
+    final products = await _productRepository.getFavorites();
+    pagingState = pagingState.copyWith(
+      hasNextPage: false,
+      isLoading: false,
+    );
+    emit(FavoriteState.loaded(products));
   }
 
   Future<void> setFavorite(Product product, bool isFavorite) async {

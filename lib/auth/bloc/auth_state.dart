@@ -1,22 +1,22 @@
 part of 'auth_cubit.dart';
 
 @freezed
-class AuthState with _$AuthState {
+abstract class AuthState with _$AuthState {
   const factory AuthState.initial() = _Initial;
 
-  const factory AuthState.loggedOut() = _LoggedOut;
+  const factory AuthState.loggedOut() = LoggedOut;
 
-  const factory AuthState.updated(User? user) = _Updated;
+  const factory AuthState.updated(User? user) = AuthUserUpdated;
 
-  const factory AuthState.loading() = _Loading;
+  const factory AuthState.loading() = AuthLoading;
 
-  const factory AuthState.form(email,password,valid) = _Form;
+  const factory AuthState.form(email, password, valid) = FormUpdated;
 
-  const factory AuthState.checked(isEmail) = _Checked;
+  const factory AuthState.checked(isEmail) = AuthChecked;
 
-  const factory AuthState.error(String message) = _Error;
+  const factory AuthState.error(String message) = AuthError;
 
-  const factory AuthState.success(String message) = _Success;
+  const factory AuthState.success(String message) = AuthSuccess;
 
   const factory AuthState.verified() = _Verified;
 }

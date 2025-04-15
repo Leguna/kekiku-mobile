@@ -4,34 +4,38 @@ part 'base_response.freezed.dart';
 part 'base_response.g.dart';
 
 @Freezed(genericArgumentFactories: true)
-class BaseResponse<T> with _$BaseResponse<T> {
+sealed class BaseResponse<T> with _$BaseResponse<T> {
   const factory BaseResponse({
     required bool success,
     @Default(200) int statusCode,
     @Default('') String message,
     required T data,
-    @Default([]) List<Error> errors,
+    @Default([]) List<String> errors,
   }) = _BaseResponse<T>;
 
   factory BaseResponse.fromJson(Map<String, dynamic> json,
-      T Function(Object?) fromJsonT,) =>
+    T Function(Object?) fromJsonT,
+  ) =>
       _$BaseResponseFromJson(json, fromJsonT);
 }
 
 @freezed
-class Error with _$Error {
-  const factory Error({
-    required String message,
-  }) = _Error;
+sealed class Result<D, F> with _$Result<D, F> {
+  const factory Result.success(D data) = Success<D, F>;
 
-  factory Error.fromJson(Map<String, dynamic> json) => _$ErrorFromJson(json);
+  const factory Result.error(F failure) = Error<D, F>;
 }
 
-class ResponseUtils {
-  static BaseResponse<T> fromJson<T>(Map<String, dynamic> json, {
-    required T Function(Map<String, dynamic>) fromJsonT,
-  }) {
-    return BaseResponse<T>.fromJson(
-        json, (data) => fromJsonT(data as Map<String, dynamic>));
-  }
+@freezed
+sealed class Failure with _$Failure {
+  const factory Failure.unauthenticated({
+    @Default(
+        "You need to be authenticated to perform this action. Please log in and try again.")
+    String description,
+  }) = UnauthenticatedError;
+
+  const factory Failure.serverError({
+    @Default("We encountered an issue with our server. Please try again later.")
+    String description,
+  }) = ServerError;
 }

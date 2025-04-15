@@ -1,23 +1,15 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import '../strings.dart';
 
 class GoogleSSOService {
-  late final GoogleSignIn googleSignIn;
-
-  GoogleSSOService() {
-    final List<String> scopes = <String>[
+  final GoogleSignIn googleSignIn = GoogleSignIn(
+    scopes: <String>[
       'email',
       'profile',
-    ];
-
-    googleSignIn = GoogleSignIn(
-      clientId: dotenv.env['GOOGLE_CLIENT_ID'],
-      scopes: scopes,
-    );
-  }
+    ],
+  );
 
   void addListener(Function(GoogleSignInAccount?) listener) {
     googleSignIn.onCurrentUserChanged.listen(listener);
@@ -49,5 +41,9 @@ class GoogleSSOService {
         print(error);
       }
     }
+  }
+
+  loginSilently() {
+    return googleSignIn.signInSilently();
   }
 }

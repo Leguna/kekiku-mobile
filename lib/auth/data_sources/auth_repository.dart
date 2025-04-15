@@ -216,4 +216,15 @@ class AuthRepository {
     await setUser(user);
     return user;
   }
+
+  loginSilently() async {
+    final googleSSOService = getIt<GoogleSSOService>();
+    await googleSSOService.loginSilently();
+    final id = await _ss.readData(userKey);
+    if (id == null) throw Exception(Strings.dataNotFound);
+    final userJson = await _ss.readData(id);
+    if (userJson == null) throw Exception(Strings.dataNotFound);
+    final user = User.fromJson(jsonDecode(userJson));
+    return user;
+  }
 }

@@ -16,16 +16,15 @@ class ProfileDetailScreen extends StatelessWidget {
         appBar: AppBar(title: const Text(Strings.myProfile)),
         body: BlocConsumer<AuthCubit, AuthState>(
           listener: (context, state) {
-            state.maybeWhen(
-              orElse: () {},
-              loggedOut: () {
+            switch (state) {
+              case LoggedOut():
                 Navigator.pushNamedAndRemoveUntil(
                   context,
                   Routes.home,
                   (route) => false,
                 );
-              },
-            );
+                break;
+            }
           },
           builder: (context, state) {
             return Column(
@@ -130,13 +129,12 @@ class ProfileDetailScreen extends StatelessWidget {
         var ratingCubit = RatingCubit();
         return BlocConsumer<RatingCubit, RatingState>(
           listener: (context, state) {
-            state.maybeWhen(
-              orElse: () {},
-              submitted: () {
+            switch (state) {
+              case RatingState.submitted:
                 Navigator.pop(context);
                 ratingCubit.openAppLink(Strings.appLink);
-              },
-            );
+                break;
+            }
           },
           bloc: ratingCubit,
           builder: (context, state) {
@@ -199,26 +197,23 @@ class ProfileDetailScreen extends StatelessWidget {
                       vertical: Dimens.tiny,
                     ),
                     child: ElevatedButton(
-                      onPressed: ratingCubit.canSubmit
-                          ? () {
-                              state.maybeWhen(
-                                orElse: () {},
-                                rating: (_, __) {
-                                  ratingCubit.submitRating();
-                                },
-                              );
-                            }
-                          : null,
-                      child: state.maybeWhen(
-                        orElse: () => const Text(Strings.send),
-                        submitting: () => const SizedBox(
-                          height: Dimens.large,
-                          width: Dimens.large,
-                          child: CircularProgressIndicator(),
-                        ),
-                        submitted: () => const Text(Strings.send),
-                      ),
-                    ),
+                        onPressed: ratingCubit.canSubmit
+                            ? () {
+                                switch (state) {
+                                  case RatingState.rating:
+                                    ratingCubit.submitRating();
+                                    break;
+                                }
+                              }
+                            : null,
+                        child: switch (state) {
+                          RatingState.submitting => const SizedBox(
+                              height: Dimens.large,
+                              width: Dimens.large,
+                              child: CircularProgressIndicator(),
+                            ),
+                          _ => const Text(Strings.send),
+                        }),
                   ),
                 ],
               ),

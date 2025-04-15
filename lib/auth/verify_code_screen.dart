@@ -15,20 +15,18 @@ class VerifyCodeScreen extends StatelessWidget {
       appBar: AppBar(),
       body: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
-          state.maybeWhen(
-            orElse: () {},
-            verified: () {
+          switch (state) {
+            case AuthState.verified:
               context.read<AuthCubit>().passwordController.clear();
               Navigator.pushNamed(context, Routes.createProfile);
-            },
-          );
+              break;
+          }
         },
         builder: (context, state) {
-          final isLoading = state.maybeWhen(
-            orElse: () => false,
-            loading: () => true,
-            form: (email, password, valid) => false,
-          );
+          final isLoading = switch (state) {
+            AuthState.loading => true,
+            _ => false,
+          };
           final cubit = context.read<AuthCubit>();
           final countdownCubit = MyCountdownCubit();
           final canResend = context.read<AuthCubit>().canResend;
@@ -64,7 +62,8 @@ class VerifyCodeScreen extends StatelessWidget {
                 SizedBox(
                   width: 200,
                   child: TextFormField(
-                    controller: context.read<AuthCubit>().verificationCodeController,
+                    controller:
+                        context.read<AuthCubit>().verificationCodeController,
                     keyboardType: TextInputType.number,
                     textAlign: TextAlign.center,
                     maxLength: 6,

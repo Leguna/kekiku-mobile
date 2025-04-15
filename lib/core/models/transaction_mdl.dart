@@ -8,7 +8,7 @@ part 'transaction_mdl.freezed.dart';
 part 'transaction_mdl.g.dart';
 
 @freezed
-class Transaction with _$Transaction {
+sealed class Transaction with _$Transaction {
   const factory Transaction({
     @Default('') String id,
     double? amount,

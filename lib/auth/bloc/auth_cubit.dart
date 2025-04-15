@@ -16,10 +16,10 @@ class AuthCubit extends Cubit<AuthState> {
     init();
   }
 
-  bool get isLoggedIn => state.maybeWhen(
-        updated: (_) => true,
-        orElse: () => false,
-      );
+  bool get isLoggedIn {
+    if (state case AuthState.updated) return true;
+    return false;
+  }
 
   final ss = getIt<SecureStorageManager>();
   final ds = getIt<AuthRepository>();
@@ -27,10 +27,9 @@ class AuthCubit extends Cubit<AuthState> {
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  final emailController =
-      TextEditingController(text: 'ahmadtuflihunxd@gmail.com');
-  final passwordController = TextEditingController(text: 'password');
-  final userNameController = TextEditingController(text: 'ahmad');
+  final emailController = TextEditingController(text: '');
+  final passwordController = TextEditingController(text: '');
+  final userNameController = TextEditingController(text: '');
   final verificationCodeController = TextEditingController();
 
   bool isFormValid = false;
@@ -49,8 +48,30 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> init() async {
+    try {
+      emit(const AuthState.loading());
+      checkUser();
+      passwordController.text = '';
+      user = await ds.loginSilently();
+      final selectedId = await ss.readData(userKey);
+      if (selectedId == null) {
+        emit(const AuthState.loggedOut());
+        return;
+      }
+      final userJson = await ss.readData(selectedId);
+      if (userJson != null) {
+        user = User.fromJson(jsonDecode(userJson));
+        emit(AuthState.updated(user!));
+      } else {
+        emit(const AuthState.loggedOut());
+      }
+    } catch (e) {
+      emit(const AuthState.loggedOut());
+    }
+  }
+
+  Future<void> checkUser() async {
     emit(const AuthState.loading());
-    passwordController.text = '';
     final selectedId = await ss.readData(userKey);
     if (selectedId == null) {
       emit(const AuthState.loggedOut());
@@ -174,7 +195,8 @@ class AuthCubit extends Cubit<AuthState> {
     } else {
       isUsingEmail = false;
     }
-    emit(const AuthState.initial());
+    // TODO: Add Phone Login
+    emit(AuthState.checked(true));
   }
 
   Future<void> trySendVerificationMessage({bool isRegister = false}) async {
@@ -233,7 +255,7 @@ class AuthCubit extends Cubit<AuthState> {
       emit(const AuthState.checked(true));
     } catch (e) {
       canResend = true;
-      emit(AuthState.error((e as Error).message));
+      emit(AuthState.error(e.toString()));
     }
   }
 
@@ -270,7 +292,7 @@ class AuthCubit extends Cubit<AuthState> {
         emit(const AuthState.verified());
       }
     } catch (e) {
-      emit(AuthState.error((e as Error).message));
+      emit(AuthState.error(e.toString()));
     }
   }
 }

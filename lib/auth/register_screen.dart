@@ -9,40 +9,39 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
-        state.maybeWhen(
-          orElse: () {},
-          checked: (isEmail) {
+        switch (state) {
+          case AuthChecked(isEmail: final isEmail):
             Navigator.pushNamed(context, Routes.verifyCode, arguments: {
               Routes.isEmail: isEmail,
             });
-          },
-          updated: (user) {
+            break;
+          case AuthUserUpdated(user: final user):
             if (user != null) {
               Navigator.pushNamedAndRemoveUntil(
                   context, Routes.home, (route) => false);
             }
-          },
-          success: (message) {
+            break;
+          case AuthSuccess(message: final message):
             showMySnackBar(context, message, error: false);
-          },
-          error: (message) {
+            break;
+          case AuthError(message: final message):
             showMySnackBar(context, message);
-          },
-        );
+            break;
+        }
       },
       buildWhen: (previous, current) {
-        return current.maybeWhen(
-          orElse: () => true,
-          form: (email, password, valid) => false,
-        );
+        return switch (current) {
+          AuthState.form => false,
+          _ => true,
+        };
       },
       builder: (context, state) {
         final cubit = context.read<AuthCubit>();
         cubit.formKey = GlobalKey<FormState>();
-        final isLoading = state.maybeWhen(
-          orElse: () => false,
-          loading: () => true,
-        );
+        final isLoading = switch (state) {
+          AuthState.loading => true,
+          _ => false,
+        };
         return Stack(
           children: [
             MyScaffold(
@@ -84,10 +83,10 @@ class RegisterScreen extends StatelessWidget {
                       const SizedBox(height: Dimens.medium),
                       BlocSelector<AuthCubit, AuthState, bool>(
                         selector: (state) {
-                          return state.maybeWhen(
-                            orElse: () => false,
-                            form: (email, password, valid) => valid,
-                          );
+                          return switch (state) {
+                            FormUpdated(:final valid) => valid,
+                            _ => false,
+                          };
                         },
                         builder: (context, state) {
                           final bool valid = context

@@ -6,8 +6,8 @@ part of 'notification_mdl.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$NotificationImpl _$$NotificationImplFromJson(Map<String, dynamic> json) =>
-    _$NotificationImpl(
+_Notification _$NotificationFromJson(Map<String, dynamic> json) =>
+    _Notification(
       notificationId: json['notificationId'] as String? ?? '',
       title: json['title'] as String?,
       body: json['body'] as String?,
@@ -21,7 +21,7 @@ _$NotificationImpl _$$NotificationImplFromJson(Map<String, dynamic> json) =>
       read: json['read'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$$NotificationImplToJson(_$NotificationImpl instance) =>
+Map<String, dynamic> _$NotificationToJson(_Notification instance) =>
     <String, dynamic>{
       'notificationId': instance.notificationId,
       'title': instance.title,
@@ -32,7 +32,7 @@ Map<String, dynamic> _$$NotificationImplToJson(_$NotificationImpl instance) =>
       'read': instance.read,
     };
 
-_$DataImpl _$$DataImplFromJson(Map<String, dynamic> json) => _$DataImpl(
+_Data _$DataFromJson(Map<String, dynamic> json) => _Data(
       orderId: json['orderId'] as String?,
       status: json['status'] as String?,
       estimatedDelivery: json['estimatedDelivery'] == null
@@ -42,8 +42,7 @@ _$DataImpl _$$DataImplFromJson(Map<String, dynamic> json) => _$DataImpl(
       cartTotal: json['cartTotal'] as String?,
     );
 
-Map<String, dynamic> _$$DataImplToJson(_$DataImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$DataToJson(_Data instance) => <String, dynamic>{
       'orderId': instance.orderId,
       'status': instance.status,
       'estimatedDelivery': instance.estimatedDelivery?.toIso8601String(),

@@ -6,5 +6,5 @@ class MyCountdownState with _$MyCountdownState {
 
   const factory MyCountdownState.finished() = _Finished;
 
-  const factory MyCountdownState.counting(int count) = _Counting;
+  const factory MyCountdownState.counting(int count) = Counting;
 }

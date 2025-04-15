@@ -6,11 +6,11 @@ part of 'paging_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PagingResponseImpl<T> _$$PagingResponseImplFromJson<T>(
+_PagingResponse<T> _$PagingResponseFromJson<T>(
   Map<String, dynamic> json,
   T Function(Object? json) fromJsonT,
 ) =>
-    _$PagingResponseImpl<T>(
+    _PagingResponse<T>(
       currentPage: (json['currentPage'] as num?)?.toInt() ?? 1,
       totalPages: (json['totalPages'] as num?)?.toInt() ?? 1,
       pageSize: (json['pageSize'] as num?)?.toInt() ?? 10,
@@ -19,8 +19,8 @@ _$PagingResponseImpl<T> _$$PagingResponseImplFromJson<T>(
           const [],
     );
 
-Map<String, dynamic> _$$PagingResponseImplToJson<T>(
-  _$PagingResponseImpl<T> instance,
+Map<String, dynamic> _$PagingResponseToJson<T>(
+  _PagingResponse<T> instance,
   Object? Function(T value) toJsonT,
 ) =>
     <String, dynamic>{

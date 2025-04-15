@@ -160,7 +160,7 @@ class BaseApiClient {
       );
 
       if (response.data['success'] == false) {
-        throw Error(message: response.data['message']);
+        throw Failure.serverError(description: response.data['message']);
       }
       return _handleResponse(response);
     } on DioException catch (e) {

@@ -106,25 +106,33 @@ class ItemProduct extends StatelessWidget {
                   product.name ?? '',
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
-                if ((product.discount) > 0) ...[
-                  Text(
-                    '\$${product.discountedPrice.toStringAsFixed(2)}',
-                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
-                ],
-                Text(
-                  '\$${product.price?.toStringAsFixed(2)}',
-                  style: !isDiscounted
-                      ? Theme.of(context).textTheme.labelMedium?.copyWith(
-                            fontWeight: FontWeight.bold,
-                          )
-                      : Theme.of(context).textTheme.labelSmall?.copyWith(
-                            decoration: product.discount != 0
-                                ? TextDecoration.lineThrough
-                                : TextDecoration.none,
-                          ),
+                Wrap(
+                  alignment: WrapAlignment.start,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    if ((product.discount) > 0) ...[
+                      Text(
+                        '\$${product.discountedPrice.toStringAsFixed(2)}',
+                        style:
+                            Theme.of(context).textTheme.labelMedium?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                      ),
+                      const SizedBox(width: 4),
+                    ],
+                    Text(
+                      '\$${product.price?.toStringAsFixed(2)}',
+                      style: !isDiscounted
+                          ? Theme.of(context).textTheme.labelMedium?.copyWith(
+                                fontWeight: FontWeight.bold,
+                              )
+                          : Theme.of(context).textTheme.labelSmall?.copyWith(
+                                decoration: product.discount != 0
+                                    ? TextDecoration.lineThrough
+                                    : TextDecoration.none,
+                              ),
+                    ),
+                  ],
                 ),
                 if (product.rating != null) ...[
                   _buildRating(context),

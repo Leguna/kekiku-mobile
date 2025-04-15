@@ -14,7 +14,6 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final homeCubit = context.read<HomeCubit>();
     final productCubit = ProductCubit();
-    productCubit.getProducts();
     return MyScaffold(
       appBar: AppBar(
         title: FakeSearchBar(

@@ -22,6 +22,7 @@ class FavoritePage extends StatelessWidget {
           return [
             const SliverAppBar(
               title: Text(Strings.favorite),
+              automaticallyImplyLeading: false,
               floating: true,
               snap: true,
               pinned: true,

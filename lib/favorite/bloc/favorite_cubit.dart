@@ -17,6 +17,8 @@ class FavoriteCubit extends Cubit<FavoriteState<Product>> {
     emit(const FavoriteState.loading());
     final products = await _productRepository.getFavorites();
     pagingState = pagingState.copyWith(
+      pages: [products],
+      keys: [0],
       hasNextPage: false,
       isLoading: false,
     );

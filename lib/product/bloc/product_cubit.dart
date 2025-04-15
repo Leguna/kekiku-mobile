@@ -21,6 +21,7 @@ class ProductCubit extends Cubit<ProductState> {
   Future<void> refresh() async {
     products = [];
     popularProducts = [];
+    pagingState = PagingState();
     await getProducts();
   }
 
@@ -45,14 +46,20 @@ class ProductCubit extends Cubit<ProductState> {
   Future<void> getProducts({pageKey = 1}) async {
     emit(const ProductState.loading());
     try {
-      final response = await _productRepository.getProducts(page: 1);
+      final response = await _productRepository.getProducts(page: pageKey);
+      if (pageKey == 1) {
+        products = [];
+        pagingState = PagingState();
+      }
       products = response.data.items;
+
       pagingState = pagingState.copyWith(
         pages: [...?pagingState.pages, products],
         keys: [...?pagingState.keys, pageKey],
         hasNextPage: !response.data.isLastPage,
         isLoading: false,
       );
+
       emit(
         ProductState.success(products, isLastPage: response.data.isLastPage),
       );

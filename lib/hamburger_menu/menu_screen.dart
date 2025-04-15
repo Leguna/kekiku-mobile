@@ -10,6 +10,7 @@ class MenuScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         leading: showLeading
             ? IconButton(
                 icon: const Icon(Icons.close),

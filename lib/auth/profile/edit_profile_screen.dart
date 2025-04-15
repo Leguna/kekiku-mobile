@@ -118,7 +118,7 @@ class EditProfileScreen extends StatelessWidget {
                 ),
               ),
               switch (state) {
-                EditProfileLoading(:final fullscreen) => MyLoading(),
+                EditProfileLoading() => MyLoading(),
                 _ => const SizedBox.shrink(),
               },
             ],

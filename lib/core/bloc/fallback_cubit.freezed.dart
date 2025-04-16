@@ -94,7 +94,6 @@ abstract mixin class $FallbackErrorCopyWith<$Res>
   factory $FallbackErrorCopyWith(
           FallbackError value, $Res Function(FallbackError) _then) =
       _$FallbackErrorCopyWithImpl;
-
   @useResult
   $Res call({String message, String code});
 }

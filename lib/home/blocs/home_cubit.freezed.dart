@@ -57,8 +57,8 @@ class _Initial implements HomeState {
 
 /// @nodoc
 
-class _ImagePopup implements HomeState {
-  const _ImagePopup({required this.isShowed});
+class ImagePopupState implements HomeState {
+  const ImagePopupState({required this.isShowed});
 
   final bool isShowed;
 
@@ -66,14 +66,14 @@ class _ImagePopup implements HomeState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  _$ImagePopupCopyWith<_ImagePopup> get copyWith =>
-      __$ImagePopupCopyWithImpl<_ImagePopup>(this, _$identity);
+  $ImagePopupStateCopyWith<ImagePopupState> get copyWith =>
+      _$ImagePopupStateCopyWithImpl<ImagePopupState>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ImagePopup &&
+            other is ImagePopupState &&
             (identical(other.isShowed, isShowed) ||
                 other.isShowed == isShowed));
   }
@@ -88,22 +88,22 @@ class _ImagePopup implements HomeState {
 }
 
 /// @nodoc
-abstract mixin class _$ImagePopupCopyWith<$Res>
+abstract mixin class $ImagePopupStateCopyWith<$Res>
     implements $HomeStateCopyWith<$Res> {
-  factory _$ImagePopupCopyWith(
-          _ImagePopup value, $Res Function(_ImagePopup) _then) =
-      __$ImagePopupCopyWithImpl;
-
+  factory $ImagePopupStateCopyWith(
+          ImagePopupState value, $Res Function(ImagePopupState) _then) =
+      _$ImagePopupStateCopyWithImpl;
   @useResult
   $Res call({bool isShowed});
 }
 
 /// @nodoc
-class __$ImagePopupCopyWithImpl<$Res> implements _$ImagePopupCopyWith<$Res> {
-  __$ImagePopupCopyWithImpl(this._self, this._then);
+class _$ImagePopupStateCopyWithImpl<$Res>
+    implements $ImagePopupStateCopyWith<$Res> {
+  _$ImagePopupStateCopyWithImpl(this._self, this._then);
 
-  final _ImagePopup _self;
-  final $Res Function(_ImagePopup) _then;
+  final ImagePopupState _self;
+  final $Res Function(ImagePopupState) _then;
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -111,7 +111,7 @@ class __$ImagePopupCopyWithImpl<$Res> implements _$ImagePopupCopyWith<$Res> {
   $Res call({
     Object? isShowed = null,
   }) {
-    return _then(_ImagePopup(
+    return _then(ImagePopupState(
       isShowed: null == isShowed
           ? _self.isShowed
           : isShowed // ignore: cast_nullable_to_non_nullable

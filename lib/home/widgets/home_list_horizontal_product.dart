@@ -8,9 +8,12 @@ class HomeListHorizontalProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final c = context.read<ProductCubit>();
     return BlocBuilder<ProductCubit, ProductState>(
       builder: (context, state) {
+        final product = switch (state) {
+          ProductSuccess(:final popularProducts) => popularProducts,
+          _ => [],
+        };
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -29,9 +32,9 @@ class HomeListHorizontalProduct extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(width: 16),
-                  for (var i = 0; i < c.popularProducts.length; i++) ...[
+                  for (var i = 0; i < product.length; i++) ...[
                     ProductCard(
-                      product: c.popularProducts[i],
+                      product: product[i],
                     ),
                     const SizedBox(width: 16),
                   ]

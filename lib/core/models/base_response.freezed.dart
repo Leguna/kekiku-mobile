@@ -16,13 +16,9 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$BaseResponse<T> {
   bool get success;
-
   int get statusCode;
-
   String get message;
-
   T get data;
-
   List<String> get errors;
 
   /// Create a copy of BaseResponse
@@ -67,9 +63,9 @@ mixin _$BaseResponse<T> {
 
 /// @nodoc
 abstract mixin class $BaseResponseCopyWith<T, $Res> {
-  factory $BaseResponseCopyWith(BaseResponse<T> value,
-      $Res Function(BaseResponse<T>) _then) =
-  _$BaseResponseCopyWithImpl;
+  factory $BaseResponseCopyWith(
+          BaseResponse<T> value, $Res Function(BaseResponse<T>) _then) =
+      _$BaseResponseCopyWithImpl;
   @useResult
   $Res call(
       {bool success,
@@ -133,7 +129,6 @@ class _BaseResponse<T> implements BaseResponse<T> {
       required this.data,
       final List<String> errors = const []})
       : _errors = errors;
-
   factory _BaseResponse.fromJson(
           Map<String, dynamic> json, T Function(Object?) fromJsonT) =>
       _$BaseResponseFromJson(json, fromJsonT);
@@ -205,7 +200,6 @@ abstract mixin class _$BaseResponseCopyWith<T, $Res>
   factory _$BaseResponseCopyWith(
           _BaseResponse<T> value, $Res Function(_BaseResponse<T>) _then) =
       __$BaseResponseCopyWithImpl;
-
   @override
   @useResult
   $Res call(
@@ -320,7 +314,6 @@ abstract mixin class $SuccessCopyWith<D, F, $Res>
   factory $SuccessCopyWith(
           Success<D, F> value, $Res Function(Success<D, F>) _then) =
       _$SuccessCopyWithImpl;
-
   @useResult
   $Res call({D data});
 }
@@ -515,7 +508,6 @@ abstract mixin class $UnauthenticatedErrorCopyWith<$Res>
   factory $UnauthenticatedErrorCopyWith(UnauthenticatedError value,
           $Res Function(UnauthenticatedError) _then) =
       _$UnauthenticatedErrorCopyWithImpl;
-
   @override
   @useResult
   $Res call({String description});
@@ -588,7 +580,6 @@ abstract mixin class $ServerErrorCopyWith<$Res>
   factory $ServerErrorCopyWith(
           ServerError value, $Res Function(ServerError) _then) =
       _$ServerErrorCopyWithImpl;
-
   @override
   @useResult
   $Res call({String description});

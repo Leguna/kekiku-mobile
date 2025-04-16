@@ -16,35 +16,22 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Product {
   String get id;
-
   String? get name;
-
   String? get label;
-
   double? get price;
-
   String? get description;
 
+  int get quantity;
   List<String>? get tags;
-
   List<String>? get ingredients;
-
   double get discount;
-
   double? get rating;
-
   int get stock;
-
   int get sold;
-
   bool get isFavorite;
-
   String? get video;
-
   String? get image;
-
   Address? get address;
-
   List<String>? get categories;
   @JsonKey(fromJson: _variantListFromJson, toJson: _variantListToJson)
   List<Variant> get variants;
@@ -72,6 +59,8 @@ mixin _$Product {
             (identical(other.price, price) || other.price == price) &&
             (identical(other.description, description) ||
                 other.description == description) &&
+            (identical(other.quantity, quantity) ||
+                other.quantity == quantity) &&
             const DeepCollectionEquality().equals(other.tags, tags) &&
             const DeepCollectionEquality()
                 .equals(other.ingredients, ingredients) &&
@@ -93,30 +82,32 @@ mixin _$Product {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      name,
-      label,
-      price,
-      description,
-      const DeepCollectionEquality().hash(tags),
-      const DeepCollectionEquality().hash(ingredients),
-      discount,
-      rating,
-      stock,
-      sold,
-      isFavorite,
-      video,
-      image,
-      address,
-      const DeepCollectionEquality().hash(categories),
-      const DeepCollectionEquality().hash(variants),
-      const DeepCollectionEquality().hash(reviews));
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        name,
+        label,
+        price,
+        description,
+        quantity,
+        const DeepCollectionEquality().hash(tags),
+        const DeepCollectionEquality().hash(ingredients),
+        discount,
+        rating,
+        stock,
+        sold,
+        isFavorite,
+        video,
+        image,
+        address,
+        const DeepCollectionEquality().hash(categories),
+        const DeepCollectionEquality().hash(variants),
+        const DeepCollectionEquality().hash(reviews)
+      ]);
 
   @override
   String toString() {
-    return 'Product(id: $id, name: $name, label: $label, price: $price, description: $description, tags: $tags, ingredients: $ingredients, discount: $discount, rating: $rating, stock: $stock, sold: $sold, isFavorite: $isFavorite, video: $video, image: $image, address: $address, categories: $categories, variants: $variants, reviews: $reviews)';
+    return 'Product(id: $id, name: $name, label: $label, price: $price, description: $description, quantity: $quantity, tags: $tags, ingredients: $ingredients, discount: $discount, rating: $rating, stock: $stock, sold: $sold, isFavorite: $isFavorite, video: $video, image: $image, address: $address, categories: $categories, variants: $variants, reviews: $reviews)';
   }
 }
 
@@ -131,6 +122,7 @@ abstract mixin class $ProductCopyWith<$Res> {
       String? label,
       double? price,
       String? description,
+      int quantity,
       List<String>? tags,
       List<String>? ingredients,
       double discount,
@@ -167,6 +159,7 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
     Object? label = freezed,
     Object? price = freezed,
     Object? description = freezed,
+    Object? quantity = null,
     Object? tags = freezed,
     Object? ingredients = freezed,
     Object? discount = null,
@@ -202,6 +195,10 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
           ? _self.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      quantity: null == quantity
+          ? _self.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as int,
       tags: freezed == tags
           ? _self.tags
           : tags // ignore: cast_nullable_to_non_nullable
@@ -281,6 +278,7 @@ class _Product extends Product {
       this.label,
       this.price,
       this.description,
+      this.quantity = 1,
       final List<String>? tags = const [],
       final List<String>? ingredients = const [],
       this.discount = 0,
@@ -302,7 +300,6 @@ class _Product extends Product {
         _variants = variants,
         _reviews = reviews,
         super._();
-
   factory _Product.fromJson(Map<String, dynamic> json) =>
       _$ProductFromJson(json);
 
@@ -317,6 +314,9 @@ class _Product extends Product {
   final double? price;
   @override
   final String? description;
+  @override
+  @JsonKey()
+  final int quantity;
   final List<String>? _tags;
   @override
   @JsonKey()
@@ -416,6 +416,8 @@ class _Product extends Product {
             (identical(other.price, price) || other.price == price) &&
             (identical(other.description, description) ||
                 other.description == description) &&
+            (identical(other.quantity, quantity) ||
+                other.quantity == quantity) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
             const DeepCollectionEquality()
                 .equals(other._ingredients, _ingredients) &&
@@ -437,30 +439,32 @@ class _Product extends Product {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      name,
-      label,
-      price,
-      description,
-      const DeepCollectionEquality().hash(_tags),
-      const DeepCollectionEquality().hash(_ingredients),
-      discount,
-      rating,
-      stock,
-      sold,
-      isFavorite,
-      video,
-      image,
-      address,
-      const DeepCollectionEquality().hash(_categories),
-      const DeepCollectionEquality().hash(_variants),
-      const DeepCollectionEquality().hash(_reviews));
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        name,
+        label,
+        price,
+        description,
+        quantity,
+        const DeepCollectionEquality().hash(_tags),
+        const DeepCollectionEquality().hash(_ingredients),
+        discount,
+        rating,
+        stock,
+        sold,
+        isFavorite,
+        video,
+        image,
+        address,
+        const DeepCollectionEquality().hash(_categories),
+        const DeepCollectionEquality().hash(_variants),
+        const DeepCollectionEquality().hash(_reviews)
+      ]);
 
   @override
   String toString() {
-    return 'Product(id: $id, name: $name, label: $label, price: $price, description: $description, tags: $tags, ingredients: $ingredients, discount: $discount, rating: $rating, stock: $stock, sold: $sold, isFavorite: $isFavorite, video: $video, image: $image, address: $address, categories: $categories, variants: $variants, reviews: $reviews)';
+    return 'Product(id: $id, name: $name, label: $label, price: $price, description: $description, quantity: $quantity, tags: $tags, ingredients: $ingredients, discount: $discount, rating: $rating, stock: $stock, sold: $sold, isFavorite: $isFavorite, video: $video, image: $image, address: $address, categories: $categories, variants: $variants, reviews: $reviews)';
   }
 }
 
@@ -476,6 +480,7 @@ abstract mixin class _$ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
       String? label,
       double? price,
       String? description,
+      int quantity,
       List<String>? tags,
       List<String>? ingredients,
       double discount,
@@ -513,6 +518,7 @@ class __$ProductCopyWithImpl<$Res> implements _$ProductCopyWith<$Res> {
     Object? label = freezed,
     Object? price = freezed,
     Object? description = freezed,
+    Object? quantity = null,
     Object? tags = freezed,
     Object? ingredients = freezed,
     Object? discount = null,
@@ -548,6 +554,10 @@ class __$ProductCopyWithImpl<$Res> implements _$ProductCopyWith<$Res> {
           ? _self.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      quantity: null == quantity
+          ? _self.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as int,
       tags: freezed == tags
           ? _self._tags
           : tags // ignore: cast_nullable_to_non_nullable
@@ -621,13 +631,9 @@ class __$ProductCopyWithImpl<$Res> implements _$ProductCopyWith<$Res> {
 /// @nodoc
 mixin _$Variant {
   String get id;
-
   String? get name;
-
   double? get price;
-
   int? get stock;
-
   String? get image;
 
   /// Create a copy of Variant
@@ -718,7 +724,6 @@ class _$VariantCopyWithImpl<$Res> implements $VariantCopyWith<$Res> {
 @JsonSerializable()
 class _Variant implements Variant {
   const _Variant({this.id = '', this.name, this.price, this.stock, this.image});
-
   factory _Variant.fromJson(Map<String, dynamic> json) =>
       _$VariantFromJson(json);
 
@@ -775,7 +780,6 @@ class _Variant implements Variant {
 abstract mixin class _$VariantCopyWith<$Res> implements $VariantCopyWith<$Res> {
   factory _$VariantCopyWith(_Variant value, $Res Function(_Variant) _then) =
       __$VariantCopyWithImpl;
-
   @override
   @useResult
   $Res call(
@@ -828,11 +832,8 @@ class __$VariantCopyWithImpl<$Res> implements _$VariantCopyWith<$Res> {
 /// @nodoc
 mixin _$Review {
   String get id;
-
   String? get name;
-
   double? get rating;
-
   String? get comment;
 
   /// Create a copy of Review
@@ -916,7 +917,6 @@ class _$ReviewCopyWithImpl<$Res> implements $ReviewCopyWith<$Res> {
 @JsonSerializable()
 class _Review implements Review {
   const _Review({this.id = '', this.name, this.rating, this.comment});
-
   factory _Review.fromJson(Map<String, dynamic> json) => _$ReviewFromJson(json);
 
   @override
@@ -969,7 +969,6 @@ class _Review implements Review {
 abstract mixin class _$ReviewCopyWith<$Res> implements $ReviewCopyWith<$Res> {
   factory _$ReviewCopyWith(_Review value, $Res Function(_Review) _then) =
       __$ReviewCopyWithImpl;
-
   @override
   @useResult
   $Res call({String id, String? name, double? rating, String? comment});
@@ -1016,11 +1015,8 @@ class __$ReviewCopyWithImpl<$Res> implements _$ReviewCopyWith<$Res> {
 /// @nodoc
 mixin _$Address {
   double? get lat;
-
   double? get long;
-
   String? get name;
-
   String? get physicalAddress;
 
   /// Create a copy of Address
@@ -1110,7 +1106,6 @@ class _Address implements Address {
       this.long = 0.0,
       this.name = '',
       this.physicalAddress = ''});
-
   factory _Address.fromJson(Map<String, dynamic> json) =>
       _$AddressFromJson(json);
 

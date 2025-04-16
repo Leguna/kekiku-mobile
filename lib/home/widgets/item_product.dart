@@ -102,9 +102,13 @@ class ItemProduct extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 8),
-                Text(
-                  product.name ?? '',
-                  style: Theme.of(context).textTheme.titleMedium,
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Text(
+                    product.name ?? '',
+                    style: Theme.of(context).textTheme.titleMedium,
+                    maxLines: 1,
+                  ),
                 ),
                 Wrap(
                   alignment: WrapAlignment.start,

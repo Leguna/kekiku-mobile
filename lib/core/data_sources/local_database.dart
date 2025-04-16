@@ -12,6 +12,9 @@ const String lastLoginKey = 'lastLogin';
 const String chatNotificationKey = 'chatNotificationSetting';
 const String otherNotificationKey = 'otherNotificationSetting';
 
+const String cartKey = 'cart';
+const String cartBox = 'cartBox';
+
 const String authBox = 'auth';
 const String userKey = 'user';
 

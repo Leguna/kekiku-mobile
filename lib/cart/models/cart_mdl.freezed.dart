@@ -57,7 +57,6 @@ class _CartMdl implements Cart {
   const _CartMdl({required final List<Product> products, final String? $type})
       : _products = products,
         $type = $type ?? 'default';
-
   factory _CartMdl.fromJson(Map<String, dynamic> json) =>
       _$CartMdlFromJson(json);
 
@@ -108,7 +107,6 @@ class _CartMdl implements Cart {
 abstract mixin class _$CartMdlCopyWith<$Res> implements $CartCopyWith<$Res> {
   factory _$CartMdlCopyWith(_CartMdl value, $Res Function(_CartMdl) _then) =
       __$CartMdlCopyWithImpl;
-
   @useResult
   $Res call({List<Product> products});
 }
@@ -139,7 +137,6 @@ class __$CartMdlCopyWithImpl<$Res> implements _$CartMdlCopyWith<$Res> {
 @JsonSerializable()
 class _Empty implements Cart {
   const _Empty({final String? $type}) : $type = $type ?? 'empty';
-
   factory _Empty.fromJson(Map<String, dynamic> json) => _$EmptyFromJson(json);
 
   @JsonKey(name: 'runtimeType')

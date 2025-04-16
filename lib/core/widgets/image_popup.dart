@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+import '../index.dart';
 
-class ImagePopup extends StatelessWidget {
+class ImagePopup extends StatefulWidget {
   const ImagePopup({
     super.key,
     required this.imageUrl,
@@ -15,68 +15,80 @@ class ImagePopup extends StatelessWidget {
   final Function? onBack;
 
   @override
+  State<ImagePopup> createState() => _ImagePopupState();
+}
+
+class _ImagePopupState extends State<ImagePopup> {
+  late Future<void> _imageLoadFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _imageLoadFuture = _preloadImage(widget.imageUrl);
+  }
+
+  Future<void> _preloadImage(String url) async {
+    final image = NetworkImage(url, scale: widget.imageSize);
+    await precacheImage(image, context);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Center(
-          child: GestureDetector(
-            onTap: () {
-              onBack?.call();
-            },
-            child: Container(
-              color: Colors.black.withAlpha(127),
-            ),
-          ),
-        ),
-        Center(
-          child: GestureDetector(
-            onTap: () {
-              onTap?.call();
-            },
-            child: Container(
-              alignment: Alignment.center,
-              width: MediaQuery.of(context).size.width * 0.7,
-              height: MediaQuery.of(context).size.height * 0.4,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                image: DecorationImage(
-                  image: NetworkImage(imageUrl),
-                  fit: BoxFit.cover,
-                ),
-              ),
-              // Close button
+    return FutureBuilder<void>(
+      future: _imageLoadFuture,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState != ConnectionState.done) {
+          return const SizedBox.shrink();
+        }
+
+        return Stack(
+          children: [
+            GestureDetector(
+              onTap: () => widget.onBack?.call(),
               child: Container(
-                alignment: Alignment.topRight,
-                padding: const EdgeInsets.all(8),
-                child: IconButton(
-                  style: ButtonStyle(
-                    backgroundColor:
-                        WidgetStateProperty.all(Colors.black.withAlpha(125)),
-                    shape: WidgetStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50),
+                color: Colors.black.withAlpha(127),
+                width: double.infinity,
+                height: double.infinity,
+              ),
+            ),
+            Center(
+              child: Stack(
+                children: [
+                  GestureDetector(
+                    onTap: () => widget.onTap?.call(),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Image.network(
+                        widget.imageUrl,
+                        scale: widget.imageSize,
+                        fit: BoxFit.cover,
+                        width: MediaQuery.of(context).size.width * 0.7,
+                        height: MediaQuery.of(context).size.height * 0.4,
                       ),
                     ),
                   ),
-                  icon: const Icon(Icons.close),
-                  onPressed: () {
-                    onBack?.call();
-                  },
-                ),
+                  Positioned(
+                    top: 8,
+                    right: 8,
+                    child: IconButton(
+                      style: ButtonStyle(
+                        backgroundColor: WidgetStateProperty.all(Colors.black.withAlpha(125)),
+                        shape: WidgetStateProperty.all(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                        ),
+                      ),
+                      icon: const Icon(Icons.close, color: Colors.white),
+                      onPressed: () => widget.onBack?.call(),
+                    ),
+                  ),
+                ],
               ),
             ),
-          ),
-        ),
-      ],
+          ],
+        );
+      },
     );
   }
-}
-
-showImagePopup(BuildContext context, String imageUrl) {
-  showDialog(
-    context: context,
-    builder: (context) {
-      return ImagePopup(imageUrl: imageUrl);
-    },
-  );
 }

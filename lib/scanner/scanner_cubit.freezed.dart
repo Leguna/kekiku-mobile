@@ -61,7 +61,6 @@ class DataScannedBarcode implements ScannerState {
   const DataScannedBarcode(final List<Barcode> barcodes) : _barcodes = barcodes;
 
   final List<Barcode> _barcodes;
-
   List<Barcode> get barcodes {
     if (_barcodes is EqualUnmodifiableListView) return _barcodes;
     // ignore: implicit_dynamic_type

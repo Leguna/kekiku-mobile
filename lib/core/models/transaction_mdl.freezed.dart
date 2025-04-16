@@ -16,21 +16,13 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Transaction {
   String get id;
-
   double? get amount;
-
   String? get date;
-
   String? get type;
-
   String? get description;
-
   String? get status;
-
   String? get userId;
-
   String? get userName;
-
   Address? get destinationAddress;
   @JsonKey(fromJson: _productListFromJson, toJson: _productListToJson)
   List<Product> get products;
@@ -88,9 +80,9 @@ mixin _$Transaction {
 
 /// @nodoc
 abstract mixin class $TransactionCopyWith<$Res> {
-  factory $TransactionCopyWith(Transaction value,
-      $Res Function(Transaction) _then) =
-  _$TransactionCopyWithImpl;
+  factory $TransactionCopyWith(
+          Transaction value, $Res Function(Transaction) _then) =
+      _$TransactionCopyWithImpl;
   @useResult
   $Res call(
       {String id,
@@ -206,7 +198,6 @@ class _Transaction implements Transaction {
       @JsonKey(fromJson: _productListFromJson, toJson: _productListToJson)
       final List<Product> products = const []})
       : _products = products;
-
   factory _Transaction.fromJson(Map<String, dynamic> json) =>
       _$TransactionFromJson(json);
 

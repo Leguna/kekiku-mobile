@@ -13,6 +13,7 @@ sealed class Product with _$Product {
     String? label,
     double? price,
     String? description,
+    @Default(1) int quantity,
     @Default([]) List<String>? tags,
     @Default([]) List<String>? ingredients,
     @Default(0) double discount,

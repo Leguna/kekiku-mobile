@@ -81,7 +81,6 @@ class _Success implements SearchState {
   const _Success(final List<Product> products) : _products = products;
 
   final List<Product> _products;
-
   List<Product> get products {
     if (_products is EqualUnmodifiableListView) return _products;
     // ignore: implicit_dynamic_type

@@ -7,9 +7,7 @@ part 'home_cubit.freezed.dart';
 part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
-  HomeCubit() : super(const HomeState.initial()) {
-    tryShowPopupImage();
-  }
+  HomeCubit() : super(const HomeState.initial());
 
   LocalDatabase localDatabase = getIt<LocalDatabase>();
 
@@ -21,7 +19,6 @@ class HomeCubit extends Cubit<HomeState> {
     final lastShownDate = await localDatabase.getString(popupKey);
     final canShow = lastShownDate == null ||
         DateTime.now().difference(DateTime.parse(lastShownDate)).inDays >= 1;
-
     if (canShow && !isShowedPopupImage) {
       isShowedPopupImage = true;
       await localDatabase.setString(popupKey, DateTime.now().toIso8601String());

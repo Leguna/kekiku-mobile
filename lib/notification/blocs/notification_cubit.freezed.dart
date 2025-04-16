@@ -182,7 +182,6 @@ abstract mixin class _$ErrorCopyWith<$Res>
     implements $NotificationStateCopyWith<$Res> {
   factory _$ErrorCopyWith(_Error value, $Res Function(_Error) _then) =
       __$ErrorCopyWithImpl;
-
   @useResult
   $Res call({String message});
 }

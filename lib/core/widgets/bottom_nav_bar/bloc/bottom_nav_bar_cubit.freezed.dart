@@ -45,9 +45,9 @@ mixin _$BottomNavBarState {
 
 /// @nodoc
 abstract mixin class $BottomNavBarStateCopyWith<$Res> {
-  factory $BottomNavBarStateCopyWith(BottomNavBarState value,
-      $Res Function(BottomNavBarState) _then) =
-  _$BottomNavBarStateCopyWithImpl;
+  factory $BottomNavBarStateCopyWith(
+          BottomNavBarState value, $Res Function(BottomNavBarState) _then) =
+      _$BottomNavBarStateCopyWithImpl;
   @useResult
   $Res call({dynamic page});
 }

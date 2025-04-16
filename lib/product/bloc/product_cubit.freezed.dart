@@ -79,11 +79,13 @@ class _Loading implements ProductState {
 
 class ProductSuccess implements ProductState {
   const ProductSuccess(final List<Product> products,
-      {this.isLastPage = false, this.pagingState})
-      : _products = products;
+      {this.isLastPage = false,
+      this.pagingState,
+      final List<Product> popularProducts = const []})
+      : _products = products,
+        _popularProducts = popularProducts;
 
   final List<Product> _products;
-
   List<Product> get products {
     if (_products is EqualUnmodifiableListView) return _products;
     // ignore: implicit_dynamic_type
@@ -93,6 +95,13 @@ class ProductSuccess implements ProductState {
   @JsonKey()
   final bool isLastPage;
   final PagingState<int, Product>? pagingState;
+  final List<Product> _popularProducts;
+  @JsonKey()
+  List<Product> get popularProducts {
+    if (_popularProducts is EqualUnmodifiableListView) return _popularProducts;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_popularProducts);
+  }
 
   /// Create a copy of ProductState
   /// with the given fields replaced by the non-null parameter values.
@@ -110,16 +119,22 @@ class ProductSuccess implements ProductState {
             (identical(other.isLastPage, isLastPage) ||
                 other.isLastPage == isLastPage) &&
             (identical(other.pagingState, pagingState) ||
-                other.pagingState == pagingState));
+                other.pagingState == pagingState) &&
+            const DeepCollectionEquality()
+                .equals(other._popularProducts, _popularProducts));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_products), isLastPage, pagingState);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_products),
+      isLastPage,
+      pagingState,
+      const DeepCollectionEquality().hash(_popularProducts));
 
   @override
   String toString() {
-    return 'ProductState.success(products: $products, isLastPage: $isLastPage, pagingState: $pagingState)';
+    return 'ProductState.success(products: $products, isLastPage: $isLastPage, pagingState: $pagingState, popularProducts: $popularProducts)';
   }
 }
 
@@ -133,7 +148,8 @@ abstract mixin class $ProductSuccessCopyWith<$Res>
   $Res call(
       {List<Product> products,
       bool isLastPage,
-      PagingState<int, Product>? pagingState});
+      PagingState<int, Product>? pagingState,
+      List<Product> popularProducts});
 }
 
 /// @nodoc
@@ -151,6 +167,7 @@ class _$ProductSuccessCopyWithImpl<$Res>
     Object? products = null,
     Object? isLastPage = null,
     Object? pagingState = freezed,
+    Object? popularProducts = null,
   }) {
     return _then(ProductSuccess(
       null == products
@@ -165,6 +182,10 @@ class _$ProductSuccessCopyWithImpl<$Res>
           ? _self.pagingState
           : pagingState // ignore: cast_nullable_to_non_nullable
               as PagingState<int, Product>?,
+      popularProducts: null == popularProducts
+          ? _self._popularProducts
+          : popularProducts // ignore: cast_nullable_to_non_nullable
+              as List<Product>,
     ));
   }
 }

@@ -8,7 +8,11 @@ part 'product_cubit.freezed.dart';
 part 'product_state.dart';
 
 class ProductCubit extends Cubit<ProductState> {
-  ProductCubit() : super(const ProductState.initial());
+  ProductCubit() : super(const ProductState.initial()) {
+    getProducts();
+    getPopularProducts();
+  }
+
   final ProductRepository _productRepository = getIt<ProductRepository>();
 
   List<Product> products = [];
@@ -23,21 +27,19 @@ class ProductCubit extends Cubit<ProductState> {
     popularProducts = [];
     pagingState = PagingState();
     await getProducts();
+    await getPopularProducts();
   }
 
-  getPopularProducts() async {
+  Future<void> getPopularProducts() async {
     emit(const ProductState.loading());
     try {
       final response = await _productRepository.getPopularProducts();
-      final newKey = (pagingState.keys?.last ?? 0) + 1;
       popularProducts = response.data.items;
-      pagingState = pagingState.copyWith(
-        pages: [...?pagingState.pages, popularProducts],
-        keys: [...?pagingState.keys, newKey],
-        hasNextPage: !response.data.isLastPage,
-        isLoading: false,
-      );
-      emit(ProductState.success(popularProducts, pagingState: pagingState));
+      emit(ProductState.success(
+        products,
+        pagingState: pagingState,
+        popularProducts: popularProducts,
+      ));
     } catch (e) {
       emit(ProductState.error(e.toString()));
     }
@@ -61,7 +63,12 @@ class ProductCubit extends Cubit<ProductState> {
       );
 
       emit(
-        ProductState.success(products, isLastPage: response.data.isLastPage),
+        ProductState.success(
+          products,
+          isLastPage: response.data.isLastPage,
+          popularProducts: popularProducts,
+          pagingState: pagingState,
+        ),
       );
     } catch (e) {
       emit(ProductState.error(e.toString()));

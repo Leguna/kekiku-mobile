@@ -93,7 +93,6 @@ abstract mixin class $LoadingCopyWith<T, $Res>
     implements $BaseStateCopyWith<T, $Res> {
   factory $LoadingCopyWith(Loading<T> value, $Res Function(Loading<T>) _then) =
       _$LoadingCopyWithImpl;
-
   @useResult
   $Res call({bool fullscreen});
 }
@@ -157,7 +156,6 @@ abstract mixin class $SuccessCopyWith<T, $Res>
     implements $BaseStateCopyWith<T, $Res> {
   factory $SuccessCopyWith(Success<T> value, $Res Function(Success<T>) _then) =
       _$SuccessCopyWithImpl;
-
   @useResult
   $Res call({T data});
 }
@@ -220,7 +218,6 @@ abstract mixin class $ErrorCopyWith<T, $Res>
     implements $BaseStateCopyWith<T, $Res> {
   factory $ErrorCopyWith(Error<T> value, $Res Function(Error<T>) _then) =
       _$ErrorCopyWithImpl;
-
   @useResult
   $Res call({String message});
 }

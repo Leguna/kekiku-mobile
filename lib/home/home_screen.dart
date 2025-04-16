@@ -20,6 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final pageController = PageController(initialPage: 0);
     final homeCubit = context.read<HomeCubit>();
     final bottomNavBarCubit = context.read<BottomNavBarCubit>();
+    homeCubit.tryShowPopupImage();
     bottomNavBarCubit.reset();
     return PopScope(
       canPop: false,
@@ -28,6 +29,10 @@ class _HomeScreenState extends State<HomeScreen> {
       },
       child: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
+          final isShowedPopupImage = switch (state) {
+            ImagePopupState(:final isShowed) => isShowed,
+            _ => false,
+          };
           return BlocBuilder<BottomNavBarCubit, BottomNavBarState>(
             builder: (context, state) {
               return Stack(
@@ -51,17 +56,18 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                   ),
-                  if (homeCubit.isShowedPopupImage)
-                    ImagePopup(
-                      imageUrl:
-                          'https://plus.unsplash.com/premium_photo-1728398068094-d3d30740000f?q=80&w=1895&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                      onTap: () {
-                        Navigator.of(context).pushNamed(Routes.notFound);
-                      },
-                      onBack: () {
-                        homeCubit.closePopupImage();
-                      },
-                    ),
+                  isShowedPopupImage
+                      ? ImagePopup(
+                          imageUrl:
+                              'https://plus.unsplash.com/premium_photo-1728398068094-d3d30740000f?q=80&w=1895&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                          onTap: () {
+                            Navigator.of(context).pushNamed(Routes.notFound);
+                          },
+                          onBack: () {
+                            homeCubit.closePopupImage();
+                          },
+                        )
+                      : SizedBox(),
                 ],
               );
             },

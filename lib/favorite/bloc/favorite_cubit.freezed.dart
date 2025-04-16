@@ -82,7 +82,6 @@ class FavoriteLoaded<T> implements FavoriteState<T> {
   const FavoriteLoaded(final List<T> products) : _products = products;
 
   final List<T> _products;
-
   List<T> get products {
     if (_products is EqualUnmodifiableListView) return _products;
     // ignore: implicit_dynamic_type

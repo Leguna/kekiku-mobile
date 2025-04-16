@@ -10,6 +10,7 @@ class ProductState with _$ProductState {
     List<Product> products, {
     @Default(false) bool isLastPage,
     PagingState<int, Product>? pagingState,
+    @Default([]) List<Product> popularProducts,
   }) = ProductSuccess;
 
   const factory ProductState.detail(Product product) = ProductDetail;

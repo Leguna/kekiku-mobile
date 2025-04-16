@@ -419,7 +419,6 @@ abstract mixin class $AuthSuccessCopyWith<$Res>
   factory $AuthSuccessCopyWith(
           AuthSuccess value, $Res Function(AuthSuccess) _then) =
       _$AuthSuccessCopyWithImpl;
-
   @useResult
   $Res call({String message});
 }

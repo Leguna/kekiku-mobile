@@ -103,7 +103,6 @@ class _Loaded implements TransactionState {
       : _transactions = transactions;
 
   final List<Transaction> _transactions;
-
   List<Transaction> get transactions {
     if (_transactions is EqualUnmodifiableListView) return _transactions;
     // ignore: implicit_dynamic_type

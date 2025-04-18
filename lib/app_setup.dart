@@ -2,10 +2,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:kekiku/cart/data_sources/cart_local_database.dart';
 import 'package:kekiku/product/data_sources/product_local_source.dart';
 import 'package:kekiku/product/data_sources/product_remote_source.dart';
 import 'package:kekiku/product/data_sources/product_repository.dart';
 
+import 'cart/data_sources/cart_repository.dart';
 import 'core/index.dart';
 import 'core/services/firebase/firebase_service.dart';
 import 'core/services/google_sso.dart';
@@ -50,4 +52,8 @@ Future<void> setupServices() async {
   getIt.registerSingleton<NotificationRepository>(
     NotificationRepository(NotificationLocalSource()),
   );
+
+  getIt.registerSingleton(CartRepository(
+    cartLocalDatabase: CartLocalDatabase(),
+  ));
 }

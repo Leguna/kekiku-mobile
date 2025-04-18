@@ -11,6 +11,7 @@ import 'package:oktoast/oktoast.dart';
 import 'app_setup.dart';
 import 'auth/bloc/auth_cubit.dart';
 import 'auth/data_sources/internet_connection_interceptor.dart';
+import 'cart/bloc/cart_cubit.dart';
 import 'core/bloc/fallback_cubit.dart';
 import 'core/index.dart';
 import 'core/widgets/bottom_nav_bar/bloc/bottom_nav_bar_cubit.dart';
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
     Dimens.init(context);
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (context) => CartCubit()),
         BlocProvider(create: (context) => BottomNavBarCubit()),
         BlocProvider(create: (context) => AuthCubit()),
         BlocProvider(create: (context) => ProductCubit()),

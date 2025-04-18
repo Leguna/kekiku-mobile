@@ -11,7 +11,7 @@ sealed class Product with _$Product {
     @Default('') String id,
     String? name,
     String? label,
-    double? price,
+    @Default(0) double price,
     String? description,
     @Default(1) int quantity,
     @Default([]) List<String>? tags,
@@ -35,7 +35,7 @@ sealed class Product with _$Product {
 
   const Product._();
 
-  double get discountedPrice => (price ?? 0) * (1 - discount / 100);
+  double get discountedPrice => (price) * (1 - discount / 100);
 
   int get totalReviews => reviews.length;
 

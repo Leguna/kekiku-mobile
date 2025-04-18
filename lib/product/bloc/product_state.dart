@@ -20,4 +20,6 @@ class ProductState with _$ProductState {
   const factory ProductState.selectedProduct(Product product) = SelectedProduct;
 
   const factory ProductState.selectedVariant(Variant variant) = SelectedVariant;
+
+  const factory ProductState.outOfStock() = _OutOfStock;
 }

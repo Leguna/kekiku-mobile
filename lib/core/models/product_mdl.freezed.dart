@@ -18,9 +18,9 @@ mixin _$Product {
   String get id;
   String? get name;
   String? get label;
-  double? get price;
-  String? get description;
 
+  double get price;
+  String? get description;
   int get quantity;
   List<String>? get tags;
   List<String>? get ingredients;
@@ -120,7 +120,7 @@ abstract mixin class $ProductCopyWith<$Res> {
       {String id,
       String? name,
       String? label,
-      double? price,
+      double price,
       String? description,
       int quantity,
       List<String>? tags,
@@ -157,7 +157,7 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
     Object? id = null,
     Object? name = freezed,
     Object? label = freezed,
-    Object? price = freezed,
+    Object? price = null,
     Object? description = freezed,
     Object? quantity = null,
     Object? tags = freezed,
@@ -187,10 +187,10 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
           ? _self.label
           : label // ignore: cast_nullable_to_non_nullable
               as String?,
-      price: freezed == price
+      price: null == price
           ? _self.price
           : price // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as double,
       description: freezed == description
           ? _self.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -276,7 +276,7 @@ class _Product extends Product {
       {this.id = '',
       this.name,
       this.label,
-      this.price,
+      this.price = 0,
       this.description,
       this.quantity = 1,
       final List<String>? tags = const [],
@@ -311,7 +311,8 @@ class _Product extends Product {
   @override
   final String? label;
   @override
-  final double? price;
+  @JsonKey()
+  final double price;
   @override
   final String? description;
   @override
@@ -478,7 +479,7 @@ abstract mixin class _$ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
       {String id,
       String? name,
       String? label,
-      double? price,
+      double price,
       String? description,
       int quantity,
       List<String>? tags,
@@ -516,7 +517,7 @@ class __$ProductCopyWithImpl<$Res> implements _$ProductCopyWith<$Res> {
     Object? id = null,
     Object? name = freezed,
     Object? label = freezed,
-    Object? price = freezed,
+    Object? price = null,
     Object? description = freezed,
     Object? quantity = null,
     Object? tags = freezed,
@@ -546,10 +547,10 @@ class __$ProductCopyWithImpl<$Res> implements _$ProductCopyWith<$Res> {
           ? _self.label
           : label // ignore: cast_nullable_to_non_nullable
               as String?,
-      price: freezed == price
+      price: null == price
           ? _self.price
           : price // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as double,
       description: freezed == description
           ? _self.description
           : description // ignore: cast_nullable_to_non_nullable

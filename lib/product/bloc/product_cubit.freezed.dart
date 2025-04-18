@@ -480,4 +480,24 @@ class _$SelectedVariantCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
+
+class _OutOfStock implements ProductState {
+  const _OutOfStock();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _OutOfStock);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'ProductState.outOfStock()';
+  }
+}
+
 // dart format on

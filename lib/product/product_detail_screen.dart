@@ -1,6 +1,7 @@
 import 'package:kekiku/product/bloc/product_cubit.dart';
 import 'package:kekiku/product/widgets/button_variants.dart';
 
+import '../cart/bloc/cart_cubit.dart';
 import '../core/index.dart';
 import 'widgets/detail_app_bar.dart';
 import 'widgets/media_view_pager_list.dart';
@@ -31,6 +32,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   void initState() {
     super.initState();
     product = context.read<ProductCubit>().selectedProduct ?? product;
+    context.read<CartCubit>().getProductQuantity(product);
     mainController = ScrollController();
     mainController.addListener(() {
       final offset = mainController.offset;
@@ -273,33 +275,108 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    spacing: Dimens.medium,
                     children: [
-                      Expanded(
-                        child: OutlinedButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, Routes.cart);
-                          },
-                          child: Text(
-                            Strings.buyNow,
-                            style: Theme.of(context).textTheme.titleMedium,
+                      if (cubit.selectedProduct?.stock == 0) ...[
+                        Expanded(
+                          child: OutlinedButton(
+                            onPressed: null,
+                            child: Text(
+                              Strings.outOfStock,
+                              style: AppTextStyles.medium,
+                            ),
                           ),
                         ),
-                      ),
-                      const SizedBox(width: Dimens.small),
-                      Expanded(
-                        child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, Routes.cart);
-                          },
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(Icons.shopping_cart),
-                              Text(Strings.addToCart),
-                            ],
+                      ] else ...[
+                        Expanded(
+                          child: OutlinedButton(
+                            onPressed: () {
+                              Navigator.pushNamed(context, Routes.cart);
+                            },
+                            child: Text(
+                              Strings.buyNow,
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
                           ),
                         ),
-                      ),
+                        BlocSelector<CartCubit, CartState, int>(
+                          selector: (state) => switch (state) {
+                            CartLoaded(:final selectedQuantity) =>
+                              selectedQuantity ?? 0,
+                            CartLoading() => -1,
+                            _ => 0,
+                          },
+                          builder: (context, quantity) {
+                            if (quantity == -1) {
+                              return const Expanded(
+                                child: Center(
+                                  child: CircularProgressIndicator(),
+                                ),
+                              );
+                            }
+                            if (quantity == 0) {
+                              return Expanded(
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    context
+                                        .read<CartCubit>()
+                                        .incrementProductQuantity(product);
+                                  },
+                                  child: const Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(Icons.shopping_cart),
+                                      Text(Strings.addToCart),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            }
+                            return Expanded(
+                              child: Card(
+                                color: Colors.transparent,
+                                elevation: 1,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.circular(Dimens.small),
+                                  side: BorderSide(
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                  ),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    IconButton(
+                                      onPressed: () {
+                                        context
+                                            .read<CartCubit>()
+                                            .decrementProductQuantity(product);
+                                      },
+                                      icon: const Icon(Icons.remove),
+                                    ),
+                                    Text(
+                                      quantity.toString(),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleLarge,
+                                    ),
+                                    IconButton(
+                                      onPressed: () {
+                                        context
+                                            .read<CartCubit>()
+                                            .incrementProductQuantity(product);
+                                      },
+                                      icon: const Icon(Icons.add),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ],
                     ],
                   ),
                 ),
@@ -312,7 +389,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   }
 
   Widget _buildPrice(BuildContext context, {Variant? variant}) {
-    var price = variant?.price ?? product.price ?? 0;
+    var price = variant?.price ?? product.price;
     var discountedPrice = price - (price * product.discount / 100);
 
     return Padding(

@@ -1,44 +1,101 @@
-import '../../core/data_sources/local_database.dart';
-import '../../core/models/product_mdl.dart';
+import 'dart:convert';
+
+import '../../core/index.dart';
 
 class CartLocalDatabase {
-  final LocalDatabase db;
+  final LocalDatabase db = getIt<LocalDatabase>();
 
   final String cartBox = 'cart';
 
-  CartLocalDatabase({required this.db});
+  CartLocalDatabase();
 
-  Future<void> insertProduct(Product product) async {
+  Future<Product> insertProduct(Product product) async {
     final box = await db.getBox(cartBox);
-    final productList = box.get(cartBox) as List<Product>? ?? [];
-    productList.add(product);
-    await box.put(cartBox, productList);
+    var newProduct = product.copyWith(quantity: 1);
+
+    final productStored = box.get(product.id);
+    if (productStored != null) {
+      final storedProduct = Product.fromJsonString(productStored);
+      newProduct = storedProduct.copyWith(quantity: storedProduct.quantity + 1);
+    }
+    var productJson = jsonEncode(newProduct.toJson());
+    await box.put(product.id, productJson);
+    return newProduct;
   }
 
-  Future<List<Product>> getProducts() async {
+  Future<Product> decrementProductQuantity(Product product) async {
     final box = await db.getBox(cartBox);
-    return box.get(cartBox) as List<Product>? ?? [];
+
+    var updatedProduct = product.copyWith(quantity: 0);
+    final productStored = box.get(product.id);
+
+    if (productStored != null) {
+      final storedProduct = Product.fromJsonString(productStored);
+      updatedProduct =
+          storedProduct.copyWith(quantity: storedProduct.quantity - 1);
+    }
+
+    if (updatedProduct.quantity > 0) {
+      var productJson = jsonEncode(updatedProduct.toJson());
+      await box.put(product.id, productJson);
+    } else {
+      await box.delete(product.id);
+    }
+    return updatedProduct;
   }
 
-  Future<void> deleteProduct(Product product) async {
-    final box = await db.getBox(cartBox);
-    final productList = box.get(cartBox) as List<Product>? ?? [];
-    productList.remove(product);
-    await box.put(cartBox, productList);
+  Future<bool> deleteProduct(Product product) async {
+    try {
+      final box = await db.getBox(cartBox);
+      await box.delete(product.id);
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 
-  Future<void> clearCart() async {
-    final box = await db.getBox(cartBox);
-    await box.delete(cartBox);
+  Future<bool> clearCart() async {
+    try {
+      final box = await db.getBox(cartBox);
+      await box.clear();
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 
-  Future<void> updateProductQuantity(Product product, int quantity) async {
+  Future<bool> updateProductQuantity(Product product, int quantity) async {
     final box = await db.getBox(cartBox);
     final productList = box.get(cartBox) as List<Product>? ?? [];
     final index = productList.indexWhere((p) => p.id == product.id);
     if (index != -1) {
-      productList.add(product.copyWith(quantity: quantity));
+      productList[index] = product.copyWith(quantity: quantity);
       await box.put(cartBox, productList);
+      return true;
     }
+    return false;
+  }
+
+  Future<int> getProductQuantity(String id) async {
+    final box = await db.getBox(cartBox);
+    final productStored = box.get(id);
+    if (productStored != null) {
+      final product = Product.fromJsonString(productStored);
+      return product.quantity;
+    }
+    return 0;
+  }
+
+  Future<List<Product>> getCartProducts() async {
+    final box = await db.getBox(cartBox);
+    final products = <Product>[];
+    for (var key in box.keys) {
+      final product = box.get(key);
+      if (product != null && product is String) {
+        final productModel = Product.fromJsonString(product);
+        products.add(productModel);
+      }
+    }
+    return products;
   }
 }

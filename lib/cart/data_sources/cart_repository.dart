@@ -1,22 +1,57 @@
+import 'package:kekiku/cart/data_sources/cart_local_database.dart';
+
 import '../../core/index.dart';
-import '../models/cart_mdl.dart';
 
 class CartRepository {
-  final LocalDatabase cartLocalDatabase = LocalDatabase();
+  final CartLocalDatabase cartLocalDatabase;
 
-  CartRepository();
+  CartRepository({
+    required this.cartLocalDatabase,
+  });
 
-  Future<Cart> fetchCart() async {
-    final cartData = await cartLocalDatabase.getBox('cart');
-    final products = cartData.values.map((e) => Product.fromJson(e)).toList();
-    return Cart(products: products);
+  Future<List<Product>> fetchCart() async {
+    return await cartLocalDatabase.getCartProducts();
   }
 
-  Future<void> addProductToCart(Product product) async {}
+  Future<Product> addProductToCart(Product product) async {
+    return await cartLocalDatabase.insertProduct(product);
+  }
 
-  Future<void> removeProductFromCart(Product product) async {}
+  Future<Product> removeProductFromCart(Product product) async {
+    return await cartLocalDatabase.decrementProductQuantity(product);
+  }
 
-  Future<void> clearCart() async {}
+  Future<bool> removeAllThisProductFromCart(Product product) async {
+    return await cartLocalDatabase.deleteProduct(product);
+  }
 
-  Future<void> updateProductQuantity(Product product, int quantity) async {}
+  Future<void> clearCart() async {
+    await cartLocalDatabase.clearCart();
+  }
+
+  Future<void> updateProductQuantity(Product product, int quantity) async {
+    await cartLocalDatabase.updateProductQuantity(product, quantity);
+  }
+
+  Future<int> getProductQuantity(Product product) async {
+    return await cartLocalDatabase.getProductQuantity(product.id);
+  }
+
+  Future<int> getTotalQuantity() async {
+    int totalQuantity = 0;
+    final products = await fetchCart();
+    for (var product in products) {
+      totalQuantity += product.quantity;
+    }
+    return totalQuantity;
+  }
+
+  Future<double> getTotalPrice() async {
+    final products = await fetchCart();
+    double totalPrice = 0.0;
+    for (var product in products) {
+      totalPrice += product.price * product.quantity;
+    }
+    return totalPrice;
+  }
 }

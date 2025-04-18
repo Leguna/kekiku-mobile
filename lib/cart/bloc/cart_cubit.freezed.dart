@@ -57,13 +57,13 @@ class _Initial implements CartState {
 
 /// @nodoc
 
-class _Loading implements CartState {
-  const _Loading();
+class CartLoading implements CartState {
+  const CartLoading();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Loading);
+        (other.runtimeType == runtimeType && other is CartLoading);
   }
 
   @override
@@ -72,26 +72,6 @@ class _Loading implements CartState {
   @override
   String toString() {
     return 'CartState.loading()';
-  }
-}
-
-/// @nodoc
-
-class _Loaded implements CartState {
-  const _Loaded();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Loaded);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  String toString() {
-    return 'CartState.loaded()';
   }
 }
 
@@ -173,6 +153,160 @@ class _Empty implements CartState {
   @override
   String toString() {
     return 'CartState.empty()';
+  }
+}
+
+/// @nodoc
+
+class Checkout implements CartState {
+  const Checkout();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Checkout);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'CartState.checkout()';
+  }
+}
+
+/// @nodoc
+
+class CartLoaded implements CartState {
+  const CartLoaded(
+      {required final List<Product> products,
+      required this.totalPrice,
+      required this.totalQuantity,
+      required this.selectedProduct,
+      required this.selectedQuantity})
+      : _products = products;
+
+  final List<Product> _products;
+  List<Product> get products {
+    if (_products is EqualUnmodifiableListView) return _products;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_products);
+  }
+
+  final double totalPrice;
+  final int totalQuantity;
+  final Product? selectedProduct;
+  final int? selectedQuantity;
+
+  /// Create a copy of CartState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $CartLoadedCopyWith<CartLoaded> get copyWith =>
+      _$CartLoadedCopyWithImpl<CartLoaded>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is CartLoaded &&
+            const DeepCollectionEquality().equals(other._products, _products) &&
+            (identical(other.totalPrice, totalPrice) ||
+                other.totalPrice == totalPrice) &&
+            (identical(other.totalQuantity, totalQuantity) ||
+                other.totalQuantity == totalQuantity) &&
+            (identical(other.selectedProduct, selectedProduct) ||
+                other.selectedProduct == selectedProduct) &&
+            (identical(other.selectedQuantity, selectedQuantity) ||
+                other.selectedQuantity == selectedQuantity));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_products),
+      totalPrice,
+      totalQuantity,
+      selectedProduct,
+      selectedQuantity);
+
+  @override
+  String toString() {
+    return 'CartState.loaded(products: $products, totalPrice: $totalPrice, totalQuantity: $totalQuantity, selectedProduct: $selectedProduct, selectedQuantity: $selectedQuantity)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $CartLoadedCopyWith<$Res>
+    implements $CartStateCopyWith<$Res> {
+  factory $CartLoadedCopyWith(
+          CartLoaded value, $Res Function(CartLoaded) _then) =
+      _$CartLoadedCopyWithImpl;
+  @useResult
+  $Res call(
+      {List<Product> products,
+      double totalPrice,
+      int totalQuantity,
+      Product? selectedProduct,
+      int? selectedQuantity});
+
+  $ProductCopyWith<$Res>? get selectedProduct;
+}
+
+/// @nodoc
+class _$CartLoadedCopyWithImpl<$Res> implements $CartLoadedCopyWith<$Res> {
+  _$CartLoadedCopyWithImpl(this._self, this._then);
+
+  final CartLoaded _self;
+  final $Res Function(CartLoaded) _then;
+
+  /// Create a copy of CartState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? products = null,
+    Object? totalPrice = null,
+    Object? totalQuantity = null,
+    Object? selectedProduct = freezed,
+    Object? selectedQuantity = freezed,
+  }) {
+    return _then(CartLoaded(
+      products: null == products
+          ? _self._products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<Product>,
+      totalPrice: null == totalPrice
+          ? _self.totalPrice
+          : totalPrice // ignore: cast_nullable_to_non_nullable
+              as double,
+      totalQuantity: null == totalQuantity
+          ? _self.totalQuantity
+          : totalQuantity // ignore: cast_nullable_to_non_nullable
+              as int,
+      selectedProduct: freezed == selectedProduct
+          ? _self.selectedProduct
+          : selectedProduct // ignore: cast_nullable_to_non_nullable
+              as Product?,
+      selectedQuantity: freezed == selectedQuantity
+          ? _self.selectedQuantity
+          : selectedQuantity // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+
+  /// Create a copy of CartState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ProductCopyWith<$Res>? get selectedProduct {
+    if (_self.selectedProduct == null) {
+      return null;
+    }
+
+    return $ProductCopyWith<$Res>(_self.selectedProduct!, (value) {
+      return _then(_self.copyWith(selectedProduct: value));
+    });
   }
 }
 

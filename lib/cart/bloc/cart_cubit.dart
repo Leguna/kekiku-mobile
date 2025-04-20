@@ -75,4 +75,22 @@ class CartCubit extends Cubit<CartState> {
       emit(CartState.error(e.toString()));
     }
   }
+
+  Future<void> getCart() async {
+    try {
+      emit(const CartState.loading());
+      products = await cartRepository.fetchCart();
+      final totalPrice = await cartRepository.getTotalPrice();
+      final totalQuantity = await cartRepository.getTotalQuantity();
+      emit(CartState.loaded(
+        products: products,
+        totalPrice: totalPrice,
+        totalQuantity: totalQuantity,
+        selectedProduct: null,
+        selectedQuantity: 0,
+      ));
+    } catch (e) {
+      emit(CartState.error(e.toString()));
+    }
+  }
 }

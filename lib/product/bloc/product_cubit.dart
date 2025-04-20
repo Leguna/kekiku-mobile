@@ -31,8 +31,8 @@ class ProductCubit extends Cubit<ProductState> {
   }
 
   Future<void> getPopularProducts() async {
-    emit(const ProductState.loading());
     try {
+      emit(const ProductState.loading());
       final response = await _productRepository.getPopularProducts();
       popularProducts = response.data.items;
       emit(ProductState.success(
@@ -78,6 +78,11 @@ class ProductCubit extends Cubit<ProductState> {
   void selectProduct(Product product) {
     selectedProduct = product;
     emit(ProductState.selectedProduct(product));
+    emit(ProductState.success(
+      products,
+      pagingState: pagingState,
+      popularProducts: popularProducts,
+    ));
   }
 
   void selectVariant(Variant variant) {

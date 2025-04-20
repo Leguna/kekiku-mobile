@@ -1,3 +1,4 @@
+import 'package:kekiku/cart/bloc/cart_cubit.dart';
 import 'package:lottie/lottie.dart';
 
 import '../core/index.dart';
@@ -10,14 +11,23 @@ class CartScreen extends StatelessWidget {
     return MyScaffold(
       appBar: const MyAppBar(title: Text('Cart')),
       body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Lottie.asset(Assets.lotties.notfound),
-              const Text('Cart is empty'),
-            ],
-          ),
+        child: BlocBuilder<CartCubit, CartState>(
+          builder: (context, state) {
+            return RefreshIndicator(
+              onRefresh: () async {
+                context.read<CartCubit>().getCart();
+              },
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Lottie.asset(Assets.lotties.notfound),
+                    const Text('Cart is empty'),
+                  ],
+                ),
+              ),
+            );
+          },
         ),
       ),
     );

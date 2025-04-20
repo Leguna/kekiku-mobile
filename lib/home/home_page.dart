@@ -1,3 +1,4 @@
+import 'package:kekiku/cart/bloc/cart_cubit.dart';
 import 'package:kekiku/product/bloc/product_cubit.dart';
 
 import '../core/index.dart';
@@ -31,11 +32,21 @@ class HomePage extends StatelessWidget {
             },
             icon: const Icon(Icons.notifications_none),
           ),
-          IconButtonBadged(
-            onPressed: () {
-              Navigator.pushNamed(context, Routes.cart);
+          BlocSelector<CartCubit, CartState, int>(
+            bloc: context.read<CartCubit>(),
+            selector: (state) => switch (state) {
+              CartLoaded(:final totalQuantity) => totalQuantity,
+              _ => 0,
             },
-            icon: const Icon(Icons.shopping_cart_outlined),
+            builder: (context, cartCount) {
+              return IconButtonBadged(
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.cart);
+                },
+                icon: const Icon(Icons.shopping_cart_outlined),
+                badgeText: cartCount > 0 ? cartCount.toString() : '',
+              );
+            },
           ),
         ],
       ),

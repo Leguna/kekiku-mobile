@@ -24,8 +24,8 @@ class IconButtonBadged extends IconButton {
         super.build(context),
         if (badgeText.isNotEmpty)
           Positioned(
-            right: 0,
-            top: 0,
+            right: 2,
+            top: 2,
             child: Container(
               padding: const EdgeInsets.all(2),
               decoration: BoxDecoration(

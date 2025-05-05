@@ -8,7 +8,7 @@ part of 'product_mdl.dart';
 
 _Product _$ProductFromJson(Map<String, dynamic> json) => _Product(
       id: json['id'] as String? ?? '',
-      name: json['name'] as String?,
+      name: json['name'] as String? ?? '',
       label: json['label'] as String?,
       price: (json['price'] as num?)?.toDouble() ?? 0,
       description: json['description'] as String?,
@@ -37,6 +37,9 @@ _Product _$ProductFromJson(Map<String, dynamic> json) => _Product(
       variants: json['variants'] == null
           ? const []
           : _variantListFromJson(json['variants'] as List?),
+      selectedVariant: json['selectedVariant'] == null
+          ? null
+          : Variant.fromJson(json['selectedVariant'] as Map<String, dynamic>),
       reviews: json['reviews'] == null
           ? const []
           : _reviewListFromJson(json['reviews'] as List?),
@@ -61,6 +64,7 @@ Map<String, dynamic> _$ProductToJson(_Product instance) => <String, dynamic>{
       'address': instance.address,
       'categories': instance.categories,
       'variants': _variantListToJson(instance.variants),
+      'selectedVariant': instance.selectedVariant,
       'reviews': _reviewListToJson(instance.reviews),
     };
 

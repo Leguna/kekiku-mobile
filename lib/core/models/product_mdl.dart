@@ -9,7 +9,7 @@ part 'product_mdl.g.dart';
 sealed class Product with _$Product {
   const factory Product({
     @Default('') String id,
-    String? name,
+    @Default('') String name,
     String? label,
     @Default(0) double price,
     String? description,
@@ -28,6 +28,7 @@ sealed class Product with _$Product {
     @JsonKey(fromJson: _variantListFromJson, toJson: _variantListToJson)
     @Default([])
     List<Variant> variants,
+    Variant? selectedVariant,
     @JsonKey(fromJson: _reviewListFromJson, toJson: _reviewListToJson)
     @Default([])
     List<Review> reviews,
@@ -43,6 +44,13 @@ sealed class Product with _$Product {
     if (reviews.isEmpty) return 0;
     return reviews.map((e) => e.rating ?? 0).reduce((a, b) => a + b) /
         reviews.length;
+  }
+
+  double get totalPrice {
+    if (selectedVariant != null) {
+      return selectedVariant!.price! * quantity;
+    }
+    return price * quantity;
   }
 
   factory Product.fromJson(Map<String, dynamic> json) =>

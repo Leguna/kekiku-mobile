@@ -290,4 +290,12 @@ final class Strings {
   static const String endDate = 'End Date';
 
   static const String phoneNotSupported = 'Phone not supported';
+
+  static const String orderSummary = 'Order Summary';
+
+  static const totalQuantity = "Total Quantity";
+
+  static const String deliveryFee = 'Delivery Fee';
+
+  static const String discountedPrice = 'Discounted Price';
 }

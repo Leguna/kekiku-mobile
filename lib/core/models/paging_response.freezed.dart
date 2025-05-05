@@ -16,13 +16,9 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PagingResponse<T> {
   int get currentPage;
-
   int get totalPages;
-
   int get pageSize;
-
   int get totalItems;
-
   List<T> get items;
 
   /// Create a copy of PagingResponse
@@ -65,9 +61,9 @@ mixin _$PagingResponse<T> {
 
 /// @nodoc
 abstract mixin class $PagingResponseCopyWith<T, $Res> {
-  factory $PagingResponseCopyWith(PagingResponse<T> value,
-      $Res Function(PagingResponse<T>) _then) =
-  _$PagingResponseCopyWithImpl;
+  factory $PagingResponseCopyWith(
+          PagingResponse<T> value, $Res Function(PagingResponse<T>) _then) =
+      _$PagingResponseCopyWithImpl;
   @useResult
   $Res call(
       {int currentPage,
@@ -132,7 +128,6 @@ class _PagingResponse<T> extends PagingResponse<T> {
       final List<T> items = const []})
       : _items = items,
         super._();
-
   factory _PagingResponse.fromJson(
           Map<String, dynamic> json, T Function(Object?) fromJsonT) =>
       _$PagingResponseFromJson(json, fromJsonT);

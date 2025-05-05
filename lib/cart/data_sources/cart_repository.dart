@@ -54,4 +54,8 @@ class CartRepository {
     }
     return totalPrice;
   }
+
+  getDeliveryFee() {
+    return 12.0;
+  }
 }

@@ -177,7 +177,7 @@ class LoginScreen extends StatelessWidget {
                         isLoading
                             ? const Center(child: CircularProgressIndicator())
                             : const SizedBox.shrink(),
-                        const MyDivider(Strings.orSignInWith),
+                        const MyDivider(text: Strings.orSignInWith),
                         // OutlinedButton(
                         //   onPressed: () {
                         //     context.read<AuthCubit>().loginFingerprint();

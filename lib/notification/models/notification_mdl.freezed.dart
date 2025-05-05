@@ -19,17 +19,11 @@ NotificationMdl _$NotificationMdlFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$NotificationMdl {
   String get notificationId;
-
   String? get title;
-
   String? get body;
-
   String? get type;
-
   DateTime? get timestamp;
-
   Data? get data;
-
   bool get read;
 
   /// Create a copy of NotificationMdl
@@ -72,9 +66,9 @@ mixin _$NotificationMdl {
 
 /// @nodoc
 abstract mixin class $NotificationMdlCopyWith<$Res> {
-  factory $NotificationMdlCopyWith(NotificationMdl value,
-      $Res Function(NotificationMdl) _then) =
-  _$NotificationMdlCopyWithImpl;
+  factory $NotificationMdlCopyWith(
+          NotificationMdl value, $Res Function(NotificationMdl) _then) =
+      _$NotificationMdlCopyWithImpl;
   @useResult
   $Res call(
       {String notificationId,
@@ -167,7 +161,6 @@ class _Notification implements NotificationMdl {
       this.timestamp,
       this.data,
       this.read = false});
-
   factory _Notification.fromJson(Map<String, dynamic> json) =>
       _$NotificationFromJson(json);
 
@@ -322,13 +315,9 @@ class __$NotificationCopyWithImpl<$Res>
 /// @nodoc
 mixin _$Data {
   String? get orderId;
-
   String? get status;
-
   DateTime? get estimatedDelivery;
-
   int? get cartItems;
-
   String? get cartTotal;
 
   /// Create a copy of Data
@@ -432,7 +421,6 @@ class _Data implements Data {
       this.estimatedDelivery,
       this.cartItems,
       this.cartTotal});
-
   factory _Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);
 
   @override

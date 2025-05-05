@@ -103,7 +103,7 @@ class RegisterScreen extends StatelessWidget {
                           );
                         },
                       ),
-                      const MyDivider(Strings.orSignUpWith),
+                      const MyDivider(text: Strings.orSignUpWith),
                       const GoogleSsoButton(isOutlined: true),
                       Align(
                         alignment: Alignment.centerRight,

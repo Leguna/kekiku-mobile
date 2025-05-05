@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import '../dimens.dart';
 
 class MyDivider extends StatelessWidget {
-  const MyDivider(
-    this.text, {
+  const MyDivider({
     super.key,
+    this.text = "",
     this.thickness = 2,
     this.padding = const EdgeInsets.symmetric(vertical: Dimens.small),
   });
@@ -21,22 +21,21 @@ class MyDivider extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: Container(
-              margin: const EdgeInsets.only(right: Dimens.small),
-              child: Divider(
-                thickness: thickness,
-                color: Theme.of(context).colorScheme.secondary,
-              ),
+            child: Divider(
+              thickness: thickness,
+              color: Theme.of(context).colorScheme.secondary,
             ),
           ),
           if (text.isNotEmpty)
-            Text(
-              text,
-              style: Theme.of(context).textTheme.displaySmall,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: Dimens.tiny),
+              child: Text(
+                text,
+                style: Theme.of(context).textTheme.displaySmall,
+              ),
             ),
           Expanded(
             child: Container(
-              margin: const EdgeInsets.only(left: Dimens.small),
               child: Divider(
                 thickness: thickness,
                 color: Theme.of(context).colorScheme.secondary,

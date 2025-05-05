@@ -112,7 +112,6 @@ abstract mixin class $CountingCopyWith<$Res>
     implements $MyCountdownStateCopyWith<$Res> {
   factory $CountingCopyWith(Counting value, $Res Function(Counting) _then) =
       _$CountingCopyWithImpl;
-
   @useResult
   $Res call({int count});
 }

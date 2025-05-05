@@ -16,27 +16,16 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$User {
   String get displayName;
-
   String get email;
-
   String get id;
-
   String get authMethod;
-
   String get phone;
-
   String get role;
-
   String get address;
-
   String get photo;
-
   String get gender;
-
   String get dateOfBirth;
-
   String get bio;
-
   dynamic get username;
 
   /// Create a copy of User
@@ -208,7 +197,6 @@ class _User implements User {
       this.dateOfBirth = '',
       this.bio = '',
       this.username = ''});
-
   factory _User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
   @override

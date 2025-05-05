@@ -3,11 +3,16 @@ import 'package:flutter/material.dart';
 class Dimens {
   static const double nano = 1.0;
   static const double micro = 2.0;
+  static const double smallNano = 4.0;
   static const double tiny = 8.0;
   static const double small = 12.0;
   static const double medium = 16.0;
   static const double large = 24.0;
   static const double xlarge = 32.0;
+
+  static const double spaceSmall = 50.0;
+  static const double spaceMedium = 100.0;
+  static const double spaceBig = 200.0;
 
   static const EdgeInsets horizontalPadding =
       EdgeInsets.symmetric(horizontal: 8.0);
@@ -22,6 +27,8 @@ class Dimens {
 
   static late double screenWidth;
   static late double screenHeight;
+
+  static const double borderWidth = 2.0;
 
   static void init(BuildContext context) {
     screenWidth = MediaQuery.of(context).size.width;

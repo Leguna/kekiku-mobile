@@ -75,17 +75,17 @@ class $AssetsIllustrationsGen {
 
   /// List of all assets
   List<dynamic> get values => [
-        bg,
-        birthday,
-        cookie,
-        fingerprint,
-        forgot,
-        login,
-        notFound,
-        signup,
-        tfa,
-        underConstruction,
-      ];
+    bg,
+    birthday,
+    cookie,
+    fingerprint,
+    forgot,
+    login,
+    notFound,
+    signup,
+    tfa,
+    underConstruction,
+  ];
 }
 
 class $AssetsImagesGen {
@@ -146,12 +146,12 @@ class $AssetsLottiesGen {
 
   /// List of all assets
   List<String> get values => [
-        cake,
-        customerReview,
-        maintenance,
-        notfound,
-        qrCode,
-      ];
+    cake,
+    customerReview,
+    maintenance,
+    notfound,
+    qrCode,
+  ];
 }
 
 class $AssetsSvgsGen {
@@ -226,29 +226,29 @@ class $AssetsSvgsGen {
 
   /// List of all assets
   List<SvgGenImage> get values => [
-        all,
-        boxcheck,
-        brain,
-        business,
-        car,
-        card,
-        cartplus,
-        chat,
-        financeCoporate,
-        friend,
-        health,
-        hobby,
-        home,
-        homepage,
-        mappin,
-        mask,
-        merch,
-        muslim,
-        note,
-        people,
-        search,
-        voucher,
-      ];
+    all,
+    boxcheck,
+    brain,
+    business,
+    car,
+    card,
+    cartplus,
+    chat,
+    financeCoporate,
+    friend,
+    health,
+    hobby,
+    home,
+    homepage,
+    mappin,
+    mask,
+    merch,
+    muslim,
+    note,
+    people,
+    search,
+    voucher,
+  ];
 }
 
 class $AssetsFontsMontserratGen {
@@ -324,25 +324,25 @@ class $AssetsFontsMontserratGen {
 
   /// List of all assets
   List<String> get values => [
-        montserratBlack,
-        montserratBlackItalic,
-        montserratBold,
-        montserratBoldItalic,
-        montserratExtraBold,
-        montserratExtraBoldItalic,
-        montserratExtraLight,
-        montserratExtraLightItalic,
-        montserratItalic,
-        montserratLight,
-        montserratLightItalic,
-        montserratMedium,
-        montserratMediumItalic,
-        montserratRegular,
-        montserratSemiBold,
-        montserratSemiBoldItalic,
-        montserratThin,
-        montserratThinItalic,
-      ];
+    montserratBlack,
+    montserratBlackItalic,
+    montserratBold,
+    montserratBoldItalic,
+    montserratExtraBold,
+    montserratExtraBoldItalic,
+    montserratExtraLight,
+    montserratExtraLightItalic,
+    montserratItalic,
+    montserratLight,
+    montserratLightItalic,
+    montserratMedium,
+    montserratMediumItalic,
+    montserratRegular,
+    montserratSemiBold,
+    montserratSemiBoldItalic,
+    montserratThin,
+    montserratThinItalic,
+  ];
 }
 
 class $AssetsFontsPoppinsGen {
@@ -413,26 +413,26 @@ class $AssetsFontsPoppinsGen {
 
   /// List of all assets
   List<String> get values => [
-        ofl,
-        poppinsBlack,
-        poppinsBlackItalic,
-        poppinsBold,
-        poppinsBoldItalic,
-        poppinsExtraBold,
-        poppinsExtraBoldItalic,
-        poppinsExtraLight,
-        poppinsExtraLightItalic,
-        poppinsItalic,
-        poppinsLight,
-        poppinsLightItalic,
-        poppinsMedium,
-        poppinsMediumItalic,
-        poppinsRegular,
-        poppinsSemiBold,
-        poppinsSemiBoldItalic,
-        poppinsThin,
-        poppinsThinItalic,
-      ];
+    ofl,
+    poppinsBlack,
+    poppinsBlackItalic,
+    poppinsBold,
+    poppinsBoldItalic,
+    poppinsExtraBold,
+    poppinsExtraBoldItalic,
+    poppinsExtraLight,
+    poppinsExtraLightItalic,
+    poppinsItalic,
+    poppinsLight,
+    poppinsLightItalic,
+    poppinsMedium,
+    poppinsMediumItalic,
+    poppinsRegular,
+    poppinsSemiBold,
+    poppinsSemiBoldItalic,
+    poppinsThin,
+    poppinsThinItalic,
+  ];
 }
 
 class Assets {
@@ -463,17 +463,17 @@ class Assets {
 
   /// List of all assets
   static List<dynamic> get values => [
-        aEnv,
-        brandName,
-        favicon,
-        googleLogo,
-        logo,
-        logoGoogle,
-        logoGoogleSvg,
-        logoOnly,
-        noImage,
-        welcome,
-      ];
+    aEnv,
+    brandName,
+    favicon,
+    googleLogo,
+    logo,
+    logoGoogle,
+    logoGoogleSvg,
+    logoOnly,
+    noImage,
+    welcome,
+  ];
 }
 
 class AssetGenImage {
@@ -548,10 +548,10 @@ class AssetGenImage {
 
 class SvgGenImage {
   const SvgGenImage(this._assetName, {this.size, this.flavors = const {}})
-      : _isVecFormat = false;
+    : _isVecFormat = false;
 
   const SvgGenImage.vec(this._assetName, {this.size, this.flavors = const {}})
-      : _isVecFormat = true;
+    : _isVecFormat = true;
 
   final String _assetName;
   final Size? size;
@@ -605,7 +605,8 @@ class SvgGenImage {
       placeholderBuilder: placeholderBuilder,
       semanticsLabel: semanticsLabel,
       excludeFromSemantics: excludeFromSemantics,
-      colorFilter: colorFilter ??
+      colorFilter:
+          colorFilter ??
           (color == null ? null : ColorFilter.mode(color, colorBlendMode)),
       clipBehavior: clipBehavior,
       cacheColorFilter: cacheColorFilter,

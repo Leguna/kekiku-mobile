@@ -10,6 +10,7 @@ class MyImageLoader extends StatefulWidget {
     this.radius = 8,
     this.onImageLoaded,
     this.isLoading = false,
+    this.fit = BoxFit.cover,
   });
 
   final String? path;
@@ -18,6 +19,7 @@ class MyImageLoader extends StatefulWidget {
   final double radius;
   final bool isLoading;
   final Function()? onImageLoaded;
+  final BoxFit fit;
 
   @override
   State<MyImageLoader> createState() => _MyImageLoaderState();
@@ -53,7 +55,7 @@ class _MyImageLoaderState extends State<MyImageLoader> {
             borderRadius: BorderRadius.circular(widget.radius),
             image: DecorationImage(
               image: imageProvider,
-              fit: BoxFit.cover,
+              fit: widget.fit,
             ),
           ),
         );
@@ -85,7 +87,7 @@ class _MyImageLoaderState extends State<MyImageLoader> {
           widget.path ?? '',
           width: widget.width,
           height: widget.height,
-          fit: BoxFit.cover,
+          fit: widget.fit,
           errorBuilder: (context, error, stackTrace) =>
               _buildError(context, widget.path ?? '', error),
         );

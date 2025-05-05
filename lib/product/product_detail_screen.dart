@@ -32,7 +32,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   void initState() {
     super.initState();
     product = context.read<ProductCubit>().selectedProduct ?? product;
-    context.read<CartCubit>().getProductQuantity(product);
     mainController = ScrollController();
     mainController.addListener(() {
       final offset = mainController.offset;
@@ -291,6 +290,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         Expanded(
                           child: OutlinedButton(
                             onPressed: () {
+                              context
+                                  .read<CartCubit>()
+                                  .incrementProductQuantity(product);
                               Navigator.pushNamed(context, Routes.cart);
                             },
                             child: Text(
@@ -444,7 +446,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            name ?? "",
+            name,
             style: Theme.of(context).textTheme.titleLarge,
           ),
           const SizedBox(height: Dimens.small),

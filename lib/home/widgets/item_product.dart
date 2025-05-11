@@ -1,3 +1,4 @@
+import 'package:kekiku/cart/bloc/cart_cubit.dart';
 import 'package:kekiku/favorite/favorite_button.dart';
 
 import '../../core/index.dart';
@@ -26,6 +27,9 @@ class ItemProduct extends StatelessWidget {
         child: InkWell(
           onTap: () {
             context.read<ProductCubit>().selectProduct(product);
+            context
+                .read<CartCubit>()
+                .changeSelectedVariant(product.variants.first.id);
             Navigator.pushNamed(
               context,
               Routes.productDetail,
@@ -105,7 +109,7 @@ class ItemProduct extends StatelessWidget {
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Text(
-                    product.name ?? '',
+                    product.name,
                     style: Theme.of(context).textTheme.titleMedium,
                     maxLines: 1,
                   ),
@@ -125,7 +129,7 @@ class ItemProduct extends StatelessWidget {
                       const SizedBox(width: 4),
                     ],
                     Text(
-                      '\$${product.price?.toStringAsFixed(2)}',
+                      '\$${product.price.toStringAsFixed(2)}',
                       style: !isDiscounted
                           ? Theme.of(context).textTheme.labelMedium?.copyWith(
                                 fontWeight: FontWeight.bold,

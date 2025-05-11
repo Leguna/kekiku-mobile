@@ -82,20 +82,31 @@ class OrderSummaryWidget extends StatelessWidget {
           case CartLoaded(
               :final totalPrice,
               :final totalQuantity,
+              :final totalBasePrice,
               :final totalDiscountedPrice,
               :final deliveryFee
             ):
             return Column(
               children: [
-                LabelPrice(Strings.totalQuantity,
-                    value: totalQuantity.toString()),
                 LabelPrice(
-                  Strings.discountedPrice,
-                  value: totalDiscountedPrice.toCurrency(),
+                  Strings.basePrice,
+                  value: totalBasePrice.toCurrency(),
                 ),
                 LabelPrice(
                   Strings.deliveryFee,
                   value: deliveryFee.toCurrency(),
+                ),
+                LabelPrice(
+                  Strings.totalItem,
+                  value: totalQuantity.toString(),
+                ),
+                SizedBox(height: Dimens.tiny),
+                LabelPrice(
+                  Strings.discountedPrice,
+                  value: "-${totalDiscountedPrice.toCurrency()}",
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        color: Theme.of(context).colorScheme.error,
+                      ),
                 ),
                 MyDivider(),
                 LabelPrice(
@@ -124,10 +135,12 @@ class LabelPrice extends StatelessWidget {
     this.label, {
     super.key,
     required this.value,
+    this.style,
   });
 
   final String label;
   final String value;
+  final TextStyle? style;
 
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,8 @@
 import 'package:kekiku/cart/data_sources/cart_local_database.dart';
+import 'package:kekiku/cart/models/cart_item_mdl.dart';
 
 import '../../core/index.dart';
+import '../../core/models/paging_response.dart';
 
 class CartRepository {
   final CartLocalDatabase cartLocalDatabase;
@@ -9,20 +11,21 @@ class CartRepository {
     required this.cartLocalDatabase,
   });
 
-  Future<List<Product>> fetchCart() async {
-    return await cartLocalDatabase.getCartProducts();
+  Future<BaseResponse<PagingResponse<CartItem>>> fetchCart() async {
+    final cartResponse = await cartLocalDatabase.getCartProducts();
+    return cartResponse;
   }
 
-  Future<Product> addProductToCart(Product product) async {
-    return await cartLocalDatabase.insertProduct(product);
+  Future<CartItem> addProductToCart(String variantId) async {
+    return await cartLocalDatabase.insertProduct(variantId);
   }
 
-  Future<Product> removeProductFromCart(Product product) async {
-    return await cartLocalDatabase.decrementProductQuantity(product);
+  Future<CartItem> removeProductFromCart(String variantId) async {
+    return await cartLocalDatabase.decrementProductQuantity(variantId);
   }
 
-  Future<bool> removeAllThisProductFromCart(Product product) async {
-    return await cartLocalDatabase.deleteProduct(product);
+  Future<bool> removeAllThisProductFromCart(String variantId) async {
+    return await cartLocalDatabase.deleteProduct(variantId);
   }
 
   Future<void> clearCart() async {
@@ -33,29 +36,46 @@ class CartRepository {
     await cartLocalDatabase.updateProductQuantity(product, quantity);
   }
 
-  Future<int> getProductQuantity(Product product) async {
-    return await cartLocalDatabase.getProductQuantity(product.id);
+  Future<int> getVariantQuantity(String variantId) async {
+    return await cartLocalDatabase.getVariantId(variantId);
   }
 
   Future<int> getTotalQuantity() async {
     int totalQuantity = 0;
     final products = await fetchCart();
-    for (var product in products) {
+    for (var product in products.data.items) {
       totalQuantity += product.quantity;
     }
     return totalQuantity;
   }
 
-  Future<double> getTotalPrice() async {
+  Future<double> totalBasePrice() async {
     final products = await fetchCart();
-    double totalPrice = 0.0;
-    for (var product in products) {
-      totalPrice += product.price * product.quantity;
+    double totalBasePrice = 0.0;
+    for (var product in products.data.items) {
+      totalBasePrice += product.basePrice * product.quantity;
     }
-    return totalPrice;
+    return totalBasePrice;
   }
 
-  getDeliveryFee() {
+  Future<double> getDeliveryFee() async {
     return 12.0;
+  }
+
+  Future<double> getTotalDiscountedPrice() async {
+    final products = await fetchCart();
+    double totalDiscountedPrice = 0.0;
+    for (var product in products.data.items) {
+      final discountPrice = product.discountValue * product.basePrice / 100;
+      totalDiscountedPrice += discountPrice * product.quantity;
+    }
+    return totalDiscountedPrice;
+  }
+
+  Future<double> getTotalPrice() async {
+    double totalPrice = await totalBasePrice();
+    totalPrice += await getDeliveryFee();
+    totalPrice -= await getTotalDiscountedPrice();
+    return totalPrice;
   }
 }

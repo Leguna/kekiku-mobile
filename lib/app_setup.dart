@@ -42,10 +42,12 @@ Future<void> setupServices() async {
   GoogleSSOService googleSSOService = GoogleSSOService();
   getIt.registerSingleton<GoogleSSOService>(googleSSOService);
 
+  final productLocalSource = ProductLocalSource();
+  getIt.registerSingleton<ProductLocalSource>(productLocalSource);
   getIt.registerSingleton<ProductRepository>(
     ProductRepository(
       remoteDataSource: ProductRemoteSource(),
-      localDataSource: ProductLocalSource(),
+      localDataSource: productLocalSource,
     ),
   );
 

@@ -1,12 +1,37 @@
 import 'dart:convert';
 
+import 'package:kekiku/core/index.dart';
+
 import '../../core/data_sources/json_from_assets.dart';
-import '../../core/index.dart';
 
 class ProductLocalSource {
   final LocalDatabase localDatabase = getIt<LocalDatabase>();
 
   final String _favoriteKey = 'favorite';
+
+  // Get product by id
+  Future<String> getProductById(String id) async {
+    final jsonProduct = jsonDecode(await getJson(Assets.jsons.cake));
+    final product = jsonProduct.firstWhere((element) => element['id'] == id);
+    return jsonEncode(product);
+  }
+
+  // Get product by variant id
+  Future<String> getProductByVariantId(String id) async {
+    final jsonProduct = jsonDecode(await getJson(Assets.jsons.cake));
+
+    final product = jsonProduct.cast<Map<String, dynamic>>().firstWhere(
+      (element) {
+        final variants = element?['variants'] ?? [];
+        if (variants is List) {
+          return variants.any((variant) => variant['id'] == id);
+        }
+        return false;
+      },
+      orElse: () => <String, dynamic>{},
+    );
+    return product != null ? jsonEncode(product) : "";
+  }
 
   Future<String> getProductFromJson({String query = ""}) async {
     final jsonProduct = jsonDecode(await getJson(Assets.jsons.cake));

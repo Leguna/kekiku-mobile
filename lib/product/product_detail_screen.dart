@@ -1,5 +1,8 @@
 import 'package:kekiku/product/bloc/product_cubit.dart';
 import 'package:kekiku/product/widgets/button_variants.dart';
+import 'package:kekiku/product/widgets/detail_name_widget.dart';
+import 'package:kekiku/product/widgets/detail_price_widget.dart';
+import 'package:kekiku/product/widgets/detail_summary_widget.dart';
 
 import '../cart/bloc/cart_cubit.dart';
 import '../core/index.dart';
@@ -58,6 +61,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       listener: (context, state) {},
       builder: (context, state) {
         final cubit = context.read<ProductCubit>();
+        final variantId = cubit.selectedVariant?.id ?? "";
         return MyScaffold(
           appBar: DetailAppBar(product),
           body: Stack(
@@ -73,11 +77,13 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         onPageChanged: (index) {
                           final decrement = product.video != null ? 2 : 1;
                           final indexVariant = (index - decrement);
+                          final variantId = product.variants[indexVariant].id;
                           final clampIndex =
                               indexVariant < 0 ? 0 : indexVariant;
                           cubit.selectVariant(product.variants[clampIndex]);
                           buttonVariants.currentState
                               ?.selectedVariant(clampIndex);
+                          context.read<CartCubit>().changeSelectedVariant(variantId);
                         },
                         files: [
                           if (product.video != null)
@@ -98,8 +104,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                           ]
                         ],
                       ),
-                      _buildName(),
-                      _buildSummary(),
+                      DetailNameWidget(name: product.name),
+                      DetailSummaryWidget(product: product),
                       const Divider(height: 32, thickness: 2),
                       ButtonVariants(
                         key: buttonVariants,
@@ -111,7 +117,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                           mediaDisplay.currentState?.changePage(indexVariant);
                         },
                       ),
-                      _buildPrice(context, variant: cubit.selectedVariant),
+                      DetailPriceWidget(
+                          price: cubit.selectedVariant?.price ?? 0,
+                          discount: product.discount),
                       const Divider(height: 8, thickness: 8),
                       const SizedBox(height: Dimens.medium),
                       Padding(
@@ -292,7 +300,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                             onPressed: () {
                               context
                                   .read<CartCubit>()
-                                  .incrementProductQuantity(product);
+                                  .incrementProductQuantity(variantId);
                               Navigator.pushNamed(context, Routes.cart);
                             },
                             child: Text(
@@ -304,7 +312,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         BlocSelector<CartCubit, CartState, int>(
                           selector: (state) => switch (state) {
                             CartLoaded(:final selectedQuantity) =>
-                              selectedQuantity ?? 0,
+                              selectedQuantity,
                             CartLoading() => -1,
                             _ => 0,
                           },
@@ -322,7 +330,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                   onPressed: () {
                                     context
                                         .read<CartCubit>()
-                                        .incrementProductQuantity(product);
+                                        .incrementProductQuantity(variantId);
                                   },
                                   child: const Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -354,7 +362,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                       onPressed: () {
                                         context
                                             .read<CartCubit>()
-                                            .decrementProductQuantity(product);
+                                            .decrementProductQuantity(
+                                                variantId);
                                       },
                                       icon: const Icon(Icons.remove),
                                     ),
@@ -368,7 +377,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                       onPressed: () {
                                         context
                                             .read<CartCubit>()
-                                            .incrementProductQuantity(product);
+                                            .incrementProductQuantity(
+                                                variantId);
                                       },
                                       icon: const Icon(Icons.add),
                                     ),
@@ -387,158 +397,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           ),
         );
       },
-    );
-  }
-
-  Widget _buildPrice(BuildContext context, {Variant? variant}) {
-    var price = variant?.price ?? product.price;
-    var discountedPrice = price - (price * product.discount / 100);
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-          horizontal: Dimens.large, vertical: Dimens.small),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            SingleChildScrollView(
-              child: Row(
-                children: [
-                  Text(
-                    "\$${discountedPrice.toStringAsFixed(2)}",
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                  if (product.discount > 0) ...[
-                    const SizedBox(width: Dimens.small),
-                    Text(
-                      "\$${price.toStringAsFixed(2)}",
-                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                            decoration: TextDecoration.lineThrough,
-                            decorationThickness: 1.5,
-                            color: Theme.of(context)
-                                .colorScheme
-                                .onPrimary
-                                .withAlpha(125),
-                          ),
-                    ),
-                    const SizedBox(width: Dimens.small),
-                    Text(
-                      "${product.discount.toStringAsFixed(0)}%",
-                      style: Theme.of(context)
-                          .textTheme
-                          .labelMedium
-                          ?.copyWith(color: Colors.redAccent),
-                    ),
-                  ],
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildName({Variant? variant}) {
-    final name = variant?.name ?? product.name;
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: Dimens.medium),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            name,
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-          const SizedBox(height: Dimens.small),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildSummary() {
-    return SingleChildScrollView(
-      child: Row(
-        children: [
-          const SizedBox(width: Dimens.medium),
-          Container(
-            padding: const EdgeInsets.all(Dimens.micro),
-            height: 32,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Theme.of(context).colorScheme.primary,
-              ),
-              borderRadius: BorderRadius.circular(Dimens.small),
-            ),
-            child: Row(
-              children: [
-                const SizedBox(width: Dimens.micro),
-                const Icon(
-                  Icons.shopping_cart,
-                  color: Colors.green,
-                ),
-                const SizedBox(width: Dimens.micro),
-                Text(
-                  "${Strings.sold} ${product.sold}",
-                  style: Theme.of(context).textTheme.labelMedium,
-                ),
-                const SizedBox(width: Dimens.micro),
-              ],
-            ),
-          ),
-          const SizedBox(width: Dimens.small),
-          Container(
-            height: 32,
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Theme.of(context).colorScheme.primary,
-              ),
-              borderRadius: BorderRadius.circular(Dimens.small),
-            ),
-            padding: const EdgeInsets.all(Dimens.micro),
-            child: Row(
-              children: [
-                const Icon(
-                  Icons.star,
-                  color: Colors.yellow,
-                ),
-                const SizedBox(width: Dimens.nano),
-                Text(
-                  product.rating.toString(),
-                  style: Theme.of(context).textTheme.labelMedium,
-                ),
-                const SizedBox(width: Dimens.micro),
-              ],
-            ),
-          ),
-          const SizedBox(width: Dimens.small),
-          Container(
-            height: 32,
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Theme.of(context).colorScheme.primary,
-              ),
-              borderRadius: BorderRadius.circular(Dimens.small),
-            ),
-            padding: const EdgeInsets.all(Dimens.micro),
-            child: Row(
-              children: [
-                const SizedBox(width: Dimens.micro),
-                const Icon(
-                  Icons.comment,
-                  color: Colors.blue,
-                ),
-                const SizedBox(width: Dimens.micro),
-                Text(
-                  "${product.reviews.length} ${Strings.reviews}",
-                  style: Theme.of(context).textTheme.labelMedium,
-                ),
-                const SizedBox(width: Dimens.micro),
-              ],
-            ),
-          )
-        ],
-      ),
     );
   }
 

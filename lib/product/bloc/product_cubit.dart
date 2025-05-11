@@ -77,12 +77,8 @@ class ProductCubit extends Cubit<ProductState> {
 
   void selectProduct(Product product) {
     selectedProduct = product;
+    selectedVariant = product.variants.first;
     emit(ProductState.selectedProduct(product));
-    emit(ProductState.success(
-      products,
-      pagingState: pagingState,
-      popularProducts: popularProducts,
-    ));
   }
 
   void selectVariant(Variant variant) {

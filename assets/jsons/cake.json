@@ -4,7 +4,7 @@
     "name": "Chocolate Fudge Cake",
     "tag": "Popular",
     "label": "Best Seller",
-    "price": 34.00,
+    "price": 34.0,
     "description": "Rich and moist chocolate cake with a smooth fudge icing.",
     "tags": [
       "chocolate",
@@ -34,21 +34,21 @@
       {
         "id": "VWOee6xoPXxQyAsg",
         "name": "Chocolate Fudge Cake",
-        "price": 34.00,
+        "price": 34.0,
         "stock": 5,
         "image": "https://images.unsplash.com/photo-1607920591413-4ec007e70023?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       },
       {
         "id": "4xJgE9oAJBX74Ujy",
         "name": "Umbrella Cake",
-        "price": 23.00,
+        "price": 23.0,
         "stock": 3,
         "image": "https://images.unsplash.com/photo-1553452118-621e1f860f43?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       },
       {
         "id": "nP3yL9gVMWx6DmwY",
         "name": "Choco Ball Cake",
-        "price": 12.00,
+        "price": 12.0,
         "stock": 1,
         "image": "https://plus.unsplash.com/premium_photo-1667031518595-9cb4b0d504ef?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       }
@@ -77,7 +77,7 @@
   {
     "id": "PqXy45Tb9VuAjkZ1",
     "name": "Red Velvet Cake",
-    "price": 45.00,
+    "price": 45.0,
     "label": "New",
     "description": "Classic red velvet cake with cream cheese frosting.",
     "tags": [
@@ -102,23 +102,23 @@
       {
         "id": "R1a2B3c4D5e6F7g8",
         "name": "Red Velvet - Small",
-        "price": 20.00,
+        "price": 20.0,
         "stock": 5,
         "image": "https://images.unsplash.com/photo-1685957652870-d56b0e5bea52?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       },
       {
         "id": "H8j9K0LmN1p2Q3r4",
         "name": "Red Velvet - Medium",
-        "price": 35.00,
+        "price": 35.0,
         "stock": 8,
-        "image": "https://plus.unsplash.com/premium_photo-1713920189849-61a10037fbda?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        "image": "https://plus.unsplash.com/premium_photo-1713920189815-876dbdf5f56e?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       },
       {
         "id": "S5t6UvWx7Yz8AaBb",
         "name": "Red Velvet - Large",
-        "price": 50.00,
+        "price": 50.0,
         "stock": 2,
-        "image": "https://plus.unsplash.com/premium_photo-1714145000690-68ff14543c53?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        "image": "https://plus.unsplash.com/premium_photo-1713920189785-48ef41e01824?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       }
     ],
     "reviews": [
@@ -145,7 +145,7 @@
   {
     "id": "BwNqkLm49XoRtP7Z",
     "name": "Vanilla Cupcakes",
-    "price": 12.00,
+    "price": 12.0,
     "rating": 4.5,
     "description": "Light and fluffy vanilla cupcakes with buttercream frosting.",
     "tags": [
@@ -170,12 +170,21 @@
       "long": -74.005974,
       "name": "Cupcake Lane",
       "physicalAddress": "789 Cupcake Lane, Cake City"
-    }
+    },
+    "variants": [
+      {
+        "id": "BwNqkLm49XoRtP7Z",
+        "name": "Vanilla Cupcakes",
+        "price": 12.0,
+        "stock": 40,
+        "image": "https://plus.unsplash.com/premium_photo-1663839412123-44da7b5f481f?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      }
+    ]
   },
   {
     "id": "ZfTnXkMp57Vc8BwR",
     "name": "Lemon Drizzle Cake",
-    "price": 30.00,
+    "price": 30.0,
     "rating": 4.6,
     "description": "Zesty lemon cake with a sweet and tangy drizzle.",
     "tags": [
@@ -199,14 +208,14 @@
       {
         "id": "VWoXe6XoPXxQyAsG",
         "name": "Fresh Lemon Cake",
-        "price": 15.00,
+        "price": 15.0,
         "stock": 5,
         "image": "https://images.unsplash.com/photo-1621248808643-1e39f629c839?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       },
       {
         "id": "nP3yL9gVMWx6DmwY",
         "name": "Medicine Forest Cake",
-        "price": 21.00,
+        "price": 21.0,
         "stock": 1,
         "image": "https://plus.unsplash.com/premium_photo-1714942927757-aeba4c2f4200?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       }
@@ -236,7 +245,7 @@
     "id": "JkRqYpLz85XtNvBW",
     "name": "Carrot Cake",
     "rating": 4.8,
-    "price": 35.00,
+    "price": 35.0,
     "description": "Moist carrot cake with cream cheese frosting and a sprinkle of walnuts.",
     "tags": [
       "carrot",
@@ -260,12 +269,21 @@
       "long": -74.005974,
       "name": "Carrot Road",
       "physicalAddress": "654 Carrot Road, Cake City"
-    }
+    },
+    "variants": [
+      {
+        "id": "JkRqYpLz85XtNvBW",
+        "name": "Carrot Cake",
+        "price": 35.0,
+        "stock": 10,
+        "image": "https://images.unsplash.com/photo-1594741920744-0a7f4a65817a?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      }
+    ]
   },
   {
     "id": "LmXnWqVp78TkRfBZ",
     "name": "Coconut Cake",
-    "price": 28.00,
+    "price": 28.0,
     "rating": 4.9,
     "description": "Decadent coconut cake with coconut cream frosting and toasted coconut flakes.",
     "tags": [
@@ -290,12 +308,21 @@
       "long": -74.005974,
       "name": "Coconut Boulevard",
       "physicalAddress": "987 Coconut Boulevard, Cake City"
-    }
+    },
+    "variants": [
+      {
+        "id": "LmXnWqVp78TkRfBZ",
+        "name": "Coconut Cake",
+        "price": 28.0,
+        "stock": 30,
+        "image": "https://images.unsplash.com/photo-1569775683473-c534979f35a9?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      }
+    ]
   },
   {
     "id": "BwXqRmTp87VkNcZL",
     "name": "Coffee Cake",
-    "price": 25.00,
+    "price": 25.0,
     "rating": 4.7,
     "description": "Rich coffee-infused cake with a layer of espresso buttercream frosting.",
     "tags": [
@@ -320,13 +347,22 @@
       "long": -74.005974,
       "name": "Coffee Street",
       "physicalAddress": "111 Coffee Street, Cake City"
-    }
+    },
+    "variants": [
+      {
+        "id": "BwXqRmTp87VkNcZL",
+        "name": "Coffee Cake",
+        "price": 25.0,
+        "stock": 15,
+        "image": "https://plus.unsplash.com/premium_photo-1679486569841-95697c33a216?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      }
+    ]
   },
   {
     "id": "RmXpLqVz98TkWcBY",
     "name": "Pistachio Cake",
     "rating": 4.6,
-    "price": 32.00,
+    "price": 32.0,
     "description": "Nutty pistachio cake with a layer of pistachio buttercream frosting.",
     "tags": [
       "pistachio",
@@ -350,13 +386,22 @@
       "long": -74.005974,
       "name": "Pistachio Boulevard",
       "physicalAddress": "222 Pistachio Boulevard, Cake City"
-    }
+    },
+    "variants": [
+      {
+        "id": "RmXpLqVz98TkWcBY",
+        "name": "Pistachio Cake",
+        "price": 32.0,
+        "stock": 18,
+        "image": "https://images.unsplash.com/photo-1508737690671-77fe4101791e?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      }
+    ]
   },
   {
     "id": "WmBpKqXn67TcRvYL",
     "name": "Strawberry Cake",
     "rating": 4.9,
-    "price": 30.00,
+    "price": 30.0,
     "description": "Fresh strawberry cake with strawberry cream cheese frosting.",
     "tags": [
       "strawberry",
@@ -380,12 +425,21 @@
       "long": -74.005974,
       "name": "Pistachio Boulevard",
       "physicalAddress": "222 Pistachio Boulevard, Cake City"
-    }
+    },
+    "variants": [
+      {
+        "id": "WmBpKqXn67TcRvYL",
+        "name": "Strawberry Cake",
+        "price": 30.0,
+        "stock": 12,
+        "image": "https://plus.unsplash.com/premium_photo-1672192166851-71d218e64544?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      }
+    ]
   },
   {
     "id": "XkTpNmLq97BWcRYZ",
     "name": "Raspberry Cake",
-    "price": 32.00,
+    "price": 32.0,
     "rating": 4.8,
     "description": "Tart raspberry cake with raspberry buttercream frosting and fresh raspberries.",
     "tags": [
@@ -410,6 +464,15 @@
       "long": -74.005974,
       "name": "Pistachio Boulevard",
       "physicalAddress": "222 Pistachio Boulevard, Cake City"
-    }
+    },
+    "variants": [
+      {
+        "id": "XkTpNmLq97BWcRYZ",
+        "name": "Raspberry Cake",
+        "price": 32.0,
+        "stock": 14,
+        "image": "https://images.unsplash.com/photo-1701688749320-294017bbce63?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      }
+    ]
   }
 ]

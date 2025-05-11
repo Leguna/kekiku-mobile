@@ -1,13 +1,14 @@
 import '../../core/index.dart';
 import '../bloc/cart_cubit.dart';
+import '../models/cart_item_mdl.dart';
 
 class PlusMinusQuantityWidget extends StatelessWidget {
   const PlusMinusQuantityWidget({
     super.key,
-    required this.product,
+    required this.cartItem,
   });
 
-  final Product product;
+  final CartItem cartItem;
 
   @override
   Widget build(BuildContext context) {
@@ -22,15 +23,17 @@ class PlusMinusQuantityWidget extends StatelessWidget {
           IconButton(
               icon: const Icon(Icons.remove),
               onPressed: () {
-                context.read<CartCubit>().decrementProductQuantity(product);
+                context
+                    .read<CartCubit>()
+                    .decrementProductQuantity(cartItem.variantId);
               }),
-          Text(
-            product.quantity.toString(),
-          ),
+          Text(cartItem.quantity.toString()),
           IconButton(
               icon: const Icon(Icons.add),
               onPressed: () {
-                context.read<CartCubit>().incrementProductQuantity(product);
+                context
+                    .read<CartCubit>()
+                    .incrementProductQuantity(cartItem.variantId);
               }),
         ],
       ),

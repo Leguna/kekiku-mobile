@@ -239,17 +239,18 @@ class Checkout implements CartState {
 
 class CartLoaded implements CartState {
   const CartLoaded(
-      {required final List<Product> products,
+      {required final List<CartItem> products,
       this.totalPrice = 0,
       this.totalDiscountedPrice = 0,
       this.deliveryFee = 0,
       this.totalQuantity = 0,
-      required this.selectedProduct,
-      required this.selectedQuantity})
+      this.selectedProduct,
+      this.selectedQuantity = 0,
+      this.totalBasePrice = 0})
       : _products = products;
 
-  final List<Product> _products;
-  List<Product> get products {
+  final List<CartItem> _products;
+  List<CartItem> get products {
     if (_products is EqualUnmodifiableListView) return _products;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_products);
@@ -263,8 +264,11 @@ class CartLoaded implements CartState {
   final double deliveryFee;
   @JsonKey()
   final int totalQuantity;
-  final Product? selectedProduct;
-  final int? selectedQuantity;
+  final CartItem? selectedProduct;
+  @JsonKey()
+  final int selectedQuantity;
+  @JsonKey()
+  final double totalBasePrice;
 
   /// Create a copy of CartState
   /// with the given fields replaced by the non-null parameter values.
@@ -290,7 +294,9 @@ class CartLoaded implements CartState {
             (identical(other.selectedProduct, selectedProduct) ||
                 other.selectedProduct == selectedProduct) &&
             (identical(other.selectedQuantity, selectedQuantity) ||
-                other.selectedQuantity == selectedQuantity));
+                other.selectedQuantity == selectedQuantity) &&
+            (identical(other.totalBasePrice, totalBasePrice) ||
+                other.totalBasePrice == totalBasePrice));
   }
 
   @override
@@ -302,11 +308,12 @@ class CartLoaded implements CartState {
       deliveryFee,
       totalQuantity,
       selectedProduct,
-      selectedQuantity);
+      selectedQuantity,
+      totalBasePrice);
 
   @override
   String toString() {
-    return 'CartState.loaded(products: $products, totalPrice: $totalPrice, totalDiscountedPrice: $totalDiscountedPrice, deliveryFee: $deliveryFee, totalQuantity: $totalQuantity, selectedProduct: $selectedProduct, selectedQuantity: $selectedQuantity)';
+    return 'CartState.loaded(products: $products, totalPrice: $totalPrice, totalDiscountedPrice: $totalDiscountedPrice, deliveryFee: $deliveryFee, totalQuantity: $totalQuantity, selectedProduct: $selectedProduct, selectedQuantity: $selectedQuantity, totalBasePrice: $totalBasePrice)';
   }
 }
 
@@ -318,15 +325,16 @@ abstract mixin class $CartLoadedCopyWith<$Res>
       _$CartLoadedCopyWithImpl;
   @useResult
   $Res call(
-      {List<Product> products,
+      {List<CartItem> products,
       double totalPrice,
       double totalDiscountedPrice,
       double deliveryFee,
       int totalQuantity,
-      Product? selectedProduct,
-      int? selectedQuantity});
+      CartItem? selectedProduct,
+      int selectedQuantity,
+      double totalBasePrice});
 
-  $ProductCopyWith<$Res>? get selectedProduct;
+  $CartItemCopyWith<$Res>? get selectedProduct;
 }
 
 /// @nodoc
@@ -346,13 +354,14 @@ class _$CartLoadedCopyWithImpl<$Res> implements $CartLoadedCopyWith<$Res> {
     Object? deliveryFee = null,
     Object? totalQuantity = null,
     Object? selectedProduct = freezed,
-    Object? selectedQuantity = freezed,
+    Object? selectedQuantity = null,
+    Object? totalBasePrice = null,
   }) {
     return _then(CartLoaded(
       products: null == products
           ? _self._products
           : products // ignore: cast_nullable_to_non_nullable
-              as List<Product>,
+              as List<CartItem>,
       totalPrice: null == totalPrice
           ? _self.totalPrice
           : totalPrice // ignore: cast_nullable_to_non_nullable
@@ -372,11 +381,15 @@ class _$CartLoadedCopyWithImpl<$Res> implements $CartLoadedCopyWith<$Res> {
       selectedProduct: freezed == selectedProduct
           ? _self.selectedProduct
           : selectedProduct // ignore: cast_nullable_to_non_nullable
-              as Product?,
-      selectedQuantity: freezed == selectedQuantity
+              as CartItem?,
+      selectedQuantity: null == selectedQuantity
           ? _self.selectedQuantity
           : selectedQuantity // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
+      totalBasePrice: null == totalBasePrice
+          ? _self.totalBasePrice
+          : totalBasePrice // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 
@@ -384,12 +397,12 @@ class _$CartLoadedCopyWithImpl<$Res> implements $CartLoadedCopyWith<$Res> {
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $ProductCopyWith<$Res>? get selectedProduct {
+  $CartItemCopyWith<$Res>? get selectedProduct {
     if (_self.selectedProduct == null) {
       return null;
     }
 
-    return $ProductCopyWith<$Res>(_self.selectedProduct!, (value) {
+    return $CartItemCopyWith<$Res>(_self.selectedProduct!, (value) {
       return _then(_self.copyWith(selectedProduct: value));
     });
   }

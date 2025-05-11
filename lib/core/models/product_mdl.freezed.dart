@@ -34,7 +34,6 @@ mixin _$Product {
   List<String>? get categories;
   @JsonKey(fromJson: _variantListFromJson, toJson: _variantListToJson)
   List<Variant> get variants;
-  Variant? get selectedVariant;
   @JsonKey(fromJson: _reviewListFromJson, toJson: _reviewListToJson)
   List<Review> get reviews;
 
@@ -77,8 +76,6 @@ mixin _$Product {
             const DeepCollectionEquality()
                 .equals(other.categories, categories) &&
             const DeepCollectionEquality().equals(other.variants, variants) &&
-            (identical(other.selectedVariant, selectedVariant) ||
-                other.selectedVariant == selectedVariant) &&
             const DeepCollectionEquality().equals(other.reviews, reviews));
   }
 
@@ -104,13 +101,12 @@ mixin _$Product {
         address,
         const DeepCollectionEquality().hash(categories),
         const DeepCollectionEquality().hash(variants),
-        selectedVariant,
         const DeepCollectionEquality().hash(reviews)
       ]);
 
   @override
   String toString() {
-    return 'Product(id: $id, name: $name, label: $label, price: $price, description: $description, quantity: $quantity, tags: $tags, ingredients: $ingredients, discount: $discount, rating: $rating, stock: $stock, sold: $sold, isFavorite: $isFavorite, video: $video, image: $image, address: $address, categories: $categories, variants: $variants, selectedVariant: $selectedVariant, reviews: $reviews)';
+    return 'Product(id: $id, name: $name, label: $label, price: $price, description: $description, quantity: $quantity, tags: $tags, ingredients: $ingredients, discount: $discount, rating: $rating, stock: $stock, sold: $sold, isFavorite: $isFavorite, video: $video, image: $image, address: $address, categories: $categories, variants: $variants, reviews: $reviews)';
   }
 }
 
@@ -139,12 +135,10 @@ abstract mixin class $ProductCopyWith<$Res> {
       List<String>? categories,
       @JsonKey(fromJson: _variantListFromJson, toJson: _variantListToJson)
       List<Variant> variants,
-      Variant? selectedVariant,
       @JsonKey(fromJson: _reviewListFromJson, toJson: _reviewListToJson)
       List<Review> reviews});
 
   $AddressCopyWith<$Res>? get address;
-  $VariantCopyWith<$Res>? get selectedVariant;
 }
 
 /// @nodoc
@@ -177,7 +171,6 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
     Object? address = freezed,
     Object? categories = freezed,
     Object? variants = null,
-    Object? selectedVariant = freezed,
     Object? reviews = null,
   }) {
     return _then(_self.copyWith(
@@ -253,10 +246,6 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
           ? _self.variants
           : variants // ignore: cast_nullable_to_non_nullable
               as List<Variant>,
-      selectedVariant: freezed == selectedVariant
-          ? _self.selectedVariant
-          : selectedVariant // ignore: cast_nullable_to_non_nullable
-              as Variant?,
       reviews: null == reviews
           ? _self.reviews
           : reviews // ignore: cast_nullable_to_non_nullable
@@ -275,20 +264,6 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
 
     return $AddressCopyWith<$Res>(_self.address!, (value) {
       return _then(_self.copyWith(address: value));
-    });
-  }
-
-  /// Create a copy of Product
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $VariantCopyWith<$Res>? get selectedVariant {
-    if (_self.selectedVariant == null) {
-      return null;
-    }
-
-    return $VariantCopyWith<$Res>(_self.selectedVariant!, (value) {
-      return _then(_self.copyWith(selectedVariant: value));
     });
   }
 }
@@ -316,7 +291,6 @@ class _Product extends Product {
       final List<String>? categories = const [],
       @JsonKey(fromJson: _variantListFromJson, toJson: _variantListToJson)
       final List<Variant> variants = const [],
-      this.selectedVariant,
       @JsonKey(fromJson: _reviewListFromJson, toJson: _reviewListToJson)
       final List<Review> reviews = const []})
       : _tags = tags,
@@ -408,8 +382,6 @@ class _Product extends Product {
     return EqualUnmodifiableListView(_variants);
   }
 
-  @override
-  final Variant? selectedVariant;
   final List<Review> _reviews;
   @override
   @JsonKey(fromJson: _reviewListFromJson, toJson: _reviewListToJson)
@@ -463,8 +435,6 @@ class _Product extends Product {
             const DeepCollectionEquality()
                 .equals(other._categories, _categories) &&
             const DeepCollectionEquality().equals(other._variants, _variants) &&
-            (identical(other.selectedVariant, selectedVariant) ||
-                other.selectedVariant == selectedVariant) &&
             const DeepCollectionEquality().equals(other._reviews, _reviews));
   }
 
@@ -490,13 +460,12 @@ class _Product extends Product {
         address,
         const DeepCollectionEquality().hash(_categories),
         const DeepCollectionEquality().hash(_variants),
-        selectedVariant,
         const DeepCollectionEquality().hash(_reviews)
       ]);
 
   @override
   String toString() {
-    return 'Product(id: $id, name: $name, label: $label, price: $price, description: $description, quantity: $quantity, tags: $tags, ingredients: $ingredients, discount: $discount, rating: $rating, stock: $stock, sold: $sold, isFavorite: $isFavorite, video: $video, image: $image, address: $address, categories: $categories, variants: $variants, selectedVariant: $selectedVariant, reviews: $reviews)';
+    return 'Product(id: $id, name: $name, label: $label, price: $price, description: $description, quantity: $quantity, tags: $tags, ingredients: $ingredients, discount: $discount, rating: $rating, stock: $stock, sold: $sold, isFavorite: $isFavorite, video: $video, image: $image, address: $address, categories: $categories, variants: $variants, reviews: $reviews)';
   }
 }
 
@@ -526,14 +495,11 @@ abstract mixin class _$ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
       List<String>? categories,
       @JsonKey(fromJson: _variantListFromJson, toJson: _variantListToJson)
       List<Variant> variants,
-      Variant? selectedVariant,
       @JsonKey(fromJson: _reviewListFromJson, toJson: _reviewListToJson)
       List<Review> reviews});
 
   @override
   $AddressCopyWith<$Res>? get address;
-  @override
-  $VariantCopyWith<$Res>? get selectedVariant;
 }
 
 /// @nodoc
@@ -566,7 +532,6 @@ class __$ProductCopyWithImpl<$Res> implements _$ProductCopyWith<$Res> {
     Object? address = freezed,
     Object? categories = freezed,
     Object? variants = null,
-    Object? selectedVariant = freezed,
     Object? reviews = null,
   }) {
     return _then(_Product(
@@ -642,10 +607,6 @@ class __$ProductCopyWithImpl<$Res> implements _$ProductCopyWith<$Res> {
           ? _self._variants
           : variants // ignore: cast_nullable_to_non_nullable
               as List<Variant>,
-      selectedVariant: freezed == selectedVariant
-          ? _self.selectedVariant
-          : selectedVariant // ignore: cast_nullable_to_non_nullable
-              as Variant?,
       reviews: null == reviews
           ? _self._reviews
           : reviews // ignore: cast_nullable_to_non_nullable
@@ -666,27 +627,13 @@ class __$ProductCopyWithImpl<$Res> implements _$ProductCopyWith<$Res> {
       return _then(_self.copyWith(address: value));
     });
   }
-
-  /// Create a copy of Product
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $VariantCopyWith<$Res>? get selectedVariant {
-    if (_self.selectedVariant == null) {
-      return null;
-    }
-
-    return $VariantCopyWith<$Res>(_self.selectedVariant!, (value) {
-      return _then(_self.copyWith(selectedVariant: value));
-    });
-  }
 }
 
 /// @nodoc
 mixin _$Variant {
   String get id;
   String? get name;
-  double? get price;
+  double get price;
   int? get stock;
   String? get image;
 
@@ -727,8 +674,7 @@ abstract mixin class $VariantCopyWith<$Res> {
   factory $VariantCopyWith(Variant value, $Res Function(Variant) _then) =
       _$VariantCopyWithImpl;
   @useResult
-  $Res call(
-      {String id, String? name, double? price, int? stock, String? image});
+  $Res call({String id, String? name, double price, int? stock, String? image});
 }
 
 /// @nodoc
@@ -745,7 +691,7 @@ class _$VariantCopyWithImpl<$Res> implements $VariantCopyWith<$Res> {
   $Res call({
     Object? id = null,
     Object? name = freezed,
-    Object? price = freezed,
+    Object? price = null,
     Object? stock = freezed,
     Object? image = freezed,
   }) {
@@ -758,10 +704,10 @@ class _$VariantCopyWithImpl<$Res> implements $VariantCopyWith<$Res> {
           ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      price: freezed == price
+      price: null == price
           ? _self.price
           : price // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as double,
       stock: freezed == stock
           ? _self.stock
           : stock // ignore: cast_nullable_to_non_nullable
@@ -777,7 +723,8 @@ class _$VariantCopyWithImpl<$Res> implements $VariantCopyWith<$Res> {
 /// @nodoc
 @JsonSerializable()
 class _Variant implements Variant {
-  const _Variant({this.id = '', this.name, this.price, this.stock, this.image});
+  const _Variant(
+      {this.id = '', this.name, this.price = 0, this.stock, this.image});
   factory _Variant.fromJson(Map<String, dynamic> json) =>
       _$VariantFromJson(json);
 
@@ -787,7 +734,8 @@ class _Variant implements Variant {
   @override
   final String? name;
   @override
-  final double? price;
+  @JsonKey()
+  final double price;
   @override
   final int? stock;
   @override
@@ -836,8 +784,7 @@ abstract mixin class _$VariantCopyWith<$Res> implements $VariantCopyWith<$Res> {
       __$VariantCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {String id, String? name, double? price, int? stock, String? image});
+  $Res call({String id, String? name, double price, int? stock, String? image});
 }
 
 /// @nodoc
@@ -854,7 +801,7 @@ class __$VariantCopyWithImpl<$Res> implements _$VariantCopyWith<$Res> {
   $Res call({
     Object? id = null,
     Object? name = freezed,
-    Object? price = freezed,
+    Object? price = null,
     Object? stock = freezed,
     Object? image = freezed,
   }) {
@@ -867,10 +814,10 @@ class __$VariantCopyWithImpl<$Res> implements _$VariantCopyWith<$Res> {
           ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      price: freezed == price
+      price: null == price
           ? _self.price
           : price // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as double,
       stock: freezed == stock
           ? _self.stock
           : stock // ignore: cast_nullable_to_non_nullable

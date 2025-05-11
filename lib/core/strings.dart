@@ -293,9 +293,15 @@ final class Strings {
 
   static const String orderSummary = 'Order Summary';
 
-  static const totalQuantity = "Total Quantity";
+  static const totalItem = "Total Item";
 
   static const String deliveryFee = 'Delivery Fee';
 
   static const String discountedPrice = 'Discounted Price';
+
+  static const String cartEmpty = "Cart is empty";
+
+  static const String variantLabel = 'Variant:';
+
+  static const String basePrice = 'Base Price';
 }

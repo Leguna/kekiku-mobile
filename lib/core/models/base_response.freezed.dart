@@ -123,9 +123,9 @@ class _$BaseResponseCopyWithImpl<T, $Res>
 @JsonSerializable(genericArgumentFactories: true)
 class _BaseResponse<T> implements BaseResponse<T> {
   const _BaseResponse(
-      {required this.success,
+      {this.success = true,
       this.statusCode = 200,
-      this.message = '',
+      this.message = 'success',
       required this.data,
       final List<String> errors = const []})
       : _errors = errors;
@@ -134,6 +134,7 @@ class _BaseResponse<T> implements BaseResponse<T> {
       _$BaseResponseFromJson(json, fromJsonT);
 
   @override
+  @JsonKey()
   final bool success;
   @override
   @JsonKey()

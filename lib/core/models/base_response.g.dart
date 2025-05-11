@@ -11,9 +11,9 @@ _BaseResponse<T> _$BaseResponseFromJson<T>(
   T Function(Object? json) fromJsonT,
 ) =>
     _BaseResponse<T>(
-      success: json['success'] as bool,
+      success: json['success'] as bool? ?? true,
       statusCode: (json['statusCode'] as num?)?.toInt() ?? 200,
-      message: json['message'] as String? ?? '',
+      message: json['message'] as String? ?? 'success',
       data: fromJsonT(json['data']),
       errors: (json['errors'] as List<dynamic>?)
               ?.map((e) => e as String)

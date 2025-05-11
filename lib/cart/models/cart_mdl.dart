@@ -2,19 +2,34 @@ import 'dart:convert';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../core/index.dart';
+import 'cart_item_mdl.dart';
 
 part 'cart_mdl.freezed.dart';
 part 'cart_mdl.g.dart';
 
 @freezed
-sealed class Cart with _$Cart {
-  const factory Cart({required List<Product> products}) = _CartMdl;
+sealed class Cart with _$Cart{
+  const factory Cart({
+    @Default([]) List<CartItem> products,
+    @Default(0) double totalPrice,
+    @Default(0) double totalDiscountedPrice,
+    @Default(0) double deliveryFee,
+    @Default(0) int totalQuantity,
+  }) = _Cart;
 
-  const factory Cart.empty() = _Empty;
+  const Cart._();
 
-  factory Cart.fromJson(Map<String, dynamic> json) => _$CartFromJson(json);
+  double get totalBasePrice {
+    double totalBasePrice = 0.0;
+    for (var product in products) {
+      totalBasePrice += product.totalBasePrice;
+    }
+    return totalBasePrice;
+  }
+
+  factory Cart.fromJson(Map<String, dynamic> json) =>
+      _$CartFromJson(json);
 
   factory Cart.fromJsonString(String jsonString) =>
-      _$CartFromJson(json.decode(jsonString));
+      Cart.fromJson(json.decode(jsonString) as Map<String, dynamic>);
 }

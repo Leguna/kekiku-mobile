@@ -6,9 +6,9 @@ part 'base_response.g.dart';
 @Freezed(genericArgumentFactories: true)
 sealed class BaseResponse<T> with _$BaseResponse<T> {
   const factory BaseResponse({
-    required bool success,
+    @Default(true) bool success,
     @Default(200) int statusCode,
-    @Default('') String message,
+    @Default('success') String message,
     required T data,
     @Default([]) List<String> errors,
   }) = _BaseResponse<T>;

@@ -13,12 +13,13 @@ class CartState with _$CartState {
   const factory CartState.checkout() = Checkout;
 
   const factory CartState.loaded({
-    required List<Product> products,
+    required List<CartItem> products,
     @Default(0) double totalPrice,
     @Default(0) double totalDiscountedPrice,
     @Default(0) double deliveryFee,
     @Default(0) int totalQuantity,
-    required Product? selectedProduct,
-    required int? selectedQuantity,
+    CartItem? selectedProduct,
+    @Default(0) int selectedQuantity,
+    @Default(0) double totalBasePrice,
   }) = CartLoaded;
 }

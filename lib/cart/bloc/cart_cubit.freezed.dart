@@ -136,8 +136,8 @@ class _$CartLoadingCopyWithImpl<$Res> implements $CartLoadingCopyWith<$Res> {
 
 /// @nodoc
 
-class _Error implements CartState {
-  const _Error(this.message);
+class CartError implements CartState {
+  const CartError(this.message);
 
   final String message;
 
@@ -145,14 +145,14 @@ class _Error implements CartState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  _$ErrorCopyWith<_Error> get copyWith =>
-      __$ErrorCopyWithImpl<_Error>(this, _$identity);
+  $CartErrorCopyWith<CartError> get copyWith =>
+      _$CartErrorCopyWithImpl<CartError>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Error &&
+            other is CartError &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -166,19 +166,20 @@ class _Error implements CartState {
 }
 
 /// @nodoc
-abstract mixin class _$ErrorCopyWith<$Res> implements $CartStateCopyWith<$Res> {
-  factory _$ErrorCopyWith(_Error value, $Res Function(_Error) _then) =
-      __$ErrorCopyWithImpl;
+abstract mixin class $CartErrorCopyWith<$Res>
+    implements $CartStateCopyWith<$Res> {
+  factory $CartErrorCopyWith(CartError value, $Res Function(CartError) _then) =
+      _$CartErrorCopyWithImpl;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$ErrorCopyWithImpl<$Res> implements _$ErrorCopyWith<$Res> {
-  __$ErrorCopyWithImpl(this._self, this._then);
+class _$CartErrorCopyWithImpl<$Res> implements $CartErrorCopyWith<$Res> {
+  _$CartErrorCopyWithImpl(this._self, this._then);
 
-  final _Error _self;
-  final $Res Function(_Error) _then;
+  final CartError _self;
+  final $Res Function(CartError) _then;
 
   /// Create a copy of CartState
   /// with the given fields replaced by the non-null parameter values.
@@ -186,7 +187,7 @@ class __$ErrorCopyWithImpl<$Res> implements _$ErrorCopyWith<$Res> {
   $Res call({
     Object? message = null,
   }) {
-    return _then(_Error(
+    return _then(CartError(
       null == message
           ? _self.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -217,13 +218,13 @@ class CartEmpty implements CartState {
 
 /// @nodoc
 
-class Checkout implements CartState {
-  const Checkout();
+class CartCheckout implements CartState {
+  const CartCheckout();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is Checkout);
+        (other.runtimeType == runtimeType && other is CartCheckout);
   }
 
   @override

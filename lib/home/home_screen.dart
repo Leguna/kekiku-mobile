@@ -8,7 +8,9 @@ import '../favorite/favorite_page.dart';
 import '../hamburger_menu/menu_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({
+    super.key,
+  });
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -17,11 +19,14 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    final pageController = PageController(initialPage: 0);
+    final args =
+        ModalRoute.of(context)?.settings.arguments as HomeScreenArguments?;
+    final initialIndex = args?.initialIndex ?? 0;
+    final pageController = PageController(initialPage: initialIndex);
     final homeCubit = context.read<HomeCubit>();
     final bottomNavBarCubit = context.read<BottomNavBarCubit>();
-    homeCubit.tryShowPopupImage();
-    bottomNavBarCubit.reset();
+    bottomNavBarCubit.changePage(initialIndex);
+
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) {
@@ -76,4 +81,12 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+}
+
+class HomeScreenArguments {
+  final int initialIndex;
+
+  const HomeScreenArguments({
+    this.initialIndex = 0,
+  });
 }

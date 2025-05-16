@@ -304,4 +304,8 @@ final class Strings {
   static const String variantLabel = 'Variant:';
 
   static const String basePrice = 'Base Price';
+
+  static const String checkout = 'Checkout';
+
+  static const String searchHintField = "Search";
 }

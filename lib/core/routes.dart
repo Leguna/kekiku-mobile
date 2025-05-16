@@ -10,6 +10,7 @@ import '../auth/profile/edit_profile_screen.dart';
 import '../auth/profile_detail_screen.dart';
 import '../auth/register_screen.dart';
 import '../auth/verify_code_screen.dart';
+import '../cart/checkout_screen.dart';
 import '../hamburger_menu/menu_screen.dart';
 import '../home/home_screen.dart';
 import '../scanner/scanner_screen.dart';
@@ -76,6 +77,7 @@ class Routes {
       search: (context) => const SearchScreen(),
       cart: (context) => const CartScreen(),
       notification: (context) => const NotificationScreen(),
+      checkout: (context) => const CheckoutScreen(),
     };
   }
 

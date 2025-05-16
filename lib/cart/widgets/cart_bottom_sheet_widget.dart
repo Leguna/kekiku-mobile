@@ -2,6 +2,7 @@ import 'package:kekiku/cart/bloc/cart_cubit.dart';
 import 'package:kekiku/core/widgets/my_shimmer.dart';
 
 import '../../core/index.dart';
+import '../../home/home_screen.dart';
 
 class CartBottomSheetWidget extends StatelessWidget {
   const CartBottomSheetWidget({
@@ -10,7 +11,18 @@ class CartBottomSheetWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CartCubit, CartState>(
+    return BlocConsumer<CartCubit, CartState>(
+      listener: (context, state) {
+        switch (state) {
+          case CartCheckout():
+            break;
+          case CartError():
+            showMySnackBar(context, state.message);
+            break;
+          default:
+            break;
+        }
+      },
       buildWhen: (previous, current) {
         if (current is CartLoading && previous is CartEmpty) {
           return false;
@@ -54,10 +66,20 @@ class CartBottomSheetWidget extends StatelessWidget {
                     const OrderSummaryWidget(),
                     SizedBox(height: Dimens.medium),
                     ElevatedButton(
-                      onPressed: () {
-                        context.read<CartCubit>().checkout();
+                      onPressed: switch (state) {
+                        CartLoaded() => () {
+                            Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              Routes.home,
+                              (route) => false,
+                              arguments: const HomeScreenArguments(
+                                initialIndex: 1,
+                              ),
+                            );
+                          },
+                        _ => null,
                       },
-                      child: Text('Checkout'),
+                      child: Text(Strings.checkout),
                     ),
                   ],
                 ),

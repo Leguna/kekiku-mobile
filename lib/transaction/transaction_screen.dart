@@ -1,6 +1,7 @@
 import 'package:kekiku/transaction/blocs/transaction_cubit.dart';
 import 'package:lottie/lottie.dart';
 
+import '../cart/bloc/cart_cubit.dart';
 import '../core/index.dart';
 import 'widgets/filter_bar.dart';
 import 'widgets/transaction_item.dart';
@@ -36,7 +37,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
               controller: cubit.searchController,
               textInputAction: TextInputAction.search,
               decoration: InputDecoration(
-                hintText: 'Search transaction',
+                hintText: Strings.searchHintField,
                 border: InputBorder.none,
                 contentPadding: const EdgeInsets.all(0),
                 prefixIcon: Icon(
@@ -71,11 +72,20 @@ class _TransactionScreenState extends State<TransactionScreen> {
                 },
                 icon: const Icon(Icons.notifications_none),
               ),
-              IconButtonBadged(
-                onPressed: () {
-                  Navigator.pushNamed(context, Routes.cart);
+              BlocBuilder<CartCubit, CartState>(
+                builder: (context, state) {
+                  final cartItemCount = switch (state) {
+                    CartLoaded(:final totalQuantity) => totalQuantity,
+                    _ => 0,
+                  };
+                  return IconButtonBadged(
+                    badgeText: cartItemCount.toString(),
+                    onPressed: () {
+                      Navigator.pushNamed(context, Routes.cart);
+                    },
+                    icon: const Icon(Icons.shopping_cart_outlined),
+                  );
                 },
-                icon: const Icon(Icons.shopping_cart_outlined),
               ),
               const SizedBox(width: Dimens.tiny),
             ],

@@ -7,16 +7,11 @@ import '../core/widgets/bottom_nav_bar/bloc/bottom_nav_bar_cubit.dart';
 import '../favorite/favorite_page.dart';
 import '../hamburger_menu/menu_screen.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({
     super.key,
   });
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final args =
@@ -24,9 +19,6 @@ class _HomeScreenState extends State<HomeScreen> {
     final initialIndex = args?.initialIndex ?? 0;
     final pageController = PageController(initialPage: initialIndex);
     final homeCubit = context.read<HomeCubit>();
-    final bottomNavBarCubit = context.read<BottomNavBarCubit>();
-    bottomNavBarCubit.changePage(initialIndex);
-
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) {
@@ -44,6 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   MyScaffold(
                     bottomNavigationBar: MyBottomNavBar(
+                      initialIndex: initialIndex,
                       onNavTap: (index) {
                         if (pageController.hasClients) {
                           pageController.jumpToPage(index);

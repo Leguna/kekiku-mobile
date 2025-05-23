@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kekiku/cart/data_sources/cart_repository.dart';
+import 'package:kekiku/cart/models/cart_response.dart';
 
 import '../../core/index.dart';
 import '../models/cart_item_mdl.dart';
@@ -27,13 +28,13 @@ class CartCubit extends Cubit<CartState> {
       }
       emit(CartState.loaded(
         products: cartItems,
-        totalPrice: await cartRepository.getTotalPrice(),
-        totalQuantity: await cartRepository.getTotalQuantity(),
-        deliveryFee: await cartRepository.getDeliveryFee(),
+        totalPrice: cartResponse.data.totalPrice,
+        totalQuantity: cartResponse.data.totalItem,
+        deliveryFee: cartResponse.data.deliveryFee,
+        totalDiscountedPrice: cartResponse.data.totalDiscountedPrice,
+        totalBasePrice: cartResponse.data.basePrice,
         selectedProduct: null,
         selectedQuantity: 0,
-        totalDiscountedPrice: await cartRepository.getTotalDiscountedPrice(),
-        totalBasePrice: await cartRepository.totalBasePrice(),
       ));
     } catch (e) {
       emit(CartState.error(e.toString()));
@@ -43,11 +44,12 @@ class CartCubit extends Cubit<CartState> {
   Future<void> changeSelectedVariant(String variantId) async {
     try {
       emit(const CartState.loading());
+      final cartResponse = await cartRepository.fetchCart();
       emit(CartState.loaded(
         products: cartItems,
-        totalPrice: await cartRepository.getTotalPrice(),
-        totalQuantity: await cartRepository.getTotalQuantity(),
-        deliveryFee: await cartRepository.getDeliveryFee(),
+        totalPrice: cartResponse.data.totalPrice,
+        totalQuantity: cartResponse.data.totalItem,
+        deliveryFee: cartResponse.data.deliveryFee,
         selectedQuantity: await cartRepository.getVariantQuantity(variantId),
       ));
     } catch (e) {
@@ -59,15 +61,18 @@ class CartCubit extends Cubit<CartState> {
     try {
       emit(const CartState.loading());
       int quantity = await cartRepository.getVariantQuantity(variantId);
+      final cartResponse = await cartRepository.fetchCart();
       if (quantity == 0) {
         emit(const CartState.empty());
         return;
       }
       emit(CartState.loaded(
         products: cartItems,
-        totalPrice: await cartRepository.getTotalPrice(),
-        totalQuantity: await cartRepository.getTotalQuantity(),
-        deliveryFee: await cartRepository.getDeliveryFee(),
+        totalPrice: cartResponse.data.totalPrice,
+        totalQuantity: cartResponse.data.totalItem,
+        deliveryFee: cartResponse.data.deliveryFee,
+        totalDiscountedPrice: cartResponse.data.totalDiscountedPrice,
+        totalBasePrice: cartResponse.data.basePrice,
         selectedQuantity: quantity,
       ));
     } catch (e) {
@@ -81,23 +86,10 @@ class CartCubit extends Cubit<CartState> {
 
   Future<void> checkout() async {
     try {
-      emit(const CartState.loading());
-      final cartResponse = await cartRepository.fetchCart();
-      cartItems = cartResponse.data.items;
-      if (cartItems.isEmpty) {
-        emit(const CartState.empty());
-        return;
-      }
-      emit(CartState.loaded(
-        products: cartItems,
-        totalPrice: await cartRepository.getTotalPrice(),
-        totalQuantity: await cartRepository.getTotalQuantity(),
-        deliveryFee: await cartRepository.getDeliveryFee(),
-        selectedProduct: null,
-        selectedQuantity: 0,
-        totalDiscountedPrice: await cartRepository.getTotalDiscountedPrice(),
-        totalBasePrice: await cartRepository.totalBasePrice(),
-      ));
+      emit(const CartState.loading(isFull: true));
+      await Future.delayed(const Duration(seconds: 1));
+      await cartRepository.checkout();
+      emit(CartState.checkout());
     } catch (e) {
       emit(CartState.error(e.toString()));
     }
@@ -116,13 +108,13 @@ class CartCubit extends Cubit<CartState> {
       }
       emit(CartState.loaded(
         products: cartItems,
-        totalPrice: await cartRepository.getTotalPrice(),
-        totalQuantity: await cartRepository.getTotalQuantity(),
+        totalPrice: cartResponse.data.totalPrice,
+        totalQuantity: cartResponse.data.totalItem,
+        deliveryFee: cartResponse.data.deliveryFee,
+        totalDiscountedPrice: cartResponse.data.totalDiscountedPrice,
+        totalBasePrice: cartResponse.data.basePrice,
         selectedProduct: removedProduct,
         selectedQuantity: removedProduct.quantity,
-        deliveryFee: await cartRepository.getDeliveryFee(),
-        totalDiscountedPrice: await cartRepository.getTotalDiscountedPrice(),
-        totalBasePrice: await cartRepository.totalBasePrice(),
       ));
     } catch (e) {
       emit(CartState.error(e.toString()));
@@ -133,19 +125,17 @@ class CartCubit extends Cubit<CartState> {
     try {
       emit(CartState.loading());
       final addedProduct = await cartRepository.addProductToCart(variantId);
-      final totalPrice = await cartRepository.getTotalPrice();
-      final totalQuantity = await cartRepository.getTotalQuantity();
       final cartResponse = await cartRepository.fetchCart();
       cartItems = cartResponse.data.items;
       emit(CartState.loaded(
         products: cartItems,
-        totalPrice: totalPrice,
-        totalQuantity: totalQuantity,
+        totalPrice: cartResponse.data.totalPrice,
+        totalQuantity: cartResponse.data.totalItem,
+        deliveryFee: cartResponse.data.deliveryFee,
+        totalDiscountedPrice: cartResponse.data.totalDiscountedPrice,
+        totalBasePrice: cartResponse.data.basePrice,
         selectedProduct: addedProduct,
         selectedQuantity: addedProduct.quantity,
-        deliveryFee: await cartRepository.getDeliveryFee(),
-        totalDiscountedPrice: await cartRepository.getTotalDiscountedPrice(),
-        totalBasePrice: await cartRepository.totalBasePrice(),
       ));
     } catch (e) {
       emit(CartState.error(e.toString()));
@@ -158,8 +148,6 @@ class CartCubit extends Cubit<CartState> {
       await cartRepository.removeAllThisProductFromCart(variantId);
       final cartResponse = await cartRepository.fetchCart();
       cartItems = cartResponse.data.items;
-      final totalPrice = await cartRepository.getTotalPrice();
-      final totalQuantity = await cartRepository.getTotalQuantity();
 
       if (cartItems.isEmpty) {
         emit(const CartState.empty());
@@ -168,13 +156,13 @@ class CartCubit extends Cubit<CartState> {
 
       emit(CartState.loaded(
         products: cartItems,
-        totalPrice: totalPrice,
-        totalQuantity: totalQuantity,
+        totalPrice: cartResponse.data.totalPrice,
+        totalQuantity: cartResponse.data.totalItem,
+        deliveryFee: cartResponse.data.deliveryFee,
+        totalDiscountedPrice: cartResponse.data.totalDiscountedPrice,
+        totalBasePrice: cartResponse.data.basePrice,
         selectedProduct: null,
         selectedQuantity: 0,
-        totalBasePrice: await cartRepository.totalBasePrice(),
-        totalDiscountedPrice: await cartRepository.getTotalDiscountedPrice(),
-        deliveryFee: await cartRepository.getDeliveryFee(),
       ));
     } catch (e) {
       emit(CartState.error(e.toString()));

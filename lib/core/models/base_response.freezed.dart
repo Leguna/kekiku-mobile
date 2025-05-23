@@ -121,14 +121,15 @@ class _$BaseResponseCopyWithImpl<T, $Res>
 
 /// @nodoc
 @JsonSerializable(genericArgumentFactories: true)
-class _BaseResponse<T> implements BaseResponse<T> {
+class _BaseResponse<T> extends BaseResponse<T> {
   const _BaseResponse(
       {this.success = true,
       this.statusCode = 200,
       this.message = 'success',
       required this.data,
       final List<String> errors = const []})
-      : _errors = errors;
+      : _errors = errors,
+        super._();
   factory _BaseResponse.fromJson(
           Map<String, dynamic> json, T Function(Object?) fromJsonT) =>
       _$BaseResponseFromJson(json, fromJsonT);

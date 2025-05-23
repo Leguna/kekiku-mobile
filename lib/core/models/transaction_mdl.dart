@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:kekiku/cart/models/cart_item_mdl.dart';
 
 import '../index.dart';
 
@@ -12,16 +13,21 @@ sealed class Transaction with _$Transaction {
   const factory Transaction({
     @Default('') String id,
     double? amount,
+    @Default(0) int quantity,
     String? date,
-    String? type,
+    @JsonKey(fromJson: _typeFromJson, toJson: _typeToJson)
+    @Default(TransactionType.none)
+    TransactionType type,
     String? description,
-    String? status,
+    @JsonKey(fromJson: _statusFromJson, toJson: _statusToJson)
+    @Default(TransactionStatus.none)
+    TransactionStatus status,
     String? userId,
     String? userName,
     Address? destinationAddress,
     @JsonKey(fromJson: _productListFromJson, toJson: _productListToJson)
     @Default([])
-    List<Product> products,
+    List<CartItem> products,
   }) = _Transaction;
 
   factory Transaction.fromJson(Map<String, dynamic> json) =>
@@ -31,23 +37,45 @@ sealed class Transaction with _$Transaction {
       _$TransactionFromJson(json.decode(jsonString));
 }
 
-List<Product> _productListFromJson(List<dynamic>? jsonList) {
+TransactionType _typeFromJson(String? type) {
+  if (type == null) return TransactionType.none;
+  return TransactionType.values.firstWhere(
+      (e) => e.toString().split('.').last == type,
+      orElse: () => TransactionType.other);
+}
+
+String _typeToJson(TransactionType? type) {
+  if (type == null) return '';
+  return type.value;
+}
+
+TransactionStatus _statusFromJson(String? status) {
+  if (status == null) return TransactionStatus.none;
+  return TransactionStatus.values.firstWhere(
+      (e) => e.toString().split('.').last == status,
+      orElse: () => TransactionStatus.completed);
+}
+
+String _statusToJson(TransactionStatus? status) {
+  if (status == null) return '';
+  return status.value;
+}
+
+List<CartItem> _productListFromJson(List<dynamic>? jsonList) {
   if (jsonList == null) return [];
   return jsonList
-      .map((e) => Product.fromJson(e as Map<String, dynamic>))
+      .map((e) => CartItem.fromJson(e as Map<String, dynamic>))
       .toList();
 }
 
 extension TransactionExtension on Transaction {
   TransactionStatus get transactionStatus {
-    if (status == null) return TransactionStatus.none;
     return TransactionStatus.values.firstWhere(
         (e) => e.toString().split('.').last == status,
         orElse: () => TransactionStatus.completed);
   }
 
   TransactionType get transactionType {
-    if (type == null) return TransactionType.none;
     return TransactionType.values.firstWhere(
         (e) => e.toString().split('.').last == type,
         orElse: () => TransactionType.other);
@@ -58,23 +86,23 @@ extension TransactionExtension on Transaction {
   }
 
   String getType() {
-    return (type ?? '').capitalize();
+    return type.capitalize();
   }
 
   String getStatus() {
-    return (status ?? '').capitalize();
+    return status.capitalize();
   }
 
   Color getStatusColor() {
-    return mapStatusColor[status ?? ''] ?? Colors.grey;
+    return mapStatusColor[status.value] ?? Colors.grey;
   }
 
   IconData getTypeIconData() {
-    return mapTypeIcon[type ?? ''] ?? Icons.shopping_bag;
+    return mapTypeIcon[type.value] ?? Icons.shopping_bag;
   }
 }
 
-List<Map<String, dynamic>> _productListToJson(List<Product> products) {
+List<Map<String, dynamic>> _productListToJson(List<CartItem> products) {
   return products.map((e) => e.toJson()).toList();
 }
 
@@ -102,6 +130,10 @@ extension TransactionTypeExtension on TransactionType {
     if (value.isEmpty) return 'All Type';
     return value.capitalize();
   }
+
+  String capitalize() {
+    return value.isEmpty ? '' : value[0].toUpperCase() + value.substring(1);
+  }
 }
 
 extension TransactionStatusExtension on TransactionStatus {
@@ -110,6 +142,10 @@ extension TransactionStatusExtension on TransactionStatus {
   String get text {
     if (value.isEmpty) return 'All Status';
     return value.capitalize();
+  }
+
+  String capitalize() {
+    return value.isEmpty ? '' : value[0].toUpperCase() + value.substring(1);
   }
 }
 

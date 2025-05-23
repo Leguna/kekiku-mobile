@@ -277,8 +277,8 @@ String getDay(int weekday) {
   }
 }
 
-String randomString({int length = 10}) {
-  const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+String randomString({int length = 16}) {
+  const chars = 'abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   final random = Random.secure();
   final result =
       List.generate(length, (index) => chars[random.nextInt(chars.length)])

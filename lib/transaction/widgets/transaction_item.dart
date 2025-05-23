@@ -66,7 +66,7 @@ class TransactionItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        transaction?.products[0].name ?? '',
+                        transaction?.products[0].productName ?? '',
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),

@@ -4,7 +4,10 @@ part of 'cart_cubit.dart';
 class CartState with _$CartState {
   const factory CartState.initial() = CartInitial;
 
-  const factory CartState.loading({Product? product}) = CartLoading;
+  const factory CartState.loading({
+    Product? product,
+    @Default(false) bool isFull,
+  }) = CartLoading;
 
   const factory CartState.error(String message) = CartError;
 
@@ -14,6 +17,7 @@ class CartState with _$CartState {
 
   const factory CartState.loaded({
     required List<CartItem> products,
+    CartResponse? cartResponse,
     @Default(0) double totalPrice,
     @Default(0) double totalDiscountedPrice,
     @Default(0) double deliveryFee,

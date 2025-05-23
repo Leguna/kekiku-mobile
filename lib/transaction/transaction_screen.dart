@@ -79,7 +79,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                     _ => 0,
                   };
                   return IconButtonBadged(
-                    badgeText: cartItemCount.toString(),
+                    badgeText: cartItemCount > 0 ? cartItemCount.toString() : "",
                     onPressed: () {
                       Navigator.pushNamed(context, Routes.cart);
                     },

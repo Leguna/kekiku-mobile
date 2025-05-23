@@ -11,6 +11,7 @@ sealed class PagingResponse<T> with _$PagingResponse<T> {
     @Default(10) int pageSize,
     @Default(0) int totalItems,
     @Default([]) List<T> items,
+    @Default(false) bool hasNextPage,
   }) = _PagingResponse<T>;
 
   const PagingResponse._();

@@ -33,9 +33,8 @@ class ImagePopup extends StatelessWidget {
                 onTap: () => onTap?.call(),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
-                  child: Image.network(
-                    imageUrl,
-                    scale: imageSize,
+                  child: MyImageLoader(
+                    path: imageUrl,
                     fit: BoxFit.cover,
                     width: MediaQuery.of(context).size.width * 0.7,
                     height: MediaQuery.of(context).size.height * 0.4,

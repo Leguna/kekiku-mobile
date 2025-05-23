@@ -17,6 +17,7 @@ _PagingResponse<T> _$PagingResponseFromJson<T>(
       totalItems: (json['totalItems'] as num?)?.toInt() ?? 0,
       items: (json['items'] as List<dynamic>?)?.map(fromJsonT).toList() ??
           const [],
+      hasNextPage: json['hasNextPage'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$PagingResponseToJson<T>(
@@ -29,4 +30,5 @@ Map<String, dynamic> _$PagingResponseToJson<T>(
       'pageSize': instance.pageSize,
       'totalItems': instance.totalItems,
       'items': instance.items.map(toJsonT).toList(),
+      'hasNextPage': instance.hasNextPage,
     };

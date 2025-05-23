@@ -20,6 +20,7 @@ mixin _$PagingResponse<T> {
   int get pageSize;
   int get totalItems;
   List<T> get items;
+  bool get hasNextPage;
 
   /// Create a copy of PagingResponse
   /// with the given fields replaced by the non-null parameter values.
@@ -45,17 +46,25 @@ mixin _$PagingResponse<T> {
                 other.pageSize == pageSize) &&
             (identical(other.totalItems, totalItems) ||
                 other.totalItems == totalItems) &&
-            const DeepCollectionEquality().equals(other.items, items));
+            const DeepCollectionEquality().equals(other.items, items) &&
+            (identical(other.hasNextPage, hasNextPage) ||
+                other.hasNextPage == hasNextPage));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, currentPage, totalPages,
-      pageSize, totalItems, const DeepCollectionEquality().hash(items));
+  int get hashCode => Object.hash(
+      runtimeType,
+      currentPage,
+      totalPages,
+      pageSize,
+      totalItems,
+      const DeepCollectionEquality().hash(items),
+      hasNextPage);
 
   @override
   String toString() {
-    return 'PagingResponse<$T>(currentPage: $currentPage, totalPages: $totalPages, pageSize: $pageSize, totalItems: $totalItems, items: $items)';
+    return 'PagingResponse<$T>(currentPage: $currentPage, totalPages: $totalPages, pageSize: $pageSize, totalItems: $totalItems, items: $items, hasNextPage: $hasNextPage)';
   }
 }
 
@@ -70,7 +79,8 @@ abstract mixin class $PagingResponseCopyWith<T, $Res> {
       int totalPages,
       int pageSize,
       int totalItems,
-      List<T> items});
+      List<T> items,
+      bool hasNextPage});
 }
 
 /// @nodoc
@@ -91,6 +101,7 @@ class _$PagingResponseCopyWithImpl<T, $Res>
     Object? pageSize = null,
     Object? totalItems = null,
     Object? items = null,
+    Object? hasNextPage = null,
   }) {
     return _then(_self.copyWith(
       currentPage: null == currentPage
@@ -113,6 +124,10 @@ class _$PagingResponseCopyWithImpl<T, $Res>
           ? _self.items
           : items // ignore: cast_nullable_to_non_nullable
               as List<T>,
+      hasNextPage: null == hasNextPage
+          ? _self.hasNextPage
+          : hasNextPage // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -125,7 +140,8 @@ class _PagingResponse<T> extends PagingResponse<T> {
       this.totalPages = 1,
       this.pageSize = 10,
       this.totalItems = 0,
-      final List<T> items = const []})
+      final List<T> items = const [],
+      this.hasNextPage = false})
       : _items = items,
         super._();
   factory _PagingResponse.fromJson(
@@ -153,6 +169,10 @@ class _PagingResponse<T> extends PagingResponse<T> {
     return EqualUnmodifiableListView(_items);
   }
 
+  @override
+  @JsonKey()
+  final bool hasNextPage;
+
   /// Create a copy of PagingResponse
   /// with the given fields replaced by the non-null parameter values.
   @override
@@ -179,17 +199,25 @@ class _PagingResponse<T> extends PagingResponse<T> {
                 other.pageSize == pageSize) &&
             (identical(other.totalItems, totalItems) ||
                 other.totalItems == totalItems) &&
-            const DeepCollectionEquality().equals(other._items, _items));
+            const DeepCollectionEquality().equals(other._items, _items) &&
+            (identical(other.hasNextPage, hasNextPage) ||
+                other.hasNextPage == hasNextPage));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, currentPage, totalPages,
-      pageSize, totalItems, const DeepCollectionEquality().hash(_items));
+  int get hashCode => Object.hash(
+      runtimeType,
+      currentPage,
+      totalPages,
+      pageSize,
+      totalItems,
+      const DeepCollectionEquality().hash(_items),
+      hasNextPage);
 
   @override
   String toString() {
-    return 'PagingResponse<$T>(currentPage: $currentPage, totalPages: $totalPages, pageSize: $pageSize, totalItems: $totalItems, items: $items)';
+    return 'PagingResponse<$T>(currentPage: $currentPage, totalPages: $totalPages, pageSize: $pageSize, totalItems: $totalItems, items: $items, hasNextPage: $hasNextPage)';
   }
 }
 
@@ -206,7 +234,8 @@ abstract mixin class _$PagingResponseCopyWith<T, $Res>
       int totalPages,
       int pageSize,
       int totalItems,
-      List<T> items});
+      List<T> items,
+      bool hasNextPage});
 }
 
 /// @nodoc
@@ -227,6 +256,7 @@ class __$PagingResponseCopyWithImpl<T, $Res>
     Object? pageSize = null,
     Object? totalItems = null,
     Object? items = null,
+    Object? hasNextPage = null,
   }) {
     return _then(_PagingResponse<T>(
       currentPage: null == currentPage
@@ -249,6 +279,10 @@ class __$PagingResponseCopyWithImpl<T, $Res>
           ? _self._items
           : items // ignore: cast_nullable_to_non_nullable
               as List<T>,
+      hasNextPage: null == hasNextPage
+          ? _self.hasNextPage
+          : hasNextPage // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }

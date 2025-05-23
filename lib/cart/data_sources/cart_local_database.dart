@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:kekiku/cart/models/cart_item_mdl.dart';
+import 'package:kekiku/cart/models/cart_response.dart';
 
 import '../../core/index.dart';
 import '../../core/models/paging_response.dart';
@@ -10,16 +11,17 @@ class CartLocalDatabase {
   final LocalDatabase db = getIt<LocalDatabase>();
   final ProductLocalSource productLocalSource = getIt<ProductLocalSource>();
   final String cartBox = 'cart';
+  final String transactionBox = 'transaction';
 
   CartLocalDatabase();
 
   Future<CartItem> insertProduct(String variantId) async {
     final box = await db.getBox(cartBox);
     final productJson =
-        await productLocalSource.getProductByVariantId(variantId);
+    await productLocalSource.getProductByVariantId(variantId);
     final product = Product.fromJsonString(productJson);
     final selectedVariant = product.variants.firstWhere(
-      (variant) => variant.id == variantId,
+          (variant) => variant.id == variantId,
     );
     var cartItem = CartItem(
         basePrice: selectedVariant.price,
@@ -111,7 +113,7 @@ class CartLocalDatabase {
     return 0;
   }
 
-  Future<BaseResponse<PagingResponse<CartItem>>> getCartProducts() async {
+  Future<BaseResponse<CartResponse>> getCartProducts() async {
     final box = await db.getBox(cartBox);
     final products = <CartItem>[];
     for (var key in box.keys) {
@@ -121,13 +123,84 @@ class CartLocalDatabase {
         products.add(productModel);
       }
     }
-    return BaseResponse(
-      data: PagingResponse(
+    final baseResponse = BaseResponse(
+      data: CartResponse(
+        basePrice: await totalBasePrice(products),
+        deliveryFee: await getDeliveryFee(""),
+        totalItem: products.length,
+        totalDiscountedPrice: await getTotalDiscountedPrice(products),
+        totalPrice: await getTotalPrice(products),
         items: products,
-        totalItems: products.length,
+      ),
+    );
+    return baseResponse;
+  }
+
+  Future<BaseResponse> checkout() async {
+    final idRandom = randomString();
+    final box = await db.getBox(transactionBox);
+    final products = await getCartProducts();
+    final transaction = Transaction(
+      id: idRandom,
+      date: DateTime.now().toIso8601String(),
+      status: TransactionStatus.processing,
+      type: TransactionType.purchase,
+      quantity: products.data.items.length,
+      products: products.data.items,
+    );
+    final transactionJson = jsonEncode(transaction.toJson());
+    await box.put(idRandom, transactionJson);
+    await clearCart();
+    return BaseResponse(data: {});
+  }
+
+  Future<BaseResponse<PagingResponse<Transaction>>> getTransaction() async {
+    final box = await db.getBox(transactionBox);
+    final transactions = <Transaction>[];
+    for (var key in box.keys) {
+      final transaction = box.get(key);
+      if (transaction != null && transaction is String) {
+        final transactionModel = Transaction.fromJsonString(transaction);
+        transactions.add(transactionModel);
+      }
+    }
+    final baseResponse = BaseResponse(
+      data: PagingResponse(
+        items: transactions,
+        totalItems: transactions.length,
         totalPages: 1,
+        pageSize: transactions.length,
         currentPage: 1,
       ),
     );
+    return baseResponse;
+  }
+
+  Future<double> totalBasePrice(List<CartItem> cartItems) async {
+    double totalBasePrice = 0.0;
+    for (var product in cartItems) {
+      totalBasePrice += product.basePrice * product.quantity;
+    }
+    return totalBasePrice;
+  }
+
+  Future<double> getDeliveryFee(String addressId) async {
+    return 12.0;
+  }
+
+  Future<double> getTotalDiscountedPrice(List<CartItem> cartItems) async {
+    double totalDiscountedPrice = 0.0;
+    for (var product in cartItems) {
+      final discountPrice = product.discountValue * product.basePrice / 100;
+      totalDiscountedPrice += discountPrice * product.quantity;
+    }
+    return totalDiscountedPrice;
+  }
+
+  Future<double> getTotalPrice(List<CartItem> cartItems) async {
+    double totalPrice = await totalBasePrice(cartItems);
+    totalPrice += await getDeliveryFee("");
+    totalPrice -= await getTotalDiscountedPrice(cartItems);
+    return totalPrice;
   }
 }

@@ -1,8 +1,8 @@
 import 'package:kekiku/cart/data_sources/cart_local_database.dart';
 import 'package:kekiku/cart/models/cart_item_mdl.dart';
+import 'package:kekiku/cart/models/cart_response.dart';
 
 import '../../core/index.dart';
-import '../../core/models/paging_response.dart';
 
 class CartRepository {
   final CartLocalDatabase cartLocalDatabase;
@@ -11,7 +11,7 @@ class CartRepository {
     required this.cartLocalDatabase,
   });
 
-  Future<BaseResponse<PagingResponse<CartItem>>> fetchCart() async {
+  Future<BaseResponse<CartResponse>> fetchCart() async {
     final cartResponse = await cartLocalDatabase.getCartProducts();
     return cartResponse;
   }
@@ -49,33 +49,7 @@ class CartRepository {
     return totalQuantity;
   }
 
-  Future<double> totalBasePrice() async {
-    final products = await fetchCart();
-    double totalBasePrice = 0.0;
-    for (var product in products.data.items) {
-      totalBasePrice += product.basePrice * product.quantity;
-    }
-    return totalBasePrice;
-  }
-
-  Future<double> getDeliveryFee() async {
-    return 12.0;
-  }
-
-  Future<double> getTotalDiscountedPrice() async {
-    final products = await fetchCart();
-    double totalDiscountedPrice = 0.0;
-    for (var product in products.data.items) {
-      final discountPrice = product.discountValue * product.basePrice / 100;
-      totalDiscountedPrice += discountPrice * product.quantity;
-    }
-    return totalDiscountedPrice;
-  }
-
-  Future<double> getTotalPrice() async {
-    double totalPrice = await totalBasePrice();
-    totalPrice += await getDeliveryFee();
-    totalPrice -= await getTotalDiscountedPrice();
-    return totalPrice;
+  Future<BaseResponse> checkout() async {
+    return await cartLocalDatabase.checkout();
   }
 }

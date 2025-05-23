@@ -30,10 +30,9 @@ class _MyImageLoaderState extends State<MyImageLoader> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.isLoading) {
-      return _buildShimmer();
-    }
-
+    // if (widget.isLoading) {
+    //   return _buildShimmer();
+    // }
     return ClipRRect(
       borderRadius: BorderRadius.circular(widget.radius),
       child: _buildImage(),
@@ -43,8 +42,6 @@ class _MyImageLoaderState extends State<MyImageLoader> {
   Widget _buildNetworkImage() {
     return CachedNetworkImage(
       imageUrl: widget.path ?? '',
-      memCacheHeight: widget.height.toInt() / 2 ~/ 1,
-      memCacheWidth: widget.width / 2 ~/ 1,
       filterQuality: FilterQuality.none,
       imageBuilder: (context, imageProvider) {
         widget.onImageLoaded?.call();

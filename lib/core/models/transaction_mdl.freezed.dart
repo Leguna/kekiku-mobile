@@ -17,15 +17,18 @@ T _$identity<T>(T value) => value;
 mixin _$Transaction {
   String get id;
   double? get amount;
+  int get quantity;
   String? get date;
-  String? get type;
+  @JsonKey(fromJson: _typeFromJson, toJson: _typeToJson)
+  TransactionType get type;
   String? get description;
-  String? get status;
+  @JsonKey(fromJson: _statusFromJson, toJson: _statusToJson)
+  TransactionStatus get status;
   String? get userId;
   String? get userName;
   Address? get destinationAddress;
   @JsonKey(fromJson: _productListFromJson, toJson: _productListToJson)
-  List<Product> get products;
+  List<CartItem> get products;
 
   /// Create a copy of Transaction
   /// with the given fields replaced by the non-null parameter values.
@@ -44,6 +47,8 @@ mixin _$Transaction {
             other is Transaction &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.amount, amount) || other.amount == amount) &&
+            (identical(other.quantity, quantity) ||
+                other.quantity == quantity) &&
             (identical(other.date, date) || other.date == date) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.description, description) ||
@@ -63,6 +68,7 @@ mixin _$Transaction {
       runtimeType,
       id,
       amount,
+      quantity,
       date,
       type,
       description,
@@ -74,7 +80,7 @@ mixin _$Transaction {
 
   @override
   String toString() {
-    return 'Transaction(id: $id, amount: $amount, date: $date, type: $type, description: $description, status: $status, userId: $userId, userName: $userName, destinationAddress: $destinationAddress, products: $products)';
+    return 'Transaction(id: $id, amount: $amount, quantity: $quantity, date: $date, type: $type, description: $description, status: $status, userId: $userId, userName: $userName, destinationAddress: $destinationAddress, products: $products)';
   }
 }
 
@@ -87,15 +93,18 @@ abstract mixin class $TransactionCopyWith<$Res> {
   $Res call(
       {String id,
       double? amount,
+      int quantity,
       String? date,
-      String? type,
+      @JsonKey(fromJson: _typeFromJson, toJson: _typeToJson)
+      TransactionType type,
       String? description,
-      String? status,
+      @JsonKey(fromJson: _statusFromJson, toJson: _statusToJson)
+      TransactionStatus status,
       String? userId,
       String? userName,
       Address? destinationAddress,
       @JsonKey(fromJson: _productListFromJson, toJson: _productListToJson)
-      List<Product> products});
+      List<CartItem> products});
 
   $AddressCopyWith<$Res>? get destinationAddress;
 }
@@ -114,10 +123,11 @@ class _$TransactionCopyWithImpl<$Res> implements $TransactionCopyWith<$Res> {
   $Res call({
     Object? id = null,
     Object? amount = freezed,
+    Object? quantity = null,
     Object? date = freezed,
-    Object? type = freezed,
+    Object? type = null,
     Object? description = freezed,
-    Object? status = freezed,
+    Object? status = null,
     Object? userId = freezed,
     Object? userName = freezed,
     Object? destinationAddress = freezed,
@@ -132,22 +142,26 @@ class _$TransactionCopyWithImpl<$Res> implements $TransactionCopyWith<$Res> {
           ? _self.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as double?,
+      quantity: null == quantity
+          ? _self.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as int,
       date: freezed == date
           ? _self.date
           : date // ignore: cast_nullable_to_non_nullable
               as String?,
-      type: freezed == type
+      type: null == type
           ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as TransactionType,
       description: freezed == description
           ? _self.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      status: freezed == status
+      status: null == status
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as TransactionStatus,
       userId: freezed == userId
           ? _self.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -163,7 +177,7 @@ class _$TransactionCopyWithImpl<$Res> implements $TransactionCopyWith<$Res> {
       products: null == products
           ? _self.products
           : products // ignore: cast_nullable_to_non_nullable
-              as List<Product>,
+              as List<CartItem>,
     ));
   }
 
@@ -188,15 +202,18 @@ class _Transaction implements Transaction {
   const _Transaction(
       {this.id = '',
       this.amount,
+      this.quantity = 0,
       this.date,
-      this.type,
+      @JsonKey(fromJson: _typeFromJson, toJson: _typeToJson)
+      this.type = TransactionType.none,
       this.description,
-      this.status,
+      @JsonKey(fromJson: _statusFromJson, toJson: _statusToJson)
+      this.status = TransactionStatus.none,
       this.userId,
       this.userName,
       this.destinationAddress,
       @JsonKey(fromJson: _productListFromJson, toJson: _productListToJson)
-      final List<Product> products = const []})
+      final List<CartItem> products = const []})
       : _products = products;
   factory _Transaction.fromJson(Map<String, dynamic> json) =>
       _$TransactionFromJson(json);
@@ -207,23 +224,28 @@ class _Transaction implements Transaction {
   @override
   final double? amount;
   @override
+  @JsonKey()
+  final int quantity;
+  @override
   final String? date;
   @override
-  final String? type;
+  @JsonKey(fromJson: _typeFromJson, toJson: _typeToJson)
+  final TransactionType type;
   @override
   final String? description;
   @override
-  final String? status;
+  @JsonKey(fromJson: _statusFromJson, toJson: _statusToJson)
+  final TransactionStatus status;
   @override
   final String? userId;
   @override
   final String? userName;
   @override
   final Address? destinationAddress;
-  final List<Product> _products;
+  final List<CartItem> _products;
   @override
   @JsonKey(fromJson: _productListFromJson, toJson: _productListToJson)
-  List<Product> get products {
+  List<CartItem> get products {
     if (_products is EqualUnmodifiableListView) return _products;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_products);
@@ -251,6 +273,8 @@ class _Transaction implements Transaction {
             other is _Transaction &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.amount, amount) || other.amount == amount) &&
+            (identical(other.quantity, quantity) ||
+                other.quantity == quantity) &&
             (identical(other.date, date) || other.date == date) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.description, description) ||
@@ -270,6 +294,7 @@ class _Transaction implements Transaction {
       runtimeType,
       id,
       amount,
+      quantity,
       date,
       type,
       description,
@@ -281,7 +306,7 @@ class _Transaction implements Transaction {
 
   @override
   String toString() {
-    return 'Transaction(id: $id, amount: $amount, date: $date, type: $type, description: $description, status: $status, userId: $userId, userName: $userName, destinationAddress: $destinationAddress, products: $products)';
+    return 'Transaction(id: $id, amount: $amount, quantity: $quantity, date: $date, type: $type, description: $description, status: $status, userId: $userId, userName: $userName, destinationAddress: $destinationAddress, products: $products)';
   }
 }
 
@@ -296,15 +321,18 @@ abstract mixin class _$TransactionCopyWith<$Res>
   $Res call(
       {String id,
       double? amount,
+      int quantity,
       String? date,
-      String? type,
+      @JsonKey(fromJson: _typeFromJson, toJson: _typeToJson)
+      TransactionType type,
       String? description,
-      String? status,
+      @JsonKey(fromJson: _statusFromJson, toJson: _statusToJson)
+      TransactionStatus status,
       String? userId,
       String? userName,
       Address? destinationAddress,
       @JsonKey(fromJson: _productListFromJson, toJson: _productListToJson)
-      List<Product> products});
+      List<CartItem> products});
 
   @override
   $AddressCopyWith<$Res>? get destinationAddress;
@@ -324,10 +352,11 @@ class __$TransactionCopyWithImpl<$Res> implements _$TransactionCopyWith<$Res> {
   $Res call({
     Object? id = null,
     Object? amount = freezed,
+    Object? quantity = null,
     Object? date = freezed,
-    Object? type = freezed,
+    Object? type = null,
     Object? description = freezed,
-    Object? status = freezed,
+    Object? status = null,
     Object? userId = freezed,
     Object? userName = freezed,
     Object? destinationAddress = freezed,
@@ -342,22 +371,26 @@ class __$TransactionCopyWithImpl<$Res> implements _$TransactionCopyWith<$Res> {
           ? _self.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as double?,
+      quantity: null == quantity
+          ? _self.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as int,
       date: freezed == date
           ? _self.date
           : date // ignore: cast_nullable_to_non_nullable
               as String?,
-      type: freezed == type
+      type: null == type
           ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as TransactionType,
       description: freezed == description
           ? _self.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      status: freezed == status
+      status: null == status
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as TransactionStatus,
       userId: freezed == userId
           ? _self.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -373,7 +406,7 @@ class __$TransactionCopyWithImpl<$Res> implements _$TransactionCopyWith<$Res> {
       products: null == products
           ? _self._products
           : products // ignore: cast_nullable_to_non_nullable
-              as List<Product>,
+              as List<CartItem>,
     ));
   }
 

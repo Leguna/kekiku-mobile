@@ -58,9 +58,11 @@ class CartInitial implements CartState {
 /// @nodoc
 
 class CartLoading implements CartState {
-  const CartLoading({this.product});
+  const CartLoading({this.product, this.isFull = false});
 
   final Product? product;
+  @JsonKey()
+  final bool isFull;
 
   /// Create a copy of CartState
   /// with the given fields replaced by the non-null parameter values.
@@ -74,15 +76,16 @@ class CartLoading implements CartState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is CartLoading &&
-            (identical(other.product, product) || other.product == product));
+            (identical(other.product, product) || other.product == product) &&
+            (identical(other.isFull, isFull) || other.isFull == isFull));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, product);
+  int get hashCode => Object.hash(runtimeType, product, isFull);
 
   @override
   String toString() {
-    return 'CartState.loading(product: $product)';
+    return 'CartState.loading(product: $product, isFull: $isFull)';
   }
 }
 
@@ -93,7 +96,7 @@ abstract mixin class $CartLoadingCopyWith<$Res>
           CartLoading value, $Res Function(CartLoading) _then) =
       _$CartLoadingCopyWithImpl;
   @useResult
-  $Res call({Product? product});
+  $Res call({Product? product, bool isFull});
 
   $ProductCopyWith<$Res>? get product;
 }
@@ -110,12 +113,17 @@ class _$CartLoadingCopyWithImpl<$Res> implements $CartLoadingCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   $Res call({
     Object? product = freezed,
+    Object? isFull = null,
   }) {
     return _then(CartLoading(
       product: freezed == product
           ? _self.product
           : product // ignore: cast_nullable_to_non_nullable
               as Product?,
+      isFull: null == isFull
+          ? _self.isFull
+          : isFull // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 
@@ -241,6 +249,7 @@ class CartCheckout implements CartState {
 class CartLoaded implements CartState {
   const CartLoaded(
       {required final List<CartItem> products,
+      this.cartResponse,
       this.totalPrice = 0,
       this.totalDiscountedPrice = 0,
       this.deliveryFee = 0,
@@ -257,6 +266,7 @@ class CartLoaded implements CartState {
     return EqualUnmodifiableListView(_products);
   }
 
+  final CartResponse? cartResponse;
   @JsonKey()
   final double totalPrice;
   @JsonKey()
@@ -284,6 +294,8 @@ class CartLoaded implements CartState {
         (other.runtimeType == runtimeType &&
             other is CartLoaded &&
             const DeepCollectionEquality().equals(other._products, _products) &&
+            (identical(other.cartResponse, cartResponse) ||
+                other.cartResponse == cartResponse) &&
             (identical(other.totalPrice, totalPrice) ||
                 other.totalPrice == totalPrice) &&
             (identical(other.totalDiscountedPrice, totalDiscountedPrice) ||
@@ -304,6 +316,7 @@ class CartLoaded implements CartState {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_products),
+      cartResponse,
       totalPrice,
       totalDiscountedPrice,
       deliveryFee,
@@ -314,7 +327,7 @@ class CartLoaded implements CartState {
 
   @override
   String toString() {
-    return 'CartState.loaded(products: $products, totalPrice: $totalPrice, totalDiscountedPrice: $totalDiscountedPrice, deliveryFee: $deliveryFee, totalQuantity: $totalQuantity, selectedProduct: $selectedProduct, selectedQuantity: $selectedQuantity, totalBasePrice: $totalBasePrice)';
+    return 'CartState.loaded(products: $products, cartResponse: $cartResponse, totalPrice: $totalPrice, totalDiscountedPrice: $totalDiscountedPrice, deliveryFee: $deliveryFee, totalQuantity: $totalQuantity, selectedProduct: $selectedProduct, selectedQuantity: $selectedQuantity, totalBasePrice: $totalBasePrice)';
   }
 }
 
@@ -327,6 +340,7 @@ abstract mixin class $CartLoadedCopyWith<$Res>
   @useResult
   $Res call(
       {List<CartItem> products,
+      CartResponse? cartResponse,
       double totalPrice,
       double totalDiscountedPrice,
       double deliveryFee,
@@ -335,6 +349,7 @@ abstract mixin class $CartLoadedCopyWith<$Res>
       int selectedQuantity,
       double totalBasePrice});
 
+  $CartResponseCopyWith<$Res>? get cartResponse;
   $CartItemCopyWith<$Res>? get selectedProduct;
 }
 
@@ -350,6 +365,7 @@ class _$CartLoadedCopyWithImpl<$Res> implements $CartLoadedCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   $Res call({
     Object? products = null,
+    Object? cartResponse = freezed,
     Object? totalPrice = null,
     Object? totalDiscountedPrice = null,
     Object? deliveryFee = null,
@@ -363,6 +379,10 @@ class _$CartLoadedCopyWithImpl<$Res> implements $CartLoadedCopyWith<$Res> {
           ? _self._products
           : products // ignore: cast_nullable_to_non_nullable
               as List<CartItem>,
+      cartResponse: freezed == cartResponse
+          ? _self.cartResponse
+          : cartResponse // ignore: cast_nullable_to_non_nullable
+              as CartResponse?,
       totalPrice: null == totalPrice
           ? _self.totalPrice
           : totalPrice // ignore: cast_nullable_to_non_nullable
@@ -392,6 +412,20 @@ class _$CartLoadedCopyWithImpl<$Res> implements $CartLoadedCopyWith<$Res> {
           : totalBasePrice // ignore: cast_nullable_to_non_nullable
               as double,
     ));
+  }
+
+  /// Create a copy of CartState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CartResponseCopyWith<$Res>? get cartResponse {
+    if (_self.cartResponse == null) {
+      return null;
+    }
+
+    return $CartResponseCopyWith<$Res>(_self.cartResponse!, (value) {
+      return _then(_self.copyWith(cartResponse: value));
+    });
   }
 
   /// Create a copy of CartState

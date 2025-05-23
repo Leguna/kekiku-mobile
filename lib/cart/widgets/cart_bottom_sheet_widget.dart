@@ -24,7 +24,8 @@ class CartBottomSheetWidget extends StatelessWidget {
         }
       },
       buildWhen: (previous, current) {
-        if (current is CartLoading && previous is CartEmpty) {
+        if (current is CartLoading &&
+            (previous is CartEmpty || previous is CartCheckout)) {
           return false;
         }
         return true;
@@ -68,14 +69,7 @@ class CartBottomSheetWidget extends StatelessWidget {
                     ElevatedButton(
                       onPressed: switch (state) {
                         CartLoaded() => () {
-                            Navigator.pushNamedAndRemoveUntil(
-                              context,
-                              Routes.home,
-                              (route) => false,
-                              arguments: const HomeScreenArguments(
-                                initialIndex: 1,
-                              ),
-                            );
+                            context.read<CartCubit>().checkout();
                           },
                         _ => null,
                       },
@@ -98,7 +92,22 @@ class OrderSummaryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CartCubit, CartState>(
+    return BlocConsumer<CartCubit, CartState>(
+      listener: (context, state) {
+        if (state is CartError) {
+          showMySnackBar(context, state.message);
+        }
+        if (state is CartCheckout) {
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            Routes.home,
+            (route) => false,
+            arguments: const HomeScreenArguments(
+              initialIndex: 1,
+            ),
+          );
+        }
+      },
       builder: (context, state) {
         switch (state) {
           case CartLoaded(
@@ -125,7 +134,8 @@ class OrderSummaryWidget extends StatelessWidget {
                 SizedBox(height: Dimens.tiny),
                 LabelPrice(
                   Strings.discountedPrice,
-                  value: "-${totalDiscountedPrice.toCurrency()}",
+                  value:
+                      "${(totalDiscountedPrice > 0 ? "-" : "")}${totalDiscountedPrice.toCurrency()}",
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         color: Theme.of(context).colorScheme.error,
                       ),

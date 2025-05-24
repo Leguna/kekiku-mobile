@@ -17,7 +17,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
   @override
   void initState() {
     final cubit = context.read<TransactionCubit>();
-    cubit.initView();
+    cubit.initView  ();
     super.initState();
   }
 

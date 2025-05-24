@@ -12,6 +12,16 @@ final mainTheme = ThemeData(
     ),
   ),
   fontFamily: 'Poppins',
+  popupMenuTheme: const PopupMenuThemeData(
+    color: AppColors.charcoalBlue,
+    textStyle: TextStyle(
+      color: Colors.white,
+      fontSize: 14.0,
+    ),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(Dimens.small)),
+    ),
+  ),
   fontFamilyFallback: const ['Montserrat'],
   primaryColorDark: AppColors.darkBlueGray,
   appBarTheme: AppBarTheme(

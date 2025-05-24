@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:kekiku/product/data_sources/product_repository.dart';
+import 'package:kekiku/cart/data_sources/cart_repository.dart';
 
+import '../../cart/models/transaction_search_params.dart';
 import '../../core/index.dart';
 import '../utils/transaction_utils.dart';
 
@@ -15,7 +16,7 @@ class TransactionCubit extends Cubit<TransactionState> {
   TextEditingController searchController = TextEditingController();
   List<Transaction> transactions = [];
 
-  final ProductRepository productRepository = getIt<ProductRepository>();
+  final CartRepository cartRepository = getIt<CartRepository>();
 
   TextEditingController startDateController = TextEditingController();
   TextEditingController endDateController = TextEditingController();
@@ -42,8 +43,8 @@ class TransactionCubit extends Cubit<TransactionState> {
   Future<void> fetchTransactions() async {
     emit(const TransactionState.loading());
     try {
-      final response = await productRepository.getTransactions();
-      transactions = response;
+      final response = await cartRepository.getTransactions();
+      transactions = response.data.items;
       emit(TransactionState.loaded(transactions));
     } catch (e) {
       emit(TransactionState.error(message: e.toString()));
@@ -60,15 +61,17 @@ class TransactionCubit extends Cubit<TransactionState> {
       }
       debouncer.run(() async {
         emit(const TransactionState.loading());
-        final filteredTransactions = await productRepository.getTransactions(
-          query: searchController.text.toLowerCase(),
-          status: statusFilter.value,
-          type: typeFilter.value,
-          startDate: startDateFilter,
-          endDate: endDateFilter,
+        final filteredTransactions = await cartRepository.getTransactions(
+          transactionSearchParams: TransactionSearchParams(
+            query: searchController.text.toLowerCase(),
+            status: statusFilter.value,
+            type: typeFilter.value,
+            startDate: startDateFilter,
+            endDate: endDateFilter,
+          ),
         );
-        transactions = filteredTransactions;
-        emit(TransactionState.loaded(filteredTransactions));
+        transactions = filteredTransactions.data.items;
+        emit(TransactionState.loaded(transactions));
       });
     } catch (e) {
       emit(TransactionState.error(message: e.toString()));
@@ -194,5 +197,27 @@ class TransactionCubit extends Cubit<TransactionState> {
     statusFilter = value;
     trySearchTransaction();
     emit(const TransactionState.updated());
+  }
+
+  void cancelTransaction(String id) {
+    emit(const TransactionState.loading());
+    try {
+      final transaction = transactions.firstWhere((t) => t.id == id);
+      cartRepository.cancelTransaction(transaction);
+      fetchTransactions();
+    } catch (e) {
+      emit(TransactionState.error(message: e.toString()));
+    }
+  }
+
+  void finishTransaction(String id) {
+    emit(const TransactionState.loading());
+    try {
+      final transaction = transactions.firstWhere((t) => t.id == id);
+      cartRepository.finishTransaction(transaction);
+      fetchTransactions();
+    } catch (e) {
+      emit(TransactionState.error(message: e.toString()));
+    }
   }
 }

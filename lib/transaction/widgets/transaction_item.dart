@@ -1,4 +1,5 @@
 import '../../core/index.dart';
+import '../blocs/transaction_cubit.dart';
 
 class TransactionItem extends StatelessWidget {
   const TransactionItem(this.transaction, {super.key});
@@ -8,8 +9,15 @@ class TransactionItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Theme.of(context).cardTheme.color?.withAlpha(50),
+      color: Theme.of(context).colorScheme.onSecondaryContainer,
       margin: const EdgeInsets.all(Dimens.tiny),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(Dimens.small),
+        side: BorderSide(
+          color: Theme.of(context).colorScheme.secondary,
+          width: Dimens.nano,
+        ),
+      ),
       child: Padding(
         padding: const EdgeInsets.all(Dimens.small),
         child: Column(
@@ -20,20 +28,21 @@ class TransactionItem extends StatelessWidget {
               children: [
                 Icon(transaction?.getTypeIconData()),
                 const SizedBox(width: Dimens.small),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(transaction?.getType() ?? ''),
-                    Text(
-                      transaction?.date?.toFormattedDate() ?? '',
-                      style: TextStyle(
-                        fontSize: Dimens.small,
-                        color: Theme.of(context).textTheme.labelSmall?.color,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(transaction?.getType() ?? ''),
+                      Text(
+                        transaction?.date.toFormattedDate() ?? '',
+                        style: TextStyle(
+                          fontSize: Dimens.small,
+                          color: Theme.of(context).textTheme.labelSmall?.color,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-                const Expanded(child: SizedBox()),
                 Container(
                   padding: const EdgeInsets.all(Dimens.tiny),
                   decoration: BoxDecoration(
@@ -48,6 +57,50 @@ class TransactionItem extends StatelessWidget {
                     ),
                   ),
                 ),
+                const SizedBox(width: Dimens.smallNano),
+                if (transaction?.status == TransactionStatus.processing) ...[
+                  IconButton(
+                    icon: Icon(Icons.more_vert),
+                    onPressed: () {
+                      // Handle more options
+                      showMyModalBottomSheet(
+                        context,
+                        title: "Options",
+                        child: Column(
+                          children: [
+                            ListTile(
+                              leading: const Icon(Icons.fact_check),
+                              title: const Text(Strings.finishOrder),
+                              onTap: () {
+                                // Handle details action
+                                context
+                                    .read<TransactionCubit>()
+                                    .finishTransaction(
+                                  transaction?.id ?? '',
+                                );
+                                Navigator.pop(context);
+                              },
+                            ),
+                            ListTile(
+                              leading: const Icon(Icons.delete),
+                              title: const Text(Strings.cancel),
+                              onTap: () {
+                                // Handle delete action
+                                context
+                                    .read<TransactionCubit>()
+                                    .cancelTransaction(
+                                  transaction?.id ?? '',
+                                );
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                    visualDensity: VisualDensity.compact,
+                  ),
+                ],
               ],
             ),
             const Divider(thickness: Dimens.micro, height: Dimens.small),

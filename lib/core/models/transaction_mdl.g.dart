@@ -10,7 +10,7 @@ _Transaction _$TransactionFromJson(Map<String, dynamic> json) => _Transaction(
       id: json['id'] as String? ?? '',
       amount: (json['amount'] as num?)?.toDouble(),
       quantity: (json['quantity'] as num?)?.toInt() ?? 0,
-      date: json['date'] as String?,
+      date: json['date'] as String? ?? "",
       type: json['type'] == null
           ? TransactionType.none
           : _typeFromJson(json['type'] as String?),

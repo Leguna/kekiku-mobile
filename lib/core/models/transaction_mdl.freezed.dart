@@ -18,7 +18,7 @@ mixin _$Transaction {
   String get id;
   double? get amount;
   int get quantity;
-  String? get date;
+  String get date;
   @JsonKey(fromJson: _typeFromJson, toJson: _typeToJson)
   TransactionType get type;
   String? get description;
@@ -94,7 +94,7 @@ abstract mixin class $TransactionCopyWith<$Res> {
       {String id,
       double? amount,
       int quantity,
-      String? date,
+      String date,
       @JsonKey(fromJson: _typeFromJson, toJson: _typeToJson)
       TransactionType type,
       String? description,
@@ -124,7 +124,7 @@ class _$TransactionCopyWithImpl<$Res> implements $TransactionCopyWith<$Res> {
     Object? id = null,
     Object? amount = freezed,
     Object? quantity = null,
-    Object? date = freezed,
+    Object? date = null,
     Object? type = null,
     Object? description = freezed,
     Object? status = null,
@@ -146,10 +146,10 @@ class _$TransactionCopyWithImpl<$Res> implements $TransactionCopyWith<$Res> {
           ? _self.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
               as int,
-      date: freezed == date
+      date: null == date
           ? _self.date
           : date // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       type: null == type
           ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -203,7 +203,7 @@ class _Transaction implements Transaction {
       {this.id = '',
       this.amount,
       this.quantity = 0,
-      this.date,
+      this.date = "",
       @JsonKey(fromJson: _typeFromJson, toJson: _typeToJson)
       this.type = TransactionType.none,
       this.description,
@@ -227,7 +227,8 @@ class _Transaction implements Transaction {
   @JsonKey()
   final int quantity;
   @override
-  final String? date;
+  @JsonKey()
+  final String date;
   @override
   @JsonKey(fromJson: _typeFromJson, toJson: _typeToJson)
   final TransactionType type;
@@ -322,7 +323,7 @@ abstract mixin class _$TransactionCopyWith<$Res>
       {String id,
       double? amount,
       int quantity,
-      String? date,
+      String date,
       @JsonKey(fromJson: _typeFromJson, toJson: _typeToJson)
       TransactionType type,
       String? description,
@@ -353,7 +354,7 @@ class __$TransactionCopyWithImpl<$Res> implements _$TransactionCopyWith<$Res> {
     Object? id = null,
     Object? amount = freezed,
     Object? quantity = null,
-    Object? date = freezed,
+    Object? date = null,
     Object? type = null,
     Object? description = freezed,
     Object? status = null,
@@ -375,10 +376,10 @@ class __$TransactionCopyWithImpl<$Res> implements _$TransactionCopyWith<$Res> {
           ? _self.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
               as int,
-      date: freezed == date
+      date: null == date
           ? _self.date
           : date // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       type: null == type
           ? _self.type
           : type // ignore: cast_nullable_to_non_nullable

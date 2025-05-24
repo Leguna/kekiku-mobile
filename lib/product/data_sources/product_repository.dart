@@ -98,13 +98,14 @@ class ProductRepository {
     endDate,
     startDate,
   }) async {
-    final response = await localDataSource.getTransactionFromJson(
-      query: query,
-      type: type,
-      status: status,
-      endDate: endDate,
-      startDate: startDate,
-    );
+    // final response = await localDataSource.getTransactionFromJson(
+    //   query: query,
+    //   type: type,
+    //   status: status,
+    //   endDate: endDate,
+    //   startDate: startDate,
+    // );
+    final response = await localDataSource.getTransactionFromJson();
     final data = BaseResponse<PagingResponse<Transaction>>.fromJson(
       jsonDecode(response),
       (json) => PagingResponse<Transaction>.fromJson(

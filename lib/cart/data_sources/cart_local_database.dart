@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:kekiku/cart/models/cart_item_mdl.dart';
 import 'package:kekiku/cart/models/cart_response.dart';
+import 'package:kekiku/cart/models/transaction_search_params.dart';
 
 import '../../core/index.dart';
 import '../../core/models/paging_response.dart';
@@ -18,10 +19,10 @@ class CartLocalDatabase {
   Future<CartItem> insertProduct(String variantId) async {
     final box = await db.getBox(cartBox);
     final productJson =
-    await productLocalSource.getProductByVariantId(variantId);
+        await productLocalSource.getProductByVariantId(variantId);
     final product = Product.fromJsonString(productJson);
     final selectedVariant = product.variants.firstWhere(
-          (variant) => variant.id == variantId,
+      (variant) => variant.id == variantId,
     );
     var cartItem = CartItem(
         basePrice: selectedVariant.price,
@@ -140,9 +141,11 @@ class CartLocalDatabase {
     final idRandom = randomString();
     final box = await db.getBox(transactionBox);
     final products = await getCartProducts();
+
     final transaction = Transaction(
       id: idRandom,
       date: DateTime.now().toIso8601String(),
+      amount: await getTotalPrice(products.data.items),
       status: TransactionStatus.processing,
       type: TransactionType.purchase,
       quantity: products.data.items.length,
@@ -152,28 +155,6 @@ class CartLocalDatabase {
     await box.put(idRandom, transactionJson);
     await clearCart();
     return BaseResponse(data: {});
-  }
-
-  Future<BaseResponse<PagingResponse<Transaction>>> getTransaction() async {
-    final box = await db.getBox(transactionBox);
-    final transactions = <Transaction>[];
-    for (var key in box.keys) {
-      final transaction = box.get(key);
-      if (transaction != null && transaction is String) {
-        final transactionModel = Transaction.fromJsonString(transaction);
-        transactions.add(transactionModel);
-      }
-    }
-    final baseResponse = BaseResponse(
-      data: PagingResponse(
-        items: transactions,
-        totalItems: transactions.length,
-        totalPages: 1,
-        pageSize: transactions.length,
-        currentPage: 1,
-      ),
-    );
-    return baseResponse;
   }
 
   Future<double> totalBasePrice(List<CartItem> cartItems) async {
@@ -202,5 +183,99 @@ class CartLocalDatabase {
     totalPrice += await getDeliveryFee("");
     totalPrice -= await getTotalDiscountedPrice(cartItems);
     return totalPrice;
+  }
+
+  Future<BaseResponse<PagingResponse<Transaction>>> getTransactions({
+    required TransactionSearchParams transactionSearchParams,
+  }) async {
+    final box = await db.getBox(transactionBox);
+    final transactions = <Transaction>[];
+    for (var key in box.keys) {
+      final transaction = box.get(key);
+      if (transaction != null && transaction is String) {
+        final transactionModel = Transaction.fromJsonString(transaction);
+        transactions.add(transactionModel);
+      }
+    }
+    transactions.sort((a, b) {
+      return DateTime.parse(b.date).compareTo(DateTime.parse(a.date));
+    });
+    final baseResponse = BaseResponse(
+      data: PagingResponse(
+        items: transactions,
+        totalItems: transactions.length,
+        totalPages: 1,
+        pageSize: transactions.length,
+        currentPage: 1,
+      ),
+    );
+    return baseResponse;
+  }
+
+  Future<void> addTransaction(Transaction transaction) async {
+    final box = await db.getBox(transactionBox);
+    final transactionJson = jsonEncode(transaction.toJson());
+    await box.put(transaction.id, transactionJson);
+  }
+
+  Future<void> removeAllTransaction() async {
+    final box = await db.getBox(transactionBox);
+    await box.clear();
+  }
+
+  Future<BaseResponse> finishTransaction(Transaction transaction) async {
+    final box = await db.getBox(transactionBox);
+    if (box.containsKey(transaction.id)) {
+      final transactionJson = box.get(transaction.id);
+      if (transactionJson != null && transactionJson is String) {
+        var existingTransaction = Transaction.fromJsonString(transactionJson);
+        if (existingTransaction.status == TransactionStatus.processing) {
+          existingTransaction = existingTransaction.copyWith(
+            status: TransactionStatus.completed,
+          );
+          final updatedTransactionJson =
+              jsonEncode(existingTransaction.toJson());
+          await box.put(transaction.id, updatedTransactionJson);
+          return BaseResponse(data: {});
+        } else {
+          return BaseResponse(
+            data: {},
+            errors: ['Transaction cannot be completed'],
+          );
+        }
+      }
+    }
+    return BaseResponse(
+      data: {},
+      errors: ['Transaction not found'],
+    );
+  }
+
+  Future<BaseResponse> cancelTransaction(Transaction transaction) async {
+    final box = await db.getBox(transactionBox);
+    if (box.containsKey(transaction.id)) {
+      final transactionJson = box.get(transaction.id);
+      if (transactionJson != null && transactionJson is String) {
+        var existingTransaction = Transaction.fromJsonString(transactionJson);
+        if (existingTransaction.status == TransactionStatus.processing) {
+          existingTransaction = existingTransaction.copyWith(
+            status: TransactionStatus.cancelled,
+          );
+          final updatedTransactionJson =
+              jsonEncode(existingTransaction.toJson());
+          await box.put(transaction.id, updatedTransactionJson);
+          return BaseResponse(data: {});
+        } else {
+          return BaseResponse(
+            data: {},
+            errors: ['Transaction cannot be cancelled'],
+          );
+        }
+      }
+    }
+    return BaseResponse(
+      data: {},
+      errors: ['Transaction not found'],
+    );
   }
 }

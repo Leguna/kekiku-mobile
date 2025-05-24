@@ -9,14 +9,12 @@ class ProductLocalSource {
 
   final String _favoriteKey = 'favorite';
 
-  // Get product by id
   Future<String> getProductById(String id) async {
     final jsonProduct = jsonDecode(await getJson(Assets.jsons.cake));
     final product = jsonProduct.firstWhere((element) => element['id'] == id);
     return jsonEncode(product);
   }
 
-  // Get product by variant id
   Future<String> getProductByVariantId(String id) async {
     final jsonProduct = jsonDecode(await getJson(Assets.jsons.cake));
 

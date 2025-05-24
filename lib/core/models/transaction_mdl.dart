@@ -14,7 +14,7 @@ sealed class Transaction with _$Transaction {
     @Default('') String id,
     double? amount,
     @Default(0) int quantity,
-    String? date,
+    @Default("") String date,
     @JsonKey(fromJson: _typeFromJson, toJson: _typeToJson)
     @Default(TransactionType.none)
     TransactionType type,

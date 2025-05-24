@@ -1,6 +1,8 @@
 import 'package:kekiku/cart/data_sources/cart_local_database.dart';
 import 'package:kekiku/cart/models/cart_item_mdl.dart';
 import 'package:kekiku/cart/models/cart_response.dart';
+import 'package:kekiku/cart/models/transaction_search_params.dart';
+import 'package:kekiku/core/models/paging_response.dart';
 
 import '../../core/index.dart';
 
@@ -51,5 +53,21 @@ class CartRepository {
 
   Future<BaseResponse> checkout() async {
     return await cartLocalDatabase.checkout();
+  }
+
+  Future<BaseResponse<PagingResponse<Transaction>>> getTransactions({
+    TransactionSearchParams transactionSearchParams = const TransactionSearchParams(),
+  }) async {
+    return await cartLocalDatabase.getTransactions(
+      transactionSearchParams: transactionSearchParams,
+    );
+  }
+
+  Future<BaseResponse> cancelTransaction(Transaction transaction) async {
+    return await cartLocalDatabase.cancelTransaction(transaction);
+  }
+
+  Future<BaseResponse> finishTransaction(Transaction transaction) async {
+    return await cartLocalDatabase.finishTransaction(transaction);
   }
 }

@@ -308,4 +308,8 @@ final class Strings {
   static const String checkout = 'Checkout';
 
   static const String searchHintField = "Search";
+
+  static const String complete = 'Complete';
+
+  static const String finishOrder = 'Finish Order';
 }

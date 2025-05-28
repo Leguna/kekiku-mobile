@@ -76,8 +76,8 @@ class TransactionItem extends StatelessWidget {
                                 context
                                     .read<TransactionCubit>()
                                     .finishTransaction(
-                                  transaction?.id ?? '',
-                                );
+                                      transaction?.id ?? '',
+                                    );
                                 Navigator.pop(context);
                               },
                             ),
@@ -89,8 +89,8 @@ class TransactionItem extends StatelessWidget {
                                 context
                                     .read<TransactionCubit>()
                                     .cancelTransaction(
-                                  transaction?.id ?? '',
-                                );
+                                      transaction?.id ?? '',
+                                    );
                                 Navigator.pop(context);
                               },
                             ),
@@ -172,7 +172,11 @@ class TransactionItem extends StatelessWidget {
                     ),
                     visualDensity: VisualDensity.compact,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    context.read<TransactionCubit>().buyAgainFromTransaction(
+                          transaction?.id ?? '',
+                        );
+                  },
                   child: const Text(
                     Strings.buyAgain,
                     style: TextStyle(fontSize: Dimens.small),

@@ -15,7 +15,8 @@ abstract class BaseResponse<T> with _$BaseResponse<T> {
 
   const BaseResponse._();
 
-  factory BaseResponse.fromJson(Map<String, dynamic> json,
+  factory BaseResponse.fromJson(
+    Map<String, dynamic> json,
     T Function(Object?) fromJsonT,
   ) =>
       _$BaseResponseFromJson(json, fromJsonT);
@@ -39,6 +40,10 @@ extension BaseResponseExtensions<T> on BaseResponse<T> {
       return failure(message);
     }
   }
+
+  Result<T, String> toResult() {
+    return success ? Result.success(data) : Result.error(message);
+  }
 }
 
 @freezed
@@ -53,4 +58,24 @@ sealed class Failure with _$Failure {
     @Default("We encountered an issue with our server. Please try again later.")
     String description,
   }) = ServerError;
+
+  const factory Failure.networkError({
+    @Default("Please check your internet connection and try again.")
+    String description,
+  }) = NetworkError;
+
+  const factory Failure.unknownError({
+    @Default("An unknown error occurred. Please try again later.")
+    String description,
+  }) = UnknownError;
+
+  const factory Failure.validationError({
+    @Default(
+        "There was a validation error. Please check your input and try again.")
+    String description,
+  }) = ValidationError;
+
+  const factory Failure.notFoundError({
+    @Default("The requested resource was not found.") String description,
+  }) = NotFoundError;
 }

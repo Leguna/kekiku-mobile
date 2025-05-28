@@ -3,13 +3,13 @@ import '../index.dart';
 class ImagePopup extends StatelessWidget {
   const ImagePopup({
     super.key,
-    required this.imageUrl,
+    required this.src,
     this.imageSize = 120,
     this.onTap,
     this.onBack,
   });
 
-  final String imageUrl;
+  final String src;
   final double imageSize;
   final Function? onTap;
   final Function? onBack;
@@ -34,7 +34,7 @@ class ImagePopup extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
                   child: MyImageLoader(
-                    path: imageUrl,
+                    path: src,
                     fit: BoxFit.cover,
                     width: MediaQuery.of(context).size.width * 0.7,
                     height: MediaQuery.of(context).size.height * 0.4,

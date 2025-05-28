@@ -16,7 +16,7 @@ class CartLocalDatabase {
 
   CartLocalDatabase();
 
-  Future<CartItem> insertProduct(String variantId) async {
+  Future<CartItem> insertProduct(String variantId, {int quantity = 1}) async {
     final box = await db.getBox(cartBox);
     final productJson =
         await productLocalSource.getProductByVariantId(variantId);
@@ -28,7 +28,7 @@ class CartLocalDatabase {
         basePrice: selectedVariant.price,
         discountValue: product.discount,
         productId: product.id,
-        quantity: 1,
+        quantity: quantity,
         variantId: variantId,
         productName: product.name,
         image: selectedVariant.image ?? "",
@@ -38,7 +38,7 @@ class CartLocalDatabase {
     if (productStored != null) {
       final storedProduct = CartItem.fromJsonString(productStored);
       cartItem = cartItem.copyWith(
-        quantity: storedProduct.quantity + 1,
+        quantity: storedProduct.quantity + quantity,
       );
     }
     var cartItemJson = jsonEncode(cartItem.toJson());
@@ -277,5 +277,18 @@ class CartLocalDatabase {
       data: {},
       errors: ['Transaction not found'],
     );
+  }
+
+  Future<BaseResponse> buyAgainFromTransaction(String transactionId) async {
+    final box = await db.getBox(transactionBox);
+    final transactionJson = await box.get(transactionId);
+    if (transactionJson != null && transactionJson is String) {
+      final transaction = Transaction.fromJsonString(transactionJson);
+      for (var product in transaction.products) {
+        final cartItem = await insertProduct(product.variantId);
+        await insertProduct(cartItem.variantId, quantity: cartItem.quantity);
+      }
+    }
+    return BaseResponse(data: {});
   }
 }

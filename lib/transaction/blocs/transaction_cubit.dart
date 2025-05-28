@@ -220,4 +220,23 @@ class TransactionCubit extends Cubit<TransactionState> {
       emit(TransactionState.error(message: e.toString()));
     }
   }
+
+  Future<void> buyAgainFromTransaction(String transactionId) async {
+    if (transactionId.isEmpty) {
+      emit(TransactionState.error(message: "Transaction ID cannot be empty"));
+      return;
+    }
+    emit(const TransactionState.loading());
+    final response =
+        await cartRepository.buyAgainFromTransaction(transactionId);
+
+    response.when(
+      success: (data) {
+        emit(TransactionState.buyAgainSuccess());
+      },
+      failure: (failure) {
+        emit(TransactionState.error(message: failure));
+      },
+    );
+  }
 }

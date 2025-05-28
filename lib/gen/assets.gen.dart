@@ -91,6 +91,10 @@ class $AssetsIllustrationsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/cake_with_fork.jpg
+  AssetGenImage get cakeWithFork =>
+      const AssetGenImage('assets/images/cake_with_fork.jpg');
+
   /// File path: assets/images/chocolate_cake.jpg
   AssetGenImage get chocolateCake =>
       const AssetGenImage('assets/images/chocolate_cake.jpg');
@@ -103,8 +107,18 @@ class $AssetsImagesGen {
   AssetGenImage get cupcakeTop =>
       const AssetGenImage('assets/images/cupcake_top.jpg');
 
+  /// File path: assets/images/orange_cake.jpg
+  AssetGenImage get orangeCake =>
+      const AssetGenImage('assets/images/orange_cake.jpg');
+
   /// List of all assets
-  List<AssetGenImage> get values => [chocolateCake, cupcakeFront, cupcakeTop];
+  List<AssetGenImage> get values => [
+    cakeWithFork,
+    chocolateCake,
+    cupcakeFront,
+    cupcakeTop,
+    orangeCake,
+  ];
 }
 
 class $AssetsJsonsGen {

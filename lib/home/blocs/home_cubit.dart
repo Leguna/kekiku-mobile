@@ -24,14 +24,14 @@ class HomeCubit extends Cubit<HomeState> {
     if (canShow && !isShowedPopupImage) {
       isShowedPopupImage = true;
       await localDatabase.setString(popupKey, DateTime.now().toIso8601String());
-      emit(HomeState.imagePopup(isShowed: isShowedPopupImage));
+      emit(HomeState.imagePopup(isShowed: true));
     }
   }
 
   void closePopupImage() {
     emit(const HomeState.initial());
     isShowedPopupImage = false;
-    emit(HomeState.imagePopup(isShowed: isShowedPopupImage));
+    emit(HomeState.imagePopup(isShowed: true));
   }
 
   Future<void> refreshHome() async {

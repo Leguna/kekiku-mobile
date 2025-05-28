@@ -228,4 +228,24 @@ class __$ErrorCopyWithImpl<$Res> implements _$ErrorCopyWith<$Res> {
   }
 }
 
+/// @nodoc
+
+class _BuyAgainSuccess implements TransactionState {
+  const _BuyAgainSuccess();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _BuyAgainSuccess);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'TransactionState.buyAgainSuccess()';
+  }
+}
+
 // dart format on

@@ -243,14 +243,19 @@ final class Strings {
       'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
 
   static const String kueDescription =
-      'Kue Kekiku adalah kue yang sangat lezat dan enak.';
+      'A soft vanilla cupcake topped with a swirl of creamy buttercream and colorful sprinkles.';
 
-  static const String kueTitle = 'Kue Kekiku';
+  static const String kueTitle = 'Classic Vanilla Delight';
 
   static const String kueDescription2 =
-      'Kue Kekiku 2 adalah kue yang sangat lezat dan enak.';
+      'Layers of rich, moist chocolate sponge filled with velvety chocolate ganache, topped with dark chocolate curls and a glossy glaze—pure indulgence in every bite.';
 
-  static const String kueTitle2 = 'Kue Kekiku 2';
+  static const String kueTitle2 = 'Decadent Chocolate Cake';
+
+  static const String kueTitle3 = 'Zesty Orange Bliss';
+
+  static const String kueDescription3 =
+      'A moist and fluffy orange-infused cake topped with a light citrus glaze and fresh orange zest—perfectly sweet with a tangy twist.';
 
   static const String noItemsFound = 'No items found';
 

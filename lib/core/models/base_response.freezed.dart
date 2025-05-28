@@ -610,4 +610,289 @@ class _$ServerErrorCopyWithImpl<$Res> implements $ServerErrorCopyWith<$Res> {
   }
 }
 
+/// @nodoc
+
+class NetworkError implements Failure {
+  const NetworkError(
+      {this.description =
+          "Please check your internet connection and try again."});
+
+  @override
+  @JsonKey()
+  final String description;
+
+  /// Create a copy of Failure
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $NetworkErrorCopyWith<NetworkError> get copyWith =>
+      _$NetworkErrorCopyWithImpl<NetworkError>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is NetworkError &&
+            (identical(other.description, description) ||
+                other.description == description));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, description);
+
+  @override
+  String toString() {
+    return 'Failure.networkError(description: $description)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $NetworkErrorCopyWith<$Res>
+    implements $FailureCopyWith<$Res> {
+  factory $NetworkErrorCopyWith(
+          NetworkError value, $Res Function(NetworkError) _then) =
+      _$NetworkErrorCopyWithImpl;
+  @override
+  @useResult
+  $Res call({String description});
+}
+
+/// @nodoc
+class _$NetworkErrorCopyWithImpl<$Res> implements $NetworkErrorCopyWith<$Res> {
+  _$NetworkErrorCopyWithImpl(this._self, this._then);
+
+  final NetworkError _self;
+  final $Res Function(NetworkError) _then;
+
+  /// Create a copy of Failure
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? description = null,
+  }) {
+    return _then(NetworkError(
+      description: null == description
+          ? _self.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class UnknownError implements Failure {
+  const UnknownError(
+      {this.description =
+          "An unknown error occurred. Please try again later."});
+
+  @override
+  @JsonKey()
+  final String description;
+
+  /// Create a copy of Failure
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $UnknownErrorCopyWith<UnknownError> get copyWith =>
+      _$UnknownErrorCopyWithImpl<UnknownError>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is UnknownError &&
+            (identical(other.description, description) ||
+                other.description == description));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, description);
+
+  @override
+  String toString() {
+    return 'Failure.unknownError(description: $description)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $UnknownErrorCopyWith<$Res>
+    implements $FailureCopyWith<$Res> {
+  factory $UnknownErrorCopyWith(
+          UnknownError value, $Res Function(UnknownError) _then) =
+      _$UnknownErrorCopyWithImpl;
+  @override
+  @useResult
+  $Res call({String description});
+}
+
+/// @nodoc
+class _$UnknownErrorCopyWithImpl<$Res> implements $UnknownErrorCopyWith<$Res> {
+  _$UnknownErrorCopyWithImpl(this._self, this._then);
+
+  final UnknownError _self;
+  final $Res Function(UnknownError) _then;
+
+  /// Create a copy of Failure
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? description = null,
+  }) {
+    return _then(UnknownError(
+      description: null == description
+          ? _self.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class ValidationError implements Failure {
+  const ValidationError(
+      {this.description =
+          "There was a validation error. Please check your input and try again."});
+
+  @override
+  @JsonKey()
+  final String description;
+
+  /// Create a copy of Failure
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ValidationErrorCopyWith<ValidationError> get copyWith =>
+      _$ValidationErrorCopyWithImpl<ValidationError>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ValidationError &&
+            (identical(other.description, description) ||
+                other.description == description));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, description);
+
+  @override
+  String toString() {
+    return 'Failure.validationError(description: $description)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ValidationErrorCopyWith<$Res>
+    implements $FailureCopyWith<$Res> {
+  factory $ValidationErrorCopyWith(
+          ValidationError value, $Res Function(ValidationError) _then) =
+      _$ValidationErrorCopyWithImpl;
+  @override
+  @useResult
+  $Res call({String description});
+}
+
+/// @nodoc
+class _$ValidationErrorCopyWithImpl<$Res>
+    implements $ValidationErrorCopyWith<$Res> {
+  _$ValidationErrorCopyWithImpl(this._self, this._then);
+
+  final ValidationError _self;
+  final $Res Function(ValidationError) _then;
+
+  /// Create a copy of Failure
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? description = null,
+  }) {
+    return _then(ValidationError(
+      description: null == description
+          ? _self.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class NotFoundError implements Failure {
+  const NotFoundError(
+      {this.description = "The requested resource was not found."});
+
+  @override
+  @JsonKey()
+  final String description;
+
+  /// Create a copy of Failure
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $NotFoundErrorCopyWith<NotFoundError> get copyWith =>
+      _$NotFoundErrorCopyWithImpl<NotFoundError>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is NotFoundError &&
+            (identical(other.description, description) ||
+                other.description == description));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, description);
+
+  @override
+  String toString() {
+    return 'Failure.notFoundError(description: $description)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $NotFoundErrorCopyWith<$Res>
+    implements $FailureCopyWith<$Res> {
+  factory $NotFoundErrorCopyWith(
+          NotFoundError value, $Res Function(NotFoundError) _then) =
+      _$NotFoundErrorCopyWithImpl;
+  @override
+  @useResult
+  $Res call({String description});
+}
+
+/// @nodoc
+class _$NotFoundErrorCopyWithImpl<$Res>
+    implements $NotFoundErrorCopyWith<$Res> {
+  _$NotFoundErrorCopyWithImpl(this._self, this._then);
+
+  final NotFoundError _self;
+  final $Res Function(NotFoundError) _then;
+
+  /// Create a copy of Failure
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? description = null,
+  }) {
+    return _then(NotFoundError(
+      description: null == description
+          ? _self.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
 // dart format on

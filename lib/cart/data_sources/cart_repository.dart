@@ -22,6 +22,11 @@ class CartRepository {
     return await cartLocalDatabase.insertProduct(variantId);
   }
 
+  Future<BaseResponse> buyAgainFromTransaction(String transactionId) async {
+    final response = await cartLocalDatabase.buyAgainFromTransaction(transactionId);
+    return response;
+  }
+
   Future<CartItem> removeProductFromCart(String variantId) async {
     return await cartLocalDatabase.decrementProductQuantity(variantId);
   }
@@ -56,7 +61,8 @@ class CartRepository {
   }
 
   Future<BaseResponse<PagingResponse<Transaction>>> getTransactions({
-    TransactionSearchParams transactionSearchParams = const TransactionSearchParams(),
+    TransactionSearchParams transactionSearchParams =
+        const TransactionSearchParams(),
   }) async {
     return await cartLocalDatabase.getTransactions(
       transactionSearchParams: transactionSearchParams,

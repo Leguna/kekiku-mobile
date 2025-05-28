@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-class MyImageLoader extends StatefulWidget {
+class MyImageLoader extends StatelessWidget {
   const MyImageLoader({
     super.key,
     this.path = '',
@@ -22,37 +22,33 @@ class MyImageLoader extends StatefulWidget {
   final BoxFit fit;
 
   @override
-  State<MyImageLoader> createState() => _MyImageLoaderState();
-}
-
-class _MyImageLoaderState extends State<MyImageLoader> {
-  bool _isLoading = true;
-
-  @override
   Widget build(BuildContext context) {
-    // if (widget.isLoading) {
-    //   return _buildShimmer();
-    // }
     return ClipRRect(
-      borderRadius: BorderRadius.circular(widget.radius),
+      borderRadius: BorderRadius.circular(radius),
       child: _buildImage(),
     );
   }
 
+  Widget _buildImage() {
+    return path?.startsWith('http') ?? false
+        ? _buildNetworkImage()
+        : _buildLocalImage();
+  }
+
   Widget _buildNetworkImage() {
     return CachedNetworkImage(
-      imageUrl: widget.path ?? '',
+      imageUrl: path ?? '',
       filterQuality: FilterQuality.none,
       imageBuilder: (context, imageProvider) {
-        widget.onImageLoaded?.call();
+        onImageLoaded?.call();
         return Container(
-          width: widget.width,
-          height: widget.height,
+          width: width,
+          height: height,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(widget.radius),
+            borderRadius: BorderRadius.circular(radius),
             image: DecorationImage(
               image: imageProvider,
-              fit: widget.fit,
+              fit: fit,
             ),
           ),
         );
@@ -64,51 +60,25 @@ class _MyImageLoaderState extends State<MyImageLoader> {
     );
   }
 
-  Widget _buildImage() {
-    return widget.path?.startsWith('http') ?? false
-        ? _buildNetworkImage()
-        : _buildLocalImage();
-  }
-
   Widget _buildLocalImage() {
-    if (_isLoading) {
-      return _buildShimmer();
-    }
-    return FutureBuilder(
-      future: Future.delayed(const Duration(milliseconds: 100)),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          _onImageLoaded();
-        }
-        return Image.asset(
-          widget.path ?? '',
-          width: widget.width,
-          height: widget.height,
-          fit: widget.fit,
-          errorBuilder: (context, error, stackTrace) =>
-              _buildError(context, widget.path ?? '', error),
-        );
-      },
+    return Image.asset(
+      path ?? '',
+      width: width,
+      height: height,
+      fit: fit,
+      errorBuilder: (context, error, stackTrace) =>
+          _buildError(context, path ?? '', error),
     );
-  }
-
-  void _onImageLoaded() {
-    if (mounted) {
-      setState(() {
-        _isLoading = false;
-      });
-      widget.onImageLoaded?.call();
-    }
   }
 
   Widget _buildShimmer() {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(widget.radius),
+        borderRadius: BorderRadius.circular(radius),
         color: Colors.grey[300],
       ),
-      width: widget.width,
-      height: widget.height,
+      width: width,
+      height: height,
     );
   }
 
@@ -118,10 +88,10 @@ class _MyImageLoaderState extends State<MyImageLoader> {
     Object error,
   ) {
     return Container(
-      width: widget.width,
-      height: widget.height,
+      width: width,
+      height: height,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(widget.radius),
+        borderRadius: BorderRadius.circular(radius),
         color: Colors.grey[300],
       ),
       child: const Center(

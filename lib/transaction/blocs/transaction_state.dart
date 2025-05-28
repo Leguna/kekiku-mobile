@@ -12,4 +12,6 @@ class TransactionState with _$TransactionState {
       _Loaded;
 
   const factory TransactionState.error({required String message}) = _Error;
+
+  const factory TransactionState.buyAgainSuccess() = _BuyAgainSuccess;
 }

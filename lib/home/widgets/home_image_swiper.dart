@@ -1,4 +1,3 @@
-
 import '../../core/index.dart';
 import '../../core/widgets/image_swiper/image_swiper.dart';
 
@@ -20,9 +19,9 @@ class HomeImageSwiper extends StatelessWidget {
           subtitle: Strings.kueDescription2,
         ),
         ImageData(
-          image: Assets.images.cupcakeFront.path,
-          title: Strings.kueTitle,
-          subtitle: Strings.kueDescription,
+          image: Assets.images.cakeWithFork.path,
+          title: Strings.kueTitle3,
+          subtitle: Strings.kueDescription3,
         ),
       ],
     );

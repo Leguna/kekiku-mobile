@@ -121,10 +121,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                           price: cubit.selectedVariant?.price ?? 0,
                           discount: product.discount),
                       const Divider(height: 8, thickness: 8),
-                      const SizedBox(height: Dimens.medium),
+                      const SizedBox(height: Dimens.large),
                       Padding(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: Dimens.medium),
+                            horizontal: Dimens.large),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -133,7 +133,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                               Strings.description,
                               style: Theme.of(context).textTheme.titleLarge,
                             ),
-                            const SizedBox(height: Dimens.small),
+                            const SizedBox(height: Dimens.medium),
                             Text(
                               product.description ?? "",
                               style: Theme.of(context).textTheme.bodyMedium,
@@ -141,12 +141,12 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                           ],
                         ),
                       ),
-                      const SizedBox(height: Dimens.medium),
+                      const SizedBox(height: Dimens.large),
                       const Divider(thickness: 8),
-                      const SizedBox(height: Dimens.medium),
+                      const SizedBox(height: Dimens.large),
                       Padding(
                         padding: const EdgeInsets.symmetric(
-                          horizontal: Dimens.medium,
+                          horizontal: Dimens.large,
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -156,7 +156,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                               Strings.reviews,
                               style: Theme.of(context).textTheme.titleLarge,
                             ),
-                            const SizedBox(height: Dimens.small),
+                            const SizedBox(height: Dimens.medium),
                             if (product.reviews.isEmpty) ...[
                               Text(
                                 Strings.noReviews,
@@ -179,7 +179,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                     style:
                                         Theme.of(context).textTheme.bodyMedium,
                                   ),
-                                  const SizedBox(height: Dimens.medium),
+                                  const SizedBox(height: Dimens.large),
                                 ],
                               ),
                             ],
@@ -250,11 +250,11 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       border: Border.all(
                         color: Theme.of(context).colorScheme.onPrimary,
                       ),
-                      borderRadius: BorderRadius.circular(Dimens.large),
+                      borderRadius: BorderRadius.circular(Dimens.xlarge),
                     ),
                     child: IconButton(
                       visualDensity: VisualDensity.compact,
-                      icon: const Icon(Icons.arrow_upward, size: Dimens.medium),
+                      icon: const Icon(Icons.arrow_upward, size: Dimens.large),
                       onPressed: () {
                         mainController.animateTo(
                           0,
@@ -269,7 +269,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               Positioned(
                 bottom: 0,
                 child: Container(
-                  padding: const EdgeInsets.all(Dimens.small),
+                  padding: const EdgeInsets.all(Dimens.medium),
                   width: Dimens.screenWidth,
                   decoration: BoxDecoration(
                     color: Theme.of(context).scaffoldBackgroundColor,
@@ -282,7 +282,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    spacing: Dimens.medium,
+                    spacing: Dimens.large,
                     children: [
                       if (cubit.selectedProduct?.stock == 0) ...[
                         Expanded(
@@ -348,7 +348,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                 elevation: 1,
                                 shape: RoundedRectangleBorder(
                                   borderRadius:
-                                      BorderRadius.circular(Dimens.small),
+                                      BorderRadius.circular(Dimens.medium),
                                   side: BorderSide(
                                     color:
                                         Theme.of(context).colorScheme.primary,

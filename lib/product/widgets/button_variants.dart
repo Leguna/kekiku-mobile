@@ -24,7 +24,7 @@ class ButtonVariantsState extends State<ButtonVariants> {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: [
-          const SizedBox(width: Dimens.medium),
+          const SizedBox(width: Dimens.large),
           for (var i = 0; i < widget.variants.length; i++) ...[
             ElevatedButton(
               onPressed: () {
@@ -47,7 +47,7 @@ class ButtonVariantsState extends State<ButtonVariants> {
                   if (widget.variants[i].image != null) ...[
                     Padding(
                       padding: const EdgeInsets.symmetric(
-                        vertical: Dimens.small,
+                        vertical: Dimens.medium,
                       ),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8),
@@ -58,13 +58,13 @@ class ButtonVariantsState extends State<ButtonVariants> {
                         ),
                       ),
                     ),
-                    const SizedBox(width: Dimens.small),
+                    const SizedBox(width: Dimens.medium),
                   ],
                   Text(widget.variants[i].name ?? ""),
                 ],
               ),
             ),
-            const SizedBox(width: Dimens.medium),
+            const SizedBox(width: Dimens.large),
           ],
         ],
       ),

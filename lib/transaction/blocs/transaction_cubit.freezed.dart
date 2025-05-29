@@ -58,21 +58,67 @@ class _Initial implements TransactionState {
 
 /// @nodoc
 
-class _Loading implements TransactionState {
-  const _Loading();
+class TransactionLoading implements TransactionState {
+  const TransactionLoading({this.transactionId = ""});
+
+  @JsonKey()
+  final String transactionId;
+
+  /// Create a copy of TransactionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $TransactionLoadingCopyWith<TransactionLoading> get copyWith =>
+      _$TransactionLoadingCopyWithImpl<TransactionLoading>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Loading);
+        (other.runtimeType == runtimeType &&
+            other is TransactionLoading &&
+            (identical(other.transactionId, transactionId) ||
+                other.transactionId == transactionId));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, transactionId);
 
   @override
   String toString() {
-    return 'TransactionState.loading()';
+    return 'TransactionState.loading(transactionId: $transactionId)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $TransactionLoadingCopyWith<$Res>
+    implements $TransactionStateCopyWith<$Res> {
+  factory $TransactionLoadingCopyWith(
+          TransactionLoading value, $Res Function(TransactionLoading) _then) =
+      _$TransactionLoadingCopyWithImpl;
+  @useResult
+  $Res call({String transactionId});
+}
+
+/// @nodoc
+class _$TransactionLoadingCopyWithImpl<$Res>
+    implements $TransactionLoadingCopyWith<$Res> {
+  _$TransactionLoadingCopyWithImpl(this._self, this._then);
+
+  final TransactionLoading _self;
+  final $Res Function(TransactionLoading) _then;
+
+  /// Create a copy of TransactionState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? transactionId = null,
+  }) {
+    return _then(TransactionLoading(
+      transactionId: null == transactionId
+          ? _self.transactionId
+          : transactionId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 }
 
@@ -230,13 +276,13 @@ class __$ErrorCopyWithImpl<$Res> implements _$ErrorCopyWith<$Res> {
 
 /// @nodoc
 
-class _BuyAgainSuccess implements TransactionState {
-  const _BuyAgainSuccess();
+class BuyAgainSuccess implements TransactionState {
+  const BuyAgainSuccess();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _BuyAgainSuccess);
+        (other.runtimeType == runtimeType && other is BuyAgainSuccess);
   }
 
   @override
@@ -245,6 +291,72 @@ class _BuyAgainSuccess implements TransactionState {
   @override
   String toString() {
     return 'TransactionState.buyAgainSuccess()';
+  }
+}
+
+/// @nodoc
+
+class FinishSuccess implements TransactionState {
+  const FinishSuccess({this.transactionId = ""});
+
+  @JsonKey()
+  final String transactionId;
+
+  /// Create a copy of TransactionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $FinishSuccessCopyWith<FinishSuccess> get copyWith =>
+      _$FinishSuccessCopyWithImpl<FinishSuccess>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is FinishSuccess &&
+            (identical(other.transactionId, transactionId) ||
+                other.transactionId == transactionId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, transactionId);
+
+  @override
+  String toString() {
+    return 'TransactionState.finishSuccess(transactionId: $transactionId)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $FinishSuccessCopyWith<$Res>
+    implements $TransactionStateCopyWith<$Res> {
+  factory $FinishSuccessCopyWith(
+          FinishSuccess value, $Res Function(FinishSuccess) _then) =
+      _$FinishSuccessCopyWithImpl;
+  @useResult
+  $Res call({String transactionId});
+}
+
+/// @nodoc
+class _$FinishSuccessCopyWithImpl<$Res>
+    implements $FinishSuccessCopyWith<$Res> {
+  _$FinishSuccessCopyWithImpl(this._self, this._then);
+
+  final FinishSuccess _self;
+  final $Res Function(FinishSuccess) _then;
+
+  /// Create a copy of TransactionState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? transactionId = null,
+  }) {
+    return _then(FinishSuccess(
+      transactionId: null == transactionId
+          ? _self.transactionId
+          : transactionId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 }
 

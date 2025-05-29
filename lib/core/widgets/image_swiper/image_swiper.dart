@@ -54,9 +54,9 @@ class ImageSwiper extends StatelessWidget {
                     Container(
                       alignment: Alignment.bottomLeft,
                       padding: EdgeInsets.only(
-                        left: Dimens.medium,
-                        right: Dimens.medium,
-                        bottom: showIndicator ? Dimens.large : Dimens.medium,
+                        left: Dimens.large,
+                        right: Dimens.large,
+                        bottom: showIndicator ? Dimens.xlarge : Dimens.large,
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,7 +89,7 @@ class ImageSwiper extends StatelessWidget {
           if (showIndicator)
             Container(
               padding: const EdgeInsets.only(
-                bottom: Dimens.tiny,
+                bottom: Dimens.small,
               ),
               alignment: Alignment.bottomCenter,
               child: DotsIndicatorWithTimer(

@@ -224,6 +224,7 @@ class CartLocalDatabase {
   }
 
   Future<BaseResponse> finishTransaction(Transaction transaction) async {
+    await Future.delayed(const Duration(seconds: 2));
     final box = await db.getBox(transactionBox);
     if (box.containsKey(transaction.id)) {
       final transactionJson = box.get(transaction.id);
@@ -280,6 +281,7 @@ class CartLocalDatabase {
   }
 
   Future<BaseResponse> buyAgainFromTransaction(String transactionId) async {
+    await Future.delayed(const Duration(seconds: 2));
     final box = await db.getBox(transactionBox);
     final transactionJson = await box.get(transactionId);
     if (transactionJson != null && transactionJson is String) {

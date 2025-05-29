@@ -1,5 +1,6 @@
 import 'package:kekiku/cart/bloc/cart_cubit.dart';
 import 'package:kekiku/core/widgets/my_shimmer.dart';
+import 'package:kekiku/transaction/blocs/transaction_cubit.dart';
 
 import '../../core/index.dart';
 import '../../home/home_screen.dart';
@@ -15,6 +16,15 @@ class CartBottomSheetWidget extends StatelessWidget {
       listener: (context, state) {
         switch (state) {
           case CartCheckout():
+            context.read<TransactionCubit>().fetchTransactions();
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              Routes.home,
+              (route) => false,
+              arguments: const HomeScreenArguments(
+                initialIndex: 1,
+              ),
+            );
             break;
           case CartError():
             showMySnackBar(context, state.message);
@@ -24,65 +34,73 @@ class CartBottomSheetWidget extends StatelessWidget {
         }
       },
       buildWhen: (previous, current) {
-        if (current is CartLoading &&
-            (previous is CartEmpty || previous is CartCheckout)) {
-          return false;
-        }
+        // if (current is CartLoading &&
+        //     (previous is CartEmpty || previous is CartCheckout)) {
+        //   return false;
+        // }
         return true;
       },
       builder: (context, state) {
         switch (state) {
+          case CartLoading(:final showSummary):
+            if (showSummary) {
+              return buildContainer(context, state);
+            }
+            return const SizedBox();
+          case CartLoaded():
+            return buildContainer(context, state);
           case CartEmpty():
             return const SizedBox();
-          case CartLoading():
-          case CartLoaded():
-            return Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(Dimens.small),
-                  topRight: Radius.circular(Dimens.small),
-                ),
-                border: Border(
-                  top: BorderSide(
-                    color: Theme.of(context).colorScheme.onPrimary,
-                    width: Dimens.borderWidth,
-                  ),
-                ),
-              ),
-              child: SingleChildScrollView(
-                physics: const AlwaysScrollableScrollPhysics(),
-                padding: const EdgeInsets.all(Dimens.medium),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Text(
-                      Strings.orderSummary,
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                    // Promo Field
-                    const SizedBox(height: Dimens.medium),
-                    const OrderSummaryWidget(),
-                    SizedBox(height: Dimens.medium),
-                    ElevatedButton(
-                      onPressed: switch (state) {
-                        CartLoaded() => () {
-                            context.read<CartCubit>().checkout();
-                          },
-                        _ => null,
-                      },
-                      child: Text(Strings.checkout),
-                    ),
-                  ],
-                ),
-              ),
-            );
           default:
             return const SizedBox();
         }
       },
+    );
+  }
+
+  Container buildContainer(BuildContext context, CartState state) {
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(Dimens.medium),
+          topRight: Radius.circular(Dimens.medium),
+        ),
+        border: Border(
+          top: BorderSide(
+            color: Theme.of(context).colorScheme.onPrimary,
+            width: Dimens.borderWidth,
+          ),
+        ),
+      ),
+      child: SingleChildScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        padding: const EdgeInsets.all(Dimens.large),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              Strings.orderSummary,
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+            ),
+            // Promo Field
+            const SizedBox(height: Dimens.large),
+            const OrderSummaryWidget(),
+            SizedBox(height: Dimens.large),
+            ElevatedButton(
+              onPressed: switch (state) {
+                CartLoaded() => () {
+                  context.read<CartCubit>().checkout();
+                },
+                _ => null,
+              },
+              child: Text(Strings.checkout),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -92,22 +110,7 @@ class OrderSummaryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<CartCubit, CartState>(
-      listener: (context, state) {
-        if (state is CartError) {
-          showMySnackBar(context, state.message);
-        }
-        if (state is CartCheckout) {
-          Navigator.pushNamedAndRemoveUntil(
-            context,
-            Routes.home,
-            (route) => false,
-            arguments: const HomeScreenArguments(
-              initialIndex: 1,
-            ),
-          );
-        }
-      },
+    return BlocBuilder<CartCubit, CartState>(
       builder: (context, state) {
         switch (state) {
           case CartLoaded(
@@ -131,7 +134,7 @@ class OrderSummaryWidget extends StatelessWidget {
                   Strings.totalItem,
                   value: totalQuantity.toString(),
                 ),
-                SizedBox(height: Dimens.tiny),
+                SizedBox(height: Dimens.small),
                 LabelPrice(
                   Strings.discountedPrice,
                   value:
@@ -147,17 +150,26 @@ class OrderSummaryWidget extends StatelessWidget {
                 ),
               ],
             );
+          case CartLoading(:final showSummary):
+            if (showSummary) {
+              return buildShimmer();
+            }
+            return SizedBox();
           default:
-            return Column(
-              children: [
-                for (int i = 0; i < 3; i++) ...[
-                  const SizedBox(height: Dimens.tiny),
-                  const MyShimmer(),
-                ],
-              ],
-            );
+            return SizedBox();
         }
       },
+    );
+  }
+
+  Column buildShimmer() {
+    return Column(
+      children: [
+        for (int i = 0; i < 3; i++) ...[
+          const SizedBox(height: Dimens.small),
+          const MyShimmer(),
+        ],
+      ],
     );
   }
 }

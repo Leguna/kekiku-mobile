@@ -17,7 +17,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
   @override
   void initState() {
     final cubit = context.read<TransactionCubit>();
-    cubit.initView  ();
+    cubit.initView();
     super.initState();
   }
 
@@ -29,7 +29,15 @@ class _TransactionScreenState extends State<TransactionScreen> {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<TransactionCubit>();
-    return BlocBuilder<TransactionCubit, TransactionState>(
+    return BlocConsumer<TransactionCubit, TransactionState>(
+      listener: (context, state) {
+        switch (state) {
+          case BuyAgainSuccess _:
+            context.read<CartCubit>().getCart(showSummary: true);
+            Navigator.pushNamed(context, Routes.cart);
+            break;
+        }
+      },
       builder: (context, state) {
         return MyScaffold(
           appBar: AppBar(
@@ -65,7 +73,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
             leadingWidth: 16,
             titleSpacing: 0,
             actions: [
-              const SizedBox(width: Dimens.tiny),
+              const SizedBox(width: Dimens.small),
               IconButtonBadged(
                 onPressed: () {
                   Navigator.pushNamed(context, Routes.notification);
@@ -79,7 +87,8 @@ class _TransactionScreenState extends State<TransactionScreen> {
                     _ => 0,
                   };
                   return IconButtonBadged(
-                    badgeText: cartItemCount > 0 ? cartItemCount.toString() : "",
+                    badgeText:
+                        cartItemCount > 0 ? cartItemCount.toString() : "",
                     onPressed: () {
                       Navigator.pushNamed(context, Routes.cart);
                     },
@@ -87,12 +96,13 @@ class _TransactionScreenState extends State<TransactionScreen> {
                   );
                 },
               ),
-              const SizedBox(width: Dimens.tiny),
+              const SizedBox(width: Dimens.small),
             ],
           ),
           body: RefreshIndicator(
             child: cubit.transactions.isEmpty
                 ? SingleChildScrollView(
+                    physics: const AlwaysScrollableScrollPhysics(),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       mainAxisSize: MainAxisSize.max,

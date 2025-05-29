@@ -31,7 +31,7 @@ class DetailAppBar extends MyAppBar {
         ),
         FavoriteButton(
           product: product,
-          borderRadius: BorderRadius.circular(Dimens.xlarge),
+          borderRadius: BorderRadius.circular(Dimens.xXLarge),
           backgroundColor: Colors.transparent,
         ),
         BlocSelector<CartCubit, CartState, int>(

@@ -15,7 +15,7 @@ class DetailPriceWidget extends StatelessWidget {
     final discountedPrice = price - (price * (discount / 100));
     return Padding(
       padding: const EdgeInsets.symmetric(
-          horizontal: Dimens.large, vertical: Dimens.small),
+          horizontal: Dimens.xlarge, vertical: Dimens.medium),
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -27,7 +27,7 @@ class DetailPriceWidget extends StatelessWidget {
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   if (discount > 0) ...[
-                    const SizedBox(width: Dimens.small),
+                    const SizedBox(width: Dimens.medium),
                     Text(
                       "\$${price.toStringAsFixed(2)}",
                       style: Theme.of(context).textTheme.labelMedium?.copyWith(
@@ -39,7 +39,7 @@ class DetailPriceWidget extends StatelessWidget {
                                 .withAlpha(125),
                           ),
                     ),
-                    const SizedBox(width: Dimens.small),
+                    const SizedBox(width: Dimens.medium),
                     Text(
                       "${discount.toStringAsFixed(0)}%",
                       style: Theme.of(context)

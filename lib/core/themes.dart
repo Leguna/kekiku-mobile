@@ -5,10 +5,10 @@ import 'colors.dart';
 import 'typography.dart';
 
 final mainTheme = ThemeData(
-  cardTheme: const CardTheme(
+  cardTheme: CardThemeData(
     color: AppColors.charcoalBlue,
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(Radius.circular(Dimens.small)),
+      borderRadius: BorderRadius.all(Radius.circular(Dimens.medium)),
     ),
   ),
   fontFamily: 'Poppins',
@@ -19,7 +19,7 @@ final mainTheme = ThemeData(
       fontSize: 14.0,
     ),
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(Radius.circular(Dimens.small)),
+      borderRadius: BorderRadius.all(Radius.circular(Dimens.medium)),
     ),
   ),
   fontFamilyFallback: const ['Montserrat'],
@@ -42,7 +42,7 @@ final mainTheme = ThemeData(
       ),
     ),
   ),
-  tabBarTheme: TabBarTheme(
+  tabBarTheme: TabBarThemeData(
     overlayColor: WidgetStateProperty.all(AppColors.primaryColorLight),
     labelColor: AppColors.primaryColorLight,
     unselectedLabelColor: Colors.grey,
@@ -59,8 +59,8 @@ final mainTheme = ThemeData(
     backgroundColor: AppColors.primaryColorBackground,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(Dimens.small),
-        topRight: Radius.circular(Dimens.small),
+        topLeft: Radius.circular(Dimens.medium),
+        topRight: Radius.circular(Dimens.medium),
       ),
     ),
   ),
@@ -93,8 +93,8 @@ final mainTheme = ThemeData(
     hintStyle:
         const TextStyle(fontSize: 14, color: AppColors.primaryColorLight),
     contentPadding: const EdgeInsets.symmetric(
-      horizontal: Dimens.small,
-      vertical: Dimens.small,
+      horizontal: Dimens.medium,
+      vertical: Dimens.medium,
     ),
     helperStyle: AppTextStyles.micro.copyWith(
       color: AppColors.paleSteelBlue,
@@ -139,13 +139,13 @@ final mainTheme = ThemeData(
       ),
     ),
   ),
-  dialogTheme: DialogTheme(
+  dialogTheme: DialogThemeData(
     backgroundColor: AppColors.primaryColorBackground,
     titleTextStyle: AppTextStyles.large,
     contentTextStyle:
         AppTextStyles.medium.copyWith(color: AppColors.paleSteelBlue),
     shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(Radius.circular(Dimens.tiny)),
+      borderRadius: BorderRadius.all(Radius.circular(Dimens.small)),
     ),
     alignment: Alignment.center,
   ),
@@ -188,7 +188,7 @@ final mainTheme = ThemeData(
     ),
     tileColor: AppColors.primaryColorBackground,
     iconColor: Colors.white,
-    contentPadding: EdgeInsets.symmetric(horizontal: Dimens.small),
+    contentPadding: EdgeInsets.symmetric(horizontal: Dimens.medium),
     minVerticalPadding: 0.0,
     minLeadingWidth: 0.0,
     horizontalTitleGap: 16.0,

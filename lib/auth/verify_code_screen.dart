@@ -32,7 +32,7 @@ class VerifyCodeScreen extends StatelessWidget {
           final canResend = context.read<AuthCubit>().canResend;
           if (isLoading) return const MyLoading();
           return SingleChildScrollView(
-            padding: const EdgeInsets.all(Dimens.large),
+            padding: const EdgeInsets.all(Dimens.xlarge),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,

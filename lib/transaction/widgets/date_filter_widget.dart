@@ -30,7 +30,7 @@ class _DateFilterWidgetState extends State<DateFilterWidget> {
             if (c.dateFilter == DateFilter.custom) ...[
               Row(
                 children: [
-                  const SizedBox(width: Dimens.small),
+                  const SizedBox(width: Dimens.medium),
                   Expanded(
                     child: TextFormField(
                       controller: c.startDateController,
@@ -59,7 +59,7 @@ class _DateFilterWidgetState extends State<DateFilterWidget> {
                       ),
                     ),
                   ),
-                  const SizedBox(width: Dimens.small),
+                  const SizedBox(width: Dimens.medium),
                   Expanded(
                     child: TextFormField(
                       controller: c.endDateController,
@@ -87,11 +87,11 @@ class _DateFilterWidgetState extends State<DateFilterWidget> {
                       ),
                     ),
                   ),
-                  const SizedBox(width: Dimens.small),
+                  const SizedBox(width: Dimens.medium),
                 ],
               ),
             ],
-            const SizedBox(height: Dimens.small),
+            const SizedBox(height: Dimens.medium),
             ElevatedButton(
               onPressed: () {
                 c.confirmDateFilter(

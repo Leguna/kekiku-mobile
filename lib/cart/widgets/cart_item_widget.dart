@@ -15,7 +15,7 @@ class CartItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-        horizontal: Dimens.medium,
+        horizontal: Dimens.large,
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -27,7 +27,7 @@ class CartItemWidget extends StatelessWidget {
             height: 120,
             fit: BoxFit.cover,
           ),
-          SizedBox(width: Dimens.small),
+          SizedBox(width: Dimens.medium),
           Expanded(
             child: SizedBox(
               height: 120,
@@ -52,7 +52,7 @@ class CartItemWidget extends StatelessWidget {
                           ],
                         ],
                       )),
-                      const SizedBox(width: Dimens.small),
+                      const SizedBox(width: Dimens.medium),
                       IconButton(
                         padding: EdgeInsets.zero,
                         visualDensity: VisualDensity.compact,
@@ -92,7 +92,7 @@ class CartItemWidget extends StatelessWidget {
                                       ),
                                 ),
                                 if (cartItem.discountValue > 0) ...[
-                                  const SizedBox(width: Dimens.smallNano),
+                                  const SizedBox(width: Dimens.tiny),
                                   Text(
                                     cartItem.totalBasePrice.toCurrency(),
                                     style: Theme.of(context)

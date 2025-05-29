@@ -16,9 +16,10 @@ class CartCubit extends Cubit<CartState> {
   List<CartItem> cartItems = [];
   CartRepository cartRepository = getIt<CartRepository>();
 
-  Future<void> getCart() async {
+  Future<void> getCart({bool showSummary = true}) async {
     try {
-      emit(const CartState.loading());
+      bool isLastCartEmpty = cartItems.isEmpty;
+      emit(CartState.loading(showSummary: showSummary && !isLastCartEmpty));
       await Future.delayed(const Duration(seconds: 1));
       final cartResponse = await cartRepository.fetchCart();
       cartItems = cartResponse.data.items;
@@ -86,7 +87,7 @@ class CartCubit extends Cubit<CartState> {
 
   Future<void> checkout() async {
     try {
-      emit(const CartState.loading(isFull: true));
+      emit(const CartState.loading(isFull: true, showSummary: true));
       await Future.delayed(const Duration(seconds: 1));
       await cartRepository.checkout();
       emit(CartState.checkout());

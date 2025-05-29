@@ -48,7 +48,7 @@ class EditProfileScreen extends StatelessWidget {
                             thickness: 1,
                             height: 1,
                           ),
-                          const SizedBox(height: Dimens.small),
+                          const SizedBox(height: Dimens.medium),
                           Center(
                             child: _buildImage(
                                 cubit.user?.photo ?? '', cubit.isLoading),
@@ -65,7 +65,7 @@ class EditProfileScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
                               Padding(
-                                padding: EdgeInsets.all(Dimens.small),
+                                padding: EdgeInsets.all(Dimens.medium),
                                 child: Text(Strings.publicProfile),
                               ),
                               EditProfileTile(type: ProfileField.displayName),
@@ -78,7 +78,7 @@ class EditProfileScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
                               Padding(
-                                padding: EdgeInsets.all(Dimens.small),
+                                padding: EdgeInsets.all(Dimens.medium),
                                 child: Text(
                                   Strings.privateProfile,
                                   style: TextStyle(fontSize: 16),

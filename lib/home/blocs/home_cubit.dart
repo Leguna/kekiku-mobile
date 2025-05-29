@@ -31,7 +31,7 @@ class HomeCubit extends Cubit<HomeState> {
   void closePopupImage() {
     emit(const HomeState.initial());
     isShowedPopupImage = false;
-    emit(HomeState.imagePopup(isShowed: true));
+    emit(HomeState.imagePopup(isShowed: isShowedPopupImage));
   }
 
   Future<void> refreshHome() async {

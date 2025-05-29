@@ -15,7 +15,7 @@ class PlusMinusQuantityWidget extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: Theme.of(context).cardTheme.color,
-        borderRadius: BorderRadius.circular(Dimens.small),
+        borderRadius: BorderRadius.circular(Dimens.medium),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,

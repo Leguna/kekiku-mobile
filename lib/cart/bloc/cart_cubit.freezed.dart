@@ -58,11 +58,14 @@ class CartInitial implements CartState {
 /// @nodoc
 
 class CartLoading implements CartState {
-  const CartLoading({this.product, this.isFull = false});
+  const CartLoading(
+      {this.product, this.isFull = false, this.showSummary = false});
 
   final Product? product;
   @JsonKey()
   final bool isFull;
+  @JsonKey()
+  final bool showSummary;
 
   /// Create a copy of CartState
   /// with the given fields replaced by the non-null parameter values.
@@ -77,15 +80,17 @@ class CartLoading implements CartState {
         (other.runtimeType == runtimeType &&
             other is CartLoading &&
             (identical(other.product, product) || other.product == product) &&
-            (identical(other.isFull, isFull) || other.isFull == isFull));
+            (identical(other.isFull, isFull) || other.isFull == isFull) &&
+            (identical(other.showSummary, showSummary) ||
+                other.showSummary == showSummary));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, product, isFull);
+  int get hashCode => Object.hash(runtimeType, product, isFull, showSummary);
 
   @override
   String toString() {
-    return 'CartState.loading(product: $product, isFull: $isFull)';
+    return 'CartState.loading(product: $product, isFull: $isFull, showSummary: $showSummary)';
   }
 }
 
@@ -96,7 +101,7 @@ abstract mixin class $CartLoadingCopyWith<$Res>
           CartLoading value, $Res Function(CartLoading) _then) =
       _$CartLoadingCopyWithImpl;
   @useResult
-  $Res call({Product? product, bool isFull});
+  $Res call({Product? product, bool isFull, bool showSummary});
 
   $ProductCopyWith<$Res>? get product;
 }
@@ -114,6 +119,7 @@ class _$CartLoadingCopyWithImpl<$Res> implements $CartLoadingCopyWith<$Res> {
   $Res call({
     Object? product = freezed,
     Object? isFull = null,
+    Object? showSummary = null,
   }) {
     return _then(CartLoading(
       product: freezed == product
@@ -123,6 +129,10 @@ class _$CartLoadingCopyWithImpl<$Res> implements $CartLoadingCopyWith<$Res> {
       isFull: null == isFull
           ? _self.isFull
           : isFull // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showSummary: null == showSummary
+          ? _self.showSummary
+          : showSummary // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }

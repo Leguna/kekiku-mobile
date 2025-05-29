@@ -91,7 +91,7 @@ class _StarWidgetState extends State<StarWidget>
                   child: Icon(
                     Icons.star,
                     color: _colorAnimation.value,
-                    size: Dimens.xlarge,
+                    size: Dimens.xXLarge,
                   ),
                 );
               },

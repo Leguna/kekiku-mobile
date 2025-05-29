@@ -130,7 +130,7 @@ class ProfileDetailScreen extends StatelessWidget {
         return BlocConsumer<RatingCubit, RatingState>(
           listener: (context, state) {
             switch (state) {
-              case RatingState.submitted:
+              case Submitted _:
                 Navigator.pop(context);
                 ratingCubit.openAppLink(Strings.appLink);
                 break;
@@ -138,84 +138,92 @@ class ProfileDetailScreen extends StatelessWidget {
           },
           bloc: ratingCubit,
           builder: (context, state) {
-            return SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: IconButton(
-                      iconSize: 24,
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: const Icon(Icons.close),
+            if (state is Submitted) {
+              return const SizedBox.shrink();
+            }
+            return SafeArea(
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: IconButton(
+                        iconSize: 24,
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: const Icon(Icons.close),
+                      ),
                     ),
-                  ),
-                  Lottie.asset(
-                    Assets.lotties.customerReview,
-                    height: 200,
-                    fit: BoxFit.fitWidth,
-                    reverse: true,
-                    alignment: Alignment.topCenter,
-                    frameRate: FrameRate.max,
-                  ),
-                  Text(
-                    Strings.rateApp,
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  const SizedBox(height: Dimens.tiny),
-                  Text(
-                    Strings.rateAppDescription,
-                    style: Theme.of(context).textTheme.labelSmall,
-                  ),
-                  const SizedBox(height: Dimens.tiny),
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: List.generate(
-                        5,
-                        (index) => StarWidget(
-                          bloc: ratingCubit,
-                          ratingPosition: index + 1,
-                          onTap: ratingCubit.canRating
-                              ? () {
-                                  ratingCubit.setRating(index + 1);
-                                }
-                              : null,
-                        ),
-                      )),
-                  const SizedBox(height: Dimens.tiny),
-                  Text(ratingCubit.getRatingText(),
+                    Lottie.asset(
+                      Assets.lotties.customerReview,
+                      height: 200,
+                      fit: BoxFit.fitWidth,
+                      reverse: true,
+                      alignment: Alignment.topCenter,
+                      frameRate: FrameRate.max,
+                    ),
+                    Text(
+                      Strings.rateApp,
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    const SizedBox(height: Dimens.small),
+                    Text(
+                      Strings.rateAppDescription,
+                      style: Theme.of(context).textTheme.labelSmall,
+                    ),
+                    const SizedBox(height: Dimens.small),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: List.generate(
+                          5,
+                          (index) => StarWidget(
+                            bloc: ratingCubit,
+                            ratingPosition: index + 1,
+                            onTap: ratingCubit.canRating
+                                ? () {
+                                    ratingCubit.setRating(index + 1);
+                                  }
+                                : null,
+                          ),
+                        )),
+                    const SizedBox(height: Dimens.small),
+                    Text(
+                      ratingCubit.getRatingText(),
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(
                             fontWeight: FontWeight.bold,
-                          )),
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: Dimens.medium,
-                      vertical: Dimens.tiny,
+                          ),
                     ),
-                    child: ElevatedButton(
-                        onPressed: ratingCubit.canSubmit
-                            ? () {
-                                switch (state) {
-                                  case RatingState.rating:
-                                    ratingCubit.submitRating();
-                                    break;
-                                }
-                              }
-                            : null,
-                        child: switch (state) {
-                          RatingState.submitting => const SizedBox(
-                              height: Dimens.large,
-                              width: Dimens.large,
-                              child: CircularProgressIndicator(),
-                            ),
-                          _ => const Text(Strings.send),
-                        }),
-                  ),
-                ],
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: Dimens.large,
+                        vertical: Dimens.small,
+                      ),
+                      child: ElevatedButton(
+                          onPressed:
+                              ratingCubit.canSubmit && state is! Submitting
+                                  ? () {
+                                      switch (state) {
+                                        case Rating _:
+                                          ratingCubit.submitRating();
+                                          break;
+                                      }
+                                    }
+                                  : null,
+                          child: switch (state) {
+                            Submitting _ => const SizedBox(
+                                height: Dimens.xlarge,
+                                width: Dimens.xlarge,
+                                child: CircularProgressIndicator(),
+                              ),
+                            _ => const Text(Strings.send),
+                          }),
+                    ),
+                  ],
+                ),
               ),
             );
           },

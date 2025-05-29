@@ -56,7 +56,7 @@ class RegisterScreen extends StatelessWidget {
                 ],
               ),
               body: SingleChildScrollView(
-                padding: const EdgeInsets.all(Dimens.small),
+                padding: const EdgeInsets.all(Dimens.medium),
                 child: Form(
                   key: cubit.formKey,
                   child: Column(
@@ -64,7 +64,7 @@ class RegisterScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(Strings.signUpWith),
-                      const SizedBox(height: Dimens.medium),
+                      const SizedBox(height: Dimens.large),
                       TextFormField(
                         controller: cubit.emailController,
                         onChanged: (value) {
@@ -80,7 +80,7 @@ class RegisterScreen extends StatelessWidget {
                           helperText: Strings.examplePhone,
                         ),
                       ),
-                      const SizedBox(height: Dimens.medium),
+                      const SizedBox(height: Dimens.large),
                       BlocSelector<AuthCubit, AuthState, bool>(
                         selector: (state) {
                           return switch (state) {

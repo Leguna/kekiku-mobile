@@ -31,7 +31,7 @@ class CreateProfileScreen extends StatelessWidget {
           body: isLoading
               ? const MyLoading()
               : SingleChildScrollView(
-                  padding: const EdgeInsets.all(Dimens.medium),
+                  padding: const EdgeInsets.all(Dimens.large),
                   child: Form(
                     key: formKey,
                     child: Column(
@@ -46,7 +46,7 @@ class CreateProfileScreen extends StatelessWidget {
                                 : Strings.phoneNumber,
                           ),
                         ),
-                        const SizedBox(height: Dimens.medium),
+                        const SizedBox(height: Dimens.large),
                         TextFormField(
                           controller: cubit.userNameController,
                           onChanged: (value) {
@@ -64,7 +64,7 @@ class CreateProfileScreen extends StatelessWidget {
                           validator: Validators.required,
                         ),
                         if (cubit.isUsingEmail) ...[
-                          const SizedBox(height: Dimens.medium),
+                          const SizedBox(height: Dimens.large),
                           TextFormField(
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
@@ -93,7 +93,7 @@ class CreateProfileScreen extends StatelessWidget {
                             ),
                           ),
                         ],
-                        const SizedBox(height: Dimens.medium),
+                        const SizedBox(height: Dimens.large),
                         BlocSelector<AuthCubit, AuthState, bool>(
                           selector: (state) => false,
                           builder: (context, state) {
@@ -107,11 +107,11 @@ class CreateProfileScreen extends StatelessWidget {
                             );
                           },
                         ),
-                        const SizedBox(height: Dimens.medium),
+                        const SizedBox(height: Dimens.large),
                         // Terms and conditions that can be clicked
                         Padding(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: Dimens.medium),
+                              horizontal: Dimens.large),
                           child: RichText(
                             textAlign: TextAlign.center,
                             text: TextSpan(
@@ -120,7 +120,7 @@ class CreateProfileScreen extends StatelessWidget {
                                   .textTheme
                                   .bodySmall
                                   ?.copyWith(
-                                    fontSize: Dimens.small,
+                                    fontSize: Dimens.medium,
                                   ),
                               children: [
                                 TextSpan(

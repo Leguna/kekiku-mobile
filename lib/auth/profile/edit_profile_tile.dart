@@ -85,7 +85,7 @@ class EditProfileTile extends StatelessWidget {
                         value: bloc.value.text,
                       ),
                     if (isBirthday) buildBirthdayBottomSheet(context, bloc),
-                    const SizedBox(height: Dimens.medium),
+                    const SizedBox(height: Dimens.large),
                     ElevatedButton(
                       onPressed: () {
                         if (isBirthday) {

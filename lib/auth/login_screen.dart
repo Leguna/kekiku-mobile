@@ -55,7 +55,7 @@ class LoginScreen extends StatelessWidget {
           body: isLoading
               ? const MyLoading()
               : SingleChildScrollView(
-                  padding: const EdgeInsets.all(Dimens.small),
+                  padding: const EdgeInsets.all(Dimens.medium),
                   child: Form(
                     onChanged: () {
                       context.read<AuthCubit>().validateForm();
@@ -72,7 +72,7 @@ class LoginScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 const Text(Strings.signInWith),
-                                const SizedBox(height: Dimens.medium),
+                                const SizedBox(height: Dimens.large),
                                 if (!isEmailLogin) ...[
                                   TextFormField(
                                     controller: cubit.emailController,
@@ -92,7 +92,7 @@ class LoginScreen extends StatelessWidget {
                                       cubit.checkEmailOrPhone();
                                     },
                                   ),
-                                  const SizedBox(height: Dimens.medium),
+                                  const SizedBox(height: Dimens.large),
                                 ],
                                 if (isEmailLogin) ...[
                                   TextFormField(
@@ -111,7 +111,7 @@ class LoginScreen extends StatelessWidget {
                                       cubit.trySendVerificationMessage();
                                     },
                                   ),
-                                  const SizedBox(height: Dimens.medium),
+                                  const SizedBox(height: Dimens.large),
                                   TextFormField(
                                     controller: cubit.passwordController,
                                     onChanged: (value) {
@@ -140,7 +140,7 @@ class LoginScreen extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(height: Dimens.medium),
+                                  const SizedBox(height: Dimens.large),
                                 ],
                                 BlocSelector<AuthCubit, AuthState, bool>(
                                   selector: (state) {

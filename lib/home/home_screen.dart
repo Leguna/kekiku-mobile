@@ -58,7 +58,7 @@ class HomeScreen extends StatelessWidget {
                       ? ImagePopup(
                           src: Assets.images.orangeCake.path,
                           onTap: () {
-                            Navigator.of(context).pushNamed(Routes.notFound);
+                            // Navigator.of(context).pushNamed(Routes.notFound);
                           },
                           onBack: () {
                             homeCubit.closePopupImage();

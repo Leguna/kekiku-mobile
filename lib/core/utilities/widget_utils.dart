@@ -51,7 +51,7 @@ showMyModalBottomSheet(
               ],
             ),
             Padding(
-              padding: const EdgeInsets.all(Dimens.medium),
+              padding: const EdgeInsets.all(Dimens.large),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [

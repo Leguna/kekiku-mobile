@@ -7,7 +7,7 @@ class MyDivider extends StatelessWidget {
     super.key,
     this.text = "",
     this.thickness = 2,
-    this.padding = const EdgeInsets.symmetric(vertical: Dimens.small),
+    this.padding = const EdgeInsets.symmetric(vertical: Dimens.medium),
   });
 
   final String text;
@@ -28,7 +28,7 @@ class MyDivider extends StatelessWidget {
           ),
           if (text.isNotEmpty)
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: Dimens.tiny),
+              padding: const EdgeInsets.symmetric(horizontal: Dimens.small),
               child: Text(
                 text,
                 style: Theme.of(context).textTheme.displaySmall,

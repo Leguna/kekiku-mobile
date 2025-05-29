@@ -72,7 +72,7 @@ class HomePage extends StatelessWidget {
                     // const HomeBadgedIconList(),
                     // const SizedBox(height: Dimens.small),
                     const HomeListHorizontalProduct(),
-                    const SizedBox(height: Dimens.small),
+                    const SizedBox(height: Dimens.medium),
                   ],
                 ),
               ),

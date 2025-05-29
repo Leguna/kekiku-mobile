@@ -30,30 +30,29 @@ class CartScreen extends StatelessWidget {
               };
               return RefreshIndicator(
                 onRefresh: () async {
-                  await context.read<CartCubit>().getCart();
+                  await context.read<CartCubit>().getCart(showSummary: true);
                 },
                 child: cartItems.isNotEmpty
                     ? ListView.separated(
-                  padding: const EdgeInsets.only(
-                    top: Dimens.medium,
-                    bottom: Dimens.spaceBig,
-                  ),
-                  shrinkWrap: true,
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  itemCount: cartItems.length + 1,
-                  separatorBuilder: (context, index) =>
-                      MyDivider(
-                        thickness: Dimens.nano,
-                      ),
-                  itemBuilder: (BuildContext context, int index) {
-                    if (index == cartItems.length) {
-                      return SizedBox(height: 100);
-                    }
+                        padding: const EdgeInsets.only(
+                          top: Dimens.large,
+                          bottom: Dimens.spaceBig,
+                        ),
+                        shrinkWrap: true,
+                        physics: const AlwaysScrollableScrollPhysics(),
+                        itemCount: cartItems.length + 1,
+                        separatorBuilder: (context, index) => MyDivider(
+                          thickness: Dimens.nano,
+                        ),
+                        itemBuilder: (BuildContext context, int index) {
+                          if (index == cartItems.length) {
+                            return SizedBox(height: 100);
+                          }
 
-                    final cartItem = cartItems[index];
-                    return CartItemWidget(cartItem: cartItem);
-                  },
-                )
+                          final cartItem = cartItems[index];
+                          return CartItemWidget(cartItem: cartItem);
+                        },
+                      )
                     : EmptyListWidget(),
               );
             },
@@ -81,27 +80,23 @@ class EmptyListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-                      physics: AlwaysScrollableScrollPhysics(),
-                      child: Center(
-    child: ConstrainedBox(
-      constraints: BoxConstraints(
-        minHeight:
-        MediaQuery
-            .of(context)
-            .size
-            .height * 0.8,
+      physics: AlwaysScrollableScrollPhysics(),
+      child: Center(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            minHeight: MediaQuery.of(context).size.height * 0.8,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Lottie.asset(Assets.lotties.notfound),
+              const Text(Strings.cartEmpty),
+            ],
+          ),
+        ),
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Lottie.asset(Assets.lotties.notfound),
-          const Text(Strings.cartEmpty),
-        ],
-      ),
-    ),
-                      ),
-                    );
+    );
   }
 }

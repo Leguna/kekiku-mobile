@@ -7,6 +7,7 @@ class CartState with _$CartState {
   const factory CartState.loading({
     Product? product,
     @Default(false) bool isFull,
+    @Default(false) bool showSummary,
   }) = CartLoading;
 
   const factory CartState.error(String message) = CartError;

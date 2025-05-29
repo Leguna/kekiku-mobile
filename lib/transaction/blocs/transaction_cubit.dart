@@ -199,23 +199,24 @@ class TransactionCubit extends Cubit<TransactionState> {
     emit(const TransactionState.updated());
   }
 
-  void cancelTransaction(String id) {
-    emit(const TransactionState.loading());
+  Future<void> cancelTransaction(String id) async {
+    emit(TransactionState.loading(transactionId: id));
     try {
       final transaction = transactions.firstWhere((t) => t.id == id);
-      cartRepository.cancelTransaction(transaction);
-      fetchTransactions();
+      await cartRepository.cancelTransaction(transaction);
+      await fetchTransactions();
     } catch (e) {
       emit(TransactionState.error(message: e.toString()));
     }
   }
 
-  void finishTransaction(String id) {
-    emit(const TransactionState.loading());
+  Future<void> finishTransaction(String id) async {
+    emit(TransactionState.loading(transactionId: id));
     try {
       final transaction = transactions.firstWhere((t) => t.id == id);
-      cartRepository.finishTransaction(transaction);
-      fetchTransactions();
+      await cartRepository.finishTransaction(transaction);
+      await fetchTransactions();
+      emit (TransactionState.finishSuccess(transactionId: id));
     } catch (e) {
       emit(TransactionState.error(message: e.toString()));
     }
@@ -226,10 +227,9 @@ class TransactionCubit extends Cubit<TransactionState> {
       emit(TransactionState.error(message: "Transaction ID cannot be empty"));
       return;
     }
-    emit(const TransactionState.loading());
+    emit(TransactionState.loading(transactionId: transactionId));
     final response =
         await cartRepository.buyAgainFromTransaction(transactionId);
-
     response.when(
       success: (data) {
         emit(TransactionState.buyAgainSuccess());

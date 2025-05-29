@@ -65,7 +65,7 @@ class ScannerScreen extends StatelessWidget {
                             .toList(),
                         _ => [],
                       },
-                      const SizedBox(height: Dimens.small),
+                      const SizedBox(height: Dimens.medium),
                       ElevatedButton(
                         onPressed: () {
                           bloc.reset();

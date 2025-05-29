@@ -11,7 +11,7 @@ class DetailNameWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: Dimens.medium),
+      padding: const EdgeInsets.symmetric(horizontal: Dimens.large),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -19,7 +19,7 @@ class DetailNameWidget extends StatelessWidget {
             name,
             style: Theme.of(context).textTheme.titleLarge,
           ),
-          const SizedBox(height: Dimens.small),
+          const SizedBox(height: Dimens.medium),
         ],
       ),
     );

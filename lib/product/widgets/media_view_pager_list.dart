@@ -87,7 +87,7 @@ class MediaViewPagerListState extends State<MediaViewPagerList> {
                   height: 32,
                   decoration: BoxDecoration(
                     borderRadius: const BorderRadius.horizontal(
-                      right: Radius.circular(Dimens.small),
+                      right: Radius.circular(Dimens.medium),
                     ),
                     color: Colors.black.withAlpha(125),
                   ),
@@ -108,10 +108,10 @@ class MediaViewPagerListState extends State<MediaViewPagerList> {
               duration: const Duration(milliseconds: 300),
               opacity: currentPage == 0 ? 0 : 1,
               child: Container(
-                padding: const EdgeInsets.all(Dimens.small),
+                padding: const EdgeInsets.all(Dimens.medium),
                 decoration: BoxDecoration(
                   color: Colors.black.withAlpha(125),
-                  borderRadius: BorderRadius.circular(Dimens.small),
+                  borderRadius: BorderRadius.circular(Dimens.medium),
                 ),
                 child: Text(
                   '${currentPage + 1}/${widget.files.length}',
@@ -128,7 +128,7 @@ class MediaViewPagerListState extends State<MediaViewPagerList> {
               height: 16,
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.vertical(
-                  top: Radius.circular(Dimens.small),
+                  top: Radius.circular(Dimens.medium),
                 ),
                 color: Theme.of(context).scaffoldBackgroundColor,
               ),

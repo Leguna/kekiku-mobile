@@ -52,7 +52,7 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
               titleSpacing: 0,
               actions: const [
-                SizedBox(width: Dimens.small),
+                SizedBox(width: Dimens.medium),
               ],
             ),
             body: ListInfiniteProduct(

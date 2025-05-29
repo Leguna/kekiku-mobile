@@ -43,21 +43,23 @@ class MyScaffold extends StatelessWidget {
             ),
           ),
           if (infoText.isNotEmpty)
-            SafeArea(
-              child: Container(
-                width: double.infinity,
-                height: 48,
-                padding: const EdgeInsets.only(
-                  left: 16.0,
-                  right: 16.0,
-                ),
-                color: Theme.of(context).primaryColor,
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(infoText, style: AppTextStyles.small),
+            ...[
+              SafeArea(
+                child: Container(
+                  width: double.infinity,
+                  height: 48,
+                  padding: const EdgeInsets.only(
+                    left: 16.0,
+                    right: 16.0,
+                  ),
+                  color: Theme.of(context).primaryColorDark,
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(infoText, style: AppTextStyles.small),
+                  ),
                 ),
               ),
-            ),
+            ]
         ],
       ),
     );

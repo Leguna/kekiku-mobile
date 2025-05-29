@@ -23,7 +23,7 @@ class FilterBar extends StatelessWidget {
                   },
                   icon: const Icon(Icons.close),
                 ),
-              const SizedBox(width: Dimens.tiny),
+              const SizedBox(width: Dimens.small),
               Expanded(
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
@@ -54,7 +54,7 @@ class FilterBar extends StatelessWidget {
                               ));
                         },
                       ),
-                      const SizedBox(width: Dimens.small),
+                      const SizedBox(width: Dimens.medium),
                       _filterChip(
                         context,
                         label: c.typeFilter.text,
@@ -80,7 +80,7 @@ class FilterBar extends StatelessWidget {
                               ));
                         },
                       ),
-                      const SizedBox(width: Dimens.small),
+                      const SizedBox(width: Dimens.medium),
                       _filterChip(
                         context,
                         label: c.getDateLabel,
@@ -114,16 +114,16 @@ class FilterBar extends StatelessWidget {
     final unselectedColor =
         Theme.of(context).colorScheme.secondary.withAlpha(50);
     return InkWell(
-      borderRadius: BorderRadius.circular(Dimens.small),
+      borderRadius: BorderRadius.circular(Dimens.medium),
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(
-          horizontal: Dimens.small,
-          vertical: Dimens.tiny,
+          horizontal: Dimens.medium,
+          vertical: Dimens.small,
         ),
         decoration: BoxDecoration(
           color: isSelected ? selectedColor : unselectedColor,
-          borderRadius: BorderRadius.circular(Dimens.small),
+          borderRadius: BorderRadius.circular(Dimens.medium),
         ),
         child: Row(
           children: [
@@ -133,11 +133,11 @@ class FilterBar extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-            const SizedBox(width: Dimens.tiny),
+            const SizedBox(width: Dimens.small),
             const Icon(
               Icons.keyboard_arrow_down,
               color: Colors.white,
-              size: Dimens.medium,
+              size: Dimens.large,
             ),
           ],
         ),

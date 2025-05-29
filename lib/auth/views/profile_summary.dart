@@ -23,7 +23,7 @@ class ProfileSummary extends StatelessWidget {
         var user = cubit.user;
         if (cubit.user == null) {
           return const Padding(
-            padding: EdgeInsets.all(Dimens.small),
+            padding: EdgeInsets.all(Dimens.medium),
             child: LoginButtons(),
           );
         } else {
@@ -35,8 +35,8 @@ class ProfileSummary extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(
-                        top: Dimens.small,
-                        left: Dimens.small,
+                        top: Dimens.medium,
+                        left: Dimens.medium,
                       ),
                       child: Text(
                         user?.displayName ?? '',
@@ -51,7 +51,7 @@ class ProfileSummary extends StatelessWidget {
                     if (user?.username != null && user?.username != '')
                       Row(
                         children: [
-                          const SizedBox(width: Dimens.small),
+                          const SizedBox(width: Dimens.medium),
                           Text(
                             "@${user?.username}",
                             overflow: TextOverflow.ellipsis,
@@ -61,21 +61,21 @@ class ProfileSummary extends StatelessWidget {
                     if (user?.email != null)
                       Row(
                         children: [
-                          const SizedBox(width: Dimens.small),
+                          const SizedBox(width: Dimens.medium),
                           Text("${user?.email}"),
                         ],
                       )
                     else
                       Row(
                         children: [
-                          const SizedBox(width: Dimens.small),
+                          const SizedBox(width: Dimens.medium),
                           const Icon(Icons.phone,
-                              size: Dimens.small, color: Colors.grey),
+                              size: Dimens.medium, color: Colors.grey),
                           const SizedBox(width: Dimens.micro),
                           Text("${user?.phone}"),
                         ],
                       ),
-                    const SizedBox(height: Dimens.small),
+                    const SizedBox(height: Dimens.medium),
                   ],
                 ),
                 leading: user == null
@@ -86,7 +86,7 @@ class ProfileSummary extends StatelessWidget {
                 },
                 trailing: IconButton(
                   icon: Icon(showEditButton ? Icons.edit : Icons.settings,
-                      size: Dimens.large),
+                      size: Dimens.xlarge),
                   onPressed: () {
                     onTap?.call();
                   },
@@ -102,9 +102,9 @@ class ProfileSummary extends StatelessWidget {
   Widget buildImage(User user) {
     return MyImageLoader(
       path: user.photo,
-      width: Dimens.large * 2,
-      height: Dimens.large * 2,
-      radius: Dimens.large * 2,
+      width: Dimens.xlarge * 2,
+      height: Dimens.xlarge * 2,
+      radius: Dimens.xlarge * 2,
     );
   }
 }

@@ -9,7 +9,7 @@ class HomeBadgedIconList extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: [
-          const SizedBox(width: Dimens.tiny),
+          const SizedBox(width: Dimens.small),
           IconButtonLabeled(
             label: 'Assurance',
             icon: Assets.svgs.home.svg(
@@ -58,7 +58,7 @@ class HomeBadgedIconList extends StatelessWidget {
                 colorFilter: const ColorFilter.mode(
                     Colors.greenAccent, BlendMode.srcIn)),
           ),
-          const SizedBox(width: Dimens.tiny),
+          const SizedBox(width: Dimens.small),
         ],
       ),
     );

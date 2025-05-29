@@ -13,7 +13,7 @@ class DetailSummaryWidget extends StatelessWidget {
     return SingleChildScrollView(
       child: Row(
         children: [
-          const SizedBox(width: Dimens.medium),
+          const SizedBox(width: Dimens.large),
           Container(
             padding: const EdgeInsets.all(Dimens.micro),
             height: 32,
@@ -22,7 +22,7 @@ class DetailSummaryWidget extends StatelessWidget {
               border: Border.all(
                 color: Theme.of(context).colorScheme.primary,
               ),
-              borderRadius: BorderRadius.circular(Dimens.small),
+              borderRadius: BorderRadius.circular(Dimens.medium),
             ),
             child: Row(
               children: [
@@ -40,14 +40,14 @@ class DetailSummaryWidget extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(width: Dimens.small),
+          const SizedBox(width: Dimens.medium),
           Container(
             height: 32,
             decoration: BoxDecoration(
               border: Border.all(
                 color: Theme.of(context).colorScheme.primary,
               ),
-              borderRadius: BorderRadius.circular(Dimens.small),
+              borderRadius: BorderRadius.circular(Dimens.medium),
             ),
             padding: const EdgeInsets.all(Dimens.micro),
             child: Row(
@@ -65,14 +65,14 @@ class DetailSummaryWidget extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(width: Dimens.small),
+          const SizedBox(width: Dimens.medium),
           Container(
             height: 32,
             decoration: BoxDecoration(
               border: Border.all(
                 color: Theme.of(context).colorScheme.primary,
               ),
-              borderRadius: BorderRadius.circular(Dimens.small),
+              borderRadius: BorderRadius.circular(Dimens.medium),
             ),
             padding: const EdgeInsets.all(Dimens.micro),
             child: Row(

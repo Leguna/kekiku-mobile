@@ -35,7 +35,7 @@ dart run flutter_native_splash:remove
 flutter pub run flutter_launcher_icons
 ```
 
-### Running Build Runner
+**### Running Build Runner**
 
 ```bash
 dart run build_runner build

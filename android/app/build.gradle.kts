@@ -21,7 +21,7 @@ tasks.withType<JavaCompile> {
 android {
   namespace = "site.arksana.kekiku"
   compileSdk = flutter.compileSdkVersion
-  ndkVersion = "27.0.12077973"
+  ndkVersion = flutter.ndkVersion
 
   compileOptions {
     isCoreLibraryDesugaringEnabled = true
@@ -35,7 +35,7 @@ android {
 
   defaultConfig {
     applicationId = "site.arksana.kekiku"
-    minSdk = 23
+    minSdk = flutter.minSdkVersion
     targetSdk = flutter.targetSdkVersion
     versionCode = flutter.versionCode
     versionName = flutter.versionName

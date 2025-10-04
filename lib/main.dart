@@ -20,6 +20,7 @@ import 'favorite/bloc/favorite_cubit.dart';
 Future<void> main() async {
   try {
     WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
     FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
     await setupServices();
     await Future.delayed(const Duration(seconds: 1));

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../index.dart';
+
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   const MyAppBar({
     super.key,
@@ -16,6 +18,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return SafeArea(
       child: AppBar(
         title: title,
